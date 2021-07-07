@@ -33,7 +33,8 @@ async function handleEvent(event) {
           Authorization: 'CWB-7E29EFF3-06AE-41E1-BCC8-663CE6715435',
           locationId: 'F-D0047-007',
           locationName: '龍潭區',
-          elementName: 'T'
+          elementName: 'T',
+          startTime: '2021-07-07T18:00:00'
       }
   });
 

@@ -53,7 +53,7 @@ function isWebhookTest(replyToken) {
   );
 }
 
-async function getWeatherResponse() {
+async function getWeatherResponse(dist,) {
     const weatherResponse = await axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093', {
       params: {
           Authorization: 'CWB-7E29EFF3-06AE-41E1-BCC8-663CE6715435',
@@ -79,13 +79,11 @@ async function getWeatherResponse() {
   const value = elementValue.value;
   const measures = elementValue.measures;
 
-  return 'City: ' + city + '\n' +
-    'Dist: ' + dist + '\n' +
-    'Description: ' + description + '\n' +
-    'Start Time: ' + startTime + '\n' +
-    'End Time: ' + endTime + '\n' +
-    'Value: ' + value + '\n' +
-    'Measures: ' + measures;
+  return '城市: ' + city + '\n' +
+    '行政區: ' + dist + '\n' +
+    '起始時間: ' + startTime + '\n' +
+    '結束時間: ' + endTime + '\n' +
+    description + ':' + value + measures;
 }
 
 const port = process.env.PORT || 3000;

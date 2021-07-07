@@ -28,7 +28,7 @@ async function handleEvent(event) {
     return Promise.resolve(null);
   }
 
-  const text = getWeatherResponse();
+  const text = await getWeatherResponse();
 
   const replyText = {
     type: 'text',

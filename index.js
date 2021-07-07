@@ -39,13 +39,35 @@ async function handleEvent(event) {
   });
 
   const record = weatherResponse.data.records;
+  const locations = record.locations[0];
+  const location = locations.location[0];
+  const weatherElement = location.weatherElement[0];
+  const time = weatherElement.time[0];
+  const elementValue = time.elementValue[0];
 
-  const echo = {
+  const city = locations.locationsName;
+  const dist = location.locationName;
+  const description = weatherElement.description;
+  const startTime = time.startTime;
+  const endTime = time.endTime;
+  const value = elementValue.value;
+  const measures = elementValue.measures;
+
+  const text = 
+    'City: ' + city + '\n' +
+    'Dist: ' + dist + '\n' +
+    'Description: ' + description + '\n' +
+    'Start Time: ' + startTime + '\n' +
+    'End Time: ' + endTime + '\n' +
+    'Value: ' + value + '\n' +
+    'Measures: ' + measures;
+
+  const replyText = {
     type: 'text',
-    text: JSON.stringify(record),
+    text: text,
   };
 
-  return client.replyMessage(event.replyToken, echo);
+  return client.replyMessage(event.replyToken, replyText);
 }
 
 function isMessage(eventType) {

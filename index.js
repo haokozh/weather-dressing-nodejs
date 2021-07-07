@@ -28,9 +28,20 @@ function handleEvent(event) {
     return Promise.resolve(null);
   }
 
+  const weatherResponse = axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093', {
+      params: {
+          Authorization: 'CWB-7E29EFF3-06AE-41E1-BCC8-663CE6715435',
+          locationId: 'F-D0047-007',
+          locationName: '龍潭區',
+          elementName: 'T'
+      }
+  });
+
+  const record = weatherResponse.data.records;
+
   const echo = {
     type: 'text',
-    text: event.message.text,
+    text: JSON.stringify(record),
   };
 
   return client.replyMessage(event.replyToken, echo);

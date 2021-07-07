@@ -19,7 +19,7 @@ app.post('/callback', line.middleware(lineConfig), (req, res) => {
     });
 });
 
-function handleEvent(event) {
+async function handleEvent(event) {
   if (
     !isMessage(event.type) ||
     !isTextMessage(event.message.type) ||
@@ -28,7 +28,7 @@ function handleEvent(event) {
     return Promise.resolve(null);
   }
 
-  const weatherResponse = axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093', {
+  const weatherResponse = await axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093', {
       params: {
           Authorization: 'CWB-7E29EFF3-06AE-41E1-BCC8-663CE6715435',
           locationId: 'F-D0047-007',

@@ -28,7 +28,33 @@ async function handleEvent(event) {
     return Promise.resolve(null);
   }
 
-  const weatherResponse = await axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093', {
+  const text = getWeatherResponse();
+
+  const replyText = {
+    type: 'text',
+    text: text,
+  };
+
+  return client.replyMessage(event.replyToken, replyText);
+}
+
+function isMessage(eventType) {
+  return eventType === 'message';
+}
+
+function isTextMessage(messageType) {
+  return messageType === 'text';
+}
+
+function isWebhookTest(replyToken) {
+  return (
+    replyToken === '00000000000000000000000000000000' ||
+    replyToken === 'ffffffffffffffffffffffffffffffff'
+  );
+}
+
+async function getWeatherResponse() {
+    const weatherResponse = await axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093', {
       params: {
           Authorization: 'CWB-7E29EFF3-06AE-41E1-BCC8-663CE6715435',
           locationId: 'F-D0047-007',
@@ -53,36 +79,13 @@ async function handleEvent(event) {
   const value = elementValue.value;
   const measures = elementValue.measures;
 
-  const text = 
-    'City: ' + city + '\n' +
+  return 'City: ' + city + '\n' +
     'Dist: ' + dist + '\n' +
     'Description: ' + description + '\n' +
     'Start Time: ' + startTime + '\n' +
     'End Time: ' + endTime + '\n' +
     'Value: ' + value + '\n' +
     'Measures: ' + measures;
-
-  const replyText = {
-    type: 'text',
-    text: text,
-  };
-
-  return client.replyMessage(event.replyToken, replyText);
-}
-
-function isMessage(eventType) {
-  return eventType === 'message';
-}
-
-function isTextMessage(messageType) {
-  return messageType === 'text';
-}
-
-function isWebhookTest(replyToken) {
-  return (
-    replyToken === '00000000000000000000000000000000' ||
-    replyToken === 'ffffffffffffffffffffffffffffffff'
-  );
 }
 
 const port = process.env.PORT || 3000;

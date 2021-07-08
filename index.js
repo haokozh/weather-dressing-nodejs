@@ -67,7 +67,7 @@ async function getWeatherResponse() {
       params: {
         Authorization: process.env.CWB_API_KEY,
         locationId: locationId,
-        locationName: '龍潭區',
+        locationName: locationName,
         elementName: 'T',
         startTime: '2021-07-08T18:00:00',
       },

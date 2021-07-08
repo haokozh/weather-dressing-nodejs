@@ -59,7 +59,7 @@ async function getWeatherResponse() {
   const locationId = 'F-D0047-007';
   const locationName = '龍潭區';
   const elementName = 'T';
-  const startTime = '2021-07-08T18:00:00';
+  const startTimestamp = '2021-07-08T18:00:00';
 
   const weatherResponse = await axios.get(
     `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093`,

@@ -62,7 +62,7 @@ async function getWeatherResponse() {
   const startTimestamp = '2021-07-08T18:00:00';
 
   const weatherResponse = await axios.get(
-    `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093`,
+    'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093',
     {
       params: {
         Authorization: process.env.CWB_API_KEY,

@@ -54,25 +54,22 @@ function isWebhookTest(replyToken) {
 }
 
 async function getWeatherResponse() {
-  const baseURL = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093';
-  const CWB_API_KEY = process.env.CWB_API_KEY;
+  const baseURL =
+    'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093';
   const locationId = 'F-D0047-007';
   const locationName = '龍潭區';
   const elementName = 'T';
   const startTimestamp = '2021-07-08T18:00:00';
 
-  const weatherResponse = await axios.get(
-    'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093',
-    {
-      params: {
-        Authorization: process.env.CWB_API_KEY,
-        locationId: locationId,
-        locationName: locationName,
-        elementName: 'T',
-        startTime: '2021-07-08T18:00:00',
-      },
-    }
-  );
+  const weatherResponse = await axios.get(baseURL, {
+    params: {
+      Authorization: process.env.CWB_API_KEY,
+      locationId: locationId,
+      locationName: locationName,
+      elementName: elementName,
+      startTime: startTimestamp,
+    },
+  });
 
   const record = weatherResponse.data.records;
   const locations = record.locations[0];

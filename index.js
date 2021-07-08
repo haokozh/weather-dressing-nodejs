@@ -54,15 +54,18 @@ function isWebhookTest(replyToken) {
 }
 
 async function getWeatherResponse() {
-    const weatherResponse = await axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093', {
+  const weatherResponse = await axios.get(
+    'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093',
+    {
       params: {
-          Authorization: 'CWB-7E29EFF3-06AE-41E1-BCC8-663CE6715435',
-          locationId: 'F-D0047-007',
-          locationName: '龍潭區',
-          elementName: 'T',
-          startTime: '2021-07-07T18:00:00'
-      }
-  });
+        Authorization: process.env.CWB_API_KEY,
+        locationId: 'F-D0047-007',
+        locationName: '龍潭區',
+        elementName: 'T',
+        startTime: '2021-07-07T18:00:00',
+      },
+    }
+  );
 
   const record = weatherResponse.data.records;
   const locations = record.locations[0];
@@ -79,11 +82,24 @@ async function getWeatherResponse() {
   const value = elementValue.value;
   const measures = elementValue.measures;
 
-  return '城市: ' + city + '\n' +
-    '行政區: ' + dist + '\n' +
-    '起始時間: ' + startTime + '\n' +
-    '結束時間: ' + endTime + '\n' +
-    description + ':' + value + measures;
+  return (
+    '城市: ' +
+    city +
+    '\n' +
+    '行政區: ' +
+    dist +
+    '\n' +
+    '起始時間: ' +
+    startTime +
+    '\n' +
+    '結束時間: ' +
+    endTime +
+    '\n' +
+    description +
+    ':' +
+    value +
+    measures
+  );
 }
 
 const port = process.env.PORT || 3000;

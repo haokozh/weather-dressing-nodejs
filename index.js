@@ -58,7 +58,7 @@ async function getWeatherResponse() {
     `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093`,
     {
       params: {
-        Authorization: process.env.CWB_API_KEY,
+        Authorization: `${process.env.CWB_API_KEY}`,
         locationId: 'F-D0047-007',
         locationName: '龍潭區',
         elementName: 'T',

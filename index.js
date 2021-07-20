@@ -112,7 +112,7 @@ async function getWeatherResponseFromCWB(
     '\n' +
     description +
     ':' +
-    value +
+    value + ' ' +
     measures
   );
 }

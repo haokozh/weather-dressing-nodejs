@@ -111,9 +111,8 @@ async function getWeatherResponseFromCWB(
     endTime +
     '\n' +
     description +
-    ':' +
-    value + ' ' +
-    measures
+    ': ' +
+    value + ' \u00B0C'
   );
 }
 

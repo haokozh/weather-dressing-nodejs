@@ -45,28 +45,7 @@ async function handleEvent(event) {
     text: text,
   };
 
-  const replyConfirmTemplate = {
-    type: 'template',
-    altText: 'comfirm template',
-    template: {
-      type: 'confirm',
-      text: 'title text',
-      actions: [
-        {
-          type: 'message',
-          label: 'first button',
-          text: '1'
-        },
-        {
-          type: 'message',
-          label: 'second button',
-          text: '2'
-        }
-      ]
-    }
-  };
-
-  return client.replyMessage(event.replyToken, replyConfirmTemplate);
+  return client.replyMessage(event.replyToken, replyText);
 }
 
 function isMessage(eventType) {

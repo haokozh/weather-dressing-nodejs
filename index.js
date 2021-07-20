@@ -33,7 +33,7 @@ async function handleEvent(event) {
   const elementName = 'T';
   const startTimestamp = '2021-07-08T18:00:00';
 
-  const text = await getWeatherResponse(
+  const text = await getWeatherResponseFromCWB(
     locationId,
     locationName,
     elementName,
@@ -45,7 +45,28 @@ async function handleEvent(event) {
     text: text,
   };
 
-  return client.replyMessage(event.replyToken, replyText);
+  const replyConfirmTemplate = {
+    type: 'template',
+    altText: 'comfirm template',
+    template: {
+      type: 'confirm',
+      text: 'title text',
+      actions: [
+        {
+          type: 'message',
+          label: 'first button',
+          text: '1'
+        },
+        {
+          type: 'message',
+          label: 'second button',
+          text: '2'
+        }
+      ]
+    }
+  };
+
+  return client.replyMessage(event.replyToken, replyConfirmTemplate);
 }
 
 function isMessage(eventType) {
@@ -63,7 +84,7 @@ function isWebhookTest(replyToken) {
   );
 }
 
-async function getWeatherResponse(
+async function getWeatherResponseFromCWB(
   locationId,
   locationName,
   elementName,

@@ -31,7 +31,7 @@ async function handleEvent(event) {
   const locationId = 'F-D0047-007';
   const locationName = '龍潭區';
   const elementName = 'T';
-  const startTimestamp = '2021-07-20T18:00:00';
+  const startTimestamp = '2021-07-21T18:00:00';
 
   const text = await getWeatherResponseFromCWB(
     locationId,

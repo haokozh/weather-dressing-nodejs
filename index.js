@@ -204,8 +204,8 @@ async function handleEvent(event) {
         }
       ],
       flex: 0
-    };
-  }
+    }
+  };
 
   return client.replyMessage(event.replyToken, replyBubble);
 }

@@ -131,7 +131,7 @@ async function getWeatherResponseFromCWB(
             contents: [
               {
                 type: 'text',
-                text: `${time.startTime} ~ ${time.endTime}`,
+                text: `${pop12hTime.startTime} ~ ${pop12hTime.endTime}`,
                 size: 'md',
                 color: '#999999',
                 margin: 'md',

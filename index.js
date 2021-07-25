@@ -24,20 +24,80 @@ async function handleEvent(event) {
 
   const locationId = 'F-D0047-007';
   const locationName = '龍潭區';
-  const elementName = 'T';
+  const elementName = ['MinT', 'MaxT', 'PoP12h', 'WeatherDescription', 'MinCI', 'MaxCI'];
 
-  const text = await getWeatherResponseFromCWB(
+  const replyMessage = await getWeatherResponseFromCWB(
     locationId,
     locationName,
     elementName
   );
 
-  const replyText = {
-    type: 'text',
-    text: text,
-  };
+  return client.replyMessage(event.replyToken, replyMessage);
+}
 
-  const replyBubble = {
+function isMessage(eventType) {
+  return eventType === 'message';
+}
+
+function isTextMessage(messageType) {
+  return messageType === 'text';
+}
+
+function isWebhookTest(replyToken) {
+  return (
+    replyToken === '00000000000000000000000000000000' ||
+    replyToken === 'ffffffffffffffffffffffffffffffff'
+  );
+}
+
+async function getWeatherResponseFromCWB(
+  locationId,
+  locationName,
+  elementName
+) {
+  const baseURL =
+    'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093';
+
+  const weatherResponse = await axios.get(baseURL, {
+    params: {
+      Authorization: process.env.CWB_API_KEY,
+      locationId: locationId,
+      locationName: locationName,
+      elementName: elementName,
+    },
+  });
+
+  const records = weatherResponse.data.records;
+  const locations = records.locations[0];
+
+  const location = locations.location[0];
+  const pop12h = location.weatherElement[0];
+  const minCI = location.weatherElement[1];
+  const maxCI = location.weatherElement[2];
+  const minTemp = location.weatherElement[3];
+  const weatherDescription = location.weatherElement[4];
+  const maxTemp = location.weatherElement[5];
+  
+  
+  const pop12hTime = pop12h.time[0];
+  const wdTime = weatherDescription.time[0];
+  const minTempTime = minTemp.time[0];
+  const maxTempTime = maxTemp.time[0];
+  const minCITime = minCI.time[0];
+  const maxCITime = maxCI.time[0];
+
+  const pop12hValue = pop12hTime.elementValue[0];
+  const wdValue = wdTime.elementValue[0];
+  const minTempValue = minTempTime.elementValue[0];
+  const maxTempValue = maxTempTime.elementValue[0];
+  const minCIValue = minCITime.elementValue[0];
+  const maxCIValue = maxCITime.elementValue[0];
+
+  const pop12hDescription = `${pop12hValue.value}%`;
+  const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;
+  const confortDescription = `${minCIValue.value}至${maxCIValue.value}`;
+
+  return replyBubble = {
     type: 'flex',
     altText: 'This is FlexMessage',
     contents: {
@@ -59,7 +119,7 @@ async function handleEvent(event) {
         contents: [
           {
             type: 'text',
-            text: '桃園市未來 36 小時天氣',
+            text: locations.datasetDescription,
             weight: 'bold',
             size: 'xl',
             align: 'center',
@@ -71,7 +131,7 @@ async function handleEvent(event) {
             contents: [
               {
                 type: 'text',
-                text: '07/24 18:00:00 ~ 07/25 06:00:00',
+                text: `${time.startTime} ~ ${time.endTime}`,
                 size: 'md',
                 color: '#999999',
                 margin: 'md',
@@ -126,7 +186,7 @@ async function handleEvent(event) {
                   },
                   {
                     type: 'text',
-                    text: '28°C ~ 31°C',
+                    text: tempDescription,
                     offsetEnd: 'xxl',
                     weight: 'bold',
                     size: 'lg',
@@ -146,7 +206,7 @@ async function handleEvent(event) {
                   },
                   {
                     type: 'text',
-                    text: '30%',
+                    text: pop12hDescription,
                     offsetEnd: 'xxl',
                     weight: 'bold',
                     size: 'lg',
@@ -166,7 +226,7 @@ async function handleEvent(event) {
                   },
                   {
                     type: 'text',
-                    text: '舒適至悶熱',
+                    text: confortDescription,
                     offsetEnd: 'xxl',
                     size: 'lg',
                     weight: 'bold',
@@ -204,75 +264,6 @@ async function handleEvent(event) {
       },
     },
   };
-
-  return client.replyMessage(event.replyToken, replyBubble);
-}
-
-function isMessage(eventType) {
-  return eventType === 'message';
-}
-
-function isTextMessage(messageType) {
-  return messageType === 'text';
-}
-
-function isWebhookTest(replyToken) {
-  return (
-    replyToken === '00000000000000000000000000000000' ||
-    replyToken === 'ffffffffffffffffffffffffffffffff'
-  );
-}
-
-async function getWeatherResponseFromCWB(
-  locationId,
-  locationName,
-  elementName
-) {
-  const baseURL =
-    'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093';
-
-  const weatherResponse = await axios.get(baseURL, {
-    params: {
-      Authorization: process.env.CWB_API_KEY,
-      locationId: locationId,
-      locationName: locationName,
-      elementName: elementName,
-    },
-  });
-
-  const record = weatherResponse.data.records;
-  const locations = record.locations[0];
-  const location = locations.location[0];
-  const weatherElement = location.weatherElement[0];
-  const time = weatherElement.time[0];
-  const elementValue = time.elementValue[0];
-
-  const city = locations.locationsName;
-  const dist = location.locationName;
-  const description = weatherElement.description;
-  const startTime = time.startTime;
-  const endTime = time.endTime;
-  const value = elementValue.value;
-  const measures = elementValue.measures;
-
-  return (
-    '城市: ' +
-    city +
-    '\n' +
-    '行政區: ' +
-    dist +
-    '\n' +
-    '起始時間: ' +
-    startTime +
-    '\n' +
-    '結束時間: ' +
-    endTime +
-    '\n' +
-    description +
-    ': ' +
-    value +
-    ' \u00B0C'
-  );
 }
 
 const port = process.env.PORT || 3000;

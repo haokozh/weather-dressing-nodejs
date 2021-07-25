@@ -97,13 +97,13 @@ async function getWeatherResponseFromCWB(
   const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;
   const confortDescription = `${minCIValue.value}至${maxCIValue.value}`;
 
-  // WeatherDescription 還沒改
   // 擷取。前的字串
-  const weatherDescription = wdValue.value.array.forEach(element => {
-    let shortDescription = '';
-    if (element === '。') return shortDescription;
-    shortDescription += element;
-  });
+  let shortDescription = '';
+  const originalDescription = Array.from(wdValue.value);
+  for (i = 0; i < originalDescription.length; i++) {
+    if (originalDescription[i] === '。') break;
+    shortDescription += originalDescription[i];
+  }
 
   return replyBubble = {
     type: 'flex',
@@ -173,7 +173,7 @@ async function getWeatherResponseFromCWB(
                   },
                   {
                     type: 'text',
-                    text: weatherDescription,
+                    text: shortDescription,
                     weight: 'bold',
                     size: 'lg',
                     offsetEnd: 'xxl',

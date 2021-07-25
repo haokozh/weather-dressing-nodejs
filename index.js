@@ -207,7 +207,7 @@ async function handleEvent(event) {
     }
   };
 
-  return client.replyMessage(event.replyToken, replyBubble);
+  return client.replyMessage(event.replyToken, replyText);
 }
 
 function isMessage(eventType) {

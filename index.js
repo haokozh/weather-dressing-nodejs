@@ -38,166 +38,170 @@ async function handleEvent(event) {
   };
 
   const replyBubble = {
-    type: 'bubble',
-    hero: {
-      type: 'image',
-      url: 'https://i.imgur.com/Ex3Opfo.png',
-      size: 'full',
-      aspectRatio: '20:13',
-      aspectMode: 'cover',
-      action: {
-        type: 'uri',
-        uri: 'http://linecorp.com/',
+    type: 'flex',
+    altText: 'This is FlexMessage',
+    contents: {
+      type: 'bubble',
+      hero: {
+        type: 'image',
+        url: 'https://i.imgur.com/Ex3Opfo.png',
+        size: 'full',
+        aspectRatio: '20:13',
+        aspectMode: 'cover',
+        action: {
+          type: 'uri',
+          uri: 'http://linecorp.com/',
+        },
       },
-    },
-    body: {
-      type: 'box',
-      layout: 'vertical',
-      contents: [
-        {
-          type: 'text',
-          text: '桃園市未來 36 小時天氣',
-          weight: 'bold',
-          size: 'xl',
-          align: 'center',
-        },
-        {
-          type: 'box',
-          layout: 'vertical',
-          margin: 'md',
-          contents: [
-            {
-              type: 'text',
-              text: '07/24 18:00:00 ~ 07/25 06:00:00',
-              size: 'md',
-              color: '#999999',
-              margin: 'md',
-              flex: 0,
-              align: 'center',
-              weight: 'regular',
-            },
-            {
-              type: 'separator',
-            },
-          ],
-        },
-        {
-          type: 'box',
-          layout: 'vertical',
-          margin: 'lg',
-          spacing: 'sm',
-          contents: [
-            {
-              type: 'box',
-              layout: 'horizontal',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: '天氣狀況',
-                  color: '#0099FF',
-                  weight: 'bold',
-                  size: 'lg',
-                  offsetEnd: 'none',
-                },
-                {
-                  type: 'text',
-                  text: '多雲',
-                  weight: 'bold',
-                  size: 'lg',
-                  offsetEnd: 'xxl',
-                },
-              ],
-            },
-            {
-              type: 'box',
-              layout: 'horizontal',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: '溫度狀況',
-                  size: 'lg',
-                  color: '#0099FF',
-                  weight: 'bold',
-                },
-                {
-                  type: 'text',
-                  text: '28°C ~ 31°C',
-                  offsetEnd: 'xxl',
-                  weight: 'bold',
-                  size: 'lg',
-                },
-              ],
-            },
-            {
-              type: 'box',
-              layout: 'horizontal',
-              contents: [
-                {
-                  type: 'text',
-                  text: '降雨機率',
-                  color: '#0099FF',
-                  weight: 'bold',
-                  size: 'lg',
-                },
-                {
-                  type: 'text',
-                  text: '30%',
-                  offsetEnd: 'xxl',
-                  weight: 'bold',
-                  size: 'lg',
-                },
-              ],
-            },
-            {
-              type: 'box',
-              layout: 'horizontal',
-              contents: [
-                {
-                  type: 'text',
-                  text: '舒適度',
-                  size: 'lg',
-                  color: '#0099FF',
-                  weight: 'bold',
-                },
-                {
-                  type: 'text',
-                  text: '舒適至悶熱',
-                  offsetEnd: 'xxl',
-                  size: 'lg',
-                  weight: 'bold',
-                },
-              ],
-            },
-            {
-              type: 'separator',
-            },
-          ],
-        },
-      ],
-    },
-    footer: {
-      type: 'box',
-      layout: 'vertical',
-      spacing: 'sm',
-      contents: [
-        {
-          type: 'button',
-          style: 'link',
-          height: 'sm',
-          action: {
-            type: 'uri',
-            label: '詳細內容',
-            uri: 'https://www.cwb.gov.tw/V8/C/W/County/index.html',
+      body: {
+        type: 'box',
+        layout: 'vertical',
+        contents: [
+          {
+            type: 'text',
+            text: '桃園市未來 36 小時天氣',
+            weight: 'bold',
+            size: 'xl',
+            align: 'center',
           },
-        },
-        {
-          type: 'spacer',
-          size: 'sm',
-        },
-      ],
-      flex: 0,
+          {
+            type: 'box',
+            layout: 'vertical',
+            margin: 'md',
+            contents: [
+              {
+                type: 'text',
+                text: '07/24 18:00:00 ~ 07/25 06:00:00',
+                size: 'md',
+                color: '#999999',
+                margin: 'md',
+                flex: 0,
+                align: 'center',
+                weight: 'regular',
+              },
+              {
+                type: 'separator',
+              },
+            ],
+          },
+          {
+            type: 'box',
+            layout: 'vertical',
+            margin: 'lg',
+            spacing: 'sm',
+            contents: [
+              {
+                type: 'box',
+                layout: 'horizontal',
+                spacing: 'sm',
+                contents: [
+                  {
+                    type: 'text',
+                    text: '天氣狀況',
+                    color: '#0099FF',
+                    weight: 'bold',
+                    size: 'lg',
+                    offsetEnd: 'none',
+                  },
+                  {
+                    type: 'text',
+                    text: '多雲',
+                    weight: 'bold',
+                    size: 'lg',
+                    offsetEnd: 'xxl',
+                  },
+                ],
+              },
+              {
+                type: 'box',
+                layout: 'horizontal',
+                spacing: 'sm',
+                contents: [
+                  {
+                    type: 'text',
+                    text: '溫度狀況',
+                    size: 'lg',
+                    color: '#0099FF',
+                    weight: 'bold',
+                  },
+                  {
+                    type: 'text',
+                    text: '28°C ~ 31°C',
+                    offsetEnd: 'xxl',
+                    weight: 'bold',
+                    size: 'lg',
+                  },
+                ],
+              },
+              {
+                type: 'box',
+                layout: 'horizontal',
+                contents: [
+                  {
+                    type: 'text',
+                    text: '降雨機率',
+                    color: '#0099FF',
+                    weight: 'bold',
+                    size: 'lg',
+                  },
+                  {
+                    type: 'text',
+                    text: '30%',
+                    offsetEnd: 'xxl',
+                    weight: 'bold',
+                    size: 'lg',
+                  },
+                ],
+              },
+              {
+                type: 'box',
+                layout: 'horizontal',
+                contents: [
+                  {
+                    type: 'text',
+                    text: '舒適度',
+                    size: 'lg',
+                    color: '#0099FF',
+                    weight: 'bold',
+                  },
+                  {
+                    type: 'text',
+                    text: '舒適至悶熱',
+                    offsetEnd: 'xxl',
+                    size: 'lg',
+                    weight: 'bold',
+                  },
+                ],
+              },
+              {
+                type: 'separator',
+              },
+            ],
+          },
+        ],
+      },
+      footer: {
+        type: 'box',
+        layout: 'vertical',
+        spacing: 'sm',
+        contents: [
+          {
+            type: 'button',
+            style: 'link',
+            height: 'sm',
+            action: {
+              type: 'uri',
+              label: '詳細內容',
+              uri: 'https://www.cwb.gov.tw/V8/C/W/County/index.html',
+            },
+          },
+          {
+            type: 'spacer',
+            size: 'sm',
+          },
+        ],
+        flex: 0,
+      },
     },
   };
 

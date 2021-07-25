@@ -31,13 +31,11 @@ async function handleEvent(event) {
   const locationId = 'F-D0047-007';
   const locationName = '龍潭區';
   const elementName = 'T';
-  const startTimestamp = '2021-07-25T18:00:00';
 
   const text = await getWeatherResponseFromCWB(
     locationId,
     locationName,
-    elementName,
-    startTimestamp
+    elementName
   );
 
   const replyText = {
@@ -67,7 +65,6 @@ async function getWeatherResponseFromCWB(
   locationId,
   locationName,
   elementName,
-  startTimestamp
 ) {
   const baseURL =
     'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093';
@@ -78,7 +75,6 @@ async function getWeatherResponseFromCWB(
       locationId: locationId,
       locationName: locationName,
       elementName: elementName,
-      startTime: startTimestamp,
     },
   });
 

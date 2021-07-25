@@ -173,7 +173,7 @@ async function getWeatherResponseFromCWB(
                   },
                   {
                     type: 'text',
-                    text: shortDescription,
+                    text: wdValue,
                     weight: 'bold',
                     size: 'lg',
                     offsetEnd: 'xxl',

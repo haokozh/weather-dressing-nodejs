@@ -90,8 +90,8 @@ async function getWeatherResponseFromCWB(
   const wdValue = wdTime.elementValue[0];
   const minTempValue = minTempTime.elementValue[0];
   const maxTempValue = maxTempTime.elementValue[0];
-  const minCIValue = minCITime.elementValue[1];
-  const maxCIValue = maxCITime.elementValue[1];
+  const minCIValue = minCITime.elementValue[0];
+  const maxCIValue = maxCITime.elementValue[0];
 
   const pop12hDescription = `${pop12hValue.value}%`;
   const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;

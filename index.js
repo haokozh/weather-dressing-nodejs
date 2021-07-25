@@ -173,7 +173,7 @@ async function getWeatherResponseFromCWB(
                   },
                   {
                     type: 'text',
-                    text: wdValue,
+                    text: '晴時多雲',
                     weight: 'bold',
                     size: 'lg',
                     offsetEnd: 'xxl',

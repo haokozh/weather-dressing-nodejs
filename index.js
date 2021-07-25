@@ -20,13 +20,7 @@ app.post('/callback', line.middleware(lineConfig), (req, res) => {
 });
 
 async function handleEvent(event) {
-  if (
-    !isMessage(event.type) ||
-    !isTextMessage(event.message.type) ||
-    isWebhookTest(event.replyToken)
-  ) {
-    return Promise.resolve(null);
-  }
+  if (isWebhookTest(event.replyToken)) return Promise.resolve(null);
 
   const locationId = 'F-D0047-007';
   const locationName = '龍潭區';
@@ -35,7 +29,7 @@ async function handleEvent(event) {
   const text = await getWeatherResponseFromCWB(
     locationId,
     locationName,
-    elementName,
+    elementName
   );
 
   const replyText = {
@@ -53,8 +47,8 @@ async function handleEvent(event) {
       aspectMode: 'cover',
       action: {
         type: 'uri',
-        uri: 'http://linecorp.com/'
-      }
+        uri: 'http://linecorp.com/',
+      },
     },
     body: {
       type: 'box',
@@ -65,7 +59,7 @@ async function handleEvent(event) {
           text: '桃園市未來 36 小時天氣',
           weight: 'bold',
           size: 'xl',
-          align: 'center'
+          align: 'center',
         },
         {
           type: 'box',
@@ -80,12 +74,12 @@ async function handleEvent(event) {
               margin: 'md',
               flex: 0,
               align: 'center',
-              weight: 'regular'
+              weight: 'regular',
             },
             {
-              type: 'separator'
-            }
-          ]
+              type: 'separator',
+            },
+          ],
         },
         {
           type: 'box',
@@ -104,16 +98,16 @@ async function handleEvent(event) {
                   color: '#0099FF',
                   weight: 'bold',
                   size: 'lg',
-                  offsetEnd: 'none'
+                  offsetEnd: 'none',
                 },
                 {
                   type: 'text',
                   text: '多雲',
                   weight: 'bold',
                   size: 'lg',
-                  offsetEnd: 'xxl'
-                }
-              ]
+                  offsetEnd: 'xxl',
+                },
+              ],
             },
             {
               type: 'box',
@@ -125,16 +119,16 @@ async function handleEvent(event) {
                   text: '溫度狀況',
                   size: 'lg',
                   color: '#0099FF',
-                  weight: 'bold'
+                  weight: 'bold',
                 },
                 {
                   type: 'text',
                   text: '28°C ~ 31°C',
                   offsetEnd: 'xxl',
                   weight: 'bold',
-                  size: 'lg'
-                }
-              ]
+                  size: 'lg',
+                },
+              ],
             },
             {
               type: 'box',
@@ -145,16 +139,16 @@ async function handleEvent(event) {
                   text: '降雨機率',
                   color: '#0099FF',
                   weight: 'bold',
-                  size: 'lg'
+                  size: 'lg',
                 },
                 {
                   type: 'text',
                   text: '30%',
                   offsetEnd: 'xxl',
                   weight: 'bold',
-                  size: 'lg'
-                }
-              ]
+                  size: 'lg',
+                },
+              ],
             },
             {
               type: 'box',
@@ -165,23 +159,23 @@ async function handleEvent(event) {
                   text: '舒適度',
                   size: 'lg',
                   color: '#0099FF',
-                  weight: 'bold'
+                  weight: 'bold',
                 },
                 {
                   type: 'text',
                   text: '舒適至悶熱',
                   offsetEnd: 'xxl',
                   size: 'lg',
-                  weight: 'bold'
-                }
-              ]
+                  weight: 'bold',
+                },
+              ],
             },
             {
-              type: 'separator'
-            }
-          ]
-        }
-      ]
+              type: 'separator',
+            },
+          ],
+        },
+      ],
     },
     footer: {
       type: 'box',
@@ -195,19 +189,19 @@ async function handleEvent(event) {
           action: {
             type: 'uri',
             label: '詳細內容',
-            uri: 'https://www.cwb.gov.tw/V8/C/W/County/index.html'
-          }
+            uri: 'https://www.cwb.gov.tw/V8/C/W/County/index.html',
+          },
         },
         {
           type: 'spacer',
-          size: 'sm'
-        }
+          size: 'sm',
+        },
       ],
-      flex: 0
-    }
+      flex: 0,
+    },
   };
 
-  return client.replyMessage(event.replyToken, replyText);
+  return client.replyMessage(event.replyToken, replyBubble);
 }
 
 function isMessage(eventType) {
@@ -228,7 +222,7 @@ function isWebhookTest(replyToken) {
 async function getWeatherResponseFromCWB(
   locationId,
   locationName,
-  elementName,
+  elementName
 ) {
   const baseURL =
     'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093';

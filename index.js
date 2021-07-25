@@ -97,6 +97,14 @@ async function getWeatherResponseFromCWB(
   const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;
   const confortDescription = `${minCIValue.value}至${maxCIValue.value}`;
 
+  // WeatherDescription 還沒改
+  // 擷取。前的字串
+  const weatherDescription = wdValue.value.array.forEach(element => {
+    let shortDescription = '';
+    if (element === '。') return shortDescription;
+    shortDescription += element;
+  });
+
   return replyBubble = {
     type: 'flex',
     altText: 'This is FlexMessage',
@@ -165,7 +173,7 @@ async function getWeatherResponseFromCWB(
                   },
                   {
                     type: 'text',
-                    text: '多雲',
+                    text: weatherDescription,
                     weight: 'bold',
                     size: 'lg',
                     offsetEnd: 'xxl',

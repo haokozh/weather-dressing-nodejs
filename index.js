@@ -1,6 +1,7 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const axios = require('axios');
+const qs = require('qs');
 
 const lineConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
@@ -65,6 +66,9 @@ async function getWeatherResponseFromCWB(
       locationName: locationName,
       elementName: elementName,
     },
+    paramsSerializer: (params) => {
+      return qs.stringify(params, { arrayFormat: 'repeat' });
+    },
   });
 
   const records = weatherResponse.data.records;
@@ -87,7 +91,7 @@ async function getWeatherResponseFromCWB(
   const maxCITime = maxCI.time[0];
 
   const pop12hValue = pop12hTime.elementValue[0];
-  const wdValue = wdTime.elementValue[1];
+  const wdValue = wdTime.elementValue[0];
   const minTempValue = minTempTime.elementValue[0];
   const maxTempValue = maxTempTime.elementValue[0];
   const minCIValue = minCITime.elementValue[0];

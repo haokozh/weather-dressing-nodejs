@@ -24,7 +24,7 @@ async function handleEvent(event) {
 
   const locationId = 'F-D0047-007';
   const locationName = '龍潭區';
-  const elementName = ['MinT', 'MaxT', 'PoP12h', 'WeatherDescription', 'MinCI', 'MaxCI'];
+  const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
   const replyMessage = await getWeatherResponseFromCWB(
     locationId,
@@ -73,9 +73,9 @@ async function getWeatherResponseFromCWB(
   const location = locations.location[0];
   const pop12h = location.weatherElement[0];
   const minCI = location.weatherElement[1];
-  const maxCI = location.weatherElement[2];
-  const minTemp = location.weatherElement[3];
-  const weatherDescription = location.weatherElement[4];
+  const maxCI = location.weatherElement[3];
+  const minTemp = location.weatherElement[4];
+  const weatherDescription = location.weatherElement[2];
   const maxTemp = location.weatherElement[5];
   
   
@@ -96,10 +96,7 @@ async function getWeatherResponseFromCWB(
   const pop12hDescription = `${pop12hValue.value}%`;
   const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;
   const confortDescription = `${minCIValue.value}至${maxCIValue.value}`;
-
-  // 擷取。前的字串
   
-
   return replyBubble = {
     type: 'flex',
     altText: 'This is FlexMessage',

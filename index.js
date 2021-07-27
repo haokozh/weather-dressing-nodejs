@@ -98,12 +98,7 @@ async function getWeatherResponseFromCWB(
   const confortDescription = `${minCIValue.value}至${maxCIValue.value}`;
 
   // 擷取。前的字串
-  let shortDescription = '';
-  const originalDescription = Array.from(wdValue.value);
-  for (i = 0; i < originalDescription.length; i++) {
-    if (originalDescription[i] === '。') break;
-    shortDescription += originalDescription[i];
-  }
+  
 
   return replyBubble = {
     type: 'flex',
@@ -173,7 +168,7 @@ async function getWeatherResponseFromCWB(
                   },
                   {
                     type: 'text',
-                    text: '晴時多雲',
+                    text: wdValue.value,
                     weight: 'bold',
                     size: 'lg',
                     offsetEnd: 'xxl',

@@ -129,14 +129,14 @@ async function getWeatherResponseFromCWB(
 
   const locations = responseData.getLocations();
 
-  const pop12hTime = responseData.getTime(weatherElement.POP_12H);
-  const pop12hValue = responseData.getValue(weatherElement.POP_12H);
+  const pop12hTime = responseData.getTime(weatherElement.POP_12H.value);
+  const pop12hValue = responseData.getValue(weatherElement.POP_12H.value);
   const pop12hDescription = `${pop12hValue.value}%`;
 
-  const wdValue = responseData.getValue(weatherElement.WEATHER_DESCRIPTION);
+  const wdValue = responseData.getValue(weatherElement.WEATHER_DESCRIPTION.value);
 
-  const minTempValue = responseData.getValue(weatherElement.MIN_T);
-  const maxTempValue = responseData.getValue(weatherElement.MAX_T);
+  const minTempValue = responseData.getValue(weatherElement.MIN_T.value);
+  const maxTempValue = responseData.getValue(weatherElement.MAX_T.value);
   const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;
 
   // some problem

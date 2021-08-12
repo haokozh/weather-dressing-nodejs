@@ -117,26 +117,26 @@ async function getWeatherResponseFromCWB(
   });
 
   const weatherElement = new Enum({
-    'POP_12H': 0,
-    'MIN_CI': 1,
-    'WEATHER_DESCRIPTION': 2,
-    'MAX_CI': 3,
-    'MIN_T': 4,
-    'MAX_T': 5
+    'PoP12h': 0,
+    'minCI': 1,
+    'weatherDescription': 2,
+    'maxCI': 3,
+    'minT': 4,
+    'maxT': 5
   });
 
   const responseData = new ResponseData(weatherResponse.data.records);
 
   const locations = responseData.getLocations();
 
-  const pop12hTime = responseData.getTime(weatherElement.POP_12H);
-  const pop12hValue = responseData.getValue(weatherElement.POP_12H);
+  const pop12hTime = responseData.getTime(weatherElement.PoP12h);
+  const pop12hValue = responseData.getValue(weatherElement.PoP12h);
   const pop12hDescription = `${pop12hValue.value}%`;
 
-  const wdValue = responseData.getValue(weatherElement.WEATHER_DESCRIPTION);
+  const wdValue = responseData.getValue(weatherElement.weatherDescription);
 
-  const minTempValue = responseData.getValue(weatherElement.MIN_T);
-  const maxTempValue = responseData.getValue(weatherElement.MAX_T);
+  const minTempValue = responseData.getValue(weatherElement.minT);
+  const maxTempValue = responseData.getValue(weatherElement.maxT);
   const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;
 
   // some problem

@@ -148,7 +148,7 @@ async function getWeatherResponseFromCWB(
   const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;
 
   // if minCI === maxCI
-  const confortDescription = () => {
+  const confortDescription = async () => {
     return minCIValue.value === maxCIValue.value
       ? `${minCIValue.value}`
       : `${minCIValue.value}至${maxCIValue.value}`;

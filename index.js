@@ -146,7 +146,13 @@ async function getWeatherResponseFromCWB(
 
   const pop12hDescription = `${pop12hValue.value}%`;
   const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;
-  const confortDescription = `${minCIValue.value}至${maxCIValue.value}`;
+
+  // if minCI === maxCI
+  const confortDescription = () => {
+    return minCIValue.value === maxCIValue.value
+      ? `${minCIValue.value}`
+      : `${minCIValue.value}至${maxCIValue.value}`;
+  };
 
   return (replyBubble = {
     type: 'flex',

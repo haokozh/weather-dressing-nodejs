@@ -2,11 +2,34 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 const axios = require('axios');
 const qs = require('qs');
+const Enum = require('enum');
 
 const lineConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
   channelSecret: process.env.CHANNEL_SECRET,
 };
+
+const eventType = new Enum({
+  MESSAGE: 'message',
+  FOLLOW: 'follow',
+  UNFOLLOW: 'unfollow',
+  JOIN: 'join',
+  LEAVE: 'leave',
+  MEMBERJOINED: 'memberJoined',
+  MEMBERLEFT: 'memberLeft',
+  POSTBACK: 'postback',
+  BEACON: 'beacon',
+});
+
+const messageType = new Enum({
+  TEXT: 'text',
+  IMAGE: 'image',
+  VIDEO: 'video',
+  AUDIO: 'audio',
+  FILE: 'file',
+  LOCATION: 'location',
+  STICKER: 'sticker',
+});
 
 const app = express();
 const client = new line.Client(lineConfig);
@@ -36,12 +59,34 @@ async function handleEvent(event) {
   return client.replyMessage(event.replyToken, replyMessage);
 }
 
-function isMessage(eventType) {
-  return eventType === 'message';
-}
+class ResponseData {
+  constructor(records) {
+    this.records = records;
+  }
 
-function isTextMessage(messageType) {
-  return messageType === 'text';
+  getLocations() {
+    return this.records.locations[0];
+  }
+
+  getLocation() {
+    return this.getLocations().location[0];
+  }
+
+  getWeatherElement(elementIndex) {
+    return this.getLocation().weatherElement[elementIndex];
+  }
+
+  getTime(elementIndex) {
+    return this.getWeatherElement(elementIndex).time[0];
+  }
+
+  getValue(elementIndex) {
+    return this.getTime(elementIndex).elementValue[0];
+  }
+
+  getMeasure(elementIndex) {
+    return this.getTime(elementIndex).elementValue[1];
+  }
 }
 
 function isWebhookTest(replyToken) {
@@ -71,37 +116,39 @@ async function getWeatherResponseFromCWB(
     },
   });
 
-  const records = weatherResponse.data.records;
-  const locations = records.locations[0];
+  const responseData = new ResponseData(weatherResponse.data.records);
 
-  const location = locations.location[0];
-  const pop12h = location.weatherElement[0];
-  const minCI = location.weatherElement[1];
-  const maxCI = location.weatherElement[3];
-  const minTemp = location.weatherElement[4];
-  const weatherDescription = location.weatherElement[2];
-  const maxTemp = location.weatherElement[5];
-  
-  
-  const pop12hTime = pop12h.time[0];
-  const wdTime = weatherDescription.time[0];
-  const minTempTime = minTemp.time[0];
-  const maxTempTime = maxTemp.time[0];
-  const minCITime = minCI.time[0];
-  const maxCITime = maxCI.time[0];
+  const locations = responseData.getLocations();
+  const location = responseData.getLocation();
 
-  const pop12hValue = pop12hTime.elementValue[0];
-  const wdValue = wdTime.elementValue[0];
-  const minTempValue = minTempTime.elementValue[0];
-  const maxTempValue = maxTempTime.elementValue[0];
-  const minCIValue = minCITime.elementValue[1];
-  const maxCIValue = maxCITime.elementValue[1];
+  const pop12h = responseData.getWeatherElement(0);
+  const minCI = responseData.getWeatherElement(1);
+  const maxCI = responseData.getWeatherElement(3);
+  const minTemp = responseData.getWeatherElement(4);
+  const weatherDescription = responseData.getWeatherElement(2);
+  const maxTemp = responseData.getWeatherElement(5);
+
+  const pop12hTime = responseData.getTime(0);
+  const wdTime = responseData.getTime(2);
+  const minTempTime = responseData.getTime(4);
+  const maxTempTime = responseData.getTime(5);
+  const minCITime = responseData.getTime(1);
+  const maxCITime = responseData.getTime(3);
+
+  const pop12hValue = responseData.getValue(0);
+  const wdValue = responseData.getValue(2);
+  const minTempValue = responseData.getValue(4);
+  const maxTempValue = responseData.getValue(5);
+
+  // some problem
+  const minCIValue = responseData.getMeasure(1);
+  const maxCIValue = responseData.getMeasure(3);
 
   const pop12hDescription = `${pop12hValue.value}%`;
   const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;
   const confortDescription = `${minCIValue.value}至${maxCIValue.value}`;
-  
-  return replyBubble = {
+
+  return (replyBubble = {
     type: 'flex',
     altText: 'This is FlexMessage',
     contents: {
@@ -267,7 +314,7 @@ async function getWeatherResponseFromCWB(
         flex: 0,
       },
     },
-  };
+  });
 }
 
 const port = process.env.PORT || 3000;

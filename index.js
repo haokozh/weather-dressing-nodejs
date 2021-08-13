@@ -2,14 +2,13 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 const axios = require('axios');
 const qs = require('qs');
-const Enum = require('enum');
 
 const lineConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
   channelSecret: process.env.CHANNEL_SECRET,
 };
 
-const eventType = new Enum({
+const eventType = {
   MESSAGE: 'message',
   FOLLOW: 'follow',
   UNFOLLOW: 'unfollow',
@@ -19,9 +18,9 @@ const eventType = new Enum({
   MEMBERLEFT: 'memberLeft',
   POSTBACK: 'postback',
   BEACON: 'beacon',
-});
+};
 
-const messageType = new Enum({
+const messageType = {
   TEXT: 'text',
   IMAGE: 'image',
   VIDEO: 'video',
@@ -29,10 +28,28 @@ const messageType = new Enum({
   FILE: 'file',
   LOCATION: 'location',
   STICKER: 'sticker',
-});
+};
+
+const weatherElement = {
+  POP_12H: 0,
+  MIN_CI: 1,
+  WEATHER_DESCRIPTION: 2,
+  MAX_CI: 3,
+  MIN_T: 4,
+  MAX_T: 5
+};
 
 const app = express();
 const client = new line.Client(lineConfig);
+
+app.use('/callback', line.middleware(lineConfig), (req, res, next) => {
+  console.log('req.header:', req.headers);
+  console.log('req.body:', req.body);
+  console.log('event.source:', req.body.events[0].source);
+  console.log('event.message:', req.body.events[0].message);
+
+  next();
+});
 
 app.post('/callback', line.middleware(lineConfig), (req, res) => {
   Promise.all(req.body.events.map(handleEvent))
@@ -115,15 +132,6 @@ async function getWeatherResponseFromCWB(
       return qs.stringify(params, { arrayFormat: 'repeat' });
     },
   });
-
-  const weatherElement = {
-    POP_12H: 0,
-    MIN_CI: 1,
-    WEATHER_DESCRIPTION: 2,
-    MAX_CI: 3,
-    MIN_T: 4,
-    MAX_T: 5
-  };
 
   const responseData = new ResponseData(weatherResponse.data.records);
 

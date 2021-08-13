@@ -42,15 +42,6 @@ const weatherElement = {
 const app = express();
 const client = new line.Client(lineConfig);
 
-app.use('/callback', line.middleware(lineConfig), (req, res, next) => {
-  console.log('req.header:', req.headers);
-  console.log('req.body:', req.body);
-  console.log('event.source:', req.body.events[0].source);
-  console.log('event.message:', req.body.events[0].message);
-
-  next();
-});
-
 app.post('/callback', line.middleware(lineConfig), (req, res) => {
   Promise.all(req.body.events.map(handleEvent))
     .then((result) => res.json(result))

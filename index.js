@@ -36,7 +36,7 @@ const weatherElement = {
   WEATHER_DESCRIPTION: 2,
   MAX_CI: 3,
   MIN_T: 4,
-  MAX_T: 5
+  MAX_T: 5,
 };
 
 const app = express();
@@ -52,17 +52,21 @@ app.post('/callback', line.middleware(lineConfig), (req, res) => {
 });
 
 async function handleEvent(event) {
+  let replyMessage = 'nothing';
+
   if (isWebhookTest(event.replyToken)) return Promise.resolve(null);
 
-  const locationId = 'F-D0047-007';
-  const locationName = '龍潭區';
-  const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
+  if (isTextMessage(event.replyToken)) {
+    const locationId = 'F-D0047-007';
+    const locationName = '龍潭區';
+    const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
-  const replyMessage = await getWeatherResponseFromCWB(
-    locationId,
-    locationName,
-    elementName
-  );
+    replyMessage = await getWeatherResponseFromCWB(
+      locationId,
+      locationName,
+      elementName
+    );
+  }
 
   return client.replyMessage(event.replyToken, replyMessage);
 }
@@ -102,6 +106,10 @@ function isWebhookTest(replyToken) {
     replyToken === '00000000000000000000000000000000' ||
     replyToken === 'ffffffffffffffffffffffffffffffff'
   );
+}
+
+function isTextMessage(messageType) {
+  return messageType === 'text';
 }
 
 async function getWeatherResponseFromCWB(

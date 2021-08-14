@@ -48,7 +48,7 @@ async function handleEvent(event) {
   const locationName = '龍潭區';
   const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
-  replyMessage = await getWeatherResponseFromCWB(
+  replyMessage = await getWeatherResponse(
     locationId,
     locationName,
     elementName
@@ -370,7 +370,7 @@ function isWebhookTest(replyToken) {
 //   return replyText(replyToken, 'you send a sticker.');
 // }
 
-async function getWeatherResponseFromCWB(
+async function getWeatherResponse(
   locationId,
   locationName,
   elementName
@@ -411,6 +411,10 @@ async function getWeatherResponseFromCWB(
   // if minCI === maxCI
   const confortDescription = `${minCIValue.value}至${maxCIValue.value}`;
 
+  return replyFlexBubble(locations, pop12hTime, pop12hDescription, wdValue, tempDescription, confortDescription)
+}
+
+function replyFlexBubble(locations, pop12hTime, pop12hDescription, wdValue, tempDescription, confortDescription) {
   return (replyBubble = {
     type: 'flex',
     altText: 'This is FlexMessage',

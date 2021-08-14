@@ -18,15 +18,6 @@ const replyText = (token, texts) => {
   );
 };
 
-const weatherElement = {
-  POP_12H: 0,
-  MIN_CI: 1,
-  WEATHER_DESCRIPTION: 2,
-  MAX_CI: 3,
-  MIN_T: 4,
-  MAX_T: 5,
-};
-
 const app = express();
 const client = new line.Client(lineConfig);
 
@@ -44,9 +35,22 @@ async function handleEvent(event) {
   //   ? filterEvent(event)
   //   : Promise.resolve(null);
 
-  const locationId = 'F-D0047-007';
-  const locationName = '龍潭區';
+  // const locationId = 'F-D0047-007';
+  // const locationName = '龍潭區';
   const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
+
+  const originalText = event.message.text;
+  const splitedText = originalText.split(' ');
+
+  let locationId = '';
+  let locationName = '';
+
+  if (splitedText[0] === '桃園市') {
+    locationId = 'F-D0047-007';
+    if (splitedText[1] === '龍潭區') {
+      locationName = '龍潭區';
+    }
+  }
 
   replyMessage = await getWeatherResponse(
     locationId,
@@ -55,13 +59,6 @@ async function handleEvent(event) {
   );
 
   return client.replyMessage(event.replyToken, replyMessage);
-}
-
-function isWebhookTest(replyToken) {
-  return (
-    replyToken === '00000000000000000000000000000000' ||
-    replyToken === 'ffffffffffffffffffffffffffffffff'
-  );
 }
 
 // function filterEvent(event) {
@@ -584,7 +581,24 @@ function replyFlexBubble(locations, pop12hTime, pop12hDescription, wdValue, temp
   });
 }
 
+function isWebhookTest(replyToken) {
+  return (
+    replyToken === '00000000000000000000000000000000' ||
+    replyToken === 'ffffffffffffffffffffffffffffffff'
+  );
+}
+
+const weatherElement = {
+  POP_12H: 0,
+  MIN_CI: 1,
+  WEATHER_DESCRIPTION: 2,
+  MAX_CI: 3,
+  MIN_T: 4,
+  MAX_T: 5,
+};
+
 class ResponseData {
+  
   constructor(records) {
     this.records = records;
   }

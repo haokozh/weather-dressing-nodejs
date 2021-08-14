@@ -33,22 +33,22 @@ app.post('/callback', line.middleware(lineConfig), (req, res) => {
 async function handleEvent(event) {
   if (isWebhookTest(event.replyToken)) return Promise.resolve(null);
 
-  // const locationId = 'F-D0047-007';
-  // const locationName = '龍潭區';
+  const locationId = 'F-D0047-007';
+  const locationName = '龍潭區';
   const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
-  const originalText = event.message.text;
-  const splitedText = originalText.split(' ');
+  // const originalText = event.message.text;
+  // const splitedText = originalText.split(' ');
 
-  let locationId = '';
-  let locationName = '';
+  // let locationId = '';
+  // let locationName = '';
 
-  if (splitedText[0] === '桃園市') {
-    locationId = 'F-D0047-007';
-    if (splitedText[1] === '龍潭區') {
-      locationName = '龍潭區';
-    }
-  }
+  // if (splitedText[0] === '桃園市') {
+  //   locationId = 'F-D0047-007';
+  //   if (splitedText[1] === '龍潭區') {
+  //     locationName = '龍潭區';
+  //   }
+  // }
 
   replyMessage = await getWeatherResponse(
     locationId,

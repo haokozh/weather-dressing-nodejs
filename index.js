@@ -50,7 +50,7 @@ async function handleEvent(event) {
     } else {
       locationName = splitedText[1];
     }
-  } else if (splitedText[0].includes('台北')) {
+  } else if (splitedText[0].includes('台北') || splitedText[0].includes('臺北')) {
     locationId = 'F-D0047-063';
     if (splitedText[1].includes('內湖') && !splitedText[1].includes('區')) {
       locationName = splitedText[1] + '區';
@@ -135,7 +135,7 @@ function replyFlexBubble(locations, pop12hTime, pop12hDescription, wdValue, temp
         contents: [
           {
             type: 'text',
-            text: locations.datasetDescription,
+            text: locations.locationsName,
             weight: 'bold',
             size: 'xl',
             align: 'center',

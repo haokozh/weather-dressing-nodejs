@@ -2,12 +2,8 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 
 const locationIds = require('./locationId.json');
-const getWeatherResponse = require('./getWeatherResponse');
-
-const lineConfig = {
-  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
-  channelSecret: process.env.CHANNEL_SECRET,
-};
+const getWeatherResponse = require('./lib/getWeatherResponse');
+const config = require('./config');
 
 const replyText = (token, texts) => {
   texts = Array.isArray(texts) ? texts : [texts];
@@ -18,7 +14,10 @@ const replyText = (token, texts) => {
 };
 
 const app = express();
-const client = new line.Client(lineConfig);
+const client = new line.Client({
+  channelSecret: config.channelSecret,
+  channelAccessToken: config.channelAccessToken,
+});
 
 app.post('/callback', line.middleware(lineConfig), (req, res) => {
   Promise.all(req.body.events.map(handleEvent))

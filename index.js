@@ -4,7 +4,7 @@ const axios = require('axios');
 const qs = require('qs');
 
 const locationIds = require('./locationId.json');
-const weather = require('./ResponseData');
+const ResponseData = require('./responseData');
 
 const lineConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
@@ -80,7 +80,7 @@ async function getWeatherResponse(
     },
   });
 
-  const responseData = new weather.ResponseData(weatherResponse.data.records);
+  const responseData = new ResponseData(weatherResponse.data.records);
 
   const locations = responseData.getLocations();
 

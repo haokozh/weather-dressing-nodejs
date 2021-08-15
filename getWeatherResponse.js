@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const weatherElement = {
   POP_12H: 0,
   MIN_CI: 1,

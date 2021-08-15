@@ -136,7 +136,7 @@ function replyFlexBubble(locations, location, pop12hTime, pop12hDescription, wdV
         contents: [
           {
             type: 'text',
-            text: `${locations.locationsName} ${location.locationName},
+            text: `${locations.locationsName} ${location.locationName}`,
             weight: 'bold',
             size: 'xl',
             align: 'center',

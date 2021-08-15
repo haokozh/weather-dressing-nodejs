@@ -1,8 +1,10 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 
-const locationIds = require('./data/locationId.json');
 const getWeatherResponse = require('./lib/getWeatherResponse');
+const get48HoursLocationId = require('./lib/get48HoursLocationId');
+const getWeeklyLocationId = require('./lib/getWeeklyLocationId');
+const isWebhookTest = require('./lib/isWebhookTest');
 const config = require('./config');
 
 const replyText = (token, texts) => {
@@ -67,13 +69,6 @@ async function handleEvent(event) {
   );
 
   return client.replyMessage(event.replyToken, replyMessage);
-}
-
-function isWebhookTest(replyToken) {
-  return (
-    replyToken === '00000000000000000000000000000000' ||
-    replyToken === 'ffffffffffffffffffffffffffffffff'
-  );
 }
 
 const port = process.env.PORT || 3000;

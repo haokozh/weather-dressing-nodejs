@@ -45,8 +45,10 @@ async function handleEvent(event) {
 
   if (splitedText[0].includes('桃園')) {
     locationId = 'F-D0047-007';
-    if (splitedText[1].includes('龍潭')) {
+    if (splitedText[1].includes('龍潭') && !splitedText[1].includes('區')) {
       locationName = splitedText[1] + '區';
+    } else {
+      locationName = splitedText[1];
     }
   }
 

@@ -19,7 +19,7 @@ const client = new line.Client({
   channelAccessToken: config.channelAccessToken,
 });
 
-app.post('/callback', line.middleware(lineConfig), (req, res) => {
+app.post('/callback', line.middleware(client.config), (req, res) => {
   Promise.all(req.body.events.map(handleEvent))
     .then((result) => res.json(result))
     .catch((err) => {

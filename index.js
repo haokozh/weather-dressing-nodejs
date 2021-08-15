@@ -4,8 +4,7 @@ const axios = require('axios');
 const qs = require('qs');
 
 const locationIds = require('./locationId.json');
-
-import ResponseData from './ResponseData';
+const ResponseData = require('./responseData.js');
 
 const lineConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,

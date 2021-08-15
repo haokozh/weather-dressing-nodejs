@@ -1,4 +1,4 @@
-class ResponseData {
+module.exports = class ResponseData {
   
     constructor(records) {
       this.records = records;
@@ -28,5 +28,3 @@ class ResponseData {
       return this.getTime(elementIndex).elementValue[1];
     }
   }
-
-export default ResponseData;

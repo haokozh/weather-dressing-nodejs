@@ -4,7 +4,7 @@ const axios = require('axios');
 const qs = require('qs');
 
 const locationIds = require('./locationId.json');
-const ResponseData = require('./responseData');
+const { ResponseData } = require('./responseData');
 
 const lineConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,

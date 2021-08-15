@@ -4,6 +4,7 @@ const axios = require('axios');
 const qs = require('qs');
 
 const locationIds = require('./locationId.json');
+const weather = require('./ResponseData');
 
 const lineConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
@@ -79,7 +80,7 @@ async function getWeatherResponse(
     },
   });
 
-  const responseData = new ResponseData(weatherResponse.data.records);
+  const responseData = new weather.ResponseData(weatherResponse.data.records);
 
   const locations = responseData.getLocations();
 
@@ -288,37 +289,6 @@ const weatherElement = {
   MIN_T: 4,
   MAX_T: 5,
 };
-
-class ResponseData {
-  
-  constructor(records) {
-    this.records = records;
-  }
-
-  getLocations() {
-    return this.records.locations[0];
-  }
-
-  getLocation() {
-    return this.getLocations().location[0];
-  }
-
-  getWeatherElement(elementIndex) {
-    return this.getLocation().weatherElement[elementIndex];
-  }
-
-  getTime(elementIndex) {
-    return this.getWeatherElement(elementIndex).time[0];
-  }
-
-  getValue(elementIndex) {
-    return this.getTime(elementIndex).elementValue[0];
-  }
-
-  getMeasure(elementIndex) {
-    return this.getTime(elementIndex).elementValue[1];
-  }
-}
 
 const port = process.env.PORT || 3000;
 

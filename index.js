@@ -36,7 +36,7 @@ async function handleEvent(event) {
   const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
   const originalText = event.message.text;
-  const splitedText = originalText.split(/s+/);
+  const splitedText = originalText.split('' || ' ');
 
   let locationId = '';
   let locationName = '';

@@ -3,8 +3,8 @@ const express = require('express');
 const axios = require('axios');
 const qs = require('qs');
 
-const locationIds = require('../locationId.json');
-const ResponseData = require('../responseData.js');
+const locationIds = require('./locationId.json');
+const ResponseData = require('./responseData.js');
 
 const lineConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
@@ -279,6 +279,37 @@ function isWebhookTest(replyToken) {
     replyToken === '00000000000000000000000000000000' ||
     replyToken === 'ffffffffffffffffffffffffffffffff'
   );
+}
+
+class ResponseData {
+  
+  constructor(records) {
+    this.records = records;
+  }
+
+  getLocations() {
+    return this.records.locations[0];
+  }
+
+  getLocation() {
+    return this.getLocations().location[0];
+  }
+
+  getWeatherElement(elementIndex) {
+    return this.getLocation().weatherElement[elementIndex];
+  }
+
+  getTime(elementIndex) {
+    return this.getWeatherElement(elementIndex).time[0];
+  }
+
+  getValue(elementIndex) {
+    return this.getTime(elementIndex).elementValue[0];
+  }
+
+  getMeasure(elementIndex) {
+    return this.getTime(elementIndex).elementValue[1];
+  }
 }
 
 const weatherElement = {

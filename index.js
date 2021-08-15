@@ -4,6 +4,8 @@ const express = require('express');
 const getWeatherResponse = require('./lib/getWeatherResponse');
 const get48HoursLocationId = require('./lib/get48HoursLocationId');
 const getWeeklyLocationId = require('./lib/getWeeklyLocationId');
+const getTargetDistByLocationsName = require('./lib/getTargetDistByLocationsName');
+
 const isWebhookTest = require('./lib/isWebhookTest');
 const config = require('./config');
 
@@ -40,27 +42,8 @@ async function handleEvent(event) {
   const originalText = event.message.text;
   const splitedText = originalText.split(' ');
 
-  let locationId = '';
-  let locationName = '';
-
-  if (splitedText[0].includes('桃園')) {
-    locationId = 'F-D0047-007';
-    if (splitedText[1].includes('龍潭') && !splitedText[1].includes('區')) {
-      locationName = splitedText[1] + '區';
-    } else {
-      locationName = splitedText[1];
-    }
-  } else if (
-    splitedText[0].includes('台北') ||
-    splitedText[0].includes('臺北')
-  ) {
-    locationId = 'F-D0047-063';
-    if (splitedText[1].includes('內湖') && !splitedText[1].includes('區')) {
-      locationName = splitedText[1] + '區';
-    } else {
-      locationName = splitedText[1];
-    }
-  }
+  let locationId = getWeeklyLocationId(splitedText[0]);
+  let locationName = getTargetDistByLocationsName(splitedText[1], splitedText[0]);
 
   replyMessage = await getWeatherResponse(
     locationId,

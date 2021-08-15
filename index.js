@@ -1,7 +1,7 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 
-const locationIds = require('./locationId.json');
+const locationIds = require('./data/locationId.json');
 const getWeatherResponse = require('./lib/getWeatherResponse');
 const config = require('./config');
 

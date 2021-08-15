@@ -50,6 +50,13 @@ async function handleEvent(event) {
     } else {
       locationName = splitedText[1];
     }
+  } else if (splitedText[0].includes('台北')) {
+    locationId = 'F-D0047-063';
+    if (splitedText[1].includes('內湖') && !splitedText[1].includes('區')) {
+      locationName = splitedText[1] + '區';
+    } else {
+      locationName = splitedText[1];
+    }
   }
 
   replyMessage = await getWeatherResponse(

@@ -3,8 +3,8 @@ const express = require('express');
 const axios = require('axios');
 const qs = require('qs');
 
-const locationIds = require('./locationId.json');
-const ResponseData = require('./responseData.js');
+const locationIds = require('../locationId.json');
+const ResponseData = require('../responseData.js');
 
 const lineConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,

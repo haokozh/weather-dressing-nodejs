@@ -91,6 +91,7 @@ async function getWeatherResponse(
   const responseData = new ResponseData(weatherResponse.data.records);
 
   const locations = responseData.getLocations();
+  const location = responseData.getLocation();
 
   const pop12hTime = responseData.getTime(weatherElement.POP_12H);
   const pop12hValue = responseData.getValue(weatherElement.POP_12H);
@@ -109,10 +110,10 @@ async function getWeatherResponse(
   // if minCI === maxCI
   const confortDescription = `${minCIValue.value}至${maxCIValue.value}`;
 
-  return replyFlexBubble(locations, pop12hTime, pop12hDescription, wdValue, tempDescription, confortDescription)
+  return replyFlexBubble(locations, location, pop12hTime, pop12hDescription, wdValue, tempDescription, confortDescription)
 }
 
-function replyFlexBubble(locations, pop12hTime, pop12hDescription, wdValue, tempDescription, confortDescription) {
+function replyFlexBubble(locations, location, pop12hTime, pop12hDescription, wdValue, tempDescription, confortDescription) {
   return (replyBubble = {
     type: 'flex',
     altText: 'This is FlexMessage',
@@ -135,7 +136,7 @@ function replyFlexBubble(locations, pop12hTime, pop12hDescription, wdValue, temp
         contents: [
           {
             type: 'text',
-            text: locations.locationsName,
+            text: `${locations.locationsName} ${location.locationName},
             weight: 'bold',
             size: 'xl',
             align: 'center',

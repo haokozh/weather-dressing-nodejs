@@ -35,8 +35,6 @@ app.post('/callback', line.middleware(client.config), (req, res) => {
 async function handleEvent(event) {
   if (isWebhookTest(event.replyToken)) return Promise.resolve(null);
 
-  // const locationId = 'F-D0047-007';
-  // const locationName = '龍潭區';
   const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
   const originalText = event.message.text;

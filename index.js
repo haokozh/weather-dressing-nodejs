@@ -35,24 +35,10 @@ app.post('/callback', line.middleware(client.config), (req, res) => {
 async function handleEvent(event) {
   if (isWebhookTest(event.replyToken)) return Promise.resolve(null);
 
-  const locationId = 'F-D0047-007';
-  const locationName = '龍潭區';
+  let locationId = '';
   const elementName = ['MinT', 'MaxT', 'PoP12h', 'WeatherDescription', 'MinCI', 'MaxCI'];
 
   const replyMessage = await getWeatherResponseFromCWB(
-    locationId,
-    locationName,
-    elementName
-  );
-
-  return client.replyMessage(event.replyToken, replyMessage);
-}
-
-function isMessage(eventType) {
-  return eventType === 'message';
-}
-
-  replyMessage = await getWeatherResponse(
     locationId,
     locationName,
     elementName

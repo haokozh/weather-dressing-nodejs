@@ -35,10 +35,15 @@ app.post('/callback', line.middleware(client.config), (req, res) => {
 async function handleEvent(event) {
   if (isWebhookTest(event.replyToken)) return Promise.resolve(null);
 
-  let locationId = '';
-  const elementName = ['MinT', 'MaxT', 'PoP12h', 'WeatherDescription', 'MinCI', 'MaxCI'];
+  const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
-  const replyMessage = await getWeatherResponseFromCWB(
+  const originalText = event.message.text;
+  const splitedText = originalText.split(' ');
+
+  let locationId = getWeeklyLocationId(splitedText[0]);
+  let locationName = getTargetDistByLocationsName(splitedText[1], splitedText[0]);
+
+  replyMessage = await getWeatherResponse(
     locationId,
     locationName,
     elementName

@@ -30,6 +30,9 @@ app.use(express.static('public'));
 //     });
 // });
 
+// line bot routes
+app.use('/callback', require('./routes/linebot.routes'));
+
 // index routes
 app.use('/', require('./routes/index.routes'));
 

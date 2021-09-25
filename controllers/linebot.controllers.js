@@ -1,7 +1,7 @@
 const line = require('@line/bot-sdk');
 const linebotConfig = require('../config/linebot');
 
-const isWebhookTest = require('../lib/isWebhookTest');
+const linebotService = require('../services/linebot.services');
 
 const getWeatherResponse = require('../lib/getWeatherResponse');
 const get48HoursLocationId = require('../lib/get48HoursLocationId');
@@ -14,7 +14,7 @@ const client = new line.Client({
 });
 
 async function handleEvent(event) {
-  if (isWebhookTest(event.replyToken)) return Promise.resolve(null);
+  if (linebotService.isWebhookTest(event.replyToken)) return Promise.resolve(null);
 
   const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 

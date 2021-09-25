@@ -4,7 +4,7 @@ const linebotConfig = require('../config/linebot');
 const express = require('express');
 const router = express.Router();
 
-const handleEvent = require('../controllers/linebot.controllers');
+const linebotController = require('../controllers/linebot.controllers');
 
 const client = new line.Client({
   channelSecret: linebotConfig.channelSecret,
@@ -12,7 +12,7 @@ const client = new line.Client({
 });
 
 router.post('/', line.middleware(client.config), (req, res) => {
-  Promise.all(req.body.events.map(handleEvent))
+  Promise.all(req.body.events.map(linebotController.handleEvent))
     .then((result) => res.json(result))
     .catch((err) => {
       console.error(err);

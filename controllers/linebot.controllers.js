@@ -1,9 +1,9 @@
-const isWebhookTest = require('./lib/isWebhookTest');
+const isWebhookTest = require('../lib/isWebhookTest');
 
-const getWeatherResponse = require('./lib/getWeatherResponse');
-const get48HoursLocationId = require('./lib/get48HoursLocationId');
-const getWeeklyLocationId = require('./lib/getWeeklyLocationId');
-const getTargetDistByLocationsName = require('./lib/getTargetDistByLocationsName');
+const getWeatherResponse = require('../lib/getWeatherResponse');
+const get48HoursLocationId = require('../lib/get48HoursLocationId');
+const getWeeklyLocationId = require('../lib/getWeeklyLocationId');
+const getTargetDistByLocationsName = require('../lib/getTargetDistByLocationsName');
 
 async function handleEvent(event) {
     if (isWebhookTest(event.replyToken)) return Promise.resolve(null);

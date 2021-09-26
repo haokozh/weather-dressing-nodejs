@@ -3,7 +3,7 @@ const linebotConfig = require('../config/linebot');
 
 const linebotService = require('../services/linebot.services');
 
-const getWeatherResponse = require('../lib/getWeatherResponse');
+// const getWeatherResponse = require('../lib/getWeatherResponse');
 const get48HoursLocationId = require('../lib/get48HoursLocationId');
 const getWeeklyLocationId = require('../lib/getWeeklyLocationId');
 
@@ -26,7 +26,7 @@ async function handleEvent(event) {
     splitedText[0]
   );
 
-  replyMessage = await getWeatherResponse(
+  replyMessage = await linebotService.getWeatherResponse(
     locationId,
     locationName,
     elementName

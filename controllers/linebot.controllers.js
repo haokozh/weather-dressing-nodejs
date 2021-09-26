@@ -3,10 +3,6 @@ const linebotConfig = require('../config/linebot');
 
 const linebotService = require('../services/linebot.services');
 
-// const getWeatherResponse = require('../lib/getWeatherResponse');
-const get48HoursLocationId = require('../lib/get48HoursLocationId');
-const getWeeklyLocationId = require('../lib/getWeeklyLocationId');
-
 const client = new line.Client({
   channelSecret: linebotConfig.channelSecret,
   channelAccessToken: linebotConfig.channelAccessToken,
@@ -20,7 +16,7 @@ async function handleEvent(event) {
   const originalText = event.message.text;
   const splitedText = originalText.split(' ');
 
-  let locationId = getWeeklyLocationId(splitedText[0]);
+  let locationId = linebotService.getWeeklyLocationId(splitedText[0]);
   let locationName = linebotService.getTargetDistByLocationsName(
     splitedText[1],
     splitedText[0]

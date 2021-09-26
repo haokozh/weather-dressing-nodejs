@@ -6,7 +6,6 @@ const linebotService = require('../services/linebot.services');
 const getWeatherResponse = require('../lib/getWeatherResponse');
 const get48HoursLocationId = require('../lib/get48HoursLocationId');
 const getWeeklyLocationId = require('../lib/getWeeklyLocationId');
-// const getTargetDistByLocationsName = require('../lib/getTargetDistByLocationsName');
 
 const client = new line.Client({
   channelSecret: linebotConfig.channelSecret,

@@ -8,8 +8,20 @@ const client = new line.Client({
   channelAccessToken: linebotConfig.channelAccessToken,
 });
 
+const linebotMiddleware = line.middleware(client.config);
+
+function handleLineResponse(linebotMiddleware, req, res) {
+  Promise.all(req.body.events.map(linebotController.handleEvent))
+    .then((result) => res.json(result))
+    .catch((err) => {
+      console.error(err);
+      res.status(500).end();
+    });
+}
+
 async function handleEvent(event) {
-  if (linebotService.isWebhookTest(event.replyToken)) return Promise.resolve(null);
+  if (linebotService.isWebhookTest(event.replyToken))
+    return Promise.resolve(null);
 
   const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
@@ -31,4 +43,4 @@ async function handleEvent(event) {
   return client.replyMessage(event.replyToken, replyMessage);
 }
 
-module.exports.handleEvent = handleEvent;
+module.exports.handleLineResponse = handleLineResponse;

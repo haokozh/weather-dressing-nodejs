@@ -11,15 +11,13 @@ const client = new line.Client({
   channelAccessToken: linebotConfig.channelAccessToken,
 });
 
-// router.post('/', line.middleware(client.config), (req, res) => {
-//   Promise.all(req.body.events.map(linebotController.handleEvent))
-//     .then((result) => res.json(result))
-//     .catch((err) => {
-//       console.error(err);
-//       res.status(500).end();
-//     });
-// });
-
-router.post('/', linebotController.handleLineResponse);
+router.post('/', line.middleware(client.config), (req, res) => {
+  Promise.all(req.body.events.map(linebotController.handleEvent))
+    .then((result) => res.json(result))
+    .catch((err) => {
+      console.error(err);
+      res.status(500).end();
+    });
+});
 
 module.exports = router;

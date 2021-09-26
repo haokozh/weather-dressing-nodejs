@@ -1,7 +1,7 @@
 const axios = require('axios');
 const qs = require('qs');
 
-const responseData = require('../models/ResponseData');
+const ResponseData = require('../models/ResponseData');
 const replyFlexBubble = require('../message/replyFlexBubbleMessage');
 
 const weatherElement = {

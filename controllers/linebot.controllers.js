@@ -32,4 +32,7 @@ async function handleEvent(event) {
   return client.replyMessage(event.replyToken, replyMessage);
 }
 
-module.exports.handleEvent = handleEvent;
+module.exports = {
+  client,
+  handleEvent,
+};

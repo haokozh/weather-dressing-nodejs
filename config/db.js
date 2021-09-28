@@ -5,7 +5,7 @@ module.exports = {
   password: 'edb3cd219cecbfa25b339eab1cd4fe11b8497c93402c6f862a19ecd6d546915f',
   database: 'd29q5hq9d944m3',
   ssl: {
-    required: true,
+    sslmode: 'require',
     rejectUnauthorized: 0,
   },
 };

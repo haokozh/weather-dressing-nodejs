@@ -6,6 +6,6 @@ module.exports = {
   database: process.env.DB_NAME,
   ssl: {
     required: process.env.DB_SSL_MODE,
-    // rejectUnauthorized: process.env.REJECT_UNAUTHORIZED,
+    rejectUnauthorized: process.env.REJECT_UNAUTHORIZED,
   },
 };

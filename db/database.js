@@ -1,29 +1,14 @@
-const { Client } = require('pg');
+const { Pool } = require('pg');
+const dbConfig = require('../config/db');
 
-const client = new Client({
-    host: 'ec2-35-174-56-18.compute-1.amazonaws.com',
-    port: 5432,
-    user: 'mdjbpabddpzbxs',
-    password: 'edb3cd219cecbfa25b339eab1cd4fe11b8497c93402c6f862a19ecd6d546915f',
-    database: 'd29q5hq9d944m3',
-    ssl: {
-        required: true,
-        rejectUnauthorized: false
-    }
+const pool = new Pool(dbConfig);
 
-    // host: 'localhost',
-    // port: 5432,
-    // user: 'haokozh',
-    // password: 'Timeskip2376',
-    // database: 'weather_dressing'
+pool.on('connect', () => {
+  console.log('Database connection');
 });
 
-client.on('connect', () => {
-    console.log('Database connection');
+pool.on('end', () => {
+  console.log('Connection end');
 });
 
-client.on('end', () => {
-    console.log('Connection end');
-});
-
-module.exports = client;
+module.exports = pool;

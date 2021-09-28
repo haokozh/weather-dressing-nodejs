@@ -1,28 +1,37 @@
-const client = require('../db/database');
+const pool = require('../db/database');
 
-// async function findAllMembers() {
-//   await client.connect();
-
-//   const result = await client.query(`INSERT INTO Members VALUES($1, $2, $3, $4, $5, $6) RETURNING *`, ['haokozh', '123', 'haokozh@gmail.com', 'ghaibhleann', 'M']);
-//   console.log(result.rows);
-
-//   client.end();
-// }
-
-// module.exports = {
-//   findAllMembers,
-// };
-
-(async () => {
+async function findAllMembers() {
   try {
-    await client.connect();
-    const result = await client.query(
-      `INSERT INTO Members(Account, Password, Email, LineId, CellPhone, Gender) VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
-      ['haokozh', '123', 'haokozh@gmail.com', 'ghaibhleann', '0912345678', 'M']
-    );
+    await pool.connect();
 
-    client.end();
+    const result = await pool.query(`SELECT * FROM Members`);
+
+    console.log(result.rows);
   } catch (error) {
     console.log(error);
+  } finally {
+    await pool.release();
   }
-})();
+}
+
+async function newMember(account, password, email, lineId, cellPhone, gender) {
+  try {
+    await pool.connect();
+
+    const result = await pool.query(
+      `INSERT INTO Members(Account, Password, Email, LineId, CellPhone, Gender) VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
+      [account, password, email, lineId, cellPhone, gender]
+    );
+
+    console.log(result.rows);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    await pool.release();
+  }
+}
+
+module.exports = {
+  findAllMembers,
+  newMember,
+};

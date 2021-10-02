@@ -1,3 +1,13 @@
+@import url('header.css');
+@import url('footer.css');
+@import url('login.css');
+@import url('register.css');
+@import url('selection.css');
+@import url('table.css');
+@import url('upload.css');
+
+/* custom styles */
+
 body {
   background-color: rgb(21, 40, 63);
 }
@@ -7,48 +17,18 @@ body {
   height: 100%;
 }
 
-/* from style.css */
-header {
-  color: white;
-  background-color: #344955;
-  height: 100px;
-  width: 380px;
-  margin: 0 auto;
-  padding: auto;
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: lightgray;
+  opacity: 1; /* Firefox */
 }
 
-.center {
-  color: white;
-  background-color: #4a6572;
-  height: 670px;
-  width: 380px;
-  margin: 0 auto;
-  padding: auto;
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: lightgray;
 }
 
-.header.center {
-  width: 200;
-  height: 100;
-  background-color: #344955;
-  color: #fff;
-  text-align: center;
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: lightgray;
 }
-
-table {
-  color: #fff;
-  text-align: center;
-  font-weight: bolder;
-}
-
-a {
-  text-decoration: none;
-  color: #f8f9fa;
-  font-weight: bolder;
-}
-
-a:hover {
-  color: #f9aa33;
-}
-
-@import url('./login.css');
-@import url('./footer.css');

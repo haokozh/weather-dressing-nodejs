@@ -1,0 +1,75 @@
+.select {
+  background-color: #4a6572;
+  width: 240px;
+  color: #f8f9fa;
+  padding: 40px;
+  box-shadow: 10px 10px 25px #00000000;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.select input {
+  display: inline-block;
+  margin: 20px auto;
+  text-align: center;
+  background: none;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 22px;
+  outline: none;
+  color: #f8f9fa;
+}
+.go {
+  background-color: #4a6572;
+  width: 180px;
+  color: #f8f9fa;
+  padding: 40px;
+  box-shadow: 10px 10px 25px #00000000;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.go input {
+  display: inline-block;
+  margin: 20px auto;
+  text-align: center;
+  background: none;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 22px;
+  outline: none;
+  color: #f8f9fa;
+}
+
+.sub {
+  background-color: #4a6572;
+  width: 180px;
+  color: #f8f9fa;
+  padding: 40px;
+  box-shadow: 10px 10px 25px #00000000;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.sub input {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  background: none;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 22px;
+  outline: none;
+  color: #f8f9fa;
+}
+
+.sub input[type='submit'] {
+  width: 150px;
+  border: 2px solid #2ecc71;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.sub input[type='submit']:hover {
+  background-color: #2ecc71;
+}

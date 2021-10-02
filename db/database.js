@@ -1,19 +1,14 @@
-const { Client } = require('pg');
+const { Pool } = require('pg');
+const dbConfig = require('../config/db');
 
-const client = new Client({
-    host: 'localhost',
-    port: 5432,
-    user: 'haokozh',
-    password: 'Timeskip2376',
-    database: 'weather_dressing'
+const pool = new Pool(dbConfig);
+
+pool.on('connect', () => {
+  console.log('Database connection');
 });
 
-client.on('connect', () => {
-    console.log('Database connection');
+pool.on('end', () => {
+  console.log('Connection end');
 });
 
-client.on('end', () => {
-    console.log('Connection end');
-});
-
-module.exports = client;
+module.exports = pool;

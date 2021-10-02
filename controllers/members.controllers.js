@@ -1,10 +1,17 @@
-const client = require('../db/database');
+const memberService = require('../services/members.services');
 
-(async () => {
-  await client.connect();
+function newMember(
+  account,
+  password,
+  confirmPassword,
+  email,
+  lineId,
+  cellPhone,
+  gender
+) {
+    memberService.newMember(account, password, email, lineId, cellPhone, gender);
+}
 
-  const result = await client.query(`SELECT * FROM Members WHERE Id=$1`, [1]);
-  console.log(result.rows);
-
-  client.end();
-})();
+module.exports = {
+  newMember,
+};

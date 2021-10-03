@@ -12,7 +12,7 @@ router.get('/register', (req, res) => {
 
 router.post('/register', upload.array(), (req, res) => {
   try {
-    console.log(req.body);
+    console.log(`Here is req.body: ${req.body}`);
 
     const member = req.body;
 

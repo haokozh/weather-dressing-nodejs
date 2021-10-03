@@ -6,6 +6,6 @@ module.exports = {
   database: 'd29q5hq9d944m3',
   ssl: {
     require: true,
-    rejectUnauthorized: false
+    // rejectUnauthorized: false
   }
 };

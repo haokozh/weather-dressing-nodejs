@@ -15,9 +15,9 @@ async function findAllMembers() {
 }
 
 async function newMember(account, password, gender) {
-  try {
-    const client = await pool.connect();
+  const client = await pool.connect();
 
+  try {
     const result = await client.query(
       `INSERT INTO Members(account, password, gender) VALUES($1, $2, $3) RETURNING *`,
       [account, password, gender]

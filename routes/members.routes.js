@@ -24,8 +24,6 @@ router.post('/register', upload.array(), (req, res) => {
       member.gender
     );
 
-    memberController.newMember(member);
-
     res.status(200).send(req.body);
   } catch (error) {
     console.log(error);

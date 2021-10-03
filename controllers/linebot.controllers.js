@@ -8,7 +8,7 @@ const client = new line.Client({
   channelAccessToken: linebotConfig.channelAccessToken,
 });
 
-function callback(req, res) {
+const callback = (req, res) => {
   Promise.all(req.body.events.map(handleEvent))
     .then((result) => res.json(result))
     .catch((error) => {

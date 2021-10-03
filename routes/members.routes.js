@@ -20,9 +20,6 @@ router.post('/register', upload.array(), (req, res) => {
       member.account,
       member.password,
       member.confirmPassword,
-      // member.email,
-      // member.lineId,
-      // member.cellPhone,
       member.gender
     );
 

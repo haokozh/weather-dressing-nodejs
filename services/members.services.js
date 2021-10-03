@@ -19,7 +19,7 @@ async function newMember(account, password, gender) {
     await pool.connect();
 
     const result = await pool.query(
-      `INSERT INTO Members(Account, Password, Gender) VALUES($1, $2, $3) RETURNING *`,
+      `INSERT INTO Members(account, password, gender) VALUES($1, $2, $3) RETURNING *`,
       [account, password, gender]
     );
 

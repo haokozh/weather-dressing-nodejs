@@ -61,7 +61,7 @@
         <br />
         性別：<input type="radio" name="gender" value="male" checked="true" />男
         <input type="radio" name="gender" value="female" />女
-        <button type="submit" value="送出" onclick="submitForm()" />
+        <input type="submit" value="送出" onclick="submitForm()" />
       </form>
     </section>
 
@@ -72,7 +72,7 @@
     <script>
       function submitForm() {
         const form = document.getElementById('registerForm');
-        
+
         form.submit();
         form.reset();
       }

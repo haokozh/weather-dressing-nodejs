@@ -16,15 +16,15 @@ router.post('/register', upload.array(), (req, res) => {
     console.log(JSON.stringify(req.body));
 
     memberController.newMember(
-      req.body.password,
       req.body.account,
+      req.body.password,
       req.body.confirmPassword,
       req.body.gender
     );
 
     res.status(200).send(req.body);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 });
 

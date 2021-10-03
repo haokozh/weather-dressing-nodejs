@@ -13,14 +13,14 @@ const weatherElement = {
   MAX_T: 5,
 };
 
-function isWebhookTest(replyToken) {
+const isWebhookTest = (replyToken) => {
   return (
     replyToken === '00000000000000000000000000000000' ||
     replyToken === 'ffffffffffffffffffffffffffffffff'
   );
 }
 
-function get48HoursLocationId(locationsName) {
+const get48HoursLocationId = (locationsName) => {
   let prefixId = 'F-D0047-';
   switch (locationsName) {
     case '宜蘭縣':
@@ -72,7 +72,7 @@ function get48HoursLocationId(locationsName) {
   }
 }
 
-function getWeeklyLocationId(locationsName) {
+const getWeeklyLocationId = (locationsName) => {
   let prefixId = 'F-D0047-';
   switch (locationsName) {
     case '宜蘭縣':
@@ -128,7 +128,7 @@ function getWeeklyLocationId(locationsName) {
   }
 }
 
-function getDistsByLocationsName(locationsName) {
+const getDistsByLocationsName = (locationsName) => {
   switch (locationsName) {
     case '宜蘭縣':
       return [
@@ -547,13 +547,13 @@ function getDistsByLocationsName(locationsName) {
   }
 }
 
-function getTargetDistByLocationsName(targetDist, locationsName) {
+const getTargetDistByLocationsName = (targetDist, locationsName) => {
   const dists = getDistsByLocationsName(locationsName);
 
   return dists.includes(targetDist) ? targetDist : `找不到${targetDist}`;
 }
 
-async function getWeatherResponse(locationId, locationName, elementName) {
+const getWeatherResponse = async (locationId, locationName, elementName) => {
   const baseURL =
     'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093';
 

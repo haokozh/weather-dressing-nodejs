@@ -12,7 +12,8 @@ router.get('/register', (req, res) => {
 
 router.post('/register', upload.array(), (req, res) => {
   try {
-    console.log(`Here is req.body: ${req.body}`);
+    console.log('Here is req.body:');
+    console.log(JSON.stringify(req.body));
 
     const member = req.body;
 

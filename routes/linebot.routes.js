@@ -1,4 +1,5 @@
 const line = require('@line/bot-sdk');
+const linebotConfig = require('../config/linebot');
 
 const express = require('express');
 const router = express.Router();

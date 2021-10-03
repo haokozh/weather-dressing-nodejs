@@ -1,39 +1,37 @@
 const pool = require('../db/database');
 
-async function findAllMembers() {
+const findAllMembers = async () => {
+  const client = await pool.connect();
+
   try {
-    await pool.connect();
+    const { rows } = await client.query(`SELECT * FROM Members`);
 
-    const result = await pool.query(`SELECT * FROM Members`);
+    console.log(rows);
 
-    console.log(result.rows);
-  } catch (error) {
-    console.log(error);
-  } finally {
-    await pool.release();
-  }
-}
-
-async function newMember(account, password, gender) {
-  try {
-    await pool.connect();
-
-    const result = await pool.query(
-      `INSERT INTO Members(Account, Password, Gender) VALUES($1, $2, $3) RETURNING *`,
-      [account, password, gender]
-    );
-
-    console.log(result.rows);
+    return rows;
   } catch (error) {
     console.error(error);
   } finally {
-    try {
-      await pool.release();
-    } catch (error) {
-      console.error(error);
-    }
+    client.release();
   }
 }
+
+const newMember = async (account, password, gender) => {
+  const client = await pool.connect();
+
+  try {
+    const { rows } = await client.query(
+      `INSERT INTO Members(account, password, gender) VALUES($1, $2, $3) RETURNING *`,
+      [account, password, gender]
+    );
+
+    console.log(rows);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    client.release();
+  }
+};
 
 module.exports = {
   findAllMembers,

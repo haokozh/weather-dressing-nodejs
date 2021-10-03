@@ -18,12 +18,12 @@ async function newMember(account, password, gender) {
   const client = await pool.connect();
 
   try {
-    const result = await client.query(
+    const { rows } = await client.query(
       `INSERT INTO Members(account, password, gender) VALUES($1, $2, $3) RETURNING *`,
       [account, password, gender]
     );
 
-    console.log(result.rows);
+    console.log(rows);
   } catch (error) {
     console.error(error);
   } finally {

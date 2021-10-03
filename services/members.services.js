@@ -14,7 +14,7 @@ async function findAllMembers() {
   }
 }
 
-async function newMember(account, password, email, lineId, cellPhone, gender) {
+async function newMember(account, password, gender) {
   try {
     await pool.connect();
 

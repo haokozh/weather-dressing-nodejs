@@ -1,20 +1,22 @@
 const pool = require('../db/database');
 
-async function findAllMembers() {
+const findAllMembers = async () => {
+  const client = await pool.connect();
+
   try {
-    await pool.connect();
+    const { rows } = await client.query(`SELECT * FROM Members`);
 
-    const result = await pool.query(`SELECT * FROM Members`);
+    console.log(rows);
 
-    console.log(result.rows);
+    return rows;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   } finally {
-    await pool.release();
+    client.release();
   }
 }
 
-async function newMember(account, password, gender) {
+const newMember = async (account, password, gender) => {
   const client = await pool.connect();
 
   try {
@@ -27,9 +29,9 @@ async function newMember(account, password, gender) {
   } catch (error) {
     console.error(error);
   } finally {
-    await client.release();
+    client.release();
   }
-}
+};
 
 module.exports = {
   findAllMembers,

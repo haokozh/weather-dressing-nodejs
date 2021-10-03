@@ -5,6 +5,6 @@ const router = express.Router();
 
 const linebotController = require('../controllers/linebot.controllers');
 
-router.post('/', line.middleware(linebotController.client.config),  linebotController.callback(req, res));
+router.post('/', line.middleware(linebotController.client.config),  linebotController.callback);
 
 module.exports = router;

@@ -27,7 +27,11 @@ async function newMember(account, password, email, lineId, cellPhone, gender) {
   } catch (error) {
     console.log(error);
   } finally {
-    await pool.release();
+    try {
+      await pool.release();
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 

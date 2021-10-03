@@ -15,13 +15,11 @@ router.post('/register', upload.array(), (req, res) => {
     console.log('Here is req.body:');
     console.log(JSON.stringify(req.body));
 
-    const member = req.body;
-
     memberController.newMember(
-      member.account,
-      member.password,
-      member.confirmPassword,
-      member.gender
+      req.body.password,
+      req.body.account,
+      req.body.confirmPassword,
+      req.body.gender
     );
 
     res.status(200).send(req.body);

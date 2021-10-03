@@ -8,7 +8,7 @@ const client = new line.Client({
   channelAccessToken: linebotConfig.channelAccessToken,
 });
 
-async function handleEvent(event) {
+const handleEvent = async (event) => {
   if (linebotService.isWebhookTest(event.replyToken))
     return Promise.resolve(null);
 

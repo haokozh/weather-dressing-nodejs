@@ -53,14 +53,11 @@
     </header>
 
     <section class="center">
-      <form action="/members/register" method="POST" class="register">
+      <form action="/members/register" method="POST" class="register" id="registerForm">
         <h2>註冊會員</h2>
         <input type="text" name="account" placeholder="帳號" style="color: azure" />
         <input type="password" name="password" placeholder="密碼" />
         <input type="password" name="confirmPassword" placeholder="確認密碼" />
-        <input type="email" name="email" placeholder="電子信箱" />
-        <input type="text" name="lineId" placeholder="LINE ID" />
-        <input type="text" name="cellPhone" placeholder="手機號碼" />
         <br />
         性別：<input type="radio" name="gender" value="male" checked="true" />男
         <input type="radio" name="gender" value="female" />女
@@ -71,5 +68,14 @@
     <footer style="font-family: 'Gemunu Libre', sans-serif">
       &copy; 天氣穿衣 Weather Dressing
     </footer>
+
+    <!-- <script>
+      function submitForm() {
+        const form = document.getElementById('registerForm');
+
+        form.submit();
+        form.reset();
+      }
+    </script> -->
   </body>
 </html>

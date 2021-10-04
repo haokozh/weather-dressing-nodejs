@@ -6,32 +6,8 @@ const upload = multer();
 
 const memberController = require('../controllers/members.controllers');
 
-router.get('/register', (req, res) => {
-  res.render('members/register');
-});
+router.get('/register', memberController.register);
 
-router.post('/register', upload.array(), (req, res) => {
-  try {
-    console.log(req.body);
-
-    const member = req.body;
-
-    memberController.newMember(
-      member.account,
-      member.password,
-      member.confirmPassword,
-      member.email,
-      member.lineId,
-      member.cellPhone,
-      member.gender
-    );
-
-    memberController.newMember(member);
-
-    res.status(200).send(req.body);
-  } catch (error) {
-    console.log(error);
-  }
-});
+router.post('/register', upload.array(), memberController.newMember);
 
 module.exports = router;

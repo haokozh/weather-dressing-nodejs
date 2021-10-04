@@ -2,7 +2,6 @@ const axios = require('axios');
 const qs = require('qs');
 
 const ResponseData = require('../models/ResponseData');
-const replyFlexBubble = require('../message/replyFlexBubbleMessage');
 
 const weatherElement = {
   POP_12H: 0,
@@ -13,14 +12,14 @@ const weatherElement = {
   MAX_T: 5,
 };
 
-function isWebhookTest(replyToken) {
+const isWebhookTest = (replyToken) => {
   return (
     replyToken === '00000000000000000000000000000000' ||
     replyToken === 'ffffffffffffffffffffffffffffffff'
   );
-}
+};
 
-function get48HoursLocationId(locationsName) {
+const get48HoursLocationId = (locationsName) => {
   let prefixId = 'F-D0047-';
   switch (locationsName) {
     case '宜蘭縣':
@@ -70,9 +69,9 @@ function get48HoursLocationId(locationsName) {
     default:
       throw new Error(`找不到${locationsName}的 ForecastId`);
   }
-}
+};
 
-function getWeeklyLocationId(locationsName) {
+const getWeeklyLocationId = (locationsName) => {
   let prefixId = 'F-D0047-';
   switch (locationsName) {
     case '宜蘭縣':
@@ -126,9 +125,9 @@ function getWeeklyLocationId(locationsName) {
     default:
       throw new Error(`找不到${locationsName}的 ForecastId`);
   }
-}
+};
 
-function getDistsByLocationsName(locationsName) {
+const getDistsByLocationsName = (locationsName) => {
   switch (locationsName) {
     case '宜蘭縣':
       return [
@@ -545,15 +544,15 @@ function getDistsByLocationsName(locationsName) {
     default:
       throw new Error(`找不到${locationsName}的行政區`);
   }
-}
+};
 
-function getTargetDistByLocationsName(targetDist, locationsName) {
+const getTargetDistByLocationsName = (targetDist, locationsName) => {
   const dists = getDistsByLocationsName(locationsName);
 
   return dists.includes(targetDist) ? targetDist : `找不到${targetDist}`;
-}
+};
 
-async function getWeatherResponse(locationId, locationName, elementName) {
+const getWeatherResponse = async (locationId, locationName, elementName) => {
   const baseURL =
     'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093';
 
@@ -600,7 +599,185 @@ async function getWeatherResponse(locationId, locationName, elementName) {
     tempDescription,
     confortDescription
   );
-}
+};
+
+const replyFlexBubble = (
+  locations,
+  location,
+  pop12hTime,
+  pop12hDescription,
+  wdValue,
+  tempDescription,
+  confortDescription
+) => {
+  return (replyBubble = {
+    type: 'flex',
+    altText: 'This is FlexMessage',
+    contents: {
+      type: 'bubble',
+      hero: {
+        type: 'image',
+        url: 'https://i.imgur.com/Ex3Opfo.png',
+        size: 'full',
+        aspectRatio: '20:13',
+        aspectMode: 'cover',
+        action: {
+          type: 'uri',
+          uri: 'http://linecorp.com/',
+        },
+      },
+      body: {
+        type: 'box',
+        layout: 'vertical',
+        contents: [
+          {
+            type: 'text',
+            text: `${locations.locationsName} ${location.locationName}`,
+            weight: 'bold',
+            size: 'xl',
+            align: 'center',
+          },
+          {
+            type: 'box',
+            layout: 'vertical',
+            margin: 'md',
+            contents: [
+              {
+                type: 'text',
+                text: `${pop12hTime.startTime} ~ ${pop12hTime.endTime}`,
+                size: 'md',
+                color: '#999999',
+                margin: 'md',
+                flex: 0,
+                align: 'center',
+                weight: 'regular',
+              },
+              {
+                type: 'separator',
+              },
+            ],
+          },
+          {
+            type: 'box',
+            layout: 'vertical',
+            margin: 'lg',
+            spacing: 'sm',
+            contents: [
+              {
+                type: 'box',
+                layout: 'horizontal',
+                spacing: 'sm',
+                contents: [
+                  {
+                    type: 'text',
+                    text: '天氣狀況',
+                    color: '#0099FF',
+                    weight: 'bold',
+                    size: 'lg',
+                    offsetEnd: 'none',
+                  },
+                  {
+                    type: 'text',
+                    text: wdValue.value,
+                    weight: 'bold',
+                    size: 'lg',
+                    offsetEnd: 'xxl',
+                  },
+                ],
+              },
+              {
+                type: 'box',
+                layout: 'horizontal',
+                spacing: 'sm',
+                contents: [
+                  {
+                    type: 'text',
+                    text: '溫度狀況',
+                    size: 'lg',
+                    color: '#0099FF',
+                    weight: 'bold',
+                  },
+                  {
+                    type: 'text',
+                    text: tempDescription,
+                    offsetEnd: 'xxl',
+                    weight: 'bold',
+                    size: 'lg',
+                  },
+                ],
+              },
+              {
+                type: 'box',
+                layout: 'horizontal',
+                contents: [
+                  {
+                    type: 'text',
+                    text: '降雨機率',
+                    color: '#0099FF',
+                    weight: 'bold',
+                    size: 'lg',
+                  },
+                  {
+                    type: 'text',
+                    text: pop12hDescription,
+                    offsetEnd: 'xxl',
+                    weight: 'bold',
+                    size: 'lg',
+                  },
+                ],
+              },
+              {
+                type: 'box',
+                layout: 'horizontal',
+                contents: [
+                  {
+                    type: 'text',
+                    text: '舒適度',
+                    size: 'lg',
+                    color: '#0099FF',
+                    weight: 'bold',
+                  },
+                  {
+                    type: 'text',
+                    text: confortDescription,
+                    offsetEnd: 'xxl',
+                    size: 'lg',
+                    weight: 'bold',
+                  },
+                ],
+              },
+              {
+                type: 'separator',
+              },
+            ],
+          },
+        ],
+      },
+      footer: {
+        type: 'box',
+        layout: 'vertical',
+        spacing: 'sm',
+        contents: [
+          {
+            type: 'button',
+            style: 'link',
+            height: 'sm',
+            action: {
+              type: 'uri',
+              label: '詳細內容',
+              uri: 'https://www.cwb.gov.tw/V8/C/W/County/index.html',
+            },
+          },
+          {
+            type: 'spacer',
+            size: 'sm',
+          },
+        ],
+        flex: 0,
+      },
+    },
+  });
+};
 
 module.exports = {
   isWebhookTest,
@@ -608,4 +785,5 @@ module.exports = {
   getDistsByLocationsName,
   getTargetDistByLocationsName,
   getWeatherResponse,
+  replyFlexBubble,
 };

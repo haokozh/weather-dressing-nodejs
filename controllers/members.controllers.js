@@ -4,7 +4,7 @@ const getMembers = (req, res) => {
   try {
     const members = memberService.findAllMembers();
 
-    res.status(200).JSON(members);
+    res.render('/', { title: 'rows results', items: members });
   } catch (error) {
     console.error(error);
   }

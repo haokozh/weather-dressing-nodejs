@@ -6,6 +6,7 @@ const findAllMembers = async () => {
   try {
     const { rows } = await client.query(`SELECT * FROM Members`);
 
+    console.log('Here is findAllMembers method');
     console.log(rows);
 
     return rows;
@@ -25,6 +26,7 @@ const newMember = async (account, password, gender) => {
       [account, password, gender]
     );
 
+    console.log('Here is newMember method');
     console.log(rows);
   } catch (error) {
     console.error(error);

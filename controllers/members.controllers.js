@@ -32,6 +32,7 @@ const newMember = (req, res) => {
 };
 
 module.exports = {
+  getMembers,
   register,
   newMember,
 };

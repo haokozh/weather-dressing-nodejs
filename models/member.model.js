@@ -25,7 +25,7 @@ class Member {
         return this.gender;
     }
 
-    set gender() {
+    set gender(gender) {
         this.gender = gender;
     }
 }

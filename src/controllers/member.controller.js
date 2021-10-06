@@ -1,4 +1,4 @@
-const memberService = require('../services/members.services');
+const memberService = require('../services/member.service');
 
 const register = (req, res) => {
   res.render('members/register');

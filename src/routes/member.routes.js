@@ -4,7 +4,7 @@ const router = express.Router();
 const multer = require('multer');
 const upload = multer();
 
-const memberController = require('../controllers/members.controllers');
+const memberController = require('../controllers/member.controller');
 
 router.get('/register', memberController.register);
 

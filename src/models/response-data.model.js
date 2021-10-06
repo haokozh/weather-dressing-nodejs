@@ -1,18 +1,20 @@
 class ResponseData {
   constructor(records) {
     this.records = records;
+    this.locations = records.locations[0];
+    this.location = records.location[0];
   }
 
   getLocations() {
-    return this.records.locations[0];
+    return this.locations;
   }
 
   getLocation() {
-    return this.getLocations().location[0];
+    return this.location;
   }
 
   getWeatherElement(elementIndex) {
-    return this.getLocation().weatherElement[elementIndex];
+    return this.location.weatherElement[elementIndex];
   }
 
   getTime(elementIndex) {

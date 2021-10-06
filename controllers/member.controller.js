@@ -16,7 +16,7 @@ const newMember = (req, res) => {
     console.log('Here is req.body:');
     console.log(JSON.stringify(member));
 
-    memberService.newMember(member.account, member.password, member.gender);
+    memberService.newMember(member);
 
     res.status(200).send(member);
   } catch (error) {

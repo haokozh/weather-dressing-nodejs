@@ -1,8 +1,8 @@
 class Member {
-  constructor(member) {
-    this.account = member.account;
-    this.password = member.password;
-    this.gender = member.gender;
+  constructor(account, password, gender) {
+    this.account = account;
+    this.password = password;
+    this.gender = gender;
   }
 }
 

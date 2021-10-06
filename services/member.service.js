@@ -10,16 +10,7 @@ const findAllMembers = async () => {
     console.log('Here is findAllMembers method');
     console.log(rows);
 
-    const members = rows.map((row) => {
-      return {
-        id: row.id,
-        account: row.account,
-        password: row.password,
-        gender: row.gender
-      };
-    });
-
-    return members;
+    return rows;
   } catch (error) {
     console.error(error);
   } finally {

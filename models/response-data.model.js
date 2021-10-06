@@ -4,7 +4,7 @@ class ResponseData {
   }
 
   getLocations() {
-    return this.locations[0];
+    return this.records.locations[0];
   }
 
   getLocation() {

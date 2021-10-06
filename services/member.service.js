@@ -11,7 +11,12 @@ const findAllMembers = async () => {
     console.log(rows);
 
     const members = rows.map((row) => {
-      return new Member(row.account, row.password, row.gender);
+      return {
+        id: row.id,
+        account: row.account,
+        password: row.password,
+        gender: row.gender
+      };
     });
 
     return members;

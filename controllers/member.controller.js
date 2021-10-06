@@ -7,7 +7,7 @@ const register = (req, res) => {
 
 const newMember = (req, res) => {
   try {
-    const member = new Member(
+    let member = new Member(
       req.body.account,
       req.body.password,
       req.body.gender

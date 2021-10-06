@@ -1,8 +1,8 @@
 const line = require('@line/bot-sdk');
 
 const client = new line.Client({
-  channelSecret: linebotConfig.channelSecret,
-  channelAccessToken: linebotConfig.channelAccessToken,
+  channelSecret: process.env.channelSecret,
+  channelAccessToken: process.env.channelAccessToken,
 });
 
 module.exports = {

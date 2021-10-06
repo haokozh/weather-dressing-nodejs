@@ -1,12 +1,6 @@
-const line = require('@line/bot-sdk');
-const linebotConfig = require('../config/linebot');
+const { client } = require('../config/linebot.config');
 
 const linebotService = require('../services/linebot.services');
-
-const client = new line.Client({
-  channelSecret: linebotConfig.channelSecret,
-  channelAccessToken: linebotConfig.channelAccessToken,
-});
 
 const callback = (req, res) => {
   Promise.all(req.body.events.map(handleEvent))
@@ -15,7 +9,7 @@ const callback = (req, res) => {
       console.error(`Error on linebot.controllers.callback() ${error}`);
       res.status(500).end();
     });
-}
+};
 
 const handleEvent = async (event) => {
   if (linebotService.isWebhookTest(event.replyToken))

@@ -553,8 +553,7 @@ const getTargetDistByLocationsName = (targetDist, locationsName) => {
 };
 
 const getWeatherResponse = async (locationId, locationName, elementName) => {
-  const baseURL =
-    'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093';
+  const baseURL = process.env.CWB_BASE_URL;
 
   const weatherResponse = await axios.get(baseURL, {
     params: {

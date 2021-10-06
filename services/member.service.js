@@ -1,4 +1,5 @@
 const pool = require('../config/db.config');
+const Member = require('../models/member.model');
 
 const findAllMembers = async () => {
   const client = await pool.connect();
@@ -9,7 +10,11 @@ const findAllMembers = async () => {
     console.log('Here is findAllMembers method');
     console.log(rows);
 
-    return rows;
+    const members = rows.map((row) => {
+      return new Member(row.account, row.password, row.gender);
+    });
+
+    return members;
   } catch (error) {
     console.error(error);
   } finally {

@@ -6,6 +6,8 @@ const upload = multer();
 
 const memberController = require('../controllers/member.controller');
 
+router.get('/', memberController.findAllMembers);
+
 router.get('/register', memberController.register);
 
 router.post('/register', upload.array(), memberController.newMember);

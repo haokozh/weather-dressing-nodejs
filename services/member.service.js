@@ -17,13 +17,13 @@ const findAllMembers = async () => {
   }
 };
 
-const newMember = async (member) => {
+const newMember = async (account, password, gender) => {
   const client = await pool.connect();
 
   try {
     const { rows } = await client.query(
       `INSERT INTO Members(account, password, gender) VALUES($1, $2, $3) RETURNING *`,
-      [member.account, member.password, member.gender]
+      [account, password, gender]
     );
 
     console.log('Here is newMember method');

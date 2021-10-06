@@ -1,7 +1,7 @@
 const axios = require('axios');
 const qs = require('qs');
 
-const ResponseData = require('../models/ResponseData');
+const ResponseData = require('../models/response-data.model');
 
 const weatherElement = {
   POP_12H: 0,

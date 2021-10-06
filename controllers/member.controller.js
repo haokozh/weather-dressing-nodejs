@@ -4,6 +4,7 @@ const Member = require('../models/member.model');
 const findAllMembers = (req, res) => {
   try {
     const members = memberService.findAllMembers();
+    res.status(200).send(members);
   } catch (error) {
     console.error(error);
     res.status(500).send(error);

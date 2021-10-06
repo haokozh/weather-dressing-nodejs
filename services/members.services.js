@@ -1,4 +1,4 @@
-const pool = require('../db/database');
+const pool = require('../config/db.config');
 
 const findAllMembers = async () => {
   const client = await pool.connect();

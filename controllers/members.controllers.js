@@ -1,15 +1,5 @@
 const memberService = require('../services/members.services');
 
-const getMembers = (req, res) => {
-  try {
-    const members = memberService.findAllMembers();
-
-    res.send(members);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 const register = (req, res) => {
   res.render('members/register');
 };
@@ -32,7 +22,6 @@ const newMember = (req, res) => {
 };
 
 module.exports = {
-  getMembers,
   register,
   newMember,
 };

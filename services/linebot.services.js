@@ -553,9 +553,9 @@ const getTargetDistByLocationsName = (targetDist, locationsName) => {
 };
 
 const getWeatherResponse = async (locationId, locationName, elementName) => {
-  const baseURL = process.env.CWB_BASE_URL;
 
-  const weatherResponse = await axios.get(baseURL, {
+  const weatherResponse = await axios.get({
+    baseURL: process.env.CWB_BASE_URL,
     params: {
       Authorization: process.env.CWB_API_KEY,
       locationId: locationId,

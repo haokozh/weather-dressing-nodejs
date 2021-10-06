@@ -4,7 +4,7 @@ const { client } = require('../config/linebot.config');
 const express = require('express');
 const router = express.Router();
 
-const linebotController = require('../controllers/linebot.controllers');
+const linebotController = require('../controllers/linebot.controller');
 
 router.post('/', line.middleware(client.config),  linebotController.callback);
 

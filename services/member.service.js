@@ -23,7 +23,7 @@ const findMemberById = async (id) => {
   try {
     const { rows } = await client.query(
       `SELECT * FROM Members WHERE id = $1`,
-      id
+      [id]
     );
 
     console.log('Here is findMemberById method');

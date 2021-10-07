@@ -1,7 +1,7 @@
 const axios = require('axios');
 const qs = require('qs');
 
-const ResponseData = require('../models/ResponseData');
+const ResponseData = require('../models/response-data.model');
 
 const weatherElement = {
   POP_12H: 0,
@@ -553,52 +553,53 @@ const getTargetDistByLocationsName = (targetDist, locationsName) => {
 };
 
 const getWeatherResponse = async (locationId, locationName, elementName) => {
-  const baseURL =
-    'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093';
+  try {
+    const { data } = await axios.get(process.env.CWB_BASE_URL, {
+      params: {
+        Authorization: process.env.CWB_API_KEY,
+        locationId: locationId,
+        locationName: locationName,
+        elementName: elementName,
+      },
+      paramsSerializer: (params) => {
+        return qs.stringify(params, { arrayFormat: 'repeat' });
+      },
+    });
 
-  const weatherResponse = await axios.get(baseURL, {
-    params: {
-      Authorization: process.env.CWB_API_KEY,
-      locationId: locationId,
-      locationName: locationName,
-      elementName: elementName,
-    },
-    paramsSerializer: (params) => {
-      return qs.stringify(params, { arrayFormat: 'repeat' });
-    },
-  });
+    const responseData = new ResponseData(data.records);
 
-  const responseData = new ResponseData(weatherResponse.data.records);
+    const locations = responseData.getLocations();
+    const location = responseData.getLocation();
 
-  const locations = responseData.getLocations();
-  const location = responseData.getLocation();
+    const pop12hTime = responseData.getTime(weatherElement.POP_12H);
+    const pop12hValue = responseData.getValue(weatherElement.POP_12H);
+    const pop12hDescription = `${pop12hValue.value}%`;
 
-  const pop12hTime = responseData.getTime(weatherElement.POP_12H);
-  const pop12hValue = responseData.getValue(weatherElement.POP_12H);
-  const pop12hDescription = `${pop12hValue.value}%`;
+    const wdValue = responseData.getValue(weatherElement.WEATHER_DESCRIPTION);
 
-  const wdValue = responseData.getValue(weatherElement.WEATHER_DESCRIPTION);
+    const minTempValue = responseData.getValue(weatherElement.MIN_T);
+    const maxTempValue = responseData.getValue(weatherElement.MAX_T);
+    const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;
 
-  const minTempValue = responseData.getValue(weatherElement.MIN_T);
-  const maxTempValue = responseData.getValue(weatherElement.MAX_T);
-  const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;
+    // some problem
+    const minCIValue = responseData.getMeasure(weatherElement.MIN_CI);
+    const maxCIValue = responseData.getMeasure(weatherElement.MAX_CI);
 
-  // some problem
-  const minCIValue = responseData.getMeasure(weatherElement.MIN_CI);
-  const maxCIValue = responseData.getMeasure(weatherElement.MAX_CI);
+    // if minCI === maxCI
+    const confortDescription = `${minCIValue.value}至${maxCIValue.value}`;
 
-  // if minCI === maxCI
-  const confortDescription = `${minCIValue.value}至${maxCIValue.value}`;
-
-  return replyFlexBubble(
-    locations,
-    location,
-    pop12hTime,
-    pop12hDescription,
-    wdValue,
-    tempDescription,
-    confortDescription
-  );
+    return replyFlexBubble(
+      locations,
+      location,
+      pop12hTime,
+      pop12hDescription,
+      wdValue,
+      tempDescription,
+      confortDescription
+    );
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const replyFlexBubble = (

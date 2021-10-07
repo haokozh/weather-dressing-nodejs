@@ -1,4 +1,4 @@
-const pool = require('../db/database');
+const pool = require('../config/db.config');
 
 const findAllMembers = async () => {
   const client = await pool.connect();
@@ -6,6 +6,7 @@ const findAllMembers = async () => {
   try {
     const { rows } = await client.query(`SELECT * FROM Members`);
 
+    console.log('Here is findAllMembers method');
     console.log(rows);
 
     return rows;
@@ -14,17 +15,38 @@ const findAllMembers = async () => {
   } finally {
     client.release();
   }
-}
+};
 
-const newMember = async (account, password, gender) => {
+const findMemberById = async (id) => {
+  const client = await pool.connect();
+
+  try {
+    const { rows } = await client.query(
+      `SELECT * FROM Members WHERE id = $1`,
+      [id]
+    );
+
+    console.log('Here is findMemberById method');
+    console.log(rows);
+
+    return rows;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    client.release();
+  }
+};
+
+const newMember = async (member) => {
   const client = await pool.connect();
 
   try {
     const { rows } = await client.query(
       `INSERT INTO Members(account, password, gender) VALUES($1, $2, $3) RETURNING *`,
-      [account, password, gender]
+      [member.account, member.password, member.gender]
     );
 
+    console.log('Here is newMember method');
     console.log(rows);
   } catch (error) {
     console.error(error);
@@ -35,5 +57,6 @@ const newMember = async (account, password, gender) => {
 
 module.exports = {
   findAllMembers,
+  findMemberById,
   newMember,
 };

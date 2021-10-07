@@ -28,7 +28,7 @@ const newMember = (req, res) => {
 
     memberService.newMember(member);
 
-    res.status(200).send(member);
+    res.redirect('/members');
   } catch (error) {
     console.error(error);
   }

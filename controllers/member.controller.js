@@ -3,7 +3,7 @@ const Member = require('../models/member.model');
 
 const findAllMembers = (req, res) => {
   try {
-    const members = memberService.findAllMembers();
+    const members = await memberService.findAllMembers();
     res.status(200).send(members);
   } catch (error) {
     console.error(error);

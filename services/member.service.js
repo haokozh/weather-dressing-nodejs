@@ -1,5 +1,4 @@
 const pool = require('../config/db.config');
-const Member = require('../models/member.model');
 
 const findAllMembers = async () => {
   const client = await pool.connect();
@@ -8,6 +7,26 @@ const findAllMembers = async () => {
     const { rows } = await client.query(`SELECT * FROM Members`);
 
     console.log('Here is findAllMembers method');
+    console.log(rows);
+
+    return rows;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    client.release();
+  }
+};
+
+const findMemberById = async (id) => {
+  const client = await pool.connect();
+
+  try {
+    const { rows } = await client.query(
+      `SELECT * FROM Members WHERE id = $1`,
+      id
+    );
+
+    console.log('Here is findMemberById method');
     console.log(rows);
 
     return rows;
@@ -38,5 +57,6 @@ const newMember = async (member) => {
 
 module.exports = {
   findAllMembers,
+  findMemberById,
   newMember,
 };

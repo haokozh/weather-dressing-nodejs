@@ -11,6 +11,16 @@ const findAllMembers = async (req, res) => {
   }
 };
 
+const findMemberById = async (req, res) => {
+  try {
+    const member = await memberService.findMemberById(req.params.id);
+    res.status(200).send(member);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+};
+
 const register = (req, res) => {
   res.render('members/register');
 };
@@ -36,6 +46,7 @@ const newMember = (req, res) => {
 
 module.exports = {
   findAllMembers,
+  findMemberById,
   register,
   newMember,
 };

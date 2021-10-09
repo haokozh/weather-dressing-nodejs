@@ -2,15 +2,7 @@ const axios = require('axios');
 const qs = require('qs');
 
 const ResponseData = require('../models/response-data.model');
-
-const weatherElement = {
-  POP_12H: 0,
-  MIN_CI: 1,
-  WEATHER_DESCRIPTION: 2,
-  MAX_CI: 3,
-  MIN_T: 4,
-  MAX_T: 5,
-};
+const weatherElement = require('../models/weather-element.model');
 
 const isWebhookTest = (replyToken) => {
   return (
@@ -19,7 +11,7 @@ const isWebhookTest = (replyToken) => {
   );
 };
 
-const get48HoursLocationId = (locationsName) => {
+const getTwoDaysLocationId = (locationsName) => {
   let prefixId = 'F-D0047-';
   switch (locationsName) {
     case '宜蘭縣':

@@ -580,7 +580,7 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
     // if minCI === maxCI
     let confortDescription;
 
-    if (minCI.equals(maxCI)) {
+    if (minCI === maxCI) {
       confortDescription = `${minCI.value}`;
     } else {
       confortDescription = `${minCI.value}至${maxCI.value}`;

@@ -2,15 +2,7 @@ const axios = require('axios');
 const qs = require('qs');
 
 const ResponseData = require('../models/response-data.model');
-
-const weatherElement = {
-  POP_12H: 0,
-  MIN_CI: 1,
-  WEATHER_DESCRIPTION: 2,
-  MAX_CI: 3,
-  MIN_T: 4,
-  MAX_T: 5,
-};
+const weatherElement = require('../models/weather-element.model');
 
 const isWebhookTest = (replyToken) => {
   return (
@@ -19,7 +11,7 @@ const isWebhookTest = (replyToken) => {
   );
 };
 
-const get48HoursLocationId = (locationsName) => {
+const getTwoDaysLocationId = (locationsName) => {
   let prefixId = 'F-D0047-';
   switch (locationsName) {
     case '宜蘭縣':
@@ -567,33 +559,73 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
     });
 
     const responseData = new ResponseData(data.records);
+    const locationIndex = 0;
+    const timeIndex = 0;
+    const elementValueIndex = 0;
+    const confortValueIndex = 1;
 
-    const locations = responseData.getLocations();
-    const location = responseData.getLocation();
+    const pop12hTime = responseData.getTime(
+      locationIndex,
+      weatherElement.POP_12H,
+      timeIndex
+    );
+    const pop12h = responseData.getElementValue(
+      locationIndex,
+      weatherElement.POP_12H,
+      timeIndex,
+      elementValueIndex
+    );
+    const pop12hDescription = `${pop12h.value}%`;
 
-    const pop12hTime = responseData.getTime(weatherElement.POP_12H);
-    const pop12hValue = responseData.getValue(weatherElement.POP_12H);
-    const pop12hDescription = `${pop12hValue.value}%`;
+    const weatherDescription = responseData.getElementValue(
+      locationIndex,
+      weatherElement.WEATHER_DESCRIPTION,
+      timeIndex,
+      elementValueIndex
+    );
 
-    const wdValue = responseData.getValue(weatherElement.WEATHER_DESCRIPTION);
+    const minT = responseData.getElementValue(
+      locationIndex,
+      weatherElement.MIN_T,
+      timeIndex,
+      elementValueIndex
+    );
+    const maxT = responseData.getElementValue(
+      locationIndex,
+      weatherElement.MAX_T,
+      timeIndex,
+      elementValueIndex
+    );
+    const tempDescription = `${minT.value}°C ~ ${maxT.value}°C`;
 
-    const minTempValue = responseData.getValue(weatherElement.MIN_T);
-    const maxTempValue = responseData.getValue(weatherElement.MAX_T);
-    const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;
+    const minCI = responseData.getElementValue(
+      locationIndex,
+      weatherElement.MIN_CI,
+      timeIndex,
+      confortValueIndex
+    );
+    const maxCI = responseData.getElementValue(
+      locationIndex,
+      weatherElement.MAX_CI,
+      timeIndex,
+      confortValueIndex
+    );
 
-    // some problem
-    const minCIValue = responseData.getMeasure(weatherElement.MIN_CI);
-    const maxCIValue = responseData.getMeasure(weatherElement.MAX_CI);
+    let confortDescription;
 
-    // if minCI === maxCI
-    const confortDescription = `${minCIValue.value}至${maxCIValue.value}`;
+    // not tested
+    if (minCI.value === maxCI.value) {
+      confortDescription = `${minCI.value}`;
+    } else {
+      confortDescription = `${minCI.value}至${maxCI.value}`;
+    }
 
     return replyFlexBubble(
-      locations,
-      location,
+      responseData.locationsName,
+      responseData.locationName,
       pop12hTime,
       pop12hDescription,
-      wdValue,
+      weatherDescription,
       tempDescription,
       confortDescription
     );
@@ -603,11 +635,11 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
 };
 
 const replyFlexBubble = (
-  locations,
-  location,
+  locationsName,
+  locationName,
   pop12hTime,
   pop12hDescription,
-  wdValue,
+  weatherDescription,
   tempDescription,
   confortDescription
 ) => {
@@ -633,7 +665,7 @@ const replyFlexBubble = (
         contents: [
           {
             type: 'text',
-            text: `${locations.locationsName} ${location.locationName}`,
+            text: `${locationsName} ${locationName}`,
             weight: 'bold',
             size: 'xl',
             align: 'center',
@@ -679,7 +711,7 @@ const replyFlexBubble = (
                   },
                   {
                     type: 'text',
-                    text: wdValue.value,
+                    text: weatherDescription.value,
                     weight: 'bold',
                     size: 'lg',
                     offsetEnd: 'xxl',

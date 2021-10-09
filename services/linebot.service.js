@@ -559,25 +559,56 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
     });
 
     const responseData = new ResponseData(data.records);
+    const locationIndex = 0;
+    const timeIndex = 0;
+    const elementValueIndex = 0;
 
-    // 取得縣市資料
-    const locations = responseData.getLocations();
-
-    // 取得該縣市某行政區的資料
-    const location = responseData.getLocation();
-
-    const pop12hTime = responseData.getTime(weatherElement.POP_12H);
-    const pop12h = responseData.getValue(weatherElement.POP_12H);
+    const pop12hTime = responseData.getTime(
+      locationIndex,
+      weatherElement.POP_12H,
+      timeIndex
+    );
+    const pop12h = responseData.getElementValue(
+      locationIndex,
+      weatherElement.POP_12H,
+      timeIndex,
+      elementValueIndex
+    );
     const pop12hDescription = `${pop12h.value}%`;
 
-    const wd = responseData.getValue(weatherElement.WEATHER_DESCRIPTION);
+    const weatherDescription = responseData.getElementValue(
+      locationIndex,
+      weatherElement.WEATHER_DESCRIPTION,
+      timeIndex,
+      elementValueIndex
+    );
 
-    const minTemp = responseData.getValue(weatherElement.MIN_T);
-    const maxTemp = responseData.getValue(weatherElement.MAX_T);
-    const tempDescription = `${minTemp.value}°C ~ ${maxTemp.value}°C`;
+    const minT = responseData.getElementValue(
+      locationIndex,
+      weatherElement.MIN_T,
+      timeIndex,
+      elementValueIndex
+    );
+    const maxT = responseData.getElementValue(
+      locationIndex,
+      weatherElement.MAX_T,
+      timeIndex,
+      elementValueIndex
+    );
+    const tempDescription = `${minT.value}°C ~ ${maxT.value}°C`;
 
-    const minCI = responseData.getMeasure(weatherElement.MIN_CI);
-    const maxCI = responseData.getMeasure(weatherElement.MAX_CI);
+    const minCI = responseData.getElementValue(
+      locationIndex,
+      weatherElement.MIN_CI,
+      timeIndex,
+      elementValueIndex
+    );
+    const maxCI = responseData.getElementValue(
+      locationIndex,
+      weatherElement.MAX_CI,
+      timeIndex,
+      elementValueIndex
+    );
 
     let confortDescription;
 
@@ -589,11 +620,11 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
     }
 
     return replyFlexBubble(
-      locations,
-      location,
+      responseData.locationsName,
+      responseData.locationName,
       pop12hTime,
       pop12hDescription,
-      wd,
+      weatherDescription,
       tempDescription,
       confortDescription
     );
@@ -603,11 +634,11 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
 };
 
 const replyFlexBubble = (
-  locations,
-  location,
+  locationsName,
+  locationName,
   pop12hTime,
   pop12hDescription,
-  wd,
+  weatherDescription,
   tempDescription,
   confortDescription
 ) => {
@@ -633,7 +664,7 @@ const replyFlexBubble = (
         contents: [
           {
             type: 'text',
-            text: `${locations.locationsName} ${location.locationName}`,
+            text: `${locationsName} ${locationName}`,
             weight: 'bold',
             size: 'xl',
             align: 'center',
@@ -679,7 +710,7 @@ const replyFlexBubble = (
                   },
                   {
                     type: 'text',
-                    text: wd.value,
+                    text: weatherDescription.value,
                     weight: 'bold',
                     size: 'lg',
                     offsetEnd: 'xxl',

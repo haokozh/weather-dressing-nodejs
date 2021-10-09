@@ -560,7 +560,10 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
 
     const responseData = new ResponseData(data.records);
 
+    // 取得縣市資料
     const locations = responseData.getLocations();
+
+    // 取得該縣市某行政區的資料
     const location = responseData.getLocation();
 
     const pop12hTime = responseData.getTime(weatherElement.POP_12H);
@@ -573,13 +576,12 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
     const maxTemp = responseData.getValue(weatherElement.MAX_T);
     const tempDescription = `${minTemp.value}°C ~ ${maxTemp.value}°C`;
 
-    // some problem
     const minCI = responseData.getMeasure(weatherElement.MIN_CI);
     const maxCI = responseData.getMeasure(weatherElement.MAX_CI);
 
-    // if minCI === maxCI
     let confortDescription;
 
+    // not tested
     if (minCI === maxCI) {
       confortDescription = `${minCI.value}`;
     } else {

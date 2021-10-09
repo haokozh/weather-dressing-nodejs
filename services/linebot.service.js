@@ -564,28 +564,34 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
     const location = responseData.getLocation();
 
     const pop12hTime = responseData.getTime(weatherElement.POP_12H);
-    const pop12hValue = responseData.getValue(weatherElement.POP_12H);
-    const pop12hDescription = `${pop12hValue.value}%`;
+    const pop12h = responseData.getValue(weatherElement.POP_12H);
+    const pop12hDescription = `${pop12h.value}%`;
 
-    const wdValue = responseData.getValue(weatherElement.WEATHER_DESCRIPTION);
+    const wd = responseData.getValue(weatherElement.WEATHER_DESCRIPTION);
 
-    const minTempValue = responseData.getValue(weatherElement.MIN_T);
-    const maxTempValue = responseData.getValue(weatherElement.MAX_T);
-    const tempDescription = `${minTempValue.value}°C ~ ${maxTempValue.value}°C`;
+    const minTemp = responseData.getValue(weatherElement.MIN_T);
+    const maxTemp = responseData.getValue(weatherElement.MAX_T);
+    const tempDescription = `${minTemp.value}°C ~ ${maxTemp.value}°C`;
 
     // some problem
-    const minCIValue = responseData.getMeasure(weatherElement.MIN_CI);
-    const maxCIValue = responseData.getMeasure(weatherElement.MAX_CI);
+    const minCI = responseData.getMeasure(weatherElement.MIN_CI);
+    const maxCI = responseData.getMeasure(weatherElement.MAX_CI);
 
     // if minCI === maxCI
-    const confortDescription = `${minCIValue.value}至${maxCIValue.value}`;
+    let confortDescription;
+
+    if (minCI.equals(maxCI)) {
+      confortDescription = `${minCI.value}`;
+    } else {
+      confortDescription = `${minCI.value}至${maxCI.value}`;
+    }
 
     return replyFlexBubble(
       locations,
       location,
       pop12hTime,
       pop12hDescription,
-      wdValue,
+      wd,
       tempDescription,
       confortDescription
     );
@@ -599,7 +605,7 @@ const replyFlexBubble = (
   location,
   pop12hTime,
   pop12hDescription,
-  wdValue,
+  wd,
   tempDescription,
   confortDescription
 ) => {
@@ -671,7 +677,7 @@ const replyFlexBubble = (
                   },
                   {
                     type: 'text',
-                    text: wdValue.value,
+                    text: wd.value,
                     weight: 'bold',
                     size: 'lg',
                     offsetEnd: 'xxl',

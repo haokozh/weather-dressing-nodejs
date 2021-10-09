@@ -562,6 +562,7 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
     const locationIndex = 0;
     const timeIndex = 0;
     const elementValueIndex = 0;
+    const confortValueIndex = 1;
 
     const pop12hTime = responseData.getTime(
       locationIndex,
@@ -601,19 +602,19 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
       locationIndex,
       weatherElement.MIN_CI,
       timeIndex,
-      elementValueIndex
+      confortValueIndex
     );
     const maxCI = responseData.getElementValue(
       locationIndex,
       weatherElement.MAX_CI,
       timeIndex,
-      elementValueIndex
+      confortValueIndex
     );
 
     let confortDescription;
 
     // not tested
-    if (minCI === maxCI) {
+    if (minCI.value === maxCI.value) {
       confortDescription = `${minCI.value}`;
     } else {
       confortDescription = `${minCI.value}至${maxCI.value}`;

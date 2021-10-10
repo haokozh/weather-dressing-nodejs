@@ -1,4 +1,4 @@
-const axios = require('axios');
+const { get } = require('axios');
 const qs = require('qs');
 
 const ResponseData = require('../models/response-data.model');
@@ -546,7 +546,7 @@ const getTargetDistByLocationsName = (targetDist, locationsName) => {
 
 const getWeatherResponse = async (locationId, locationName, elementName) => {
   try {
-    const { data } = await axios.get(process.env.CWB_BASE_URL, {
+    const { data } = await get(process.env.CWB_BASE_URL, {
       params: {
         Authorization: process.env.CWB_API_KEY,
         locationId: locationId,
@@ -558,80 +558,155 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
       },
     });
 
-    const responseData = new ResponseData(data.records);
-    const locationIndex = 0;
-    const timeIndex = 0;
-    const elementValueIndex = 0;
-    const confortValueIndex = 1;
+    return data;
+    // const responseData = new ResponseData(data.records);
+    // const locationIndex = 0;
+    // const timeIndex = 0;
+    // const elementValueIndex = 0;
+    // const confortValueIndex = 1;
 
-    const pop12hTime = responseData.getTime(
-      locationIndex,
-      weatherElement.POP_12H,
-      timeIndex
-    );
-    const pop12h = responseData.getElementValue(
-      locationIndex,
-      weatherElement.POP_12H,
-      timeIndex,
-      elementValueIndex
-    );
-    const pop12hDescription = `${pop12h.value}%`;
+    // const pop12hTime = responseData.getTime(
+    //   locationIndex,
+    //   weatherElement.POP_12H,
+    //   timeIndex
+    // );
+    // const pop12h = responseData.getElementValue(
+    //   locationIndex,
+    //   weatherElement.POP_12H,
+    //   timeIndex,
+    //   elementValueIndex
+    // );
+    // const pop12hDescription = `${pop12h.value}%`;
 
-    const weatherDescription = responseData.getElementValue(
-      locationIndex,
-      weatherElement.WEATHER_DESCRIPTION,
-      timeIndex,
-      elementValueIndex
-    );
+    // const weatherDescription = responseData.getElementValue(
+    //   locationIndex,
+    //   weatherElement.WEATHER_DESCRIPTION,
+    //   timeIndex,
+    //   elementValueIndex
+    // );
 
-    const minT = responseData.getElementValue(
-      locationIndex,
-      weatherElement.MIN_T,
-      timeIndex,
-      elementValueIndex
-    );
-    const maxT = responseData.getElementValue(
-      locationIndex,
-      weatherElement.MAX_T,
-      timeIndex,
-      elementValueIndex
-    );
-    const tempDescription = `${minT.value}°C ~ ${maxT.value}°C`;
+    // const minT = responseData.getElementValue(
+    //   locationIndex,
+    //   weatherElement.MIN_T,
+    //   timeIndex,
+    //   elementValueIndex
+    // );
+    // const maxT = responseData.getElementValue(
+    //   locationIndex,
+    //   weatherElement.MAX_T,
+    //   timeIndex,
+    //   elementValueIndex
+    // );
+    // const tempDescription = `${minT.value}°C ~ ${maxT.value}°C`;
 
-    const minCI = responseData.getElementValue(
-      locationIndex,
-      weatherElement.MIN_CI,
-      timeIndex,
-      confortValueIndex
-    );
-    const maxCI = responseData.getElementValue(
-      locationIndex,
-      weatherElement.MAX_CI,
-      timeIndex,
-      confortValueIndex
-    );
+    // const minCI = responseData.getElementValue(
+    //   locationIndex,
+    //   weatherElement.MIN_CI,
+    //   timeIndex,
+    //   confortValueIndex
+    // );
+    // const maxCI = responseData.getElementValue(
+    //   locationIndex,
+    //   weatherElement.MAX_CI,
+    //   timeIndex,
+    //   confortValueIndex
+    // );
 
-    let confortDescription;
+    // let confortDescription;
 
-    // not tested
-    if (minCI.value === maxCI.value) {
-      confortDescription = `${minCI.value}`;
-    } else {
-      confortDescription = `${minCI.value}至${maxCI.value}`;
-    }
+    // // not tested
+    // if (minCI.value === maxCI.value) {
+    //   confortDescription = `${minCI.value}`;
+    // } else {
+    //   confortDescription = `${minCI.value}至${maxCI.value}`;
+    // }
 
-    return replyFlexBubble(
-      responseData.locationsName,
-      responseData.locationName,
-      pop12hTime,
-      pop12hDescription,
-      weatherDescription,
-      tempDescription,
-      confortDescription
-    );
+    // return replyFlexBubble(
+    //   responseData.locationsName,
+    //   responseData.locationName,
+    //   pop12hTime,
+    //   pop12hDescription,
+    //   weatherDescription,
+    //   tempDescription,
+    //   confortDescription
+    // );
   } catch (error) {
     console.error(error);
   }
+};
+
+const parseResponseToFlexBubble = (data) => {
+  const responseData = new ResponseData(data.records);
+  const locationIndex = 0;
+  const timeIndex = 0;
+  const elementValueIndex = 0;
+  const confortValueIndex = 1;
+
+  const pop12hTime = responseData.getTime(
+    locationIndex,
+    weatherElement.POP_12H,
+    timeIndex
+  );
+  const pop12h = responseData.getElementValue(
+    locationIndex,
+    weatherElement.POP_12H,
+    timeIndex,
+    elementValueIndex
+  );
+  const pop12hDescription = `${pop12h.value}%`;
+
+  const weatherDescription = responseData.getElementValue(
+    locationIndex,
+    weatherElement.WEATHER_DESCRIPTION,
+    timeIndex,
+    elementValueIndex
+  );
+
+  const minT = responseData.getElementValue(
+    locationIndex,
+    weatherElement.MIN_T,
+    timeIndex,
+    elementValueIndex
+  );
+  const maxT = responseData.getElementValue(
+    locationIndex,
+    weatherElement.MAX_T,
+    timeIndex,
+    elementValueIndex
+  );
+  const tempDescription = `${minT.value}°C ~ ${maxT.value}°C`;
+
+  const minCI = responseData.getElementValue(
+    locationIndex,
+    weatherElement.MIN_CI,
+    timeIndex,
+    confortValueIndex
+  );
+  const maxCI = responseData.getElementValue(
+    locationIndex,
+    weatherElement.MAX_CI,
+    timeIndex,
+    confortValueIndex
+  );
+
+  let confortDescription;
+
+  // not tested
+  if (minCI.value === maxCI.value) {
+    confortDescription = `${minCI.value}`;
+  } else {
+    confortDescription = `${minCI.value}至${maxCI.value}`;
+  }
+
+  return replyFlexBubble(
+    responseData.locationsName,
+    responseData.locationName,
+    pop12hTime,
+    pop12hDescription,
+    weatherDescription,
+    tempDescription,
+    confortDescription
+  );
 };
 
 const replyFlexBubble = (
@@ -818,5 +893,6 @@ module.exports = {
   getDistsByLocationsName,
   getTargetDistByLocationsName,
   getWeatherResponse,
+  parseResponseToFlexBubble,
   replyFlexBubble,
 };

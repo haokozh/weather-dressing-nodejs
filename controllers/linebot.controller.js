@@ -32,7 +32,10 @@ const handleEvent = async (event) => {
     elementName
   );
 
-  return client.replyMessage(event.replyToken, replyMessage);
+  return client.replyMessage(
+    event.replyToken,
+    linebotService.parseResponseToFlexBubble(replyMessage)
+  );
 };
 
 module.exports = {

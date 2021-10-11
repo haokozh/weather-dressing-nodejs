@@ -564,6 +564,20 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
   }
 };
 
+const getPoP12hDescription = (value) => {
+  return `${value}%`;
+};
+
+const getTempDescription = (minTValue, maxTValue) => {
+  return `${minTValue}°C ~ ${maxTValue}°C`;
+};
+
+const getConfortDescription = (minCIValue, maxCIValue) => {
+  return minCIValue === maxCIValue
+    ? `${minCIValue}`
+    : `${minCI.value}至${maxCI.value}`;
+};
+
 const parseResponseToFlexBubble = (data) => {
   const responseData = new ResponseData(data.records);
   const locationIndex = 0;
@@ -582,7 +596,6 @@ const parseResponseToFlexBubble = (data) => {
     timeIndex,
     elementValueIndex
   );
-  const pop12hDescription = `${pop12h.value}%`;
 
   const weatherDescription = responseData.getElementValue(
     locationIndex,
@@ -603,7 +616,6 @@ const parseResponseToFlexBubble = (data) => {
     timeIndex,
     elementValueIndex
   );
-  const tempDescription = `${minT.value}°C ~ ${maxT.value}°C`;
 
   const minCI = responseData.getElementValue(
     locationIndex,
@@ -618,23 +630,14 @@ const parseResponseToFlexBubble = (data) => {
     confortValueIndex
   );
 
-  let confortDescription;
-
-  // not tested
-  if (minCI.value === maxCI.value) {
-    confortDescription = `${minCI.value}`;
-  } else {
-    confortDescription = `${minCI.value}至${maxCI.value}`;
-  }
-
   return replyFlexBubble(
     responseData.locationsName,
     responseData.locationName,
     pop12hTime,
-    pop12hDescription,
+    getPoP12hDescription(pop12h.value),
     weatherDescription,
-    tempDescription,
-    confortDescription
+    getTempDescription(minT.value, maxT.value),
+    getConfortDescription(minCI.value, maxCI.value)
   );
 };
 

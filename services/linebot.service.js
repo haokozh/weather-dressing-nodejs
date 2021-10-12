@@ -573,9 +573,7 @@ const getTempDescription = (minTValue, maxTValue) => {
 };
 
 const getConfortDescription = (minCIValue, maxCIValue) => {
-  return minCIValue === maxCIValue
-    ? `${minCIValue}`
-    : `${minCI.value}至${maxCI.value}`;
+  return `${minCI.value}至${maxCI.value}`;
 };
 
 const parseResponseToFlexBubble = (data) => {

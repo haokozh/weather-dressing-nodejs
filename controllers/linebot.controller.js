@@ -13,7 +13,7 @@ const callback = (req, res) => {
     });
 };
 
-const handleEvent = (event) => {
+const handleEvent = async (event) => {
   try {
     if (linebotService.isWebhookTest(event.replyToken))
       return Promise.resolve(null);
@@ -23,7 +23,7 @@ const handleEvent = (event) => {
         const message = event.message;
         switch (message.type) {
           case 'text':
-            return replyWeather(event.replyToken, message.text);
+            return await replyWeather(event.replyToken, message.text);
           case 'image':
           case 'video':
           case 'audio':

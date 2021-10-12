@@ -13,7 +13,7 @@ const callback = (req, res) => {
     });
 };
 
-const handleEvent = async (event) => {
+const handleEvent = (event) => {
   try {
     if (linebotService.isWebhookTest(event.replyToken))
       return Promise.resolve(null);
@@ -79,7 +79,7 @@ const handleEvent = async (event) => {
   }
 };
 
-const replyWeather = (token, text) => {
+const replyWeather = async (token, text) => {
   const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
   const splitedText = text.split(' ');

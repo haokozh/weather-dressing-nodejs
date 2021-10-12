@@ -1,6 +1,7 @@
 const { client } = require('../config/linebot.config');
 
 const linebotService = require('../services/linebot.service');
+const welcomeMessage = require('../models/welcome-message.model');
 
 const callback = (req, res) => {
   Promise.all(req.body.events.map(handleEvent))
@@ -16,29 +17,8 @@ const handleEvent = async (event) => {
     if (linebotService.isWebhookTest(event.replyToken))
       return Promise.resolve(null);
 
-    // not tested
-    const welcomeMessage = `
-    歡迎您加入WeatherDressing好友
-    這裡將提供您即時天氣狀況及穿搭建議
-    看天氣穿衣服，一起穿出好心晴☀
-
-    關鍵字☑ ️
-    '輸入XX縣市 XX鄉鎮市區
-    ➡️可查詢即時天氣
-
-    輸入XX度
-    ➡️可查詢穿搭建議
-
-    加入會員紀錄與分享你的穿搭✨
-    
-    我們的Instagram
-    https://www.instagram.com/weather_dressing/`;
-
     if (event.type === 'follow') {
-      return client.replyMessage(event.replyToken, {
-        type: 'text',
-        text: welcomeMessage,
-      });
+      return client.replyMessage(event.replyToken, welcomeMessage);
     }
 
     if (event.type === 'message') {

@@ -663,7 +663,7 @@ const replyFlexBubble = (
       type: 'bubble',
       hero: {
         type: 'image',
-        url: 'https://i.imgur.com/Ex3Opfo.png',
+        url: 'https://picsum.photos/200/300',
         size: 'full',
         aspectRatio: '20:13',
         aspectMode: 'cover',
@@ -712,7 +712,7 @@ const replyFlexBubble = (
               {
                 type: 'box',
                 layout: 'horizontal',
-                spacing: 'xs',
+                spacing: 'xl',
                 contents: [
                   {
                     type: 'text',
@@ -734,7 +734,7 @@ const replyFlexBubble = (
               {
                 type: 'box',
                 layout: 'horizontal',
-                spacing: 'xs',
+                spacing: 'xl',
                 contents: [
                   {
                     type: 'text',

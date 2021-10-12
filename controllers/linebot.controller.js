@@ -12,11 +12,12 @@ const callback = (req, res) => {
 };
 
 const handleEvent = async (event) => {
-  if (linebotService.isWebhookTest(event.replyToken))
-    return Promise.resolve(null);
+  try {
+    if (linebotService.isWebhookTest(event.replyToken))
+      return Promise.resolve(null);
 
-  // not tested
-  const welcomeMessage = `歡迎您加入WeatherDressing好友
+    // not tested
+    const welcomeMessage = `歡迎您加入WeatherDressing好友
   這裡將提供您即時天氣狀況及穿搭建議
   看天氣穿衣服，一起穿出好心晴☀️
   
@@ -32,31 +33,34 @@ const handleEvent = async (event) => {
   我們的Instagram
   https://www.instagram.com/weather_dressing/`;
 
-  if (event.type === 'follow') {
-    return client.replyMessage(event.replyToken, welcomeMessage);
-  }
+    if (event.type === 'follow') {
+      return client.replyMessage(event.replyToken, welcomeMessage);
+    }
 
-  if (event.type === 'message') {
-    const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
+    if (event.type === 'message') {
+      const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
-    const splitedText = event.message.text.split(' ');
+      const splitedText = event.message.text.split(' ');
 
-    let locationId = linebotService.getWeeklyLocationId(splitedText[0]);
-    let locationName = linebotService.getTargetDistByLocationsName(
-      splitedText[1],
-      splitedText[0]
-    );
+      let locationId = linebotService.getWeeklyLocationId(splitedText[0]);
+      let locationName = linebotService.getTargetDistByLocationsName(
+        splitedText[1],
+        splitedText[0]
+      );
 
-    replyMessage = await linebotService.getWeatherResponse(
-      locationId,
-      locationName,
-      elementName
-    );
+      replyMessage = await linebotService.getWeatherResponse(
+        locationId,
+        locationName,
+        elementName
+      );
 
-    return client.replyMessage(
-      event.replyToken,
-      linebotService.parseResponseToFlexBubble(replyMessage)
-    );
+      return client.replyMessage(
+        event.replyToken,
+        linebotService.parseResponseToFlexBubble(replyMessage)
+      );
+    }
+  } catch (error) {
+    console.error(`Error on linebot.controller.handleEvent() ${error}`);
   }
 };
 

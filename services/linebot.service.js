@@ -707,7 +707,7 @@ const replyFlexBubble = (
             type: 'box',
             layout: 'vertical',
             margin: 'lg',
-            spacing: 'xs',
+            spacing: 'xl',
             contents: [
               {
                 type: 'box',

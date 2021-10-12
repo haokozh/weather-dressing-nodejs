@@ -43,7 +43,8 @@ const handleEvent = async (event) => {
     if (event.type === 'message') {
       const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
-      const splitedText = event.message.text.split(' ');
+      const originalText = event.message.text;
+      const splitedText = originalText.split(' ');
 
       let locationId = linebotService.getWeeklyLocationId(splitedText[0]);
       let locationName = linebotService.getTargetDistByLocationsName(

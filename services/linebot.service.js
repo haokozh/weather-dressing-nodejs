@@ -707,12 +707,12 @@ const replyFlexBubble = (
             type: 'box',
             layout: 'vertical',
             margin: 'lg',
-            spacing: 'sm',
+            spacing: 'xs',
             contents: [
               {
                 type: 'box',
                 layout: 'horizontal',
-                spacing: 'sm',
+                spacing: 'xs',
                 contents: [
                   {
                     type: 'text',
@@ -734,7 +734,7 @@ const replyFlexBubble = (
               {
                 type: 'box',
                 layout: 'horizontal',
-                spacing: 'sm',
+                spacing: 'xs',
                 contents: [
                   {
                     type: 'text',

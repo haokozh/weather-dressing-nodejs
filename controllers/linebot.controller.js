@@ -34,7 +34,10 @@ const handleEvent = async (event) => {
   https://www.instagram.com/weather_dressing/`;
 
     if (event.type === 'follow') {
-      return client.replyMessage(event.replyToken, welcomeMessage);
+      return client.replyMessage(event.replyToken, {
+        type: 'text',
+        text: welcomeMessage,
+      });
     }
 
     if (event.type === 'message') {

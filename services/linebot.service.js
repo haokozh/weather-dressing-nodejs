@@ -560,7 +560,7 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
 
     return data;
   } catch (error) {
-    console.error(error);
+    console.error(`Error on linebot.service.getWeatherResponse(): ${error}`);
   }
 };
 
@@ -579,66 +579,72 @@ const getConfortDescription = (minCIValue, maxCIValue) => {
 };
 
 const parseResponseToFlexBubble = (data) => {
-  const responseData = new ResponseData(data.records);
-  const locationIndex = 0;
-  const timeIndex = 0;
-  const elementValueIndex = 0;
-  const confortValueIndex = 1;
+  try {
+    const responseData = new ResponseData(data.records);
+    const locationIndex = 0;
+    const timeIndex = 0;
+    const elementValueIndex = 0;
+    const confortValueIndex = 1;
 
-  const pop12hTime = responseData.getTime(
-    locationIndex,
-    weatherElement.POP_12H,
-    timeIndex
-  );
-  const pop12h = responseData.getElementValue(
-    locationIndex,
-    weatherElement.POP_12H,
-    timeIndex,
-    elementValueIndex
-  );
+    const pop12hTime = responseData.getTime(
+      locationIndex,
+      weatherElement.POP_12H,
+      timeIndex
+    );
+    const pop12h = responseData.getElementValue(
+      locationIndex,
+      weatherElement.POP_12H,
+      timeIndex,
+      elementValueIndex
+    );
 
-  const weatherDescription = responseData.getElementValue(
-    locationIndex,
-    weatherElement.WEATHER_DESCRIPTION,
-    timeIndex,
-    elementValueIndex
-  );
+    const weatherDescription = responseData.getElementValue(
+      locationIndex,
+      weatherElement.WEATHER_DESCRIPTION,
+      timeIndex,
+      elementValueIndex
+    );
 
-  const minT = responseData.getElementValue(
-    locationIndex,
-    weatherElement.MIN_T,
-    timeIndex,
-    elementValueIndex
-  );
-  const maxT = responseData.getElementValue(
-    locationIndex,
-    weatherElement.MAX_T,
-    timeIndex,
-    elementValueIndex
-  );
+    const minT = responseData.getElementValue(
+      locationIndex,
+      weatherElement.MIN_T,
+      timeIndex,
+      elementValueIndex
+    );
+    const maxT = responseData.getElementValue(
+      locationIndex,
+      weatherElement.MAX_T,
+      timeIndex,
+      elementValueIndex
+    );
 
-  const minCI = responseData.getElementValue(
-    locationIndex,
-    weatherElement.MIN_CI,
-    timeIndex,
-    confortValueIndex
-  );
-  const maxCI = responseData.getElementValue(
-    locationIndex,
-    weatherElement.MAX_CI,
-    timeIndex,
-    confortValueIndex
-  );
+    const minCI = responseData.getElementValue(
+      locationIndex,
+      weatherElement.MIN_CI,
+      timeIndex,
+      confortValueIndex
+    );
+    const maxCI = responseData.getElementValue(
+      locationIndex,
+      weatherElement.MAX_CI,
+      timeIndex,
+      confortValueIndex
+    );
 
-  return replyFlexBubble(
-    responseData.locationsName,
-    responseData.locationName,
-    pop12hTime,
-    getPoP12hDescription(pop12h.value),
-    weatherDescription,
-    getTempDescription(minT.value, maxT.value),
-    getConfortDescription(minCI.value, maxCI.value)
-  );
+    return replyFlexBubble(
+      responseData.locationsName,
+      responseData.locationName,
+      pop12hTime,
+      getPoP12hDescription(pop12h.value),
+      weatherDescription,
+      getTempDescription(minT.value, maxT.value),
+      getConfortDescription(minCI.value, maxCI.value)
+    );
+  } catch (error) {
+    console.error(
+      `Error on linebot.service.parseResponseToFlexBubble(): ${error}`
+    );
+  }
 };
 
 const replyFlexBubble = (

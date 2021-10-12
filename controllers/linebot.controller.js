@@ -47,7 +47,7 @@ const handleEvent = (event) => {
       case 'join':
         return client.replyMessage(event.replyToken, {
           type: 'text',
-          text: `Joined ${event.source.type}`
+          text: `Joined ${event.source.type}`,
         });
 
       case 'leaven':
@@ -61,45 +61,48 @@ const handleEvent = (event) => {
 
         return client.replyMessage(event.replyToken, {
           type: 'text',
-          text: `Got postback: ${data}`
+          text: `Got postback: ${data}`,
         });
 
       case 'beacon':
         return client.replyMessage(event.replyToken, {
           type: 'text',
-          text: `Got beacon: ${event.beacon.hwid}`
+          text: `Got beacon: ${event.beacon.hwid}`,
         });
 
       default:
         throw new Error(`Unknown event: ${JSON.stringify(event)}`);
     }
-
   } catch (error) {
     console.error(`Error on linebot.controller.handleEvent() ${error}`);
   }
 };
 
 const replyWeather = async (token, text) => {
-  const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
+  try {
+    const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
-  const splitedText = text.split(' ');
+    const splitedText = text.split(' ');
 
-  let locationId = linebotService.getWeeklyLocationId(splitedText[0]);
-  let locationName = linebotService.getTargetDistByLocationsName(
-    splitedText[1],
-    splitedText[0]
-  );
+    let locationId = linebotService.getWeeklyLocationId(splitedText[0]);
+    let locationName = linebotService.getTargetDistByLocationsName(
+      splitedText[1],
+      splitedText[0]
+    );
 
-  replyMessage = await linebotService.getWeatherResponse(
-    locationId,
-    locationName,
-    elementName
-  );
+    message = await linebotService.getWeatherResponse(
+      locationId,
+      locationName,
+      elementName
+    );
 
-  return client.replyMessage(
-    token,
-    linebotService.parseResponseToFlexBubble(replyMessage)
-  );
+    return client.replyMessage(
+      token,
+      linebotService.parseResponseToFlexBubble(message)
+    );
+  } catch (error) {
+    console.error(`Error on linebot.controller.replyWeather(): ${error}`);
+  }
 };
 
 module.exports = {

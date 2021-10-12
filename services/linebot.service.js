@@ -706,7 +706,7 @@ const replyFlexBubble = (
           {
             type: 'box',
             layout: 'vertical',
-            margin: 'sm',
+            margin: 'lg',
             spacing: 'xs',
             contents: [
               {
@@ -727,7 +727,7 @@ const replyFlexBubble = (
                     text: weatherDescription.value,
                     weight: 'bold',
                     size: 'md',
-                    offsetEnd: 'xl',
+                    offsetEnd: '50px',
                   },
                 ],
               },
@@ -746,7 +746,7 @@ const replyFlexBubble = (
                   {
                     type: 'text',
                     text: tempDescription,
-                    offsetEnd: 'xl',
+                    offsetEnd: '50px',
                     weight: 'bold',
                     size: 'md',
                   },
@@ -766,7 +766,7 @@ const replyFlexBubble = (
                   {
                     type: 'text',
                     text: pop12hDescription,
-                    offsetEnd: 'xl',
+                    offsetEnd: '50px',
                     weight: 'bold',
                     size: 'md',
                   },
@@ -786,7 +786,7 @@ const replyFlexBubble = (
                   {
                     type: 'text',
                     text: confortDescription,
-                    offsetEnd: 'xl',
+                    offsetEnd: '50px',
                     size: 'md',
                     weight: 'bold',
                   },

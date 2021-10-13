@@ -17,49 +17,8 @@ const handleEvent = (event) => {
     if (linebotService.isWebhookTest(event.replyToken))
       return Promise.resolve(null);
 
-    switch (event.type) {
-      case 'message':
-        return handleMessageEvent(
-          event.message.type,
-          event.replyToken,
-          event.message
-        );
+    return handleWebhookEvent(event);
 
-      case 'follow':
-        return client.replyMessage(event.replyToken, welcomeMessage);
-
-      case 'unfollow':
-        return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
-
-      case 'join':
-        return client.replyMessage(event.replyToken, {
-          type: 'text',
-          text: `Joined ${event.source.type}`,
-        });
-
-      case 'leave':
-        return console.log(`Left: ${JSON.stringify(event)}`);
-
-      case 'postback':
-        let data = event.postback.data;
-        if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
-          data += `(${JSON.stringify(event.postback.params)})`;
-        }
-
-        return client.replyMessage(event.replyToken, {
-          type: 'text',
-          text: `Got postback: ${data}`,
-        });
-
-      case 'beacon':
-        return client.replyMessage(event.replyToken, {
-          type: 'text',
-          text: `Got beacon: ${event.beacon.hwid}`,
-        });
-
-      default:
-        throw new Error(`Unknown event: ${JSON.stringify(event)}`);
-    }
   } catch (error) {
     console.error(`Error on linebot.controller.handleEvent() ${error}`);
   }
@@ -105,6 +64,10 @@ const handleSticker = (token, message) => {
   return replyText(token, 'Sticker Message is Not Supported');
 };
 
+const throwUnknownMessageError = (message) => {
+  throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+};
+
 const messageEvents = {
   text: handleText,
   image: handleImage,
@@ -113,17 +76,75 @@ const messageEvents = {
   file: handleFile,
   location: handleLocation,
   sticker: handleSticker,
+  default: throwUnknownMessageError,
 };
 
-const handleMessageEvent = (messageType, token, message) => {
+const handleMessageEvent = (event) => {
   return (
-    messageEvents[messageType](token, message) ||
-    throwUnknownMessageError(message)
+    messageEvents[event.message.type](event.replyToken, event.message) ||
+    messageEvents['default'](event.message)
   );
 };
 
-const throwUnknownMessageError = (message) => {
-  throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+const handleFollowEvent = (event) => {
+  return replyText(event.replyToken, welcomeMessage);
+};
+
+const handleUnfollowEvent = (event) => {
+  return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
+};
+
+const handleJoinEvent = (event) => {
+  return replyText(event.replyToken, `Joined ${event.source.type}`);
+};
+
+const handleLeaveEvent = (event) => {
+  return console.log(`Left: ${JSON.stringify(event)}`);
+};
+
+const isDate = (data) => {
+  return data === 'DATE';
+};
+
+const isTime = (data) => {
+  return data === 'TIME';
+};
+
+const isDateTime = (data) => {
+  return data === 'DATETIME';
+};
+
+const handlePostbackEvent = (event) => {
+  let data = event.postback.data;
+
+  if (isDate(data) || isTime(data) || isDateTime(data)) {
+    data += `(${JSON.stringify(event.postback.params)})`;
+  }
+
+  return replyText(event.replyToken, `Got postback: ${data}`);
+};
+
+const handleBeaconEvent = (event) => {
+  return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
+};
+
+const throwUnknownEventError = (event) => {
+  throw new Error(`Unknown event: ${JSON.stringify(event)}`);
+};
+
+const webhookEvents = {
+  message: handleMessageEvent,
+  follow: handleFollowEvent,
+  unfollow: handleUnfollowEvent,
+  join: handleJoinEvent,
+  leave: handleLeaveEvent,
+  postback: handlePostbackEvent,
+  beacon: handleBeaconEvent,
+  default: throwUnknownEventError,
+};
+
+const handleWebhookEvent = (event) => {
+  return webhookEvents[event.type](event);
 };
 
 const replyWeather = async (token, text) => {

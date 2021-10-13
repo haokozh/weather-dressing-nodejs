@@ -813,17 +813,6 @@ const replyFlexBubble = (
             },
           },
           {
-            type: 'button',
-            style: 'link',
-            height: 'sm',
-            action: {
-              type: 'uri',
-              label: `Photo by Meg Jerrard on <a href="https://unsplash.com/s/photos/australian?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-              `,
-              uri: 'https://unsplash.com/@mappingmegantravel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
-            },
-          },
-          {
             type: 'spacer',
             size: 'sm',
           },

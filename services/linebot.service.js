@@ -663,7 +663,7 @@ const replyFlexBubble = (
       type: 'bubble',
       hero: {
         type: 'image',
-        url: 'https://weather-dressing.herokuapp.com/public/assets/images/weather-dressing-logo.jpg',
+        url: 'https://unsplash.com/photos/dhL82KC11sY',
         size: 'full',
         aspectRatio: '20:13',
         aspectMode: 'cover',
@@ -810,6 +810,17 @@ const replyFlexBubble = (
               type: 'uri',
               label: '詳細內容',
               uri: 'https://www.cwb.gov.tw/V8/C/W/County/index.html',
+            },
+          },
+          {
+            type: 'button',
+            style: 'link',
+            height: 'sm',
+            action: {
+              type: 'uri',
+              label: `Photo by ${<a href="https://unsplash.com/@mappingmegantravel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Meg Jerrard</a>} on ${<a href="https://unsplash.com/s/photos/australian?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>}
+              `,
+              uri: 'https://unsplash.com/@mappingmegantravel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
             },
           },
           {

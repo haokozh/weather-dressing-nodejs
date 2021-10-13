@@ -19,36 +19,6 @@ const handleEvent = (event) => {
 
     return handleWebhookEvent(event);
 
-    // switch (event.type) {
-    //   case 'message':
-    //     return handleMessageEvent(event);
-
-    //   case 'follow':
-    //     return replyText(event.replyToken, welcomeMessage);
-
-    //   case 'unfollow':
-    //     return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
-
-    //   case 'join':
-    //     return replyText(event.replyToken, `Joined ${event.source.type}`);
-
-    //   case 'leave':
-    //     return console.log(`Left: ${JSON.stringify(event)}`);
-
-    //   case 'postback':
-    //     let data = event.postback.data;
-    //     if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
-    //       data += `(${JSON.stringify(event.postback.params)})`;
-    //     }
-
-    //     return replyText(event.replyToken, `Got postback: ${data}`);
-
-    //   case 'beacon':
-    //     return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
-
-    //   default:
-    //     throw new Error(`Unknown event: ${JSON.stringify(event)}`);
-    // }
   } catch (error) {
     console.error(`Error on linebot.controller.handleEvent() ${error}`);
   }

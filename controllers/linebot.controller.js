@@ -20,7 +20,7 @@ const handleEvent = (event) => {
     switch (event.type) {
       case 'message':
         return handleMessageEvent(
-          message.type,
+          event.message.type,
           event.replyToken,
           event.message
         );

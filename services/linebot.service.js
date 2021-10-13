@@ -663,7 +663,7 @@ const replyFlexBubble = (
       type: 'bubble',
       hero: {
         type: 'image',
-        url: 'https://picsum.photos/200/300',
+        url: 'https://picsum.photos/200',
         size: 'full',
         aspectRatio: '20:13',
         aspectMode: 'cover',

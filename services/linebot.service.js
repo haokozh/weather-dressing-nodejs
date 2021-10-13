@@ -663,7 +663,7 @@ const replyFlexBubble = (
       type: 'bubble',
       hero: {
         type: 'image',
-        url: 'https://unsplash.com/photos/dhL82KC11sY',
+        url: 'https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip4.jpg',
         size: 'full',
         aspectRatio: '20:13',
         aspectMode: 'cover',

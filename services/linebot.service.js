@@ -818,7 +818,7 @@ const replyFlexBubble = (
             height: 'sm',
             action: {
               type: 'uri',
-              label: `Photo by ${<a href="https://unsplash.com/@mappingmegantravel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Meg Jerrard</a>} on ${<a href="https://unsplash.com/s/photos/australian?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>}
+              label: `Photo by Meg Jerrard on <a href="https://unsplash.com/s/photos/australian?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
               `,
               uri: 'https://unsplash.com/@mappingmegantravel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
             },

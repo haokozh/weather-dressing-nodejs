@@ -106,13 +106,13 @@ const handleSticker = (token, message) => {
 };
 
 const messageEvents = {
-  text: handleText(token, message),
-  image: handleImage(token, message),
-  video: handleVideo(token, message),
-  audio: handleAudio(token, message),
-  file: handleFile(token, message),
-  location: handleLocation(token, message),
-  sticker: handleSticker(token, message),
+  text: handleText,
+  image: handleImage,
+  video: handleVideo,
+  audio: handleAudio,
+  file: handleFile,
+  location: handleLocation,
+  sticker: handleSticker,
 };
 
 const handleMessageEvent = (messageType, token, message) => {

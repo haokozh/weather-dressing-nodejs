@@ -77,27 +77,6 @@ const replyText = (token, texts) => {
   );
 };
 
-const messageEvents = {
-  text: handleText(token, message),
-  image: handleImage(token, message),
-  video: handleVideo(token, message),
-  audio: handleAudio(token, message),
-  file: handleFile(token, message),
-  location: handleLocation(token, message),
-  sticker: handleSticker(token, message),
-};
-
-const handleMessageEvent = (messageType, token, message) => {
-  return (
-    messageEvents[messageType](token, message) ||
-    throwUnknownMessageError(message)
-  );
-};
-
-const throwUnknownMessageError = (message) => {
-  throw new Error(`Unknown message: ${JSON.stringify(message)}`);
-};
-
 const handleText = (token, message) => {
   return replyWeather(token, message.text);
 };
@@ -124,6 +103,27 @@ const handleLocation = (token, message) => {
 
 const handleSticker = (token, message) => {
   return replyText(token, 'Sticker Message is Not Supported');
+};
+
+const messageEvents = {
+  text: handleText(token, message),
+  image: handleImage(token, message),
+  video: handleVideo(token, message),
+  audio: handleAudio(token, message),
+  file: handleFile(token, message),
+  location: handleLocation(token, message),
+  sticker: handleSticker(token, message),
+};
+
+const handleMessageEvent = (messageType, token, message) => {
+  return (
+    messageEvents[messageType](token, message) ||
+    throwUnknownMessageError(message)
+  );
+};
+
+const throwUnknownMessageError = (message) => {
+  throw new Error(`Unknown message: ${JSON.stringify(message)}`);
 };
 
 const replyWeather = async (token, text) => {

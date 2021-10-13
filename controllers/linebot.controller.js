@@ -2,7 +2,6 @@ const { client } = require('../config/linebot.config');
 
 const linebotService = require('../services/linebot.service');
 const welcomeMessage = require('../models/welcome-message.model');
-const { text } = require('../models/welcome-message.model');
 
 const callback = (req, res) => {
   Promise.all(req.body.events.map(handleEvent))
@@ -20,23 +19,11 @@ const handleEvent = (event) => {
 
     switch (event.type) {
       case 'message':
-        const message = event.message;
-        switch (message.type) {
-          case 'text':
-            return replyWeather(event.replyToken, message.text);
-          case 'image':
-          case 'video':
-          case 'audio':
-          case 'file':
-          case 'location':
-          case 'sticker':
-            return client.replyMessage(event.replyToken, {
-              type: 'text',
-              text: 'Not Supported',
-            });
-          default:
-            throw new Error(`Unknown message: ${JSON.stringify(message)}`);
-        }
+        return handleMessageEvent(
+          message.type,
+          event.replyToken,
+          event.message
+        );
 
       case 'follow':
         return client.replyMessage(event.replyToken, welcomeMessage);
@@ -50,7 +37,7 @@ const handleEvent = (event) => {
           text: `Joined ${event.source.type}`,
         });
 
-      case 'leaven':
+      case 'leave':
         return console.log(`Left: ${JSON.stringify(event)}`);
 
       case 'postback':
@@ -76,6 +63,67 @@ const handleEvent = (event) => {
   } catch (error) {
     console.error(`Error on linebot.controller.handleEvent() ${error}`);
   }
+};
+
+const replyText = (token, texts) => {
+  texts = Array.isArray(texts) ? texts : [texts];
+
+  return client.replyMessage(
+    token,
+    texts.map((text) => ({
+      type: 'text',
+      text: text,
+    }))
+  );
+};
+
+const messageEvents = {
+  text: handleText(token, message),
+  image: handleImage(token, message),
+  video: handleVideo(token, message),
+  audio: handleAudio(token, message),
+  file: handleFile(token, message),
+  location: handleLocation(token, message),
+  sticker: handleSticker(token, message),
+};
+
+const handleMessageEvent = (messageType, token, message) => {
+  return (
+    messageEvents[messageType](token, message) ||
+    throwUnknownMessageError(message)
+  );
+};
+
+const throwUnknownMessageError = (message) => {
+  throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+};
+
+const handleText = (token, message) => {
+  return replyWeather(token, message.text);
+};
+
+const handleImage = (token, message) => {
+  return replyText(token, 'Image Message is Not Supported');
+};
+
+const handleVideo = (token, message) => {
+  return replyText(token, 'Video Message is Not Supported');
+};
+
+const handleAudio = (token, message) => {
+  return replyText(token, 'Audio Message is Not Supported');
+};
+
+const handleFile = (token, message) => {
+  return replyText(token, 'File Message is Not Supported');
+};
+
+const handleLocation = (token, message) => {
+  return replyText(token, 'Location Message is Not Supported');
+};
+
+const handleSticker = (token, message) => {
+  return replyText(token, 'Sticker Message is Not Supported');
 };
 
 const replyWeather = async (token, text) => {

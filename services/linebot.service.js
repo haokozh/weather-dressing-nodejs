@@ -1,4 +1,4 @@
-const axios = require('axios');
+const { get } = require('axios');
 const qs = require('qs');
 
 const ResponseData = require('../models/response-data.model');
@@ -546,7 +546,7 @@ const getTargetDistByLocationsName = (targetDist, locationsName) => {
 
 const getWeatherResponse = async (locationId, locationName, elementName) => {
   try {
-    const { data } = await axios.get(process.env.CWB_BASE_URL, {
+    const { data } = await get(process.env.CWB_BASE_URL, {
       params: {
         Authorization: process.env.CWB_API_KEY,
         locationId: locationId,
@@ -558,6 +558,28 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
       },
     });
 
+    return data;
+  } catch (error) {
+    console.error(`Error on linebot.service.getWeatherResponse(): ${error}`);
+  }
+};
+
+const getPoP12hDescription = (value) => {
+  return `${value}%`;
+};
+
+const getTempDescription = (minTValue, maxTValue) => {
+  return `${minTValue}°C ~ ${maxTValue}°C`;
+};
+
+const getConfortDescription = (minCIValue, maxCIValue) => {
+  return minCIValue === maxCIValue
+    ? `${minCIValue}`
+    : `${minCIValue}至${maxCIValue}`;
+};
+
+const parseResponseToFlexBubble = (data) => {
+  try {
     const responseData = new ResponseData(data.records);
     const locationIndex = 0;
     const timeIndex = 0;
@@ -575,7 +597,6 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
       timeIndex,
       elementValueIndex
     );
-    const pop12hDescription = `${pop12h.value}%`;
 
     const weatherDescription = responseData.getElementValue(
       locationIndex,
@@ -596,7 +617,6 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
       timeIndex,
       elementValueIndex
     );
-    const tempDescription = `${minT.value}°C ~ ${maxT.value}°C`;
 
     const minCI = responseData.getElementValue(
       locationIndex,
@@ -611,26 +631,19 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
       confortValueIndex
     );
 
-    let confortDescription;
-
-    // not tested
-    if (minCI.value === maxCI.value) {
-      confortDescription = `${minCI.value}`;
-    } else {
-      confortDescription = `${minCI.value}至${maxCI.value}`;
-    }
-
     return replyFlexBubble(
       responseData.locationsName,
       responseData.locationName,
       pop12hTime,
-      pop12hDescription,
+      getPoP12hDescription(pop12h.value),
       weatherDescription,
-      tempDescription,
-      confortDescription
+      getTempDescription(minT.value, maxT.value),
+      getConfortDescription(minCI.value, maxCI.value)
     );
   } catch (error) {
-    console.error(error);
+    console.error(
+      `Error on linebot.service.parseResponseToFlexBubble(): ${error}`
+    );
   }
 };
 
@@ -650,7 +663,7 @@ const replyFlexBubble = (
       type: 'bubble',
       hero: {
         type: 'image',
-        url: 'https://i.imgur.com/Ex3Opfo.png',
+        url: 'https://picsum.photos/200/300',
         size: 'full',
         aspectRatio: '20:13',
         aspectMode: 'cover',
@@ -699,43 +712,41 @@ const replyFlexBubble = (
               {
                 type: 'box',
                 layout: 'horizontal',
-                spacing: 'sm',
                 contents: [
                   {
                     type: 'text',
                     text: '天氣狀況',
                     color: '#0099FF',
                     weight: 'bold',
-                    size: 'lg',
+                    size: 'md',
                     offsetEnd: 'none',
                   },
                   {
                     type: 'text',
                     text: weatherDescription.value,
                     weight: 'bold',
-                    size: 'lg',
-                    offsetEnd: 'xxl',
+                    size: 'md',
+                    offsetEnd: '50px',
                   },
                 ],
               },
               {
                 type: 'box',
                 layout: 'horizontal',
-                spacing: 'sm',
                 contents: [
                   {
                     type: 'text',
                     text: '溫度狀況',
-                    size: 'lg',
+                    size: 'md',
                     color: '#0099FF',
                     weight: 'bold',
                   },
                   {
                     type: 'text',
                     text: tempDescription,
-                    offsetEnd: 'xxl',
+                    offsetEnd: '50px',
                     weight: 'bold',
-                    size: 'lg',
+                    size: 'md',
                   },
                 ],
               },
@@ -748,14 +759,14 @@ const replyFlexBubble = (
                     text: '降雨機率',
                     color: '#0099FF',
                     weight: 'bold',
-                    size: 'lg',
+                    size: 'md',
                   },
                   {
                     type: 'text',
                     text: pop12hDescription,
-                    offsetEnd: 'xxl',
+                    offsetEnd: '50px',
                     weight: 'bold',
-                    size: 'lg',
+                    size: 'md',
                   },
                 ],
               },
@@ -766,15 +777,15 @@ const replyFlexBubble = (
                   {
                     type: 'text',
                     text: '舒適度',
-                    size: 'lg',
+                    size: 'md',
                     color: '#0099FF',
                     weight: 'bold',
                   },
                   {
                     type: 'text',
                     text: confortDescription,
-                    offsetEnd: 'xxl',
-                    size: 'lg',
+                    offsetEnd: '50px',
+                    size: 'md',
                     weight: 'bold',
                   },
                 ],
@@ -818,5 +829,6 @@ module.exports = {
   getDistsByLocationsName,
   getTargetDistByLocationsName,
   getWeatherResponse,
+  parseResponseToFlexBubble,
   replyFlexBubble,
 };

@@ -1,63 +1,11 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> <%= title %>  | Weather Dressing</title>
-
-    <!-- bootstrap -->
-    <!-- <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"> -->
-
-    <!-- custom style -->
-    <link rel="stylesheet" href="/styles/styles.css" />
-
-    <!-- google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- bootstrap script -->
-    <!-- <script src="/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-</head>
+  
+  <%- include('../partials/head.ejs') %> 
 
   <body>
-    <%# include('../partials/nav.ejs') %>
+    <%- include('../partials/nav.ejs') %>
     
-    <header>
-      <table
-        width="380"
-        cellspacing="0"
-        cellpadding="0"
-        style="font-family: 'Gemunu Libre', sans-serif"
-      >
-        <tr>
-          <!-- Logo -->
-          <td width="80" height="100" align-items="center" valign="middle">
-            <span style="color: #ffffff"
-              ><img
-                src="/assets/images/weather-dressing-logo.jpg"
-                width="95"
-                height="100"
-                alt=""
-            /></span>
-          </td>
-    
-          <!-- title -->
-          <td class="header.center">
-            <p>天氣穿衣</p>
-            <p>Weather Dressing</p>
-          </td>
-    
-          <!-- login navbar -->
-          <td width="100" height="100" valign="middle" bgcolor="#498EAF">
-            <a href="login.html">登入</a>
-          </td>
-        </tr>
-      </table>
-    </header>
+    <%- include('../partials/header.ejs') %> 
 
     <section class="center">
       <form action="/members/register" method="POST" class="register" id="registerForm">
@@ -72,10 +20,7 @@
       </form>
     </section>
 
-    <footer style="font-family: 'Gemunu Libre', sans-serif">
-      &copy; 天氣穿衣 Weather Dressing
-    </footer>
-    
+    <%- include('../partials/footer.ejs') %> 
 
   </body>
 </html>

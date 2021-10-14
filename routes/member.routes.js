@@ -8,10 +8,10 @@ const memberController = require('../controllers/member.controller');
 
 router.get('/', memberController.findAllMembers);
 
-router.get('/:id', memberController.findMemberById);
-
 router.get('/register', memberController.register);
 
 router.post('/register', upload.array(), memberController.newMember);
+
+router.get('/:id', memberController.findMemberById);
 
 module.exports = router;

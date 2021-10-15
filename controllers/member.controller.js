@@ -44,9 +44,19 @@ const newMember = (req, res) => {
   }
 };
 
+const renderLogin = (req, res) => {
+  res.render('members/login', { title: '登入' });
+};
+
+const login = (req, res) => {
+
+};
+
 module.exports = {
   findAllMembers,
   findMemberById,
   register,
   newMember,
+  renderLogin,
+  login
 };

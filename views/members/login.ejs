@@ -1,25 +1,32 @@
 <html lang="en">
+  <%- include('../partials/head.ejs') %>
 
-    <%- include('../partials/head.ejs') %> 
-
-<body>
-
-    <%- include('../partials/nav.ejs') %> 
-    
-    <%- include('../partials/header.ejs') %> 
+  <body>
+    <%- include('../partials/nav.ejs') %> <%- include('../partials/header.ejs')
+    %>
 
     <section class="center">
-        <form class="login">
-            <h2>會員登入</h2>
-            <input type="text" placeholder="帳號" />
-            <input type="password" placeholder="密碼" />
-            <input type="submit" value="登入"/>
-            <br>
-            <p>尚未成為會員嗎？</p>
-            <a href="register.html">創立新帳號</a>
-        </form>
+      <form class="login">
+        <h2>會員登入</h2>
+        <input
+          type="text"
+          name="account"
+          placeholder="帳號"
+          style="color: azure"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="密碼"
+          style="color: azure"
+        />
+        <input type="submit" value="登入" />
+        <br />
+        <p>尚未成為會員嗎？</p>
+        <a href="register.html">創立新帳號</a>
+      </form>
     </section>
 
-    <%- include('../partials/footer.ejs') %> 
-</body>
+    <%- include('../partials/footer.ejs') %>
+  </body>
 </html>

@@ -1,16 +1,24 @@
 <html lang="en">
-  
-  <%- include('../partials/head.ejs') %> 
+  <%- include('../partials/head.ejs') %>
 
   <body>
-    <%- include('../partials/nav.ejs') %>
-    
-    <%- include('../partials/header.ejs') %> 
+    <%- include('../partials/nav.ejs') %> <%- include('../partials/header.ejs')
+    %>
 
     <section class="center">
-      <form action="/members/register" method="POST" class="register" id="registerForm">
+      <form
+        action="/members/register"
+        method="POST"
+        class="register"
+        id="registerForm"
+      >
         <h2>註冊會員</h2>
-        <input type="text" name="account" placeholder="帳號" style="color: azure" />
+        <input
+          type="text"
+          name="account"
+          placeholder="帳號"
+          style="color: azure"
+        />
         <input type="password" name="password" placeholder="密碼" />
         <input type="password" name="confirmPassword" placeholder="確認密碼" />
         <br />
@@ -20,7 +28,6 @@
       </form>
     </section>
 
-    <%- include('../partials/footer.ejs') %> 
-
+    <%- include('../partials/footer.ejs') %>
   </body>
 </html>

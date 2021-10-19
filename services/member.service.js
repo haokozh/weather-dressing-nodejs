@@ -37,6 +37,26 @@ const findMemberById = async (id) => {
   }
 };
 
+const findMemberByAccount = async (account) => {
+  const client = await pool.connect();
+
+  try {
+    const { rows } = await client.query(
+      `SELECT * FROM Members WHERE account = $1`,
+      [account]
+    );
+
+    console.log('Here is findMemberByAccount method');
+    console.log(rows);
+
+    return rows;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    client.release();
+  }
+};
+
 const newMember = async (member) => {
   const client = await pool.connect();
 
@@ -55,8 +75,14 @@ const newMember = async (member) => {
   }
 };
 
+const hashPassword = (password) => {
+  
+};
+
 module.exports = {
   findAllMembers,
   findMemberById,
+  findMemberByAccount,
   newMember,
+  hashPassword,
 };

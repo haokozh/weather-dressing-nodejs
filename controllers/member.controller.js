@@ -22,7 +22,7 @@ const findMemberById = async (req, res) => {
 };
 
 const register = (req, res) => {
-  res.render('members/register');
+  res.render('members/register', { title: '註冊' });
 };
 
 const newMember = (req, res) => {
@@ -44,9 +44,19 @@ const newMember = (req, res) => {
   }
 };
 
+const renderLogin = (req, res) => {
+  res.render('members/login', { title: '登入' });
+};
+
+const login = (req, res) => {
+  
+};
+
 module.exports = {
   findAllMembers,
   findMemberById,
   register,
   newMember,
+  renderLogin,
+  login
 };

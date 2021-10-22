@@ -1,5 +1,7 @@
 const { client } = require('../config/linebot.config');
 
+const weatherService = require('../services/weather.service');
+
 const replyText = (token, texts) => {
   texts = Array.isArray(texts) ? texts : [texts];
 
@@ -12,7 +14,6 @@ const replyText = (token, texts) => {
   );
 };
 
-// replyWeather
 const handleText = (token, message) => {
   return replyWeather(token, message.text);
 };
@@ -63,20 +64,19 @@ const handleMessageEvent = (event) => {
   );
 };
 
-// parseResponseToFlexBubble
 const replyWeather = async (token, text) => {
   try {
     const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
     const splitedText = text.split(' ');
 
-    let locationId = linebotService.getWeeklyLocationId(splitedText[0]);
-    let locationName = linebotService.getTargetDistByLocationsName(
+    let locationId = weatherService.getWeeklyLocationId(splitedText[0]);
+    let locationName = weatherService.getTargetDistByLocationsName(
       splitedText[1],
       splitedText[0]
     );
 
-    message = await linebotService.getWeatherResponse(
+    message = await weatherService.getWeatherResponse(
       locationId,
       locationName,
       elementName
@@ -84,7 +84,7 @@ const replyWeather = async (token, text) => {
 
     return client.replyMessage(
       token,
-      linebotService.parseResponseToFlexBubble(message)
+      weatherService.parseResponseToFlexBubble(message)
     );
   } catch (error) {
     console.error(`Error on message.service.replyWeather(): ${error}`);

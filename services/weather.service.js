@@ -815,3 +815,10 @@ const replyFlexBubble = (
     },
   });
 };
+
+module.exports = {
+    getWeeklyLocationId,
+    getTargetDistByLocationsName,
+    getWeatherResponse,
+    parseResponseToFlexBubble,
+}

@@ -9,18 +9,6 @@ const callback = (req, res) => {
     });
 };
 
-// const handleEvent = (event) => {
-//   try {
-//     if (linebotService.isWebhookTest(event.replyToken))
-//       return Promise.resolve(null);
-
-//     return linebotService.handleWebhookEvent(event);
-
-//   } catch (error) {
-//     console.error(`Error on linebot.controller.handleEvent() ${error}`);
-//   }
-// };
-
 module.exports = {
   callback,
 };

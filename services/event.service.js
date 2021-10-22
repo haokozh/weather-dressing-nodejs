@@ -1,20 +1,6 @@
-// const { client } = require('../config/linebot.config');
-
 const welcomeMessage = require('../models/welcome-message.model');
 
 const messageService = require('../services/message.service');
-
-// const replyText = (token, texts) => {
-//   texts = Array.isArray(texts) ? texts : [texts];
-
-//   return client.replyMessage(
-//     token,
-//     texts.map((text) => ({
-//       type: 'text',
-//       text: text,
-//     }))
-//   );
-// };
 
 const handleFollowEvent = (event) => {
   return messageService.replyText(event.replyToken, welcomeMessage);

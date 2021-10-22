@@ -4,6 +4,8 @@ const qs = require('qs');
 const ResponseData = require('../models/response-data.model');
 const weatherElement = require('../models/weather-element.model');
 
+const eventService = require('../services/event.service');
+
 const isWebhookTest = (replyToken) => {
   return (
     replyToken === '00000000000000000000000000000000' ||
@@ -823,6 +825,10 @@ const replyFlexBubble = (
   });
 };
 
+const handleWebhookEvent = (event) => {
+  return eventService.handleWebhookEvent(event);
+};
+
 module.exports = {
   isWebhookTest,
   getWeeklyLocationId,
@@ -831,4 +837,5 @@ module.exports = {
   getWeatherResponse,
   parseResponseToFlexBubble,
   replyFlexBubble,
+  handleWebhookEvent,
 };

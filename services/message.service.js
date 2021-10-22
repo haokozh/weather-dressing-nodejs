@@ -87,7 +87,7 @@ const replyWeather = async (token, text) => {
       linebotService.parseResponseToFlexBubble(message)
     );
   } catch (error) {
-    console.error(`Error on linebot.controller.replyWeather(): ${error}`);
+    console.error(`Error on message.service.replyWeather(): ${error}`);
   }
 };
 

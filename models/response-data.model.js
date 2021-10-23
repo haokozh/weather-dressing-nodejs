@@ -6,11 +6,11 @@ class ResponseData {
   }
 
   getCity() {
-    return this.records.locations[0];
+    return this.records.locations;
   }
 
   getDist() {
-    return this.getCity().location[0];
+    return this.getCity().location;
   }
 
   getWeatherElement(indexOfElement) {

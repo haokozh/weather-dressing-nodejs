@@ -66,25 +66,27 @@ const handleMessageEvent = (event) => {
 
 const replyWeather = async (token, text) => {
   try {
-    const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
+    // const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
     const splitedText = text.split(' ');
+    const cityName = splitedText[0];
+    const distName = splitedText[1];
 
-    let locationId = weatherService.getWeeklyLocationId(splitedText[0]);
-    let locationName = weatherService.getTargetDistByLocationsName(
-      splitedText[1],
-      splitedText[0]
-    );
+    // let forecastId = weatherService.findWeeklyForecastIdByCityName(cityName);
+    // let distName = weatherService.findDistByCityNameAndDistName(
+    //   cityName,
+    //   distName
+    // );
 
-    message = await weatherService.getWeatherResponse(
-      locationId,
-      locationName,
-      elementName
-    );
+    // message = await weatherService.getWeatherResponse(
+    //   forecastId,
+    //   distName,
+    //   elementName
+    // );
 
     return client.replyMessage(
       token,
-      weatherService.parseResponseToFlexBubble(message)
+      weatherService.replyWeatherInfo(cityName, distName)
     );
   } catch (error) {
     console.error(`Error on message.service.replyWeather(): ${error}`);

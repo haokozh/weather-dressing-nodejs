@@ -15,7 +15,7 @@ const execQuery = async (column, table, condition) => {
     );
 
     console.log(`Here is query result`);
-    console.log(rows[0].value);
+    console.log(rows[0]);
 
     return rows;
   } catch (error) {
@@ -714,10 +714,10 @@ const getElementNames = () => {
 };
 
 const replyWeatherInfo = async (cityName, distName) => {
-  const forecastId = findWeeklyForecastIdByCityName(cityName)[0];
+  const forecastId = findWeeklyForecastIdByCityName(cityName);
   const elementNames = getElementNames();
 
-  const data = await getWeatherResponse(forecastId, distName, elementNames);
+  const data = await getWeatherResponse('F-D0047-063', distName, elementNames);
 
   return parseResponseToFlexBubble(data, cityName, distName);
 };

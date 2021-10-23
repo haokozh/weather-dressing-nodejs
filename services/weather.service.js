@@ -4,7 +4,6 @@ const qs = require('qs');
 const pool = require('../config/db.config');
 
 const ResponseData = require('../models/response-data.model');
-const weatherElement = require('../models/weather-element.model');
 
 const execQuery = async (column, table, condition) => {
   const client = await pool.connect();
@@ -16,7 +15,7 @@ const execQuery = async (column, table, condition) => {
     );
 
     console.log(`Here is query result`);
-    console.log(rows[0]);
+    console.log(rows[0].value);
 
     return rows;
   } catch (error) {

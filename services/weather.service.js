@@ -16,7 +16,7 @@ const execQuery = async (column, table, condition) => {
     );
 
     console.log(`Here is query result`);
-    console.log(rows);
+    console.log(rows[0]);
 
     return rows;
   } catch (error) {

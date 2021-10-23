@@ -15,7 +15,7 @@ const handleEvent = (event) => {
     return handleWebhookEvent(event);
 
   } catch (error) {
-    console.error(`Error on linebot.controller.handleEvent() ${error}`);
+    console.error(`Error on linebot.service.handleEvent() ${error}`);
   }
 };
 

@@ -14,7 +14,7 @@ class ResponseData {
   }
 
   getWeatherElement(indexOfElement) {
-    return this.getDist().getWeatherElement(indexOfElement);
+    return this.getDist().getWeatherElement[indexOfElement];
   }
 
   getForecastTime(indexOfElement, indexOfTime) {

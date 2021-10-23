@@ -6,7 +6,7 @@ const pool = require('../config/db.config');
 const ResponseData = require('../models/response-data.model');
 const weatherElement = require('../models/weather-element.model');
 
-const execQuery = async (...column, table, condition, methodName) => {
+const execQuery = async (column, table, condition, methodName) => {
   const client = await pool.connect();
 
   try {

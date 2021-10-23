@@ -806,13 +806,12 @@ const getElementNames = () => {
 
 const replyWeatherInfo = (cityName, distName) => {
 
-  return parseResponseToFlexBubble(
-    getWeatherResponse(
-      findWeeklyForecastIdByCityName(cityName),
-      findDistByCityNameAndDistName(cityName, distName),
-      getElementNames()
-    )
-  );
+  const forecastId = findWeeklyForecastIdByCityName(cityName);
+  const elementNames = getElementNames();
+
+  const data = getWeatherResponse(forecastId, distName, elementNames);
+
+  return parseResponseToFlexBubble(data);
 };
 
 module.exports = {

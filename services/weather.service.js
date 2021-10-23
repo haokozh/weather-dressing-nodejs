@@ -714,11 +714,11 @@ const getElementNames = () => {
   return ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 };
 
-const replyWeatherInfo = (cityName, distName) => {
+const replyWeatherInfo = async (cityName, distName) => {
   const forecastId = findWeeklyForecastIdByCityName(cityName);
   const elementNames = getElementNames();
 
-  const data = getWeatherResponse(forecastId, distName, elementNames);
+  const data = await getWeatherResponse(forecastId, distName, elementNames);
 
   return parseResponseToFlexBubble(data, cityName, distName);
 };

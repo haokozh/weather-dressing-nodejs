@@ -6,7 +6,7 @@ const pool = require('../config/db.config');
 const ResponseData = require('../models/response-data.model');
 const weatherElement = require('../models/weather-element.model');
 
-const execQuery = async (column, table, condition, methodName) => {
+const execQuery = async (column, table, condition) => {
   const client = await pool.connect();
 
   try {
@@ -15,7 +15,7 @@ const execQuery = async (column, table, condition, methodName) => {
       [condition]
     );
 
-    console.log(`Here is ${methodName.name} method`);
+    console.log(`Here is query result`);
     console.log(rows);
 
     return rows;
@@ -27,65 +27,11 @@ const execQuery = async (column, table, condition, methodName) => {
 };
 
 const findTwoDaysForecastIdByCityName = async (cityName) => {
-  return execQuery('twoDaysId', 'cities', cityName, findTwoDaysForecastIdByCityName.name);
+  return execQuery('twoDaysId', 'cities', cityName);
 };
 
 const findWeeklyForecastIdByCityName = async (cityName) => {
-  return execQuery('weeklyId', 'cities', cityName, findWeeklyForecastIdByCityName.name);
-
-  // let prefixId = 'F-D0047-';
-  // switch (locationsName) {
-  //   case '宜蘭縣':
-  //     return (prefixId += '003');
-  //   case '桃園市':
-  //     return (prefixId += '007');
-  //   case '新竹縣':
-  //     return (prefixId += '011');
-  //   case '苗栗縣':
-  //     return (prefixId += '015');
-  //   case '彰化縣':
-  //     return (prefixId += '019');
-  //   case '南投縣':
-  //     return (prefixId += '023');
-  //   case '雲林縣':
-  //     return (prefixId += '027');
-  //   case '嘉義縣':
-  //     return (prefixId += '031');
-  //   case '屏東縣':
-  //     return (prefixId += '035');
-  //   case '臺東縣':
-  //   case '台東縣':
-  //     return (prefixId += '039');
-  //   case '花蓮縣':
-  //     return (prefixId += '043');
-  //   case '澎湖縣':
-  //     return (prefixId += '047');
-  //   case '基隆市':
-  //     return (prefixId += '051');
-  //   case '新竹市':
-  //     return (prefixId += '055');
-  //   case '嘉義市':
-  //     return (prefixId += '059');
-  //   case '臺北市':
-  //   case '台北市':
-  //     return (prefixId += '063');
-  //   case '高雄市':
-  //     return (prefixId += '067');
-  //   case '新北市':
-  //     return (prefixId += '071');
-  //   case '臺中市':
-  //   case '台中市':
-  //     return (prefixId += '075');
-  //   case '臺南市':
-  //   case '台南市':
-  //     return (prefixId += '079');
-  //   case '連江縣':
-  //     return (prefixId += '083');
-  //   case '金門縣':
-  //     return (prefixId += '087');
-  //   default:
-  //     throw new Error(`找不到${locationsName}的 ForecastId`);
-  // }
+  return execQuery('weeklyId', 'cities', cityName);
 };
 
 const getDistsByCityName = (cityName) => {
@@ -503,16 +449,16 @@ const getDistsByCityName = (cityName) => {
     case '金門縣':
       return ['金城鎮', '金湖鎮', '金沙鎮', '金寧鄉', '烈嶼鄉', '烏坵鄉'];
     default:
-      throw new Error(`找不到${locationsName}的行政區`);
+      throw new Error(`找不到${cityName}的行政區`);
   }
 };
 
 const findCityIdsByDistName = (distName) => {
-  return execQuery('cityId', 'dists', distName, findCityIdsByDistName.name);
+  return execQuery('cityId', 'dists', distName);
 };
 
 const findWeeklyForecastIdByCityId = (cityId) => {
-  return execQuery('weeklyId', 'cities', cityId, findWeeklyForecastIdByCityId.name);
+  return execQuery('weeklyId', 'cities', cityId);
 };
 
 const findDistByCityNameAndDistName = (distName, cityName) => {
@@ -555,63 +501,27 @@ const getConfortDescription = (minCIValue, maxCIValue) => {
     : `${minCIValue}至${maxCIValue}`;
 };
 
-const parseResponseToFlexBubble = (data) => {
+const getCurrentTime = () => {
+  const date = new Date(Date.now());
+
+  return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+};
+
+const parseResponseToFlexBubble = (data, cityName, distName) => {
   try {
     const responseData = new ResponseData(data.records);
-    const locationIndex = 0;
-    const timeIndex = 0;
-    const elementValueIndex = 0;
-    const confortValueIndex = 1;
 
-    const pop12hTime = responseData.getTime(
-      locationIndex,
-      weatherElement.POP_12H,
-      timeIndex
-    );
-    const pop12h = responseData.getElementValue(
-      locationIndex,
-      weatherElement.POP_12H,
-      timeIndex,
-      elementValueIndex
-    );
-
-    const weatherDescription = responseData.getElementValue(
-      locationIndex,
-      weatherElement.WEATHER_DESCRIPTION,
-      timeIndex,
-      elementValueIndex
-    );
-
-    const minT = responseData.getElementValue(
-      locationIndex,
-      weatherElement.MIN_T,
-      timeIndex,
-      elementValueIndex
-    );
-    const maxT = responseData.getElementValue(
-      locationIndex,
-      weatherElement.MAX_T,
-      timeIndex,
-      elementValueIndex
-    );
-
-    const minCI = responseData.getElementValue(
-      locationIndex,
-      weatherElement.MIN_CI,
-      timeIndex,
-      confortValueIndex
-    );
-    const maxCI = responseData.getElementValue(
-      locationIndex,
-      weatherElement.MAX_CI,
-      timeIndex,
-      confortValueIndex
-    );
+    const pop12h = responseData.getPoPIn12Hours(0);
+    const weatherDescription = responseData.getWeatherDescription(0);
+    const minT = responseData.getMinConfortIndex(0);
+    const maxT = responseData.getMaxTemperature(0);
+    const minCI = responseData.getMinConfortIndex(0);
+    const maxCI = responseData.getMaxConfortIndex(0);
 
     return replyFlexBubble(
-      responseData.locationsName,
-      responseData.locationName,
-      pop12hTime,
+      cityName,
+      distName,
+      getCurrentTime(),
       getPoP12hDescription(pop12h.value),
       weatherDescription,
       getTempDescription(minT.value, maxT.value),
@@ -625,8 +535,8 @@ const parseResponseToFlexBubble = (data) => {
 };
 
 const replyFlexBubble = (
-  locationsName,
-  locationName,
+  cityName,
+  distName,
   pop12hTime,
   pop12hDescription,
   weatherDescription,
@@ -655,7 +565,7 @@ const replyFlexBubble = (
         contents: [
           {
             type: 'text',
-            text: `${locationsName} ${locationName}`,
+            text: `${cityName} ${distName}`,
             weight: 'bold',
             size: 'xl',
             align: 'center',
@@ -805,13 +715,12 @@ const getElementNames = () => {
 };
 
 const replyWeatherInfo = (cityName, distName) => {
-
   const forecastId = findWeeklyForecastIdByCityName(cityName);
   const elementNames = getElementNames();
 
   const data = getWeatherResponse(forecastId, distName, elementNames);
 
-  return parseResponseToFlexBubble(data);
+  return parseResponseToFlexBubble(data, cityName, distName);
 };
 
 module.exports = {

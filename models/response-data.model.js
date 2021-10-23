@@ -1,31 +1,58 @@
+const weatherElement = require('../models/weather-element.model');
+
 class ResponseData {
   constructor(records) {
     this.records = records;
-
-    this.locationsName = this.getLocations(0).locationsName;
-    this.locationName = this.getLocation(0).locationName;
   }
 
-  getLocations(locationIndex) {
-    return this.records.locations[locationIndex];
+  getCity() {
+    return this.records.locations[0];
   }
 
-  getLocation(locationIndex) {
-    return this.getLocations(locationIndex).location[locationIndex];
+  getDist() {
+    return this.getCity().location[0];
   }
 
-  getWeatherElement(locationIndex, elementIndex) {
-    return this.getLocation(locationIndex).weatherElement[elementIndex];
+  getWeatherElement(indexOfElement) {
+    return this.getDist().getWeatherElement(indexOfElement);
   }
 
-  getTime(locationIndex, elementIndex, timeIndex) {
-    return this.getWeatherElement(locationIndex, elementIndex).time[timeIndex];
+  getForecastTime(indexOfElement, indexOfTime) {
+    return this.getWeatherElement(indexOfElement).time[indexOfTime];
   }
 
-  getElementValue(locationIndex, elementIndex, timeIndex, valueIndex) {
-    return this.getTime(locationIndex, elementIndex, timeIndex).elementValue[
-      valueIndex
+  getElementValue(indexOfElement, indexOfTime, indexOfValue) {
+    return this.getForecastTime(indexOfElement, indexOfTime).elementValue[
+      indexOfValue
     ];
+  }
+
+  getMinTemperature(indexOfTime) {
+    return this.getElementValue(weatherElement.MIN_T, indexOfTime, 0);
+  }
+
+  getMaxTemperature(indexOfTime) {
+    return this.getElementValue(weatherElement.MAX_T, indexOfTime, 0);
+  }
+
+  getPoPIn12Hours(indexOfTime) {
+    return this.getElementValue(weatherElement.POP_12H, indexOfTime, 0);
+  }
+
+  getWeatherDescription(indexOfTime) {
+    return this.getElementValue(
+      weatherElement.WEATHER_DESCRIPTION,
+      indexOfTime,
+      0
+    );
+  }
+
+  getMinConfortIndex(indexOfTime) {
+    return this.getElementValue(weatherElement.MIN_CI, indexOfTime, 1);
+  }
+
+  getMaxConfortIndex(indexOfTime) {
+    return this.getElementValue(weatherElement.MAX_CI, indexOfTime, 1);
   }
 }
 

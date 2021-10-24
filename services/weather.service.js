@@ -506,25 +506,27 @@ const getCurrentTime = () => {
   return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 };
 
+const getPoPIn12HoursValue = (data) => {
+  return data.records.locations[0].location[0].weatherElement[]
+}
+
 const parseResponseToFlexBubble = (data, cityName, distName) => {
   try {
-    const responseData = new ResponseData(data.records);
-
-    const pop12h = responseData.getPoPIn12Hours(0);
-    const weatherDescription = responseData.getWeatherDescription(0);
-    const minT = responseData.getMinConfortIndex(0);
-    const maxT = responseData.getMaxTemperature(0);
-    const minCI = responseData.getMinConfortIndex(0);
-    const maxCI = responseData.getMaxConfortIndex(0);
+    const pop12h = getPoPIn12HoursValue(data);
+    const weatherDescription = '晴時多雲';
+    const minT = '20';
+    const maxT = '25';
+    const minCI = '舒適';
+    const maxCI = '悶熱';
 
     return replyFlexBubble(
       cityName,
       distName,
       getCurrentTime(),
-      getPoP12hDescription(pop12h.value),
+      getPoP12hDescription(pop12h),
       weatherDescription,
-      getTempDescription(minT.value, maxT.value),
-      getConfortDescription(minCI.value, maxCI.value)
+      getTempDescription(minT, maxT),
+      getConfortDescription(minCI, maxCI)
     );
   } catch (error) {
     console.error(

@@ -15,7 +15,7 @@ const replyText = (token, texts) => {
 };
 
 const handleText = (token, message) => {
-  return replyWeather(token, message.text);
+  return replyText(token, message.text);
 };
 
 const handleImage = (token, message) => {

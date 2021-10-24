@@ -66,7 +66,7 @@ const webhookEvents = {
 };
 
 const handleWebhookEvent = (event) => {
-  return webhookEvents[event.type](event) || webhookEvents['default'](event);
+  return webhookEvents[event.type](event);
 };
 
 module.exports = {

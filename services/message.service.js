@@ -14,16 +14,8 @@ const replyText = (token, texts) => {
   );
 };
 
-// hard code
 const handleText = (token, message) => {
-  const originalText = message.text;
-  const splitedText = originalText.split(' ');
-  const weatherResult = weatherService.replyWeather(
-    splitedText[0],
-    splitedText[1]
-  );
-
-  return client.replyMessage(token, weatherResult);
+  return replyWeather(token, message.text);
 };
 
 const handleImage = (token, message) => {
@@ -70,6 +62,33 @@ const handleMessageEvent = (event) => {
     messageEvents[event.message.type](event.replyToken, event.message) ||
     messageEvents['default'](event.message)
   );
+};
+
+const replyWeather = async (token, text) => {
+  try {
+    const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
+
+    const splitedText = text.split(' ');
+
+    let locationId = weatherService.getWeeklyLocationId(splitedText[0]);
+    let locationName = weatherService.getTargetDistByLocationsName(
+      splitedText[1],
+      splitedText[0]
+    );
+
+    message = await weatherService.getWeatherResponse(
+      locationId,
+      locationName,
+      elementName
+    );
+
+    return client.replyMessage(
+      token,
+      weatherService.parseResponseToFlexBubble(message)
+    );
+  } catch (error) {
+    console.error(`Error on message.service.replyWeather(): ${error}`);
+  }
 };
 
 module.exports = {

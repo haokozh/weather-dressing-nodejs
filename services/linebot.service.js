@@ -9,13 +9,11 @@ const isWebhookTest = (replyToken) => {
 
 const handleEvent = (event) => {
   try {
-    if (isWebhookTest(event.replyToken))
-      return Promise.resolve(null);
+    if (isWebhookTest(event.replyToken)) return Promise.resolve(null);
 
     return handleWebhookEvent(event);
-
   } catch (error) {
-    console.error(`Error on linebot.service.handleEvent() ${error}`);
+    console.error(`Error on linebot.controller.handleEvent() ${error}`);
   }
 };
 

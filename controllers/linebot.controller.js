@@ -5,7 +5,7 @@ const callback = (req, res) => {
     .then((result) => res.json(result))
     .catch((error) => {
       console.error(`Error on linebot.controller.callback() ${error}`);
-      res.status(500).end();
+      res.status(res.statusCode).end();
     });
 };
 

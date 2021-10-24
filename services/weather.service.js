@@ -52,7 +52,7 @@ const getCWBResponse = async (forecastId, distName) => {
       },
     });
 
-    return data.records;
+    return data;
   } catch (error) {
     console.error(`Error on linebot.service.getWeatherResponse(): ${error}`);
   }
@@ -259,16 +259,17 @@ const parseResponse = (records, cityName, distName) => {
       )
     );
   } catch (error) {
-    console.error(`Error on parseResponse: ${error}`)
+    console.error(`Error on parseResponse: ${error}`);
   }
 };
 
 const replyWeather = async (cityName, distName) => {
   try {
     const forecastId = findWeeklyIdByCityName(cityName);
-    const response = await getCWBResponse(forecastId, distName);
 
-    return parseResponse(response, cityName, distName);
+    await getCWBResponse(forecastId, distName).then((res) => {
+      return parseResponse(res, cityName, distName);
+    });
   } catch (error) {
     console.error(`Error on replyWeather: ${error}`);
   }

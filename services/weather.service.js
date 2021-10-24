@@ -5,17 +5,17 @@ const pool = require('../config/db.config');
 
 const ResponseData = require('../models/response-data.model');
 
-const execQuery = async (column, table, condition) => {
+const execQuery = async (column, table, condition, value) => {
   const client = await pool.connect();
 
   try {
     const { rows } = await client.query(
-      `SELECT ${column} FROM ${table} WHERE name = $1`,
-      [condition]
+      `SELECT ${column} FROM ${table} WHERE ${condition} = $1`,
+      [value]
     );
 
     console.log(`Here is query result`);
-    console.log(rows[0]);
+    console.log(rows);
 
     return rows;
   } catch (error) {
@@ -26,11 +26,11 @@ const execQuery = async (column, table, condition) => {
 };
 
 const findTwoDaysForecastIdByCityName = async (cityName) => {
-  return execQuery('twoDaysId', 'cities', cityName);
+  return execQuery('twoDaysId', 'cities', 'name', cityName);
 };
 
 const findWeeklyForecastIdByCityName = async (cityName) => {
-  return execQuery('weeklyId', 'cities', cityName);
+  return execQuery('weeklyId', 'cities', 'name', cityName);
 };
 
 const getDistsByCityName = (cityName) => {
@@ -453,11 +453,11 @@ const getDistsByCityName = (cityName) => {
 };
 
 const findCityIdsByDistName = (distName) => {
-  return execQuery('cityId', 'dists', distName);
+  return execQuery('cityId', 'dists', 'name', distName);
 };
 
 const findWeeklyForecastIdByCityId = (cityId) => {
-  return execQuery('weeklyId', 'cities', cityId);
+  return execQuery('weeklyId', 'cities', 'id', cityId);
 };
 
 const findDistByCityNameAndDistName = (distName, cityName) => {
@@ -466,6 +466,7 @@ const findDistByCityNameAndDistName = (distName, cityName) => {
   return dists.includes(distName) ? distName : `找不到${distName}`;
 };
 
+// Request failed with status code 404
 const getWeatherResponse = async (forecastId, distName, elementName) => {
   try {
     const { data } = await get(process.env.CWB_BASE_URL, {
@@ -500,16 +501,19 @@ const getConfortDescription = (minCIValue, maxCIValue) => {
     : `${minCIValue}至${maxCIValue}`;
 };
 
+// non test
 const getCurrentTime = () => {
   const date = new Date(Date.now());
 
   return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 };
 
+// non test
 const getPoPIn12HoursValue = (data) => {
   return data.records.locations[0].location[0].weatherElement[0];
 }
 
+// hard code
 const parseResponseToFlexBubble = (data, cityName, distName) => {
   try {
     const pop12h = '60';
@@ -715,11 +719,12 @@ const getElementNames = () => {
   return ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 };
 
+// non test
 const replyWeatherInfo = async (cityName, distName) => {
   const forecastId = await findWeeklyForecastIdByCityName(cityName);
   const elementNames = getElementNames();
 
-  const data = await getWeatherResponse(forecastId.weeklyid, distName, elementNames);
+  const data = await getWeatherResponse(forecastId[0].weeklyid, distName, elementNames);
 
   return parseResponseToFlexBubble(data, cityName, distName);
 };

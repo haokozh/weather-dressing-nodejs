@@ -67,10 +67,11 @@ const handleMessageEvent = (event) => {
 const replyWeather = async (token, text) => {
   try {
     const splitedText = text.split(' ');
-
+    const message = await weatherService.replyWeatherInfo(splitedText[0], splitedText[1]);
+    
     return client.replyMessage(
       token,
-      weatherService.replyWeatherInfo(splitedText[0], splitedText[1])
+      message
     );
   } catch (error) {
     console.error(`Error on message.service.replyWeather(): ${error}`);

@@ -11,7 +11,10 @@ const handleUnfollowEvent = (event) => {
 };
 
 const handleJoinEvent = (event) => {
-  return messageService.replyText(event.replyToken, `Joined ${event.source.type}`);
+  return messageService.replyText(
+    event.replyToken,
+    `Joined ${event.source.type}`
+  );
 };
 
 const handleLeaveEvent = (event) => {
@@ -41,7 +44,10 @@ const handlePostbackEvent = (event) => {
 };
 
 const handleBeaconEvent = (event) => {
-  return messageService.replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
+  return messageService.replyText(
+    event.replyToken,
+    `Got beacon: ${event.beacon.hwid}`
+  );
 };
 
 const throwUnknownEventError = (event) => {
@@ -60,7 +66,7 @@ const webhookEvents = {
 };
 
 const handleWebhookEvent = (event) => {
-  return webhookEvents[event.type](event);
+  return webhookEvents[event.type](event) || webhookEvents['default'](event);
 };
 
 module.exports = {

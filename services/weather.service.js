@@ -715,19 +715,15 @@ const replyFlexBubble = (
   });
 };
 
-const getElementNames = () => {
-  return ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
-};
-
 // non test
 const replyWeatherInfo = async (cityName, distName) => {
   try {
     const forecastId = await findWeeklyForecastIdByCityName(cityName);
-    const elementNames = getElementNames();
+    const elementNames = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
     const data = await getWeatherResponse(
-      forecastId[0].weeklyid,
-      distName,
+      'F-D0047-063',
+      '內湖區',
       elementNames
     );
 

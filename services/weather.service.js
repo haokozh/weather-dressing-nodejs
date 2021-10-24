@@ -470,6 +470,9 @@ const findDistByCityNameAndDistName = (distName, cityName) => {
 const getWeatherResponse = async (forecastId, distName, elementName) => {
   try {
     const { data } = await get(process.env.CWB_BASE_URL, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
       params: {
         Authorization: process.env.CWB_API_KEY,
         locationId: forecastId,

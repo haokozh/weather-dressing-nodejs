@@ -239,7 +239,7 @@ const replyFlexBubble = (
   });
 };
 
-const parseResponse = (records, cityName, distName) => {
+const parseResponse = async (records, cityName, distName) => {
   try {
     const response = new CWBResponse(records, 0, 0);
 

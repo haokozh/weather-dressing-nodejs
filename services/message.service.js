@@ -18,10 +18,11 @@ const replyText = (token, texts) => {
 const handleText = (token, message) => {
   const originalText = message.text;
   const splitedText = originalText.split(' ');
-  const cityName = splitedText[0];
-  const distName = splitedText[1];
-  const weatherResult = weatherService.replyWeather(cityName, distName);
-  
+  const weatherResult = weatherService.replyWeather(
+    splitedText[0],
+    splitedText[1]
+  );
+
   return client.replyMessage(token, weatherResult);
 };
 

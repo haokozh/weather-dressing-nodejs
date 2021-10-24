@@ -14,7 +14,7 @@ const findWeeklyIdByCityName = async (cityName) => {
     );
     console.log(rows);
 
-    return rows;
+    return rows[0].weeklyId;
   } catch (error) {
     console.error(`Error on findWeeklyIdByCityName(): ${error}`);
   } finally {
@@ -52,7 +52,7 @@ const getCWBResponse = async (forecastId, distName) => {
       },
     });
 
-    return data;
+    return data.records;
   } catch (error) {
     console.error(`Error on linebot.service.getWeatherResponse(): ${error}`);
   }
@@ -239,31 +239,39 @@ const replyFlexBubble = (
   });
 };
 
-const parseResponse = (data, cityName, distName) => {
-  const response = new CWBResponse(data.records);
+const parseResponse = (records, cityName, distName) => {
+  try {
+    const response = new CWBResponse(records);
 
-  return replyFlexBubble(
-    cityName,
-    distName,
-    getCurrentTime(),
-    getPoP12hDescription(response.getPoPIn12Hours()),
-    response.getWeatherDescription(),
-    getTempDescription(
-      response.getMinTemperature(),
-      response.getMaxTemperature()
-    ),
-    getConfortDescription(
-      response.getMinConfortIndex(),
-      response.getMaxConfortIndex()
-    )
-  );
+    return replyFlexBubble(
+      cityName,
+      distName,
+      getCurrentTime(),
+      getPoP12hDescription(response.getPoPIn12Hours()),
+      response.getWeatherDescription(),
+      getTempDescription(
+        response.getMinTemperature(),
+        response.getMaxTemperature()
+      ),
+      getConfortDescription(
+        response.getMinConfortIndex(),
+        response.getMaxConfortIndex()
+      )
+    );
+  } catch (error) {
+    console.error(`Error on parseResponse: ${error}`)
+  }
 };
 
 const replyWeather = async (cityName, distName) => {
-  const forecastId = findWeeklyIdByCityName(cityName);
-  const response = await getCWBResponse(forecastId, distName);
+  try {
+    const forecastId = findWeeklyIdByCityName(cityName);
+    const response = await getCWBResponse(forecastId, distName);
 
-  return parseResponse(response, cityName, distName);
+    return parseResponse(response, cityName, distName);
+  } catch (error) {
+    console.error(`Error on replyWeather: ${error}`);
+  }
 };
 
 module.exports = {

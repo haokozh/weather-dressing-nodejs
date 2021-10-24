@@ -268,7 +268,7 @@ const replyWeather = async (cityName, distName) => {
     const forecastId = findWeeklyIdByCityName(cityName)[0];
 
     await getCWBResponse(forecastId.weeklyid, distName).then((res) => {
-      return parseResponse(res, cityName, distName);
+      return parseResponse(res.records, cityName, distName);
     });
   } catch (error) {
     console.error(`Error on replyWeather: ${error}`);

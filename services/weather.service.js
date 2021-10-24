@@ -12,7 +12,7 @@ const findWeeklyIdByCityName = async (cityName) => {
       `SELECT weeklyId FROM cities WHERE name = $1`,
       [cityName]
     );
-    console.log(rows);
+    console.log(rows[0].weeklyId);
 
     return rows[0].weeklyId;
   } catch (error) {

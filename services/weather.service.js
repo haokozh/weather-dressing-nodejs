@@ -466,13 +466,13 @@ const findDistByCityNameAndDistName = (distName, cityName) => {
   return dists.includes(distName) ? distName : `找不到${distName}`;
 };
 
-const getWeatherResponse = async (locationId, locationName, elementName) => {
+const getWeatherResponse = async (forecastId, distName, elementName) => {
   try {
     const { data } = await get(process.env.CWB_BASE_URL, {
       params: {
         Authorization: process.env.CWB_API_KEY,
-        locationId: locationId,
-        locationName: locationName,
+        locationId: forecastId,
+        locationName: distName,
         elementName: elementName,
       },
       paramsSerializer: (params) => {
@@ -719,7 +719,7 @@ const replyWeatherInfo = async (cityName, distName) => {
   const forecastId = findWeeklyForecastIdByCityName(cityName);
   const elementNames = getElementNames();
 
-  const data = await getWeatherResponse('F-D0047-063', distName, elementNames);
+  const data = await getWeatherResponse(forecastId, distName, elementNames);
 
   return parseResponseToFlexBubble(data, cityName, distName);
 };

@@ -511,7 +511,7 @@ const getCurrentTime = () => {
 // non test
 const getPoPIn12HoursValue = (data) => {
   return data.records.locations[0].location[0].weatherElement[0];
-}
+};
 
 // hard code
 const parseResponseToFlexBubble = (data, cityName, distName) => {
@@ -721,12 +721,20 @@ const getElementNames = () => {
 
 // non test
 const replyWeatherInfo = async (cityName, distName) => {
-  const forecastId = await findWeeklyForecastIdByCityName(cityName);
-  const elementNames = getElementNames();
+  try {
+    const forecastId = await findWeeklyForecastIdByCityName(cityName);
+    const elementNames = getElementNames();
 
-  const data = await getWeatherResponse(forecastId[0].weeklyid, distName, elementNames);
+    const data = await getWeatherResponse(
+      forecastId[0].weeklyid,
+      distName,
+      elementNames
+    );
 
-  return parseResponseToFlexBubble(data, cityName, distName);
+    return parseResponseToFlexBubble(data, cityName, distName);
+  } catch (error) {
+    console.error(`Error on ${replyWeatherInfo.name}: ${error}`);
+  }
 };
 
 module.exports = {

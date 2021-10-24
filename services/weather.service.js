@@ -716,7 +716,7 @@ const getElementNames = () => {
 };
 
 const replyWeatherInfo = async (cityName, distName) => {
-  const forecastId = findWeeklyForecastIdByCityName(cityName);
+  const forecastId = await findWeeklyForecastIdByCityName(cityName);
   const elementNames = getElementNames();
 
   const data = await getWeatherResponse(forecastId.weeklyid, distName, elementNames);

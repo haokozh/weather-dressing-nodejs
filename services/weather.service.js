@@ -512,7 +512,7 @@ const getPoPIn12HoursValue = (data) => {
 
 const parseResponseToFlexBubble = (data, cityName, distName) => {
   try {
-    const pop12h = getPoPIn12HoursValue(data);
+    const pop12h = '60';
     const weatherDescription = '晴時多雲';
     const minT = '20';
     const maxT = '25';

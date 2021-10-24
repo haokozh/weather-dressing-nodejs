@@ -5,16 +5,10 @@ class ResponseData {
     this.records = records;
   }
 
-  getCity() {
-    return this.records.locations;
-  }
-
-  getDist() {
-    return this.getCity().location;
-  }
-
   getWeatherElement(indexOfElement) {
-    return this.getDist().getWeatherElement[indexOfElement];
+    return this.records.locations[0].location[0].getWeatherElement[
+      indexOfElement
+    ];
   }
 
   getForecastTime(indexOfElement, indexOfTime) {

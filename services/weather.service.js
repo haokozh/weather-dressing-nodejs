@@ -267,7 +267,7 @@ const replyWeather = async (cityName, distName) => {
   try {
     const forecastId = findWeeklyIdByCityName(cityName)[0];
 
-    await getCWBResponse('F-D0047-063', '內湖區').then((res) => {
+    await getCWBResponse(forecastId.weeklyid, '內湖區').then((res) => {
       return parseResponse(res, cityName, distName);
     });
   } catch (error) {

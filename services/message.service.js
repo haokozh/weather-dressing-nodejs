@@ -16,7 +16,13 @@ const replyText = (token, texts) => {
 
 // hard code
 const handleText = (token, message) => {
-  return replyText(token, message.text);
+  const originalText = message.text;
+  const splitedText = originalText.split(' ');
+  const cityName = splitedText[0];
+  const distName = splitedText[1];
+  const weatherResult = weatherService.replyWeather(cityName, distName);
+  
+  return client.replyMessage(token, weatherResult);
 };
 
 const handleImage = (token, message) => {

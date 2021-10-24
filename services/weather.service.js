@@ -259,7 +259,7 @@ const parseResponse = (data, cityName, distName) => {
   );
 };
 
-const replyWeather = (cityName, distName) => {
+const replyWeather = async (cityName, distName) => {
   const forecastId = findWeeklyIdByCityName(cityName);
   const response = await getCWBResponse(forecastId, distName);
 

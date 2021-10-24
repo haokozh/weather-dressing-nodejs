@@ -2,6 +2,25 @@ const { get } = require('axios');
 const qs = require('qs');
 
 const pool = require('../config/db.config');
+const CWBResponse = require('../models/cwb-response');
+
+const findWeeklyIdByCityName = async (cityName) => {
+  const client = await pool.connect();
+
+  try {
+    const { rows } = await client.query(
+      `SELECT weeklyId FROM cities WHERE name = $1`,
+      [cityName]
+    );
+    console.log(rows);
+
+    return rows;
+  } catch (error) {
+    console.error(`Error on findWeeklyIdByCityName(): ${error}`);
+  } finally {
+    client.release();
+  }
+};
 
 const getPoP12hDescription = (value) => {
   return `${value}%`;
@@ -17,10 +36,37 @@ const getConfortDescription = (minCIValue, maxCIValue) => {
     : `${minCIValue}至${maxCIValue}`;
 };
 
+const getCWBResponse = async (forecastId, distName) => {
+  try {
+    const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
+
+    const { data } = await get(process.env.CWB_BASE_URL, {
+      params: {
+        Authorization: process.env.CWB_API_KEY,
+        locationId: forecastId,
+        locationName: distName,
+        elementName: elementName,
+      },
+      paramsSerializer: (params) => {
+        return qs.stringify(params, { arrayFormat: 'repeat' });
+      },
+    });
+
+    return data;
+  } catch (error) {
+    console.error(`Error on linebot.service.getWeatherResponse(): ${error}`);
+  }
+};
+
+const getCurrentTime = () => {
+  const date = new Date(Date.now());
+  return `${date.getFullYear}-${date.getMonth}-${date.getDate}`;
+};
+
 const replyFlexBubble = (
   cityName,
   distName,
-  pop12hTime,
+  currentTime,
   pop12hDescription,
   weatherDescription,
   tempDescription,
@@ -60,7 +106,7 @@ const replyFlexBubble = (
             contents: [
               {
                 type: 'text',
-                text: `${pop12hTime.startTime} ~ ${pop12hTime.endTime}`,
+                text: `${currentTime}`,
                 size: 'md',
                 color: '#999999',
                 margin: 'md',
@@ -193,6 +239,33 @@ const replyFlexBubble = (
   });
 };
 
-module.exports = {
+const parseResponse = (data, cityName, distName) => {
+  const response = new CWBResponse(data.records);
 
+  return replyFlexBubble(
+    cityName,
+    distName,
+    getCurrentTime(),
+    getPoP12hDescription(response.getPoPIn12Hours()),
+    response.getWeatherDescription(),
+    getTempDescription(
+      response.getMinTemperature(),
+      response.getMaxTemperature()
+    ),
+    getConfortDescription(
+      response.getMinConfortIndex(),
+      response.getMaxConfortIndex()
+    )
+  );
+};
+
+const replyWeather = (cityName, distName) => {
+  const forecastId = findWeeklyIdByCityName(cityName);
+  const response = await getCWBResponse(forecastId, distName);
+
+  return parseResponse(response, cityName, distName);
+};
+
+module.exports = {
+  replyWeather,
 };

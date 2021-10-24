@@ -14,6 +14,7 @@ const replyText = (token, texts) => {
   );
 };
 
+// hard code
 const handleText = (token, message) => {
   return replyText(token, message.text);
 };
@@ -62,20 +63,6 @@ const handleMessageEvent = (event) => {
     messageEvents[event.message.type](event.replyToken, event.message) ||
     messageEvents['default'](event.message)
   );
-};
-
-const replyWeather = async (token, text) => {
-  try {
-    const splitedText = text.split(' ');
-    const message = await weatherService.getWeatherResponse('F-D0047-063', '內湖區', );
-    
-    return client.replyMessage(
-      token,
-      message
-    );
-  } catch (error) {
-    console.error(`Error on message.service.replyWeather(): ${error}`);
-  }
 };
 
 module.exports = {

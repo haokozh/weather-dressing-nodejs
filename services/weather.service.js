@@ -507,7 +507,7 @@ const getCurrentTime = () => {
 };
 
 const getPoPIn12HoursValue = (data) => {
-  return data.records.locations[0].location[0].weatherElement[]
+  return data.records.locations[0].location[0].weatherElement[0];
 }
 
 const parseResponseToFlexBubble = (data, cityName, distName) => {

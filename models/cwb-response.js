@@ -3,14 +3,16 @@ const weatherElement = require('./weather-element.model');
 class CWBResponse {
   constructor(records) {
     this.records = records;
+    this.locationsIndex = 0;
+    this.locationIndex = 0;
   }
 
   getLocations() {
-    return this.records.locations[0];
+    return this.records.locations[this.locationsIndex];
   }
 
   getLocation() {
-    return this.getLocations().location[0];
+    return this.getLocations().location[this.locationIndex];
   }
 
   getWeatherElement(indexOfElement) {

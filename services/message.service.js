@@ -67,7 +67,7 @@ const handleMessageEvent = (event) => {
 const replyWeather = async (token, text) => {
   try {
     const splitedText = text.split(' ');
-    const message = await weatherService.replyWeatherInfo(splitedText[0], splitedText[1]);
+    const message = await weatherService.getWeatherResponse('F-D0047-063', '內湖區', );
     
     return client.replyMessage(
       token,

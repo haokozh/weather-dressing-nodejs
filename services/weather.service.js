@@ -505,6 +505,15 @@ const getWeatherResponse = async (forecastId, distName, elementName) => {
     const weatherDescValue = weatherDesc.time[0].elementValue[0];
     console.log(weatherDesc, weatherDescValue);
 
+    return replyFlexBubble(
+      '台北市',
+      '內湖區區',
+      getCurrentTime(),
+      getPoP12hDescription(pop12hValue),
+      weatherDescriptionValue,
+      getTempDescription(minTValue, maxTValue),
+      getConfortDescription(minCIValue, maxCIValue)
+    );
 
   } catch (error) {
     console.error(`Error on weather.service.getWeatherResponse(): ${error}`);
@@ -735,5 +744,5 @@ const replyFlexBubble = (
 };
 
 module.exports = {
-
+  getWeatherResponse,
 };

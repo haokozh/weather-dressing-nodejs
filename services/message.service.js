@@ -76,7 +76,7 @@ const replyWeather = async (token, text) => {
       splitedText[0]
     );
 
-    message = await weatherService.getWeatherResponse(
+    const message = await weatherService.getWeatherResponse(
       locationId,
       locationName,
       elementName

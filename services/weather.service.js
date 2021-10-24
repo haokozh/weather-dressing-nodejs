@@ -14,7 +14,7 @@ const findWeeklyIdByCityName = async (cityName) => {
     );
     console.log(rows[0]);
 
-    return rows[0];
+    return rows;
   } catch (error) {
     console.error(`Error on findWeeklyIdByCityName(): ${error}`);
   } finally {
@@ -265,9 +265,9 @@ const parseResponse = (records, cityName, distName) => {
 
 const replyWeather = async (cityName, distName) => {
   try {
-    const forecastId = findWeeklyIdByCityName(cityName);
+    const forecastId = findWeeklyIdByCityName(cityName)[0];
 
-    await getCWBResponse(forecastId, distName).then((res) => {
+    await getCWBResponse('F-D0047-063', '內湖區').then((res) => {
       return parseResponse(res, cityName, distName);
     });
   } catch (error) {

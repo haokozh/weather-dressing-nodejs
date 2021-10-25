@@ -1,0 +1,16 @@
+.content {
+  padding: 50px 52px 0;
+  max-width: 1244px;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  font-size: 18px;
+}
+
+.footer {
+  height: 50px; /*設定footer本身高度*/
+  margin-top: 50px; /*隨footer高度需做調整*/
+  background-color: #498eaf;
+  height: 50px;
+  margin: 0 auto;
+  padding: auto;
+}

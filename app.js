@@ -19,7 +19,7 @@ app.use(express.static('public'));
 app.use('/', require('./routes/index.routes'));
 app.use('/members', require('./routes/member.routes'));
 app.get('/suggestion', (req, res) => {
-  res.render('/suggestion/suggestion', { title: '穿搭建議' });
+  res.render('suggestion', { title: '穿搭建議' });
 });
 
 const port = process.env.PORT || 3000;

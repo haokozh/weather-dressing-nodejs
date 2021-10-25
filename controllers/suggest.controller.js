@@ -1,5 +1,5 @@
 const suggestion = (req, res) => {
-  res.render('suggestion/suggestion', { title: '穿搭建議' });
+  res.render('weather/suggestion', { title: '穿搭建議' });
 };
 
 module.exports = {

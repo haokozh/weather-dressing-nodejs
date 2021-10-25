@@ -1,0 +1,42 @@
+.content {
+  padding: 50px 52px 0;
+  max-width: 1244px;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  font-size: 18px;
+}
+
+.sublove {
+  color: #000;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.sublove input {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  background: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 22px;
+  outline: none;
+}
+
+.sublove input[type='text'],
+.sublove input[type='password'] {
+  border: 2px solid #3498db;
+  width: 100%;
+  font-weight: bolder;
+}
+
+.sublove input[type='submit'] {
+  width: 200;
+  border: 2px solid #2ecc71;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.sublove input[type='submit']:hover {
+  background-color: #2ecc71;
+}

@@ -8,3 +8,12 @@ footer {
   padding-top: 5px;
   text-align: center;
 }
+
+.footer{
+  height: 50px; /*設定footer本身高度*/
+  margin-top: 50px; /*隨footer高度需做調整*/
+  background-color: #498EAF;
+  height: 50px;
+  margin: 0 auto;
+  padding: auto;
+}

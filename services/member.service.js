@@ -75,6 +75,7 @@ const newMember = async (member) => {
   }
 };
 
+// todo
 const hashPassword = (password) => {
   
 };

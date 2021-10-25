@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 // view engine
-app.set('views', './views');
+app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // line callback
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // use static file
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 // web routes
 app.use('/', require('./routes/index.routes'));

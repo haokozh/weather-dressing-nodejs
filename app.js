@@ -18,9 +18,7 @@ app.use(express.static('public'));
 // web routes
 app.use('/', require('./routes/index.routes'));
 app.use('/members', require('./routes/member.routes'));
-app.get('/suggestion', (req, res) => {
-  res.render('suggestion', { title: '穿搭建議' });
-});
+app.use('/suggest', require('./routes/suggest.routes'));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

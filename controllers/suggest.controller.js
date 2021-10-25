@@ -1,7 +1,7 @@
-const suggest = (req, res) => {
-  res.render('suggest/suggest', { title: '穿搭建議' });
+const suggestion = (req, res) => {
+  res.render('suggestion/suggestion', { title: '穿搭建議' });
 };
 
 module.exports = {
-  suggest,
+  suggestion,
 };

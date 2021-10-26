@@ -3,57 +3,61 @@
   <body>
     <%- include('../partials/nav.ejs') %>
 
-    <section>
-      <span class="align-middle">
-        <div class="content">
-          <div style="background-color: #f8f8f8" text-align:center>
-            <div class="row">
-              <form class="select" align="center">
-                <!--標題字-->
-                <div style="background-color: #86add1" text-align:center>
-                  <h3>選擇條件</h3>
-                </div>
-
-                <label for="select" scope="col">地區</label>
-
-                <div role="tw-city-selector"></div>
-                <select
-                  id="city-list"
-                  onchange="changeCity(this.selectedIndex)"
-                ></select>
-                <select id="sector-list"></select>
-
-                <label for="select" scope="col">出門目的</label>
-                <select name="select3" id="select3">
-                  <option>請選擇</option>
-                  <option>學校</option>
-                  <option>公司</option>
-                  <option>出遊</option>
-                </select>
-
-                <input
-                  class="buttonl1"
-                  type="button"
-                  id="love1chenge"
-                  value="添加到我的最愛"
-                  style="
-                    border-radius: 10px #e9e4e4 double;
-                    background-color: #86add1;
-                  "
-                />
-
-                <label for="select" scope="col">我的最愛</label>
-                <select name="select3" id="select3">
-                  <option>請選擇</option>
-                  <option>1-未設定</option>
-                  <option>2-未設定</option>
-                  <option>3-未設定</option>
-                </select>
-              </form>
-            </div>
+    <section class="container-fluid align-middle">
+      <div class="row content" style="background-color: #f8f8f8">
+        <form class="select" style="text-align: center">
+          <!--標題字-->
+          <div style="background-color: #86add1; text-align: center">
+            <h3>選擇條件</h3>
           </div>
-        </div>
-      </span>
+
+          <label for="select" scope="col">地區</label>
+          <div role="tw-city-selector"></div>
+          <select
+            id="city-list"
+            onchange="changeCity(this.selectedIndex)"
+          ></select>
+          <select id="sector-list"></select>
+
+          <br />
+          <br />
+
+          <label for="select" scope="col">出門目的</label>
+          <select name="select3" id="select3">
+            <option>請選擇</option>
+            <option>學校</option>
+            <option>公司</option>
+            <option>出遊</option>
+          </select>
+
+          <br />
+          <br />
+
+          <input
+            class="buttonl1"
+            type="button"
+            id="love1chenge"
+            value="添加到我的最愛"
+            style="
+              border-radius: 10px #e9e4e4 double;
+              background-color: #86add1;
+            "
+          />
+
+          <br />
+          <br />
+
+          <label for="select" scope="col">我的最愛</label>
+          <select name="select3" id="select3">
+            <option>請選擇</option>
+            <option>1-未設定</option>
+            <option>2-未設定</option>
+            <option>3-未設定</option>
+          </select>
+        </form>
+      </div>
+
+      <br />
 
       <span class="align-middle" valign="center">
         <div class="content" align="center">
@@ -70,16 +74,6 @@
         </div>
       </span>
     </section>
-
-    <div class="fixed-bottom">
-      <footer class="footer">
-        <div class="container">
-          <div class="footer_body">
-            <p></p>
-          </div>
-        </div>
-      </footer>
-    </div>
 
     <%- include('../partials/footer.ejs') %>
 

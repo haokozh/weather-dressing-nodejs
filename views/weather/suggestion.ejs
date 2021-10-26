@@ -3,8 +3,8 @@
   <body>
     <%- include('../partials/nav.ejs') %>
 
-    <section class="container-fluid align-middle">
-      <div class="row content" style="background-color: #f8f8f8">
+    <section class="container-fluid">
+      <div class="row content align-middle" style="background-color: #f8f8f8">
         <form class="select" style="text-align: center">
           <!--標題字-->
           <div style="background-color: #86add1; text-align: center">
@@ -59,20 +59,16 @@
 
       <br />
 
-      <span class="align-middle" valign="center">
-        <div class="content" align="center">
-          <div class="row">
-            <div class="sublove">
-              <input
-                type="submit"
-                id="love2"
-                value="查看穿搭"
-                data-action="submit"
-              />
-            </div>
-          </div>
+      <div class="row content align-middle" style="text-align: center">
+        <div class="sublove">
+          <input
+            type="submit"
+            id="love2"
+            value="查看穿搭"
+            data-action="submit"
+          />
         </div>
-      </span>
+      </div>
     </section>
 
     <%- include('../partials/footer.ejs') %>

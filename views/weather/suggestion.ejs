@@ -3,8 +3,86 @@
   <body>
     <%- include('../partials/nav.ejs') %>
 
-    <h1>Suggest</h1>
+    <section>
+      <span class="align-middle">
+        <div class="content">
+          <div style="background-color: #f8f8f8" text-align:center>
+            <div class="row">
+              <form class="select" align="center">
+                <!--標題字-->
+                <div style="background-color: #86add1" text-align:center>
+                  <h3>選擇條件</h3>
+                </div>
+
+                <label for="select" scope="col">地區</label>
+
+                <div role="tw-city-selector"></div>
+                <select
+                  id="city-list"
+                  onchange="changeCity(this.selectedIndex)"
+                ></select>
+                <select id="sector-list"></select>
+
+                <label for="select" scope="col">出門目的</label>
+                <select name="select3" id="select3">
+                  <option>請選擇</option>
+                  <option>學校</option>
+                  <option>公司</option>
+                  <option>出遊</option>
+                </select>
+
+                <input
+                  class="buttonl1"
+                  type="button"
+                  id="love1chenge"
+                  value="添加到我的最愛"
+                  style="
+                    border-radius: 10px #e9e4e4 double;
+                    background-color: #86add1;
+                  "
+                />
+
+                <label for="select" scope="col">我的最愛</label>
+                <select name="select3" id="select3">
+                  <option>請選擇</option>
+                  <option>1-未設定</option>
+                  <option>2-未設定</option>
+                  <option>3-未設定</option>
+                </select>
+              </form>
+            </div>
+          </div>
+        </div>
+      </span>
+
+      <span class="align-middle" valign="center">
+        <div class="content" align="center">
+          <div class="row">
+            <div class="sublove">
+              <input
+                type="submit"
+                id="love2"
+                value="查看穿搭"
+                data-action="submit"
+              />
+            </div>
+          </div>
+        </div>
+      </span>
+    </section>
+
+    <div class="fixed-bottom">
+      <footer class="footer">
+        <div class="container">
+          <div class="footer_body">
+            <p></p>
+          </div>
+        </div>
+      </footer>
+    </div>
 
     <%- include('../partials/footer.ejs') %>
+
+    <script src="/js/select-location.js"></script>
   </body>
 </html>

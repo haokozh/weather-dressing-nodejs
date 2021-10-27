@@ -130,7 +130,7 @@ const execQuery = async (column, table, condition, value) => {
   } catch (error) {
     console.error(error);
   } finally {
-    client.release();
+    client.end();
   }
 };
 

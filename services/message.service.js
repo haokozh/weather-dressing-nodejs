@@ -82,7 +82,7 @@ const replyWeather = async (token, text) => {
     //   elementName
     // );
 
-    let forecastId = weatherService.findWeeklyForecastIdByCityName(cityName);
+    let forecastId = weatherService.findWeeklyForecastIdByCityName(splitedText[0]);
     let distName = splitedText[1];
 
     const message = await weatherService.getWeatherResponse(

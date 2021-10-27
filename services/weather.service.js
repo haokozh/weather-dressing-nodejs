@@ -117,7 +117,7 @@ const execQuery = async (column, table, condition, value) => {
   const client = pool.connect();
 
   try {
-    client
+    pool
       .query(`SELECT ${column} FROM ${table} WHERE ${condition} = $1`, [value])
       .then((res) => {
         console.log('Here is query result');

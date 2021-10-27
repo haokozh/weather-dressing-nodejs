@@ -117,19 +117,20 @@ const execQuery = async (column, table, condition, value) => {
   const client = pool.connect();
 
   try {
-    const { rows } = (await client).query(
-      `SELECT ${column} FROM ${table} WHERE ${condition} = $1`,
-      [value]
-    );
+    client
+      .query(`SELECT ${column} FROM ${table} WHERE ${condition} = $1`, [value])
+      .then((res) => {
+        console.log('Here is query result');
+        console.log(res);
 
-    console.log('Here is query result');
-    console.log(rows);
+        const queryResult = res.rows[0];
 
-    return rows;
+        return queryResult.weeklyId;
+      });
   } catch (error) {
     console.error(error);
   } finally {
-    (await client).release();
+    client.release();
   }
 };
 
@@ -140,11 +141,13 @@ const findCityIdByDistName = async (distName) => {
 };
 
 const findWeeklyForecastIdByCityName = async (cityName) => {
-  execQuery('weeklyId', 'cities', 'name', cityName).then((res) => {
-    queryResult = res[0];
+  execQuery('weeklyId', 'cities', 'name', cityName)
+    .then((res) => {
+      queryResult = res[0];
 
-    return queryResult.weeklyid;
-  });
+      return queryResult.weeklyid;
+    })
+    .catch((error) => console.error(error.stack));
 };
 
 const findWeeklyForecastIdByCityId = async (cityId) => {

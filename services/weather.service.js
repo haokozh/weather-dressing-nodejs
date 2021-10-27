@@ -3,6 +3,7 @@ const qs = require('qs');
 
 const ResponseData = require('../models/response-data.model');
 const weatherElement = require('../models/weather-element.model');
+const pool = require('../config/db.config');
 
 const getTwoDaysLocationId = (locationsName) => {
   let prefixId = 'F-D0047-';
@@ -110,6 +111,44 @@ const getWeeklyLocationId = (locationsName) => {
     default:
       throw new Error(`找不到${locationsName}的 ForecastId`);
   }
+};
+
+const execQuery = async (column, table, condition, value) => {
+  const client = pool.connect();
+
+  try {
+    const { rows } = (await client).query(
+      `SELECT ${column} FROM ${table} WHERE ${condition} = $1`,
+      [value]
+    );
+
+    console.log('Here is query result');
+    console.log(rows);
+
+    return rows;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    (await client).release();
+  }
+};
+
+const findCityIdByDistName = async (distName) => {
+  const queryResult = execQuery('cityId', 'dists', 'name', distName);
+  const cityId = queryResult[0];
+  return cityId.cityId;
+};
+
+const findWeeklyForecastIdByCityName = async (cityName) => {
+  const queryResult = execQuery('weeklyId', 'cities', 'name', cityName);
+  const forecastId = queryResult[0];
+  return forecastId.weeklyId;
+};
+
+const findWeeklyForecastIdByCityId = async (cityId) => {
+  const queryResult = execQuery('weeklyId', 'cities', 'id', cityId);
+  const forecastId = queryResult[0];
+  return forecastId.weeklyId;
 };
 
 const getDistsByLocationsName = (locationsName) => {
@@ -821,4 +860,7 @@ module.exports = {
   getTargetDistByLocationsName,
   getWeatherResponse,
   parseResponseToFlexBubble,
+  findCityIdByDistName,
+  findWeeklyForecastIdByCityId,
+  findWeeklyForecastIdByCityName,
 };

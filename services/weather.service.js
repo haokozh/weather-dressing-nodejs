@@ -3,8 +3,6 @@ const qs = require('qs');
 
 const ResponseData = require('../models/response-data.model');
 const weatherElement = require('../models/weather-element.model');
-const pool = require('../config/db.config');
-const { query } = require('express');
 
 const getTwoDaysLocationId = (locationsName) => {
   let prefixId = 'F-D0047-';
@@ -111,30 +109,6 @@ const getWeeklyLocationId = (locationsName) => {
       return (prefixId += '087');
     default:
       throw new Error(`找不到${locationsName}的 ForecastId`);
-  }
-};
-
-const findWeeklyForecastIdByCityName = async (cityName) => {
-  const client = pool.connect();
-
-  try {
-    const { rows } = (await client).query(
-      `SELECT * FROM cities WHERE name = $1`,
-      [cityName]
-    );
-
-    console.log(`here is rows ${rows}`);
-
-    console.log(`here is rows[0] ${rows[0]}`);
-    const queryResult = rows[0];
-    console.log(`here is queryResult.weeklyid ${queryResult.weeklyid}`);
-
-    return queryResult.weeklyid;
-
-  } catch (error) {
-    console.error(`Error on findWeeklyForecastIdByCityName: ${error}`);
-  } finally {
-    (await client).release();
   }
 };
 

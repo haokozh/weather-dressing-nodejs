@@ -70,24 +70,15 @@ const replyWeather = async (token, text) => {
 
     const splitedText = text.split(' ');
 
-    // let locationId = weatherService.getWeeklyLocationId(splitedText[0]);
-    // let locationName = weatherService.getTargetDistByLocationsName(
-    //   splitedText[1],
-    //   splitedText[0]
-    // );
-
-    // const message = await weatherService.getWeatherResponse(
-    //   locationId,
-    //   locationName,
-    //   elementName
-    // );
-
-    let forecastId = await weatherService.findWeeklyForecastIdByCityName(splitedText[0]);
-    let distName = splitedText[1];
+    let locationId = weatherService.getWeeklyLocationId(splitedText[0]);
+    let locationName = weatherService.getTargetDistByLocationsName(
+      splitedText[1],
+      splitedText[0]
+    );
 
     const message = await weatherService.getWeatherResponse(
-      forecastId,
-      distName,
+      locationId,
+      locationName,
       elementName
     );
 

@@ -121,9 +121,9 @@ const execQuery = async (column, table, condition, value) => {
       .query(`SELECT ${column} FROM ${table} WHERE ${condition} = $1`, [value])
       .then((res) => {
         console.log('Here is query result');
-        console.log(res);
 
         const queryResult = res.rows[0];
+        console.log(queryResult);
 
         return queryResult.weeklyId;
       });

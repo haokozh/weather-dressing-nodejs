@@ -3,6 +3,7 @@ const qs = require('qs');
 
 const ResponseData = require('../models/response-data.model');
 const weatherElement = require('../models/weather-element.model');
+const pool = require('../config/db.config');
 
 const getTwoDaysLocationId = (locationsName) => {
   let prefixId = 'F-D0047-';
@@ -818,9 +819,24 @@ const replyFlexBubble = (
   });
 };
 
+const findWeeklyForecastIdByCityName = async (cityName) => {
+  const client = await pool.connect();
+
+  try {
+    const { rows } = await client.query(`SELECT * FROM cities WHERE name = $1`, [cityName]);
+
+    return rows[0].weeklyid;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    client.release();
+  }
+};
+
 module.exports = {
   getWeeklyLocationId,
   getTargetDistByLocationsName,
   getWeatherResponse,
   parseResponseToFlexBubble,
+  findWeeklyForecastIdByCityName,
 };

@@ -128,9 +128,9 @@ const execQuery = async (column, table, condition, value) => {
         return queryResult.weeklyId;
       });
   } catch (error) {
-    console.error(error);
+    console.error(error.stack);
   } finally {
-    client.end();
+    pool.end();
   }
 };
 

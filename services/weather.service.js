@@ -123,9 +123,9 @@ const execQuery = async (column, table, condition, value) => {
         console.log('Here is query result');
 
         const queryResult = res.rows[0];
-        console.log(queryResult.weeklyId);
+        console.log(queryResult.weeklyid);
 
-        return queryResult.weeklyId;
+        return queryResult.weeklyid;
       });
   } catch (error) {
     console.error(error.stack);

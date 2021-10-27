@@ -141,7 +141,7 @@ const findCityIdByDistName = async (distName) => {
 };
 
 const findWeeklyForecastIdByCityName = async (cityName) => {
-  return execQuery('weeklyId', 'cities', 'name', cityName);   
+  return await execQuery('weeklyId', 'cities', 'name', cityName);   
 };
 
 const findWeeklyForecastIdByCityId = async (cityId) => {

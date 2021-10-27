@@ -4,7 +4,7 @@ const callback = (req, res) => {
   Promise.all(req.body.events.map(linebotService.handleEvent))
     .then((result) => res.json(result))
     .catch((error) => {
-      console.error(`Error on linebot.controller.callback() ${error}`);
+      console.error(`Error on linebot.controller.callback() ${error.stack}`);
       res.status(res.statusCode).end();
     });
 };

@@ -117,7 +117,7 @@ const execQuery = async (column, table, condition, value) => {
   const client = pool.connect();
 
   try {
-    pool
+    return pool
       .query(`SELECT ${column} FROM ${table} WHERE ${condition} = $1`, [value])
       .then((res) => {
         console.log('Here is query result');
@@ -141,7 +141,7 @@ const findCityIdByDistName = async (distName) => {
 };
 
 const findWeeklyForecastIdByCityName = async (cityName) => {
-  execQuery('weeklyId', 'cities', 'name', cityName).then((res) => res);
+  return execQuery('weeklyId', 'cities', 'name', cityName).then((res) => res);
 };
 
 const findWeeklyForecastIdByCityId = async (cityId) => {
@@ -591,7 +591,9 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
 
     return data;
   } catch (error) {
-    console.error(`Error on linebot.service.getWeatherResponse(): ${error}`);
+    console.error(
+      `Error on linebot.service.getWeatherResponse(): ${error.stack}`
+    );
   }
 };
 
@@ -673,7 +675,7 @@ const parseResponseToFlexBubble = (data) => {
     );
   } catch (error) {
     console.error(
-      `Error on linebot.service.parseResponseToFlexBubble(): ${error}`
+      `Error on linebot.service.parseResponseToFlexBubble(): ${error.stack}`
     );
   }
 };

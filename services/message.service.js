@@ -96,7 +96,7 @@ const replyWeather = async (token, text) => {
       weatherService.parseResponseToFlexBubble(message)
     );
   } catch (error) {
-    console.error(`Error on message.service.replyWeather(): ${error}`);
+    console.error(`Error on message.service.replyWeather(): ${error.stack}`);
   }
 };
 

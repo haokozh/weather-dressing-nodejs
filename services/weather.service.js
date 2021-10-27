@@ -849,7 +849,5 @@ module.exports = {
   getTargetDistByLocationsName,
   getWeatherResponse,
   parseResponseToFlexBubble,
-  findCityIdByDistName,
-  findWeeklyForecastIdByCityId,
   findWeeklyForecastIdByCityName,
 };

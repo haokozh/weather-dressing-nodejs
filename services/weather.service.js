@@ -823,5 +823,4 @@ module.exports = {
   getTargetDistByLocationsName,
   getWeatherResponse,
   parseResponseToFlexBubble,
-  findWeeklyForecastIdByCityName,
 };

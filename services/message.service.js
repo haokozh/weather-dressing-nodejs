@@ -19,31 +19,31 @@ const handleText = (token, message) => {
 };
 
 const handleImage = (token, message) => {
-  return replyText(token, 'Image Message is Not Supported');
+  return replyText(token, '正在想如何用圖片訊息上傳照片');
 };
 
 const handleVideo = (token, message) => {
-  return replyText(token, 'Video Message is Not Supported');
+  return replyText(token, '我要怎麼看影片？');
 };
 
 const handleAudio = (token, message) => {
-  return replyText(token, 'Audio Message is Not Supported');
+  return replyText(token, '聽不到');
 };
 
 const handleFile = (token, message) => {
-  return replyText(token, 'File Message is Not Supported');
+  return replyText(token, '傳檔案應該也不會有反應');
 };
 
 const handleLocation = (token, message) => {
-  return replyText(token, 'Location Message is Not Supported');
+  return replyText(token, '正在想如何用位置訊息查詢天氣');
 };
 
 const handleSticker = (token, message) => {
-  return replyText(token, 'Sticker Message is Not Supported');
+  return replyText(token, '看來傳貼圖並沒有反應');
 };
 
 const throwUnknownMessageError = (message) => {
-  throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+  throw new Error(`未知的訊息 : ${JSON.stringify(message)}`);
 };
 
 const messageEvents = {
@@ -69,18 +69,6 @@ const replyWeather = async (token, text) => {
     const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
     const splitedText = text.split(' ');
-
-    // let locationId = weatherService.getWeeklyLocationId(splitedText[0]);
-    // let locationName = weatherService.getTargetDistByLocationsName(
-    //   splitedText[1],
-    //   splitedText[0]
-    // );
-
-    // const message = await weatherService.getWeatherResponse(
-    //   locationId,
-    //   locationName,
-    //   elementName
-    // );
 
     let forecastId = await weatherService.findWeeklyForecastIdByCityName(splitedText[0]);
     let distName = splitedText[1];

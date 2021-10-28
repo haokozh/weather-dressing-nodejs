@@ -819,18 +819,18 @@ const replyFlexBubble = (
   });
 };
 
+// 將 '台' 轉成 '臺'
+const replaceCityName = (cityName) => {
+  return cityName.includes('台') ? cityName.replace('台', '臺') : cityName;
+};
+
 const findWeeklyForecastIdByCityName = async (cityName) => {
   const client = await pool.connect();
 
   try {
-    // 將 '台' 轉成 '臺'
-    cityName = cityName.includes('台')
-      ? cityName.replace('台', '臺')
-      : cityName;
-      
     const { rows } = await client.query(
       `SELECT * FROM cities WHERE name = $1`,
-      [cityName]
+      [replaceCityName(cityName)]
     );
 
     return rows[0].weeklyid;

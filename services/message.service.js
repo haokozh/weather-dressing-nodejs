@@ -68,9 +68,6 @@ const handleMessageEvent = (event) => {
 const replyWeather = async (token, text) => {
   try {
     // todo:
-    // 移除 findWeeklyForecastIdByCityName()
-    // 新增 findWeeklyForecastIdByDistName()
-
     // 如果 輸入 xx市 xx區
     // 需要確認 xx市 有 xx區
 
@@ -84,45 +81,49 @@ const replyWeather = async (token, text) => {
 
     if (queryResult.length > 1) {
       const postbackMessage = {
-        type: 'bubble',
-        size: 'giga',
-        direction: 'ltr',
-        body: {
-          type: 'box',
-          layout: 'vertical',
-          contents: [
-            {
-              type: 'text',
-              text: '請選擇地區',
-              weight: 'bold',
-            },
-            {
-              type: 'separator',
-              margin: 'md',
-            },
-            {
-              type: 'button',
-              action: {
-                type: 'postback',
-                label: '新竹市 東區',
-                data: '新竹市 東區',
+        type: 'flex',
+        altText: 'Postback Message',
+        contents: {
+          type: 'bubble',
+          size: 'giga',
+          direction: 'ltr',
+          body: {
+            type: 'box',
+            layout: 'vertical',
+            contents: [
+              {
+                type: 'text',
+                text: '請選擇地區',
+                weight: 'bold',
               },
-            },
-            {
-              type: 'button',
-              action: {
-                type: 'postback',
-                label: '嘉義市 東區',
-                data: '嘉義市 東區',
+              {
+                type: 'separator',
+                margin: 'md',
               },
-            },
-          ],
+              {
+                type: 'button',
+                action: {
+                  type: 'postback',
+                  label: '新竹市 東區',
+                  data: '新竹市 東區',
+                },
+              },
+              {
+                type: 'button',
+                action: {
+                  type: 'postback',
+                  label: '嘉義市 東區',
+                  data: '嘉義市 東區',
+                },
+              },
+            ],
+          },
         },
       };
 
       return client.replyMessage(token, postbackMessage);
     }
-    
+
     let forecastId = queryResult[0].weeklyid;
     let distName = queryResult[0].distname;
 

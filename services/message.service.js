@@ -91,22 +91,20 @@ const getSeparator = (margin) => {
   };
 };
 
-const getPostbackMessage = () => {
-  return {
-    type: 'bubble',
-    size: 'meta',
-    direction: 'ltr',
-    body: {
-      type: 'box',
-      layout: 'vertical',
-      contents: [
-        getPostbackText('請選擇地區'),
-        getSeparator('md'),
-        getPostbackButton('新竹市 東區'),
-        getPostbackButton('嘉義市 東區'),
-      ],
-    },
-  };
+const postbackMessage = {
+  type: 'bubble',
+  size: 'meta',
+  direction: 'ltr',
+  body: {
+    type: 'box',
+    layout: 'vertical',
+    contents: [
+      getPostbackText('請選擇地區'),
+      getSeparator('md'),
+      getPostbackButton('新竹市 東區'),
+      getPostbackButton('嘉義市 東區'),
+    ],
+  },
 };
 
 const replyWeather = async (token, text) => {
@@ -140,8 +138,8 @@ const replyWeather = async (token, text) => {
         type: 'flex',
         altText: 'postback message',
         contents: {
-          getPostbackMessage()
-        }
+          postbackMessage,
+        },
       };
     }
 

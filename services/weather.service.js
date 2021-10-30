@@ -134,7 +134,7 @@ const replyFlexBubble = (
         type: 'image',
         url: 'https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip4.jpg',
         size: 'full',
-        aspectRatio: '20:13',
+        aspectRatio: '16:9',
         aspectMode: 'cover',
         action: {
           type: 'uri',

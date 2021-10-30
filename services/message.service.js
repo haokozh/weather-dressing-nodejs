@@ -81,9 +81,9 @@ const replyWeather = async (token, text) => {
     // 如果 沒有重複 
     // 回傳 xx區天氣資訊
 
-    let queryResult = weatherService.findWeeklyForecastIdByDistName(text);
-    let forecastId = queryResult.weeklyid;
-    let distName = queryResult.distname;
+    let queryResult = await weatherService.findWeeklyForecastIdByDistName(text);
+    let forecastId = queryResult[0].weeklyid;
+    let distName = queryResult[0].distname;
 
     // const splitedText = text.split(' ');
 

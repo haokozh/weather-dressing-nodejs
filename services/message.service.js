@@ -124,20 +124,16 @@ const replyWeather = async (token, text) => {
     let message;
     let queryResult = await weatherService.findWeeklyForecastIdByDistName(text);
 
-    if (queryResult.length > 1) {
-      message = getPostbackMessage();
-    } else {
-      let forecastId = queryResult[0].weeklyid;
-      let distName = queryResult[0].distname;
+    let forecastId = queryResult[0].weeklyid;
+    let distName = queryResult[0].distname;
 
-      weatherResponse = await weatherService.getWeatherResponse(
-        forecastId,
-        distName,
-        elementParams
-      );
+    weatherResponse = await weatherService.getWeatherResponse(
+      forecastId,
+      distName,
+      elementParams
+    );
 
-      message = weatherService.parseResponseToFlexBubble(message);
-    }
+    message = weatherService.parseResponseToFlexBubble(message);
 
     return client.replyMessage(token, message);
   } catch (error) {

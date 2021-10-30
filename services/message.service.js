@@ -77,10 +77,52 @@ const replyWeather = async (token, text) => {
     // 如果 輸入 xx區
     // 如果 有重複 ex. 東區, 西區, 大安區, 中山區, 中正區, 信義區
     // 詢問使用者是哪一個
-    // 如果 沒有重複 
+    // 如果 沒有重複
     // 回傳 xx區天氣資訊
 
     let queryResult = await weatherService.findWeeklyForecastIdByDistName(text);
+
+    if (queryResult.length > 1) {
+      const postbackMessage = {
+        type: 'bubble',
+        size: 'giga',
+        direction: 'ltr',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'text',
+              text: '請選擇地區',
+              weight: 'bold',
+            },
+            {
+              type: 'separator',
+              margin: 'md',
+            },
+            {
+              type: 'button',
+              action: {
+                type: 'postback',
+                label: '新竹市 東區',
+                data: '新竹市 東區',
+              },
+            },
+            {
+              type: 'button',
+              action: {
+                type: 'postback',
+                label: '嘉義市 東區',
+                data: '嘉義市 東區',
+              },
+            },
+          ],
+        },
+      };
+
+      return client.replyMessage(token, postbackMessage);
+    }
+    
     let forecastId = queryResult[0].weeklyid;
     let distName = queryResult[0].distname;
 

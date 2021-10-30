@@ -131,21 +131,21 @@ const replyWeather = async (token, text) => {
       };
 
       return client.replyMessage(token, postbackMessage);
+    } else {
+      let forecastId = queryResult[0].weeklyid;
+      let distName = queryResult[0].distname;
+
+      const message = await weatherService.getWeatherResponse(
+        forecastId,
+        distName,
+        elementParams
+      );
+
+      return client.replyMessage(
+        token,
+        weatherService.parseResponseToFlexBubble(message)
+      );
     }
-
-    let forecastId = queryResult[0].weeklyid;
-    let distName = queryResult[0].distname;
-
-    const message = await weatherService.getWeatherResponse(
-      forecastId,
-      distName,
-      elementParams
-    );
-
-    return client.replyMessage(
-      token,
-      weatherService.parseResponseToFlexBubble(message)
-    );
   } catch (error) {
     console.error(`Error on message.service.replyWeather(): ${error.stack}`);
   }

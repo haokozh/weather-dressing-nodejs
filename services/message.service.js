@@ -136,7 +136,13 @@ const replyWeather = async (token, text) => {
 
       message = weatherService.parseResponseToFlexBubble(weatherResponse);
     } else {
-      message = getPostbackMessage();
+      message = {
+        type: 'flex',
+        altText: 'postback message',
+        contents: {
+          getPostbackMessage()
+        }
+      };
     }
 
     return client.replyMessage(token, message);

@@ -121,7 +121,7 @@ const replyWeather = async (token, text) => {
     // 如果 沒有重複
     // 回傳 xx區天氣資訊
 
-    let message;
+    
     let queryResult = await weatherService.findWeeklyForecastIdByDistName(text);
 
     let forecastId = queryResult[0].weeklyid;
@@ -133,7 +133,7 @@ const replyWeather = async (token, text) => {
       elementParams
     );
 
-    message = weatherService.parseResponseToFlexBubble(message);
+    const message = weatherService.parseResponseToFlexBubble(message);
 
     return client.replyMessage(token, message);
   } catch (error) {

@@ -1,6 +1,7 @@
 const { client } = require('../config/linebot.config');
 
 const weatherService = require('../services/weather.service');
+const elementParams = require('../models/weather-element.model').elementName;
 
 const replyText = (token, texts) => {
   texts = Array.isArray(texts) ? texts : [texts];
@@ -66,8 +67,6 @@ const handleMessageEvent = (event) => {
 
 const replyWeather = async (token, text) => {
   try {
-    const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
-
     // todo:
     // 移除 findWeeklyForecastIdByCityName()
     // 新增 findWeeklyForecastIdByDistName()
@@ -85,15 +84,10 @@ const replyWeather = async (token, text) => {
     let forecastId = queryResult[0].weeklyid;
     let distName = queryResult[0].distname;
 
-    // const splitedText = text.split(' ');
-
-    // let forecastId = await weatherService.findWeeklyForecastIdByCityName(splitedText[0]);
-    // let distName = splitedText[1];
-
     const message = await weatherService.getWeatherResponse(
       forecastId,
       distName,
-      elementName
+      elementParams
     );
 
     return client.replyMessage(

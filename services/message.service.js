@@ -136,7 +136,10 @@ const replyWeather = async (token, text) => {
 
       message = weatherService.parseResponseToFlexBubble(weatherResponse);
     } else {
-      message = 'queryResult > 1';
+      message = {
+        type: 'text',
+        text: 'queryResult > 1',
+      };
     }
 
     return client.replyMessage(token, message);

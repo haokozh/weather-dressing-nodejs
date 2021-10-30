@@ -841,10 +841,31 @@ const findWeeklyForecastIdByCityName = async (cityName) => {
   }
 };
 
+// non tested
+const findWeeklyForecastIdByDistName = async (distName) => {
+  const client = await pool.connect();
+
+  try {
+    const { rows } = await client.query(
+      `SELECT cities.name AS cityname, dists.name AS distname, cities.weeklyid FROM cities JOIN dists ON cities.id = dists.cityid AND dists.name = $1`,
+      [distName]
+    );
+
+    console.log(rows);
+
+    return rows;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    client.release();
+  }
+};
+
 module.exports = {
   getWeeklyLocationId,
   getTargetDistByLocationsName,
   getWeatherResponse,
   parseResponseToFlexBubble,
   findWeeklyForecastIdByCityName,
+  findWeeklyForecastIdByDistName,
 };

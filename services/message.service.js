@@ -68,10 +68,27 @@ const replyWeather = async (token, text) => {
   try {
     const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
-    const splitedText = text.split(' ');
+    // todo:
+    // 移除 findWeeklyForecastIdByCityName()
+    // 新增 findWeeklyForecastIdByDistName()
 
-    let forecastId = await weatherService.findWeeklyForecastIdByCityName(splitedText[0]);
-    let distName = splitedText[1];
+    // 如果 輸入 xx市 xx區
+    // 需要確認 xx市 有 xx區
+
+    // 如果 輸入 xx區
+    // 如果 有重複 ex. 東區, 西區, 大安區, 中山區, 中正區, 信義區
+    // 詢問使用者是哪一個
+    // 如果 沒有重複 
+    // 回傳 xx區天氣資訊
+
+    let queryResult = weatherService.findWeeklyForecastIdByDistName(text);
+    let forecastId = queryResult.weeklyid;
+    let distName = queryResult.distname;
+
+    // const splitedText = text.split(' ');
+
+    // let forecastId = await weatherService.findWeeklyForecastIdByCityName(splitedText[0]);
+    // let distName = splitedText[1];
 
     const message = await weatherService.getWeatherResponse(
       forecastId,

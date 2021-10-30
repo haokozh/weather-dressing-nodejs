@@ -2,7 +2,8 @@ const { get } = require('axios');
 const qs = require('qs');
 
 const ResponseData = require('../models/response-data.model');
-const weatherElement = require('../models/weather-element.model').weatherElement;
+const weatherElement =
+  require('../models/weather-element.model').weatherElement;
 const pool = require('../config/db.config');
 
 const getWeatherResponse = async (locationId, locationName, elementName) => {
@@ -114,6 +115,16 @@ const parseResponseToFlexBubble = (data) => {
   }
 };
 
+const getLocationText = (locationsName, locationName) => {
+  return {
+    type: 'text',
+    text: `${locationsName} ${locationName}`,
+    weight: 'bold',
+    size: 'xl',
+    align: 'center',
+  };
+};
+
 const replyFlexBubble = (
   locationsName,
   locationName,
@@ -145,13 +156,7 @@ const replyFlexBubble = (
         type: 'box',
         layout: 'vertical',
         contents: [
-          {
-            type: 'text',
-            text: `${locationsName} ${locationName}`,
-            weight: 'bold',
-            size: 'xl',
-            align: 'center',
-          },
+          getLocationText(locationsName, locationName),
           {
             type: 'box',
             layout: 'vertical',
@@ -159,7 +164,9 @@ const replyFlexBubble = (
             contents: [
               {
                 type: 'text',
-                text: `${getForecastDate(pop12hTime.startTime)} ~ ${getForecastDate(pop12hTime.endTime)}`,
+                text: `${getForecastDate(
+                  pop12hTime.startTime
+                )} ~ ${getForecastDate(pop12hTime.endTime)}`,
                 size: 'md',
                 color: '#999999',
                 margin: 'md',

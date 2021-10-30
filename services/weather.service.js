@@ -2,7 +2,7 @@ const { get } = require('axios');
 const qs = require('qs');
 
 const ResponseData = require('../models/response-data.model');
-const weatherElement = require('../models/weather-element.model');
+const weatherElement = require('../models/weather-element.model').weatherElement;
 const pool = require('../config/db.config');
 
 const getWeatherResponse = async (locationId, locationName, elementName) => {

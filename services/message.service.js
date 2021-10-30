@@ -79,7 +79,7 @@ const getPostbackButton = (option) => {
 const getPostbackText = (text) => {
   return {
     type: 'text',
-    text: '請選擇地區',
+    text: text,
     weight: 'bold',
   };
 };
@@ -94,7 +94,7 @@ const getSeparator = (margin) => {
 const getPostbackMessage = () => {
   return {
     type: 'bubble',
-    size: 'giga',
+    size: 'meta',
     direction: 'ltr',
     body: {
       type: 'box',

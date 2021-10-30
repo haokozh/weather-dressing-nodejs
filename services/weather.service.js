@@ -285,6 +285,7 @@ const replyFlexBubble = (
     altText: 'Weather infomation flex message',
     contents: {
       type: 'bubble',
+      hero: getHeroBlock(),
       body: getBody(
         locationsName,
         locationName,

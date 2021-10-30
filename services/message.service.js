@@ -65,6 +65,50 @@ const handleMessageEvent = (event) => {
   );
 };
 
+const getPostbackButton = (option) => {
+  return {
+    type: 'button',
+    action: {
+      type: 'postback',
+      label: option,
+      data: option,
+    },
+  };
+};
+
+const getPostbackText = (text) => {
+  return {
+    type: 'text',
+    text: '請選擇地區',
+    weight: 'bold',
+  };
+};
+
+const getSeparator = (margin) => {
+  return {
+    type: 'separator',
+    margin: margin,
+  };
+};
+
+const getPostbackMessage = () => {
+  return {
+    type: 'bubble',
+    size: 'giga',
+    direction: 'ltr',
+    body: {
+      type: 'box',
+      layout: 'vertical',
+      contents: [
+        getPostbackText('請選擇地區'),
+        getSeparator('md'),
+        getPostbackButton('新竹市 東區'),
+        getPostbackButton('嘉義市 東區'),
+      ],
+    },
+  };
+};
+
 const replyWeather = async (token, text) => {
   try {
     // todo:
@@ -83,42 +127,7 @@ const replyWeather = async (token, text) => {
       const postbackMessage = {
         type: 'flex',
         altText: 'Postback Message',
-        contents: {
-          type: 'bubble',
-          size: 'giga',
-          direction: 'ltr',
-          body: {
-            type: 'box',
-            layout: 'vertical',
-            contents: [
-              {
-                type: 'text',
-                text: '請選擇地區',
-                weight: 'bold',
-              },
-              {
-                type: 'separator',
-                margin: 'md',
-              },
-              {
-                type: 'button',
-                action: {
-                  type: 'postback',
-                  label: '新竹市 東區',
-                  data: '新竹市 東區',
-                },
-              },
-              {
-                type: 'button',
-                action: {
-                  type: 'postback',
-                  label: '嘉義市 東區',
-                  data: '嘉義市 東區',
-                },
-              },
-            ],
-          },
-        },
+        contents: getPostbackMessage(),
       };
 
       return client.replyMessage(token, postbackMessage);

@@ -314,7 +314,7 @@ const replyFlexBubble = (
     altText: 'Weather infomation flex message',
     contents: {
       type: 'bubble',
-      size: 'giga',
+      size: 'meta',
       direction: 'ltr',
       hero: getHeroBlock(),
       body: getBody(

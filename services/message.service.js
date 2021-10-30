@@ -123,29 +123,29 @@ const replyWeather = async (token, text) => {
 
     let queryResult = await weatherService.findWeeklyForecastIdByDistName(text);
 
-    if (queryResult.length > 1) {
-      const postbackMessage = {
-        type: 'flex',
-        altText: 'Postback Message',
-        contents: getPostbackMessage(),
-      };
+    // if (queryResult.length > 1) {
+    //   const postbackMessage = {
+    //     type: 'flex',
+    //     altText: 'Postback Message',
+    //     contents: getPostbackMessage(),
+    //   };
 
-      return client.replyMessage(token, postbackMessage);
-    } else {
-      let forecastId = queryResult[0].weeklyid;
-      let distName = queryResult[0].distname;
+    //   return client.replyMessage(token, postbackMessage);
+    // }
 
-      const message = await weatherService.getWeatherResponse(
-        forecastId,
-        distName,
-        elementParams
-      );
+    let forecastId = queryResult[0].weeklyid;
+    let distName = queryResult[0].distname;
 
-      return client.replyMessage(
-        token,
-        weatherService.parseResponseToFlexBubble(message)
-      );
-    }
+    const message = await weatherService.getWeatherResponse(
+      forecastId,
+      distName,
+      elementParams
+    );
+
+    return client.replyMessage(
+      token,
+      weatherService.parseResponseToFlexBubble(message)
+    );
   } catch (error) {
     console.error(`Error on message.service.replyWeather(): ${error.stack}`);
   }

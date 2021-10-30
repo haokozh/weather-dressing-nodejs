@@ -65,48 +65,6 @@ const handleMessageEvent = (event) => {
   );
 };
 
-const getPostbackButton = (option) => {
-  return {
-    type: 'button',
-    action: {
-      type: 'postback',
-      label: option,
-      data: option,
-    },
-  };
-};
-
-const getPostbackText = (text) => {
-  return {
-    type: 'text',
-    text: text,
-    weight: 'bold',
-  };
-};
-
-const getSeparator = (margin) => {
-  return {
-    type: 'separator',
-    margin: margin,
-  };
-};
-
-const postbackMessage = {
-  type: 'bubble',
-  size: 'meta',
-  direction: 'ltr',
-  body: {
-    type: 'box',
-    layout: 'vertical',
-    contents: [
-      getPostbackText('請選擇地區'),
-      getSeparator('md'),
-      getPostbackButton('新竹市 東區'),
-      getPostbackButton('嘉義市 東區'),
-    ],
-  },
-};
-
 const replyWeather = async (token, text) => {
   try {
     // todo:
@@ -135,11 +93,8 @@ const replyWeather = async (token, text) => {
       message = weatherService.parseResponseToFlexBubble(weatherResponse);
     } else {
       message = {
-        type: 'flex',
-        altText: 'postback message',
-        contents: {
-          postbackMessage,
-        },
+        type: 'text',
+        text: 'queryResult > 1',
       };
     }
 

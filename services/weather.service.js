@@ -128,6 +128,8 @@ const replyFlexBubble = (
     altText: 'This is FlexMessage',
     contents: {
       type: 'bubble',
+      size: 'giga',
+      direction: 'ltr',
       hero: {
         type: 'image',
         url: 'https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip4.jpg',

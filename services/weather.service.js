@@ -686,7 +686,7 @@ const replyFlexBubble = (
             contents: [
               {
                 type: 'text',
-                text: `${pop12hTime.startTime} ~ ${pop12hTime.endTime}`,
+                text: `${pop12hTime.startTime.substring(0, 9)} ~ ${pop12hTime.endTime.substring(0, 9)}`,
                 size: 'md',
                 color: '#999999',
                 margin: 'md',
@@ -841,7 +841,6 @@ const findWeeklyForecastIdByCityName = async (cityName) => {
   }
 };
 
-// non tested
 const findWeeklyForecastIdByDistName = async (distName) => {
   const client = await pool.connect();
 

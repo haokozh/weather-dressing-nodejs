@@ -27,6 +27,10 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
   }
 };
 
+const getForecastDate = (time) => {
+  return time.substring(0, 9);
+};
+
 const getPoP12hDescription = (value) => {
   return `${value}%`;
 };
@@ -153,7 +157,7 @@ const replyFlexBubble = (
             contents: [
               {
                 type: 'text',
-                text: `${pop12hTime.startTime.substring(0, 9)} ~ ${pop12hTime.endTime.substring(0, 9)}`,
+                text: `${getForecastDate(pop12hTime.startTime)} ~ ${getForecastDate(pop12hTime.endTime)}`,
                 size: 'md',
                 color: '#999999',
                 margin: 'md',

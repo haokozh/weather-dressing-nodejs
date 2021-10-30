@@ -139,35 +139,6 @@ const getHeroBlock = () => {
   };
 };
 
-const getFooterButton = () => {
-  return {
-    type: 'button',
-    style: 'link',
-    height: 'sm',
-    action: {
-      type: 'uri',
-      label: '詳細內容',
-      uri: 'https://www.cwb.gov.tw/V8/C/W/County/index.html',
-    },
-  };
-};
-
-const getFooter = () => {
-  return {
-    type: 'box',
-    layout: 'vertical',
-    spacing: 'sm',
-    contents: [
-      getFooterButton(),
-      {
-        type: 'spacer',
-        size: 'sm',
-      },
-    ],
-    flex: 0,
-  };
-};
-
 const getBody = (
   locationsName,
   locationName,
@@ -309,14 +280,11 @@ const replyFlexBubble = (
   tempDescription,
   confortDescription
 ) => {
-  return (replyBubble = {
+  return replyBubble = {
     type: 'flex',
     altText: 'Weather infomation flex message',
     contents: {
       type: 'bubble',
-      size: 'meta',
-      direction: 'ltr',
-      hero: getHeroBlock(),
       body: getBody(
         locationsName,
         locationName,
@@ -326,9 +294,8 @@ const replyFlexBubble = (
         tempDescription,
         confortDescription
       ),
-      footer: getFooter(),
-    },
-  });
+    }
+  };
 };
 
 // 將 '台' 轉成 '臺'

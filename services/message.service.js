@@ -121,22 +121,23 @@ const replyWeather = async (token, text) => {
     // 如果 沒有重複
     // 回傳 xx區天氣資訊
 
+    let message = '';
     let queryResult = await weatherService.findWeeklyForecastIdByDistName(text);
 
-    // if (queryResult.length > 1) {
-    //   const postbackMessage = {
-    //     type: 'flex',
-    //     altText: 'Postback Message',
-    //     contents: getPostbackMessage(),
-    //   };
+    if (queryResult.length > 1) {
+      const postbackMessage = {
+        type: 'flex',
+        altText: 'Postback Message',
+        contents: getPostbackMessage(),
+      };
 
-    //   return client.replyMessage(token, postbackMessage);
-    // }
+      message = postbackMessage;
+    }
 
     let forecastId = queryResult[0].weeklyid;
     let distName = queryResult[0].distname;
 
-    const message = await weatherService.getWeatherResponse(
+    message = await weatherService.getWeatherResponse(
       forecastId,
       distName,
       elementParams

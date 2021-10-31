@@ -134,7 +134,21 @@ const getPostbackButton = (cityName, distName) => {
   };
 };
 
-const getPostbackMessage = () => {
+const getPostbackTitle = (text) => {
+  return {
+    type: 'text',
+    text: `請問是哪個${text}?`,
+    size: 'xxl',
+  };
+};
+
+const getPostbackMessage = (queryResult, text) => {
+
+  let buttons = [];
+  queryResult.forEach(record => {
+    buttons.push(getPostbackButton(record.cityname, record.distname));
+  });
+
   return {
     type: 'flex',
     altText: 'this is flex message',
@@ -144,13 +158,8 @@ const getPostbackMessage = () => {
         type: 'box',
         layout: 'vertical',
         contents: [
-          {
-            type: 'text',
-            text: '請問是哪個東區?',
-            size: 'xxl',
-          },
-          getPostbackButton('新竹市', '東區'),
-          getPostbackButton('臺南市', '東區'),
+          getPostbackTitle(text),
+          buttons,
         ],
       },
     },
@@ -184,7 +193,7 @@ const replyWeather = async (token, text) => {
 
       message = weatherService.parseResponseToFlexBubble(weatherResponse);
     } else if (queryResult.length > 1) {
-      message = getPostbackMessage();
+      message = getPostbackMessage(queryResult, text);
     } else {
       message = {
         type: 'text',

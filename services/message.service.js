@@ -43,60 +43,25 @@ const replyUnknownMessage = (token) => {
   return replyText(token, '?');
 };
 
-const keywords = {
-  help: replyHelpMessage,
-  weather: replyWeatherMessage,
-  suggestion: replySuggestionMessage,
-  recommand: replyRecommandMessage,
-  ig: replyInstagramLink,
-  website: replyWebsiteLink,
-  default: replyUnknownMessage,
-};
-
 const handleText = (token, message) => {
-  return keywords[message.text.toLowerCase()](token) || keywords['default'](token);
-  // let replyMessage = '';
+  let keyword = message.text.toLowerCase();
 
-  // switch (message.text.toLowerCase()) {
-  //   case 'h':
-  //   case 'help':
-  //     replyMessage = 'help';
-  //     break;
-
-  //   case '天氣':
-  //   case 'weather':
-  //     replyMessage = '要查詢哪裡的天氣';
-  //     break;
-
-  //   case '建議':
-  //   case '穿搭建議':
-  //   case 'suggestion':
-  //     replyMessage = '目前沒有建議的穿搭';
-  //     break;
-
-  //   case '推薦':
-  //   case '品牌推薦':
-  //   case 'recommand':
-  //     replyMessage = '目前沒有推薦的網站';
-  //     break;
-
-  //   case '網頁':
-  //   case '網站':
-  //   case 'website':
-  //   case 'web':
-  //     replyMessage = '網站連結';
-  //     break;
-
-  //   case 'ig':
-  //   case 'instagram':
-  //     replyMessage = 'IG連結';
-  //     break;
-
-  //   default:
-  //     replyMessage = '?';
-  // }
-
-  // return replyText(token, replyMessage);
+  switch (keyword) {
+    case 'help':
+      return replyHelpMessage(token);
+    case 'weather':
+      return replyWeatherMessage(token);
+    case 'suggestion':
+      return replySuggestionMessage(token);
+    case 'recommand':
+      return replyRecommandMessage(token);
+    case 'ig':
+      return replyInstagramLink(token);
+    case 'website':
+      return replyWebsiteLink(token);
+    default:
+      return replyUnknownMessage(token);
+  }
 };
 
 const handleImage = (token, message) => {

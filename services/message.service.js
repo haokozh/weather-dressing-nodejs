@@ -123,6 +123,39 @@ const handleMessageEvent = (event) => {
     messageEvents['default'](event.message)
   );
 };
+const getPostbackButton = (cityName, distName) => {
+  return {
+    type: 'button',
+    action: {
+      type: 'postback',
+      label: `${cityName} ${distName}`,
+      data: `${cityName} ${distName}`,
+    },
+  };
+};
+
+const getPostbackMessage = () => {
+  return {
+    type: 'flex',
+    altText: 'this is flex message',
+    contents: {
+      type: 'bubble',
+      body: {
+        type: 'box',
+        layout: 'vertical',
+        contents: [
+          {
+            type: 'text',
+            text: '請問是哪個東區?',
+            size: 'xxl',
+          },
+          getPostbackButton('新竹市', '東區'),
+          getPostbackButton('臺南市', '東區'),
+        ],
+      },
+    },
+  };
+};
 
 const replyWeather = async (token, text) => {
   try {
@@ -151,32 +184,7 @@ const replyWeather = async (token, text) => {
 
       message = weatherService.parseResponseToFlexBubble(weatherResponse);
     } else if (queryResult.length > 1) {
-      message = {
-        type: 'flex',
-        altText: 'this is flex message',
-        contents: {
-          type: 'bubble',
-          body: {
-            type: 'box',
-            layout: 'vertical',
-            contents: [
-              {
-                type: 'text',
-                text: '請問是哪個東區?',
-                size: 'xxl',
-              },
-              {
-                type: 'button',
-                action: {
-                  type: 'postback',
-                  label: '東區',
-                  data: '東區',
-                },
-              },
-            ],
-          },
-        },
-      };
+      message = getPostbackMessage();
     } else {
       message = {
         type: 'text',

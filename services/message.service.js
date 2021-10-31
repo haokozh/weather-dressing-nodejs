@@ -152,8 +152,26 @@ const replyWeather = async (token, text) => {
       message = weatherService.parseResponseToFlexBubble(weatherResponse);
     } else if (queryResult.length > 1) {
       message = {
-        type: 'text',
-        text: 'queryResult > 1',
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "請問是哪個東區?",
+              "size": "xxl"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "postback",
+                "label": "action",
+                "data": "hello"
+              }
+            }
+          ]
+        }
       };
     } else {
       message = {

@@ -40,7 +40,7 @@ const handlePostbackEvent = (event) => {
     data += `(${JSON.stringify(event.postback.params)})`;
   }
 
-  return messageService.replyText(event.replyToken, `Got postback: ${data}`);
+  return messageService.replyText(event.replyToken, `已收到 : ${data}`);
 };
 
 const handleBeaconEvent = (event) => {

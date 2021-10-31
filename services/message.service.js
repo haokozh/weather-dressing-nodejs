@@ -16,6 +16,22 @@ const replyText = (token, texts) => {
 };
 
 const handleText = (token, message) => {
+  if (message.text === 'h' || message.text === 'help') {
+    return replyText(token, 'help');
+  } else if (message.text === '天氣' || message.text === 'weather') {
+    return replyText(token, '要查詢哪裡的天氣');
+  } else if (message.text === '建議' || message.text === '穿搭建議' || message.text === 'suggestion') {
+    return replyText(token, '目前沒有建議的穿搭');
+  } else if (message.text === '推薦' || message.text === '品牌推薦' || message.text === ' recommand') {
+    return replyText(token, '目前沒有推薦的網站');
+  } else if (message.text === '網頁' || message.text === 'website' || message.text === 'web') {
+    return replyText(token, '網站連結');
+  } else if (message.text === 'IG' || message.text === 'instagram' || message.text === 'ig') {
+    return replyText(token, 'IG連結');
+  } else {
+    return replyText(token, '?');
+  }
+
   return replyWeather(token, message.text);
 };
 

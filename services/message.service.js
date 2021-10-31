@@ -54,7 +54,7 @@ const keywords = {
 };
 
 const handleText = (token, message) => {
-  return keywords[message.text](token) || keywords['default'](token);
+  return keywords[message.text.toLowerCase()](token) || keywords['default'](token);
   // let replyMessage = '';
 
   // switch (message.text.toLowerCase()) {

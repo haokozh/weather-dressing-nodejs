@@ -139,13 +139,6 @@ const replyWeather = async (token, text) => {
     let message;
     let queryResult = await weatherService.findWeeklyForecastIdByDistName(text);
 
-    if (queryResult.length === 0) {
-      message = {
-        type: 'text',
-        text: `找不到 ${text}`,
-      };
-    }
-
     if (queryResult.length === 1) {
       let forecastId = queryResult[0].weeklyid;
       let distName = queryResult[0].distname;
@@ -157,10 +150,15 @@ const replyWeather = async (token, text) => {
       );
 
       message = weatherService.parseResponseToFlexBubble(weatherResponse);
-    } else {
+    } else if (queryResult.length > 1) {
       message = {
         type: 'text',
         text: 'queryResult > 1',
+      };
+    } else {
+      message = {
+        type: 'text',
+        text: `找不到 ${text}`,
       };
     }
 

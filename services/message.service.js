@@ -47,18 +47,32 @@ const handleText = (token, message) => {
   let keyword = message.text.toLowerCase();
 
   switch (keyword) {
+    case 'h':
     case 'help':
       return replyHelpMessage(token);
+
+    case '天氣':
     case 'weather':
       return replyWeatherMessage(token);
+
+    case '建議':
+    case '穿搭建議':
     case 'suggestion':
       return replySuggestionMessage(token);
+
+    case '推薦':
+    case '品牌推薦':
     case 'recommand':
       return replyRecommandMessage(token);
+
     case 'ig':
       return replyInstagramLink(token);
+
+    case '網頁':
+    case '網站':
     case 'website':
       return replyWebsiteLink(token);
+      
     default:
       return replyUnknownMessage(token);
   }

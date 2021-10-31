@@ -143,10 +143,9 @@ const getPostbackTitle = (text) => {
 };
 
 const getPostbackMessage = (queryResult, text) => {
-
-  let buttons = [];
-  queryResult.forEach(record => {
-    buttons.push(getPostbackButton(record.cityname, record.distname));
+  let contants = [getPostbackTitle(text)];
+  queryResult.forEach((record) => {
+    contants.push(getPostbackButton(record.cityname, record.distname));
   });
 
   return {
@@ -157,10 +156,7 @@ const getPostbackMessage = (queryResult, text) => {
       body: {
         type: 'box',
         layout: 'vertical',
-        contents: [
-          getPostbackTitle(text),
-          buttons.map(button => button),
-        ],
+        contents: contants,
       },
     },
   };

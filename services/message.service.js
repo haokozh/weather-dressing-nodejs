@@ -15,81 +15,88 @@ const replyText = (token, texts) => {
   );
 };
 
+const replyHelpMessage = (token) => {
+  return replyText(token, 'help');
+};
+
+const replyWeatherMessage = (token) => {
+  return replyText(token, '要查詢哪裡的天氣');
+};
+
+const replySuggestionMessage = (token) => {
+  return replyText(token, '目前沒有建議的穿搭');
+};
+
+const replyRecommandMessage = (token) => {
+  return replyText(token, '目前沒有推薦的網站');
+};
+
+const replyWebsiteLink = (token) => {
+  return replyText(token, '網站連結');
+};
+
+const replyInstagramLink = (token) => {
+  return replyText(token, 'IG連結');
+};
+
+const replyUnknownMessage = (token) => {
+  return replyText(token, '?');
+};
+
+const keywords = {
+  help: replyHelpMessage,
+  weather: replyWeatherMessage,
+  suggestion: replySuggestionMessage,
+  recommand: replyRecommandMessage,
+  ig: replyInstagramLink,
+  website: replyWebsiteLink,
+  default: replyUnknownMessage,
+};
+
 const handleText = (token, message) => {
-  let replyMessage = '';
+  return keywords[message.text](token) || keywords['default'](token);
+  // let replyMessage = '';
 
-  switch (message.text.toLowerCase()) {
-    case 'h':
-    case 'help':
-      replyMessage = 'help';
-      break;
+  // switch (message.text.toLowerCase()) {
+  //   case 'h':
+  //   case 'help':
+  //     replyMessage = 'help';
+  //     break;
 
-    case '天氣':
-    case 'weather':
-      replyMessage = '要查詢哪裡的天氣';
-      break;
+  //   case '天氣':
+  //   case 'weather':
+  //     replyMessage = '要查詢哪裡的天氣';
+  //     break;
 
-    case '建議':
-    case '穿搭建議':
-    case 'suggestion':
-      replyMessage = '目前沒有建議的穿搭';
-      break;
+  //   case '建議':
+  //   case '穿搭建議':
+  //   case 'suggestion':
+  //     replyMessage = '目前沒有建議的穿搭';
+  //     break;
 
-    case '推薦':
-    case '品牌推薦':
-    case 'recommand':
-      replyMessage = '目前沒有推薦的網站';
-      break;
+  //   case '推薦':
+  //   case '品牌推薦':
+  //   case 'recommand':
+  //     replyMessage = '目前沒有推薦的網站';
+  //     break;
 
-    case '網頁':
-    case '網站':
-    case 'website':
-    case 'web':
-      replyMessage = '網站連結';
-      break;
+  //   case '網頁':
+  //   case '網站':
+  //   case 'website':
+  //   case 'web':
+  //     replyMessage = '網站連結';
+  //     break;
 
-    case 'ig':
-    case 'instagram':
-      replyMessage = 'IG連結';
-      break;
+  //   case 'ig':
+  //   case 'instagram':
+  //     replyMessage = 'IG連結';
+  //     break;
 
-    default:
-      replyMessage = '?';
-  }
-
-  // if (message.text === 'h' || message.text === 'help') {
-  //   return replyText(token, 'help');
-  // } else if (message.text === '天氣' || message.text === 'weather') {
-  //   return replyText(token, '要查詢哪裡的天氣');
-  // } else if (
-  //   message.text === '建議' ||
-  //   message.text === '穿搭建議' ||
-  //   message.text === 'suggestion'
-  // ) {
-  //   return replyText(token, '目前沒有建議的穿搭');
-  // } else if (
-  //   message.text === '推薦' ||
-  //   message.text === '品牌推薦' ||
-  //   message.text === 'recommand'
-  // ) {
-  //   return replyText(token, '目前沒有推薦的網站');
-  // } else if (
-  //   message.text === '網頁' ||
-  //   message.text === 'website' ||
-  //   message.text === 'web'
-  // ) {
-  //   return replyText(token, '網站連結');
-  // } else if (
-  //   message.text === 'IG' ||
-  //   message.text === 'instagram' ||
-  //   message.text === 'ig'
-  // ) {
-  //   return replyText(token, 'IG連結');
-  // } else {
-  //   return replyText(token, '?');
+  //   default:
+  //     replyMessage = '?';
   // }
 
-  return replyText(token, replyMessage);
+  // return replyText(token, replyMessage);
 };
 
 const handleImage = (token, message) => {

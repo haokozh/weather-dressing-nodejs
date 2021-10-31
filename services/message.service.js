@@ -162,6 +162,34 @@ const getPostbackMessage = (queryResult, text) => {
   };
 };
 
+const replyWeatherByCityNameAndDistName = async (token, text) => {
+  try {
+    splitedText = text.split(' ');
+    let queryResultForecastId =
+      await weatherService.findWeeklyForecastIdByCityName(splitedText[0]);
+
+    const weatherResponse = await weatherService.getWeatherResponse(
+      queryResultForecastId,
+      splitedText[1],
+      elementParams
+    );
+
+    const message = weatherService.parseResponseToFlexBubble(weatherResponse);
+
+    return client.replyMessage(token, message);
+  } catch (error) {
+    console.error(`Error on replyWeatherByCityNameAndDistName(): ${error}`);
+  }
+};
+
+const isOneResult = (length) => {
+  return length === 1;
+};
+
+const isManyResult = (length) => {
+  return length > 1;
+};
+
 const replyWeather = async (token, text) => {
   try {
     // todo:
@@ -177,18 +205,18 @@ const replyWeather = async (token, text) => {
     let message;
     let queryResult = await weatherService.findWeeklyForecastIdByDistName(text);
 
-    if (queryResult.length === 1) {
+    if (isOneResult(queryResult.length)) {
       let forecastId = queryResult[0].weeklyid;
       let distName = queryResult[0].distname;
 
-      weatherResponse = await weatherService.getWeatherResponse(
+      const weatherResponse = await weatherService.getWeatherResponse(
         forecastId,
         distName,
         elementParams
       );
 
       message = weatherService.parseResponseToFlexBubble(weatherResponse);
-    } else if (queryResult.length > 1) {
+    } else if (isManyResult(queryResult.length)) {
       message = getPostbackMessage(queryResult, text);
     } else {
       message = {
@@ -206,4 +234,5 @@ const replyWeather = async (token, text) => {
 module.exports = {
   replyText,
   handleMessageEvent,
+  replyWeatherByCityNameAndDistName,
 };

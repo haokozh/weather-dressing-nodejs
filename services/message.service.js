@@ -90,7 +90,7 @@ const handleText = (token, message) => {
   //   return replyText(token, '?');
   // }
 
-  return replyWeather(token, message.text);
+  return replyWeather(token, replyMessage);
 };
 
 const handleImage = (token, message) => {

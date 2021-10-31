@@ -159,7 +159,7 @@ const getPostbackMessage = (queryResult, text) => {
         layout: 'vertical',
         contents: [
           getPostbackTitle(text),
-          buttons.forEach(button => button),
+          buttons.map(button => button),
         ],
       },
     },

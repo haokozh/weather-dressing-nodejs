@@ -18,7 +18,7 @@ const replyText = (token, texts) => {
 const handleText = (token, message) => {
   let replyMessage = '';
 
-  switch (message.text) {
+  switch (message.text.toLowerCase()) {
     case 'h':
     case 'help':
       replyMessage = 'help';
@@ -48,7 +48,6 @@ const handleText = (token, message) => {
       replyMessage = '網站連結';
       break;
 
-    case 'IG':
     case 'ig':
     case 'instagram':
       replyMessage = 'IG連結';

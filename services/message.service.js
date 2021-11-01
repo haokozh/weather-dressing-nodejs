@@ -2,6 +2,8 @@ const { client } = require('../config/linebot.config');
 
 const weatherService = require('../services/weather.service');
 const elementParams = require('../models/weather-element.model').elementName;
+const { japaneseRecommandMessage } = require('../models/recommand-message.model');
+const { koreanRecommandMessage } = require('../models/recommand-message.model');
 
 const replyText = (token, texts) => {
   texts = Array.isArray(texts) ? texts : [texts];
@@ -20,7 +22,7 @@ const replyHelpMessage = (token) => {
 };
 
 const replyWeatherMessage = (token) => {
-  return replyText(token, '要查詢哪裡的天氣');
+  return replyText(token, '現在只能輸入鄉鎮市區的地名');
 };
 
 const replySuggestionMessage = (token) => {
@@ -28,15 +30,15 @@ const replySuggestionMessage = (token) => {
 };
 
 const replyRecommandMessage = (token) => {
-  return replyText(token, '目前沒有推薦的網站');
+  return replyText(token, '現在有日系和韓系的推薦網站');
 };
 
 const replyWebsiteLink = (token) => {
-  return replyText(token, '網站連結');
+  return replyText(token, '我們的網站 : https://weather-dressing.herokuapp.com/');
 };
 
 const replyInstagramLink = (token) => {
-  return replyText(token, 'IG連結');
+  return replyText(token, '我們的 Instagram : https://www.instagram.com/weather_dressing/');
 };
 
 const replyUnknownMessage = (token) => {
@@ -64,6 +66,12 @@ const handleText = (token, message) => {
     case '品牌推薦':
     case 'recommand':
       return replyRecommandMessage(token);
+
+    case '日系':
+      return replyText(token, japaneseRecommandMessage);
+
+    case '韓系':
+      return replyText(token, koreanRecommandMessage);
 
     case 'ig':
       return replyInstagramLink(token);

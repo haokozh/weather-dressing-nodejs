@@ -15,8 +15,8 @@ const message = `歡迎您加入WeatherDressing好友
 https://www.instagram.com/weather_dressing/`;
 
 const welcomeMessage = {
-    type: 'text',
-    text: message,
+  type: 'text',
+  text: message,
 };
 
 module.exports = welcomeMessage;

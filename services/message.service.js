@@ -2,8 +2,8 @@ const { client } = require('../config/linebot.config');
 
 const weatherService = require('../services/weather.service');
 const elementParams = require('../models/weather-element.model').elementName;
-const { japaneseRecommandMessage } = require('../models/message.model');
-const { koreanRecommandMessage } = require('../models/message.model');
+const { japaneseMessage } = require('../models/message.model');
+const { koreanMessage } = require('../models/message.model');
 
 const replyText = (token, texts) => {
   texts = Array.isArray(texts) ? texts : [texts];
@@ -68,10 +68,10 @@ const handleText = (token, message) => {
       return replyRecommandMessage(token);
 
     case '日系':
-      return replyText(token, japaneseRecommandMessage);
+      return replyText(token, japaneseMessage);
 
     case '韓系':
-      return replyText(token, koreanRecommandMessage);
+      return replyText(token, koreanMessage);
 
     case 'ig':
       return replyInstagramLink(token);

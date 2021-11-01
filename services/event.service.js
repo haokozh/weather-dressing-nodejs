@@ -1,4 +1,4 @@
-const welcomeMessage = require('../models/welcome-message.model');
+const { welcomeMessage } = require('../models/welcome-message.model');
 
 const messageService = require('../services/message.service');
 

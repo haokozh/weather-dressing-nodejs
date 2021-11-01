@@ -2,8 +2,8 @@ const { client } = require('../config/linebot.config');
 
 const weatherService = require('../services/weather.service');
 const elementParams = require('../models/weather-element.model').elementName;
-const { japaneseRecommandMessage } = require('../models/recommand-message.model');
-const { koreanRecommandMessage } = require('../models/recommand-message.model');
+const { japaneseRecommandMessage } = require('../models/message.model');
+const { koreanRecommandMessage } = require('../models/message.model');
 
 const replyText = (token, texts) => {
   texts = Array.isArray(texts) ? texts : [texts];

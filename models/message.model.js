@@ -27,8 +27,17 @@ lookpine
 https://tw.lookpine.net/
 
 NERDY
-https://www.whoisnerdy.tw/
-`;
+https://www.whoisnerdy.tw/`;
+
+const euroMessage = `
+Zara 
+https://www.zara.com/tw/
+
+H&M
+https://www2.hm.com/zh_asia3/index.html
+
+GAP
+https://www.gap.tw/`;
 
 const japaneseMessage = `
 Uniqlo
@@ -85,6 +94,7 @@ https://www.instagram.com/weather_dressing/`;
 
 module.exports = {
   koreanMessage,
+  euroMessage,
   japaneseMessage,
   welcomeMessage,
 };

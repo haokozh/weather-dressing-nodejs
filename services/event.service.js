@@ -1,6 +1,6 @@
-const { welcomeMessage } = require('../models/message.model');
-
 const messageService = require('../services/message.service');
+
+const { welcomeMessage } = require('../models/message.model');
 
 const handleFollowEvent = (event) => {
   return messageService.replyText(event.replyToken, welcomeMessage);

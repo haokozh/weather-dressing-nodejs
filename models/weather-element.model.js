@@ -7,9 +7,9 @@ const weatherElement = {
   MAX_T: 5,
 };
 
-const elementName = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
+const elementParams = ['MinT', 'MaxT', 'PoP12h', 'Wx', 'MinCI', 'MaxCI'];
 
 module.exports = {
   weatherElement,
-  elementName
+  elementParams,
 };

@@ -1,9 +1,13 @@
 const { client } = require('../config/linebot.config');
 
 const weatherService = require('../services/weather.service');
-const elementParams = require('../models/weather-element.model').elementName;
-const { japaneseMessage } = require('../models/message.model');
-const { koreanMessage } = require('../models/message.model');
+
+const { elementParams } = require('../models/weather-element.model');
+const {
+  japaneseMessage,
+  koreanMessage,
+  euroMessage,
+} = require('../models/message.model');
 
 const replyText = (token, texts) => {
   texts = Array.isArray(texts) ? texts : [texts];
@@ -34,11 +38,17 @@ const replyRecommandMessage = (token) => {
 };
 
 const replyWebsiteLink = (token) => {
-  return replyText(token, '我們的網站 : https://weather-dressing.herokuapp.com/');
+  return replyText(
+    token,
+    '我們的網站 : https://weather-dressing.herokuapp.com/'
+  );
 };
 
 const replyInstagramLink = (token) => {
-  return replyText(token, '我們的 Instagram : https://www.instagram.com/weather_dressing/');
+  return replyText(
+    token,
+    '我們的 Instagram : https://www.instagram.com/weather_dressing/'
+  );
 };
 
 const replyUnknownMessage = (token) => {
@@ -72,6 +82,9 @@ const handleText = (token, message) => {
 
     case '韓系':
       return replyText(token, koreanMessage);
+
+    case '歐系':
+      return replyText(token, euroMessage);
 
     case 'ig':
       return replyInstagramLink(token);

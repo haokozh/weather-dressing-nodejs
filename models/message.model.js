@@ -99,10 +99,51 @@ const helpMessage = `關鍵字✅ ️
 輸入溫度：ex. 26 or 19度
 ➡️可查詢穿搭建議`;
 
+const suggestionMessage = {
+  type: 'bubble',
+  direction: 'ltr',
+  header: {
+    type: 'box',
+    layout: 'vertical',
+    contents: [
+      {
+        type: 'text',
+        text: '地點+溫度',
+        weight: 'bold',
+        size: 'xxl',
+        color: '#5051DAFF',
+        align: 'center',
+      },
+    ],
+  },
+  hero: {
+    type: 'image',
+    url: 'https://vos.line-scdn.net/bot-designer-template-images/bot-designer-icon.png',
+    size: 'full',
+    aspectRatio: '1.51:1',
+    aspectMode: 'fit',
+  },
+  body: {
+    type: 'box',
+    layout: 'vertical',
+    contents: [
+      {
+        type: 'text',
+        text: '穿搭建議',
+        weight: 'bold',
+        size: 'xxl',
+        color: '#2C672DFF',
+        align: 'center',
+      },
+    ],
+  },
+};
+
 module.exports = {
   koreanMessage,
   euroMessage,
   japaneseMessage,
   welcomeMessage,
-  helpMessage
+  helpMessage,
+  suggestionMessage,
 };

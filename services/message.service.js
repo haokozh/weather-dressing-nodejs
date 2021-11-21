@@ -144,6 +144,7 @@ const handleMessageEvent = (event) => {
     messageEvents['default'](event.message)
   );
 };
+
 const getPostbackButton = (cityName, distName) => {
   return {
     type: 'button',
@@ -227,7 +228,7 @@ const replyWeather = async (token, text) => {
     let queryResult = await weatherService.findWeeklyForecastIdByDistName(text);
 
     if (isOneResult(queryResult.length)) {
-      let forecastId = queryResult[0].weeklyid;
+      let forecastId = queryResult[0].forecastid;
       let distName = queryResult[0].distname;
 
       const weatherResponse = await weatherService.getWeatherResponse(

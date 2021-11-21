@@ -2,8 +2,6 @@ const { get } = require('axios');
 const qs = require('qs');
 
 const ResponseData = require('../models/response-data.model');
-const weatherElement =
-  require('../models/weather-element.model').weatherElement;
 const pool = require('../config/db.config');
 
 const getWeatherResponse = async (locationId, locationName, elementName) => {
@@ -280,7 +278,7 @@ const replyFlexBubble = (
   tempDescription,
   confortDescription
 ) => {
-  return replyBubble = {
+  return (replyBubble = {
     type: 'flex',
     altText: 'Weather infomation flex message',
     contents: {
@@ -295,8 +293,8 @@ const replyFlexBubble = (
         tempDescription,
         confortDescription
       ),
-    }
-  };
+    },
+  });
 };
 
 // 將 '台' 轉成 '臺'
@@ -313,7 +311,7 @@ const findWeeklyForecastIdByCityName = async (cityName) => {
       [replaceCityName(cityName)]
     );
 
-    return rows[0].weeklyid;
+    return rows[0].forecast_id;
   } catch (error) {
     console.error(error);
   } finally {

@@ -8,6 +8,7 @@ const {
   koreanMessage,
   euroMessage,
   helpMessage,
+  suggestionMessage,
 } = require('../models/message.model');
 
 const replyText = (token, texts) => {
@@ -31,7 +32,7 @@ const replyWeatherMessage = (token) => {
 };
 
 const replySuggestionMessage = (token) => {
-  return replyText(token, '目前沒有建議的穿搭');
+  return replyText(token, suggestionMessage);
 };
 
 const replyRecommandMessage = (token) => {

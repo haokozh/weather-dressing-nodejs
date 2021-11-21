@@ -19,6 +19,7 @@ app.use(express.static('public'));
 app.use('/', require('./routes/index.routes'));
 app.use('/members', require('./routes/member.routes'));
 app.use('/weather', require('./routes/suggest.routes'));
+app.use('/image', require('./routes/image.routes'));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

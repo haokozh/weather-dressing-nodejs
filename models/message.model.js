@@ -139,6 +139,180 @@ const suggestionMessage = {
   },
 };
 
+const purposeMessage = {
+  type: 'flex',
+  altText: 'this is a buttons template',
+  contents: {
+    type: 'bubble',
+    header: {
+      type: 'box',
+      layout: 'vertical',
+      contents: [
+        {
+          type: 'text',
+          text: '請問出門目的?',
+          size: 'lg',
+          weight: 'bold',
+        },
+      ],
+    },
+    body: {
+      type: 'box',
+      layout: 'vertical',
+      contents: [
+        {
+          type: 'button',
+          action: {
+            type: 'postback',
+            label: '上班',
+            data: '上班',
+          },
+        },
+        {
+          type: 'button',
+          action: {
+            type: 'postback',
+            label: '上學',
+            data: '上學',
+          },
+        },
+        {
+          type: 'button',
+          action: {
+            type: 'postback',
+            label: '出遊',
+            data: '出遊',
+          },
+        },
+      ],
+    },
+  },
+};
+
+const dressStyleOneMessage = {
+  type: 'imagemap',
+  baseUrl: 'https://weather-dressing.herokuapp.com/image/dressStyle/one',
+  altText: 'This is an imagemap',
+  baseSize: {
+    width: 1040,
+    height: 1040,
+  },
+  actions: [
+    {
+      type: 'message',
+      area: {
+        x: 0,
+        y: 0,
+        width: 344,
+        height: 526,
+      },
+      text: '歐美',
+    },
+    {
+      type: 'message',
+      area: {
+        x: 691,
+        y: 0,
+        width: 349,
+        height: 527,
+      },
+      text: '日系',
+    },
+    {
+      type: 'message',
+      area: {
+        x: 0,
+        y: 528,
+        width: 345,
+        height: 512,
+      },
+      text: '韓系',
+    },
+    {
+      type: 'message',
+      area: {
+        x: 347,
+        y: 532,
+        width: 347,
+        height: 508,
+      },
+      text: '正式',
+    },
+    {
+      type: 'message',
+      area: {
+        x: 693,
+        y: 529,
+        width: 347,
+        height: 511,
+      },
+      text: '設計',
+    },
+  ],
+};
+
+const dressStyleTwoMessage = {
+  type: 'imagemap',
+  baseUrl: 'https://weather-dressing.herokuapp.com/imagemap/two',
+  altText: 'This is an imagemap',
+  baseSize: {
+    width: 1040,
+    height: 1040,
+  },
+  actions: [
+    {
+      type: 'message',
+      area: {
+        x: 0,
+        y: 2,
+        width: 342,
+        height: 527,
+      },
+      text: '運動',
+    },
+    {
+      type: 'message',
+      area: {
+        x: 691,
+        y: 2,
+        width: 349,
+        height: 527,
+      },
+      text: '潮牌',
+    },
+    {
+      type: 'message',
+      area: {
+        x: 0,
+        y: 531,
+        width: 346,
+        height: 509,
+      },
+      text: '台灣品牌',
+    },
+    {
+      type: 'message',
+      area: {
+        x: 342,
+        y: 530,
+        width: 353,
+        height: 510,
+      },
+      text: '明星自創',
+    },
+    {
+      type: 'message',
+      area: {
+        x: 695,
+        y: 531,
+        width: 345,
+        height: 509,
+      },
+      text: '專櫃品牌',
+    },
+  ],
+};
+
 module.exports = {
   koreanMessage,
   euroMessage,
@@ -146,4 +320,7 @@ module.exports = {
   welcomeMessage,
   helpMessage,
   suggestionMessage,
+  purposeMessage,
+  dressStyleOneMessage,
+  dressStyleTwoMessage,
 };

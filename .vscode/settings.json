@@ -1,0 +1,29 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "password": "a1087452",
+            "username": "postgres",
+            "database": "postgres",
+            "name": "localhost_postgres_test"
+        },
+        {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": false
+                }
+            },
+            "previewLimit": 50,
+            "server": "ec2-35-174-56-18.compute-1.amazonaws.com",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "heroku-postgres",
+            "database": "d29q5hq9d944m3",
+            "username": "mdjbpabddpzbxs",
+            "password": "edb3cd219cecbfa25b339eab1cd4fe11b8497c93402c6f862a19ecd6d546915f"
+        }
+    ]
+}

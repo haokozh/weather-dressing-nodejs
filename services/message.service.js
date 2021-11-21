@@ -9,6 +9,8 @@ const {
   euroMessage,
   helpMessage,
   suggestionMessage,
+  purposeMessage,
+  dressStyleOneMessage,
 } = require('../models/message.model');
 
 const replyText = (token, texts) => {
@@ -32,11 +34,15 @@ const replyWeatherMessage = (token) => {
 };
 
 const replySuggestionMessage = (token) => {
-  return replyText(token, suggestionMessage);
+  return client.replyMessage(token, suggestionMessage);
+};
+
+const replyPurposeMessage = (token) => {
+  return client.replyMessage(token, purposeMessage);
 };
 
 const replyRecommandMessage = (token) => {
-  return replyText(token, '現在有日系和韓系的推薦網站');
+  return client.replyMessage(token, dressStyleOneMessage);
 };
 
 const replyWebsiteLink = (token) => {
@@ -76,7 +82,7 @@ const handleText = (token, message) => {
 
     case '推薦':
     case '品牌推薦':
-    case 'recommand':
+    case 'recommend':
       return replyRecommandMessage(token);
 
     case '日系':
@@ -86,6 +92,7 @@ const handleText = (token, message) => {
       return replyText(token, koreanMessage);
 
     case '歐系':
+    case '歐美':
       return replyText(token, euroMessage);
 
     case 'ig':
@@ -95,6 +102,9 @@ const handleText = (token, message) => {
     case '網站':
     case 'website':
       return replyWebsiteLink(token);
+
+    case 'purpose':
+      return replyPurposeMessage(token);
 
     default:
       return replyWeather(token, message.text);

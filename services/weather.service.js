@@ -326,7 +326,7 @@ const findWeeklyForecastIdByDistName = async (distName) => {
 
   try {
     const { rows } = await client.query(
-      `SELECT city.city_name AS cityname, dist.dist_name AS distname, city.forecastid FROM city JOIN dist ON city.id = dist.cityid AND dist.dist_name LIKE $1`,
+      `SELECT city.city_name AS cityname, dist.dist_name AS distname, city.forecast_id AS forecastid FROM city JOIN dist ON city.id = dist.city_id AND dist.dist_name LIKE $1`,
       [`%${distName}%`]
     );
 

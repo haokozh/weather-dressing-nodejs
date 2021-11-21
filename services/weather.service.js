@@ -1,6 +1,6 @@
 const { get } = require('axios');
 const qs = require('qs');
-
+const { weatherElement } = require('../models/weather-element.model');
 const ResponseData = require('../models/response-data.model');
 const pool = require('../config/db.config');
 

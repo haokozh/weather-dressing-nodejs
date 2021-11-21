@@ -1,4 +1,4 @@
-const koreanMessage = `
+const koreanMessage = `韓系品牌⬇️
 66girls
 https://66girls.tw/
 
@@ -29,7 +29,7 @@ https://tw.lookpine.net/
 NERDY
 https://www.whoisnerdy.tw/`;
 
-const euroMessage = `
+const euroMessage = `歐系品牌⬇️
 Zara 
 https://www.zara.com/tw/
 
@@ -39,7 +39,7 @@ https://www2.hm.com/zh_asia3/index.html
 GAP
 https://www.gap.tw/`;
 
-const japaneseMessage = `
+const japaneseMessage = `日系品牌⬇️
 Uniqlo
 https://www.uniqlo.com/tw/zh_TW/
 
@@ -91,6 +91,41 @@ const welcomeMessage = `歡迎您加入WeatherDressing好友
     
 我們的Instagram
 https://www.instagram.com/weather_dressing/`;
+
+const sportMessage = `運動風⬇️
+nike
+https://www.nike.com/tw/
+
+adidas
+https://www.adidas.com.tw/
+
+New Balance
+https://www.newbalance.com.tw/
+
+Fila
+https://www.fila.com.tw/
+
+puma
+https://tw.puma.com/?lang=zh-TW`;
+
+const fashionMessage = `潮牌⬇️
+off white
+https://www.off-white.com.tw/
+
+Supreme
+https://www.supremetw.com.tw/
+
+Champion
+https://www.baoli.championusa.com.tw/
+
+VANS
+https://www.vanstaiwan.com/
+
+CONVERSE
+https://www.converse.com.tw/
+
+Stüssy
+https://www.stussytw.com/`;
 
 const helpMessage = `關鍵字✅ ️
 輸入地名：ex. 中壢 or 中壢區
@@ -323,4 +358,6 @@ module.exports = {
   purposeMessage,
   dressStyleOneMessage,
   dressStyleTwoMessage,
+  sportMessage,
+  fashionMessage,
 };

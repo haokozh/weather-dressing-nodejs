@@ -64,7 +64,7 @@ const replyUnknownMessage = (token) => {
 };
 
 const handleText = (token, message) => {
-  let keyword = message.text.toLowerCase();
+  let keyword = message.text.toLowerCase().trim();
 
   switch (keyword) {
     case 'h':

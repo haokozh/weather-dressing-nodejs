@@ -7,6 +7,7 @@ const {
   japaneseMessage,
   koreanMessage,
   euroMessage,
+  helpMessage,
 } = require('../models/message.model');
 
 const replyText = (token, texts) => {
@@ -22,7 +23,7 @@ const replyText = (token, texts) => {
 };
 
 const replyHelpMessage = (token) => {
-  return replyText(token, 'help');
+  return replyText(token, helpMessage);
 };
 
 const replyWeatherMessage = (token) => {

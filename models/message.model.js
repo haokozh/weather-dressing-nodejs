@@ -92,9 +92,17 @@ const welcomeMessage = `歡迎您加入WeatherDressing好友
 我們的Instagram
 https://www.instagram.com/weather_dressing/`;
 
+const helpMessage = `關鍵字✅ ️
+輸入地名：ex. 中壢 or 中壢區
+➡️可查詢即時天氣
+
+輸入溫度：ex. 26 or 19度
+➡️可查詢穿搭建議`;
+
 module.exports = {
   koreanMessage,
   euroMessage,
   japaneseMessage,
   welcomeMessage,
+  helpMessage
 };

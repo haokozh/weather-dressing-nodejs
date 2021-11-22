@@ -101,14 +101,16 @@ const parseResponseToFlexBubble = (data) => {
       responseData.locationsName,
       responseData.locationName,
       pop12hTime,
-      getPoP12hDescription(pop12h.value),
+      pop12h.value,
       weatherDescription,
-      getTempDescription(minT.value, maxT.value),
-      getConfortDescription(minCI.value, maxCI.value)
+      minT.value,
+      maxT.value,
+      minCI.value,
+      maxCI.value
     );
   } catch (error) {
     console.error(
-      `Error on linebot.service.parseResponseToFlexBubble(): ${error.stack}`
+      `Error on weather.service.parseResponseToFlexBubble(): ${error.stack}`
     );
   }
 };

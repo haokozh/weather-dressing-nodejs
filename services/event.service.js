@@ -1,3 +1,4 @@
+const qs = require('qs');
 const messageService = require('../services/message.service');
 
 const { welcomeMessage } = require('../models/message.model');
@@ -35,7 +36,7 @@ const isDateTime = (data) => {
 
 const handlePostbackEvent = (event) => {
   try {
-    let data = event.postback.data;
+    let data = qs.parse(event.postback.data);
     const currentTime = new Date(Date.now());
 
     if (isDate(data) || isTime(data) || isDateTime(data)) {

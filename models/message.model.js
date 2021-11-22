@@ -92,21 +92,39 @@ const welcomeMessage = `歡迎您加入WeatherDressing好友
 我們的Instagram
 https://www.instagram.com/weather_dressing/`;
 
-const sportMessage = `運動風⬇️
-nike
-https://www.nike.com/tw/
-
-adidas
-https://www.adidas.com.tw/
-
-New Balance
-https://www.newbalance.com.tw/
-
-Fila
-https://www.fila.com.tw/
-
-puma
-https://tw.puma.com/?lang=zh-TW`;
+const sportMessage = {
+  type: 'carousel',
+  contents: [
+    {
+      type: 'bubble',
+      hero: {
+        type: 'image',
+        size: '1040px',
+        aspectMode: 'cover',
+        action: {
+          type: 'uri',
+          uri: 'https://www.nike.com/tw/',
+          label: 'Nike官網',
+        },
+        url: 'https://images-ext-2.discordapp.net/external/dIu-LE4agcKOUZc6BQCMyYx0Dl48qt_IVfjOW9tl1ys/https/weather-dressing.herokuapp.com/image/carousel/nike',
+      },
+    },
+    {
+      type: 'bubble',
+      hero: {
+        type: 'image',
+        size: '1040px',
+        aspectMode: 'cover',
+        action: {
+          type: 'uri',
+          uri: 'https://www.adidas.com.tw/',
+          label: 'adidas官網',
+        },
+        url: 'https://scontent.ftpe8-2.fna.fbcdn.net/v/t39.30808-6/248534464_3861322277304078_7385610523790310138_n.jpg?_nc_cat=1&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=mhYbBPPU-mAAX8dalnx&_nc_ht=scontent.ftpe8-2.fna&oh=488453385bb1345e74b088a1da8b5dd4&oe=61A1371B',
+      },
+    },
+  ],
+};
 
 const fashionMessage = `潮牌⬇️
 off white

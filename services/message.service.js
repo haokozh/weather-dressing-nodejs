@@ -12,6 +12,7 @@ const {
   purposeMessage,
   dressStyleOneMessage,
   dressStyleTwoMessage,
+  sportMessage,
 } = require('../models/message.model');
 
 const replyText = (token, texts) => {
@@ -98,6 +99,10 @@ const handleText = (token, message) => {
     case '歐系':
     case '歐美':
       return replyText(token, euroMessage);
+
+    case '運動':
+    case 'sport':
+      return client.replyMessage(token, sportMessage);
 
     case 'ig':
       return replyInstagramLink(token);

@@ -42,7 +42,7 @@ const handlePostbackEvent = (event) => {
     data += `(${JSON.stringify(event.postback.params)})`;
   }
 
-  return messageService.replyWeatherByCityNameAndDistName(event.replyToken, );
+  return messageService.replyWeatherByCityNameAndDistName(event.replyToken, params.city, params.dist);
 };
 
 const handleBeaconEvent = (event) => {

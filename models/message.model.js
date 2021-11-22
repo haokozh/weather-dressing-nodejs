@@ -288,7 +288,7 @@ const dressStyleOneMessage = {
 
 const dressStyleTwoMessage = {
   type: 'imagemap',
-  baseUrl: 'https://weather-dressing.herokuapp.com/imagemap/two',
+  baseUrl: 'https://weather-dressing.herokuapp.com/image/dressStyle/two',
   altText: 'This is an imagemap',
   baseSize: {
     width: 1040,

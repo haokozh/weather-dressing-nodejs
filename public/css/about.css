@@ -1,11 +1,43 @@
 .content {
-  padding: 50px 52px 0;
   max-width: 1244px;
   margin: 0 auto;
-  margin-bottom: 100px;
-  font-size: 18px;
+  margin-bottom: 40px;
 }
-
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.panel {
+  background: #f8f8f8;
+  box-shadow: 0px 1px 2px 0 rgb(48 56 64 / 20%);
+  margin: 0 auto;
+}
+.panel:nth-child(2n + 1) {
+  border-right: solid 2px #f0f0f0;
+}
+.panel_head {
+  padding: 14px 20px 5px;
+  background: #86add1;
+  margin: 0 auto;
+}
+.head_text {
+  padding: 0;
+  font-size: 25px;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+}
+.panel_body {
+  padding: 34px 40px 40px;
+  background: #f8f8f8;
+  text-align: center;
+  font-size: 16px;
+}
+a {
+  text-decoration: none;
+  color: #f8f9fa;
+  font-weight: bolder;
+}
 .footer {
   height: 50px; /*設定footer本身高度*/
   margin-top: 50px; /*隨footer高度需做調整*/

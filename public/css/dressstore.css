@@ -1,0 +1,26 @@
+.content {
+  margin: 0 auto;
+  position: relative;
+  padding: 50px 52px 0;
+  margin-bottom: 15px;
+  font-size: 18px;
+  position: absolute;
+  top: 20px;
+  position: fixed;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+}
+a {
+  text-decoration: none;
+  color: #f8f9fa;
+  font-weight: bolder;
+}
+.footer {
+  height: 50px; /*設定footer本身高度*/
+  margin-top: 50px; /*隨footer高度需做調整*/
+  background-color: #498eaf;
+  height: 50px;
+  margin: 0 auto;
+  padding: auto;
+}

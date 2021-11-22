@@ -1,7 +1,7 @@
 .content {
   max-width: 1244px;
   margin: 0 auto;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
 }
 .row {
   display: flex;
@@ -16,8 +16,8 @@
   border-right: solid 2px #f0f0f0;
 }
 .panel_head {
-  padding: 14px 20px 5px;
-  background: #86add1;
+  padding: 14px 20px 5px;;
+  background: #86add1;;
   margin: 0 auto;
 }
 .head_text {
@@ -30,55 +30,56 @@
 .panel_body {
   padding: 34px 40px 40px;
 }
+.sex {
+  display: flex;
+  padding: 0;
+  justify-content: center;
+}
 a {
   text-decoration: none;
   color: #f8f9fa;
   font-weight: bolder;
 }
-.login {
-  background-color: #f8f8f8;
-  color: #000;
-  text-align: center;
-  margin: 0 auto;
-  padding: 29px 20px 45px;
-}
-
-.login input {
+.register input {
   display: block;
   margin: 20px auto;
   text-align: center;
   background: none;
   padding: 10px;
-  font-size: 16px;
+  font-size: 15px;
   border-radius: 22px;
   outline: none;
 }
-
-.login input[type='text'],
-.login input[type='password'] {
+.register input[type="text"],
+.register input[type="password"] {
   border: 2px solid #3498db;
-  width: 220px;
+  width: 200px;
   font-weight: bolder;
 }
 
-.login input[type='submit'] {
+.register input[type="submit"] {
   width: 150px;
   border: 2px solid #2ecc71;
   cursor: pointer;
   font-weight: bolder;
 }
 
-.login input[type='text']:focus,
-.login input[type='password']:focus {
+.register input[type="text"]:focus,
+.register input[type="password"]:focus {
   border-color: #2ecc71;
-  width: 230px;
+  width: 220px;
   transition: 0.5s;
 }
 
-.login input[type='submit']:hover {
+.register input[type="submit"]:hover {
   background-color: #2ecc71;
 }
 
-.line {
-  padding: 20px 20px 20px;
+.footer {
+  height: 50px;
+  margin-top: 50px;
+  background-color: #498eaf;
+  height: 50px;
+  margin: 0 auto;
+  padding: auto;
 }

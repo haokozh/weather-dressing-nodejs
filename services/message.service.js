@@ -30,7 +30,7 @@ const replyHelpMessage = (token) => {
 };
 
 const replyWeatherMessage = (token) => {
-  return replyText(token, '現在只能輸入鄉鎮市區的地名 ex. 中壢');
+  return replyText(token, '輸入鄉鎮市區的地名 ex. 中壢');
 };
 
 const replySuggestionMessage = (token) => {

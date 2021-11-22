@@ -4,9 +4,22 @@ const index = (req, res) => {
 
 const about = (req, res) => {
   res.render('about', { title: '關於我們' });
-}
+};
+
+const renderUploadImage = (req, res) => {
+  res.render('upload', { title: '上傳照片' });
+};
+
+const uploadImage = (req, res) => {
+  console.log(req.file, req.body);
+  console.log('image uploaded');
+
+  res.send('image uploaded');
+};
 
 module.exports = {
   index,
-  about
+  about,
+  renderUploadImage,
+  uploadImage
 };

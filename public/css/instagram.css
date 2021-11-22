@@ -1,7 +1,7 @@
 .content {
   max-width: 1244px;
   margin: 0 auto;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
 }
 .row {
   display: flex;
@@ -35,50 +35,65 @@ a {
   color: #f8f9fa;
   font-weight: bolder;
 }
-.login {
-  background-color: #f8f8f8;
+
+.upload {
   color: #000;
   text-align: center;
   margin: 0 auto;
-  padding: 29px 20px 45px;
 }
 
-.login input {
-  display: block;
-  margin: 20px auto;
+.upload input {
+  display: inline-block;
+  margin: 5px auto;
   text-align: center;
   background: none;
   padding: 10px;
-  font-size: 16px;
+  font-size: 15px;
   border-radius: 22px;
   outline: none;
+  color: #000;
 }
 
-.login input[type='text'],
-.login input[type='password'] {
+.upload input[type="text"] {
   border: 2px solid #3498db;
-  width: 220px;
+  width: 150px;
   font-weight: bolder;
 }
 
-.login input[type='submit'] {
+.btn-info {
+  font-size: 15px;
+  display: block;
+  margin: 5px auto;
+  text-align: center;
+  background: none;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 22px;
+  outline: none;
+  color: #f8f9fa;
+  background-color: #3498db;
+  border: 2px solid #3498db;
   width: 150px;
+}
+
+.upload input[type="submit"],
+.upload input[type="reset"] {
+  width: 100px;
   border: 2px solid #2ecc71;
   cursor: pointer;
   font-weight: bolder;
 }
 
-.login input[type='text']:focus,
-.login input[type='password']:focus {
-  border-color: #2ecc71;
-  width: 230px;
-  transition: 0.5s;
-}
-
-.login input[type='submit']:hover {
+.upload input[type="submit"]:hover,
+.upload input[type="reset"]:hover {
   background-color: #2ecc71;
 }
 
-.line {
-  padding: 20px 20px 20px;
+.footer {
+  height: 50px;
+  margin-top: 50px;
+  background-color: #498eaf;
+  height: 50px;
+  margin: 0 auto;
+  padding: auto;
 }

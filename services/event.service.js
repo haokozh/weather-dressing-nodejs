@@ -45,8 +45,8 @@ const handlePostbackEvent = (event) => {
 
     return messageService.replyWeatherByCityNameAndDistName(
       event.replyToken,
-      params.city,
-      params.dist
+      '嘉義市',
+      '東區'
     );
   } catch (error) {
     console.error(`Error on event.service.handlePostbackEvent(): ${error}`);

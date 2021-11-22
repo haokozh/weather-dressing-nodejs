@@ -27,13 +27,17 @@ const handleWebhookEvent = (event) => {
 };
 
 const createRichMenu = async (client) => {
-  const richMenuId = await client.createRichMenu(richmenu);
-  const filePath = join(__dirname, './public/assets/images/richmenu.png');
-  const buffer = readFileSync(filePath);
+  try {
+    const richMenuId = await client.createRichMenu(richmenu);
+    const filePath = join('/app/public/assets/images/richmenu.png');
+    const buffer = readFileSync(filePath);
 
-  await client.setRichMenuImage(richMenuId, buffer);
+    await client.setRichMenuImage(richMenuId, buffer);
 
-  await client.setDefaultRichMenu(richMenuId);
+    await client.setDefaultRichMenu(richMenuId);
+  } catch (error) {
+    console.error(`Error on createRichMenu(): ${error}`);
+  }
 };
 
 createRichMenu(client);

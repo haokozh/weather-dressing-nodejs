@@ -33,7 +33,7 @@ const replyHelpMessage = (token) => {
 };
 
 const replyWeatherMessage = (token) => {
-  return client.replyMessage(token, weatherMessage);
+  return replyText(token, weatherMessage);
 };
 
 const replySuggestionMessage = (token) => {

@@ -333,11 +333,11 @@ const findWeeklyForecastIdByCityName = async (cityName) => {
 
   try {
     const { rows } = await client.query(
-      `SELECT * FROM city WHERE city_name = $1`,
+      `SELECT forecast_id AS forecastid FROM city WHERE city_name = $1`,
       [replaceCityName(cityName)]
     );
 
-    return rows[0].forecast_id;
+    return rows[0].forecastid;
   } catch (error) {
     console.error(error);
   } finally {

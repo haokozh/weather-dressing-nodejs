@@ -36,18 +36,13 @@ const isDateTime = (data) => {
 const handlePostbackEvent = (event) => {
   try {
     let data = event.postback.data;
-    const params = event.postback.params;
     const currentTime = new Date(Date.now());
 
     if (isDate(data) || isTime(data) || isDateTime(data)) {
       data += `(${JSON.stringify(event.postback.params)})`;
     }
 
-    return messageService.replyWeatherByCityNameAndDistName(
-      event.replyToken,
-      '嘉義市',
-      '東區'
-    );
+    return messageService.replyText(`Got postback: ${data}`);
   } catch (error) {
     console.error(`Error on event.service.handlePostbackEvent(): ${error}`);
   }

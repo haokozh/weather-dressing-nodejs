@@ -15,7 +15,7 @@ const dressStyleTwo700 = (req, res) => {
 };
 
 const nike = (req, res) => {
-  res.sendFile('/app/public/assets/image/logo/nike-logo.jpg');
+  res.sendFile('/app/public/assets/images/logo/nike-logo.jpg');
 };
 
 module.exports = {

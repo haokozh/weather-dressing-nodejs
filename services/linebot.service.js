@@ -1,3 +1,8 @@
+const { join } = require('path');
+const { readFileSync } = require('fs');
+const { client } = require('../config/linebot.config');
+
+const richmenu = require('../models/richmenu.model');
 const eventService = require('../services/event.service');
 
 const isWebhookTest = (replyToken) => {
@@ -20,6 +25,18 @@ const handleEvent = (event) => {
 const handleWebhookEvent = (event) => {
   return eventService.handleWebhookEvent(event);
 };
+
+const createRichMenu = async (client) => {
+  const richMenuId = await client.createRichMenu(richmenu);
+  const filePath = join(__dirname, './public/assets/images/richmenu.png');
+  const buffer = readFileSync(filePath);
+
+  await client.setRichMenuImage(richMenuId, buffer);
+
+  await client.setDefaultRichMenu(richMenuId);
+};
+
+createRichMenu(client);
 
 module.exports = {
   isWebhookTest,

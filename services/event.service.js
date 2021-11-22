@@ -35,15 +35,32 @@ const isDateTime = (data) => {
 
 const handlePostbackEvent = (event) => {
   let data = event.postback.data;
+  const params = event.postback.params;
+  const currentTime = new Date(Date.now());
 
   if (isDate(data) || isTime(data) || isDateTime(data)) {
     data += `(${JSON.stringify(event.postback.params)})`;
   }
 
-  return messageService.replyWeatherByCityNameAndDistName(
-    event.replyToken,
-    data
-  );
+  if (data === 'manyDistOptions') {
+    return messageService.replyWeatherByCityNameAndDistName(
+      event.replyToken,
+      params.city,
+      params.dist
+    );
+  }
+
+  if (data === '上班' || data === '上學' || data === '出遊') {
+    return messageService.replyText(`city: ${params.city}
+    dist: ${params.dist}
+    pop: ${params.pop}
+    mint: ${params.minT}
+    maxt: ${params.maxT}
+    purpose: ${data}
+    currentTime: ${currentTime.getHours()}`);
+  }
+
+  return messageService.replyText('Got Postback Data');
 };
 
 const handleBeaconEvent = (event) => {

@@ -269,14 +269,76 @@ const getBody = (
   };
 };
 
+const getFooter = (city, dist, pop, minT, maxT) => {
+  return {
+    type: 'box',
+    layout: 'vertical',
+    contents: [
+      {
+        type: 'button',
+        style: 'link',
+        height: 'sm',
+        action: {
+          type: 'postback',
+          label: '上班',
+          data: '上班',
+          params: {
+            city: city,
+            dist: dist,
+            pop: pop,
+            mint: minT,
+            maxt: maxT,
+          },
+        },
+      },
+      {
+        type: 'button',
+        style: 'link',
+        height: 'sm',
+        action: {
+          type: 'postback',
+          label: '上學',
+          data: '上學',
+          params: {
+            city: city,
+            dist: dist,
+            pop: pop,
+            mint: minT,
+            maxt: maxT,
+          },
+        },
+      },
+      {
+        type: 'button',
+        style: 'link',
+        height: 'sm',
+        action: {
+          type: 'postback',
+          label: '出遊',
+          data: '出遊',
+          params: {
+            city: city,
+            dist: dist,
+            pop: pop,
+            mint: minT,
+            maxt: maxT,
+          },
+        },
+      },
+    ],
+  };
+};
+
 const replyFlexBubble = (
   locationsName,
   locationName,
   pop12hTime,
-  pop12hDescription,
+  pop12h,
   weatherDescription,
-  tempDescription,
-  confortDescription
+  minT,
+  maxT,
+  minCI,
+  maxCI
 ) => {
   return (replyBubble = {
     type: 'flex',
@@ -288,11 +350,12 @@ const replyFlexBubble = (
         locationsName,
         locationName,
         pop12hTime,
-        pop12hDescription,
+        getPoP12hDescription(pop12h.value),
         weatherDescription,
-        tempDescription,
-        confortDescription
+        getTempDescription(minT.value, maxT.value),
+        getConfortDescription(minCI.value, maxCI.value)
       ),
+      footer: getFooter(locationsName, locationName, pop12h, minT, maxT),
     },
   });
 };

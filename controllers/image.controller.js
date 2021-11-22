@@ -14,6 +14,10 @@ const dressStyleTwo700 = (req, res) => {
   res.sendFile('/app/public/assets/images/imagemap/dress-style-700-2.png');
 };
 
+const nike = (req, res) => {
+  res.sendFile('/app/public/assets/image/logo/nike-logo.jpg');
+};
+
 module.exports = {
   dressStyleOne1040,
   dressStyleOne700,

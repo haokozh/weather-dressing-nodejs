@@ -209,11 +209,12 @@ const getPostbackMessage = (queryResult, text) => {
 
 const replyWeatherByCityNameAndDistName = async (token, cityName, distName) => {
   try {
-    let queryResultForecastId =
-      await weatherService.findWeeklyForecastIdByCityName(cityName);
+    let forecastId = await weatherService.findWeeklyForecastIdByCityName(
+      cityName
+    );
 
     const weatherResponse = await weatherService.getWeatherResponse(
-      queryResultForecastId,
+      forecastId,
       distName,
       elementParams
     );

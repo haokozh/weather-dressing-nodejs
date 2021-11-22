@@ -337,6 +337,8 @@ const findWeeklyForecastIdByCityName = async (cityName) => {
       [replaceCityName(cityName)]
     );
 
+    console.log(rows);
+
     return rows[0].forecastid;
   } catch (error) {
     console.error(error);

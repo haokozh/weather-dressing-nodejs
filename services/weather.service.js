@@ -352,10 +352,10 @@ const replyFlexBubble = (
         locationsName,
         locationName,
         pop12hTime,
-        getPoP12hDescription(pop12h.value),
+        getPoP12hDescription(pop12h),
         weatherDescription,
-        getTempDescription(minT.value, maxT.value),
-        getConfortDescription(minCI.value, maxCI.value)
+        getTempDescription(minT, maxT),
+        getConfortDescription(minCI, maxCI)
       ),
     },
   });

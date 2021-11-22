@@ -357,6 +357,20 @@ const replyFlexBubble = (
         getTempDescription(minT, maxT),
         getConfortDescription(minCI, maxCI)
       ),
+      footer: {
+        type: 'box',
+        layout: 'vertical',
+        contents: [
+          {
+            type: 'button',
+            action: {
+              type: 'postback',
+              label: '查看天氣穿搭',
+              data: '查看天氣穿搭',
+            },
+          },
+        ],
+      },
     },
   });
 };

@@ -174,11 +174,7 @@ const getPostbackButton = (cityName, distName) => {
     action: {
       type: 'postback',
       label: `${cityName} ${distName}`,
-      data: 'manyDistOptions',
-      params: {
-        city: cityName,
-        dist: distName,
-      },
+      data: `${cityName} ${distName}`,
     },
   };
 };

@@ -271,60 +271,21 @@ const getBody = (
   };
 };
 
-const getFooter = (city, dist, pop, minT, maxT) => {
+const getFooter = (city, dist) => {
   return {
     type: 'box',
     layout: 'vertical',
     contents: [
       {
         type: 'button',
-        style: 'link',
-        height: 'sm',
         action: {
           type: 'postback',
-          label: '上班',
-          data: '上班',
+          label: '查看天氣穿搭',
+          data: '查看天氣穿搭',
           params: {
             city: city,
             dist: dist,
-            pop: pop,
-            mint: minT,
-            maxt: maxT,
-          },
-        },
-      },
-      {
-        type: 'button',
-        style: 'link',
-        height: 'sm',
-        action: {
-          type: 'postback',
-          label: '上學',
-          data: '上學',
-          params: {
-            city: city,
-            dist: dist,
-            pop: pop,
-            mint: minT,
-            maxt: maxT,
-          },
-        },
-      },
-      {
-        type: 'button',
-        style: 'link',
-        height: 'sm',
-        action: {
-          type: 'postback',
-          label: '出遊',
-          data: '出遊',
-          params: {
-            city: city,
-            dist: dist,
-            pop: pop,
-            mint: minT,
-            maxt: maxT,
-          },
+          }
         },
       },
     ],
@@ -332,8 +293,8 @@ const getFooter = (city, dist, pop, minT, maxT) => {
 };
 
 const replyFlexBubble = (
-  locationsName,
-  locationName,
+  cityName,
+  distName,
   pop12hTime,
   pop12h,
   weatherDescription,
@@ -349,28 +310,15 @@ const replyFlexBubble = (
       type: 'bubble',
       hero: getHeroBlock(),
       body: getBody(
-        locationsName,
-        locationName,
+        cityName,
+        distName,
         pop12hTime,
         getPoP12hDescription(pop12h),
         weatherDescription,
         getTempDescription(minT, maxT),
         getConfortDescription(minCI, maxCI)
       ),
-      footer: {
-        type: 'box',
-        layout: 'vertical',
-        contents: [
-          {
-            type: 'button',
-            action: {
-              type: 'postback',
-              label: '查看天氣穿搭',
-              data: '查看天氣穿搭',
-            },
-          },
-        ],
-      },
+      footer: getFooter(cityName, distName),
     },
   });
 };

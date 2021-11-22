@@ -11,6 +11,7 @@ const {
   suggestionMessage,
   purposeMessage,
   dressStyleOneMessage,
+  dressStyleTwoMessage,
 } = require('../models/message.model');
 
 const replyText = (token, texts) => {
@@ -42,7 +43,10 @@ const replyPurposeMessage = (token) => {
 };
 
 const replyRecommandMessage = (token) => {
-  return client.replyMessage(token, dressStyleOneMessage);
+  return client.replyMessage(token, [
+    dressStyleOneMessage,
+    dressStyleTwoMessage,
+  ]);
 };
 
 const replyWebsiteLink = (token) => {

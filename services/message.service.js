@@ -13,6 +13,7 @@ const {
   dressStyleOneMessage,
   dressStyleTwoMessage,
   sportMessage,
+  weatherMessage,
 } = require('../models/message.model');
 
 const replyText = (token, texts) => {
@@ -32,7 +33,7 @@ const replyHelpMessage = (token) => {
 };
 
 const replyWeatherMessage = (token) => {
-  return replyText(token, '輸入鄉鎮市區的地名 ex. 中壢');
+  return client.replyMessage(token, weatherMessage);
 };
 
 const replySuggestionMessage = (token) => {
@@ -77,6 +78,7 @@ const handleText = (token, message) => {
       return replyHelpMessage(token);
 
     case '天氣':
+    case '天氣查詢':
     case 'weather':
       return replyWeatherMessage(token);
 

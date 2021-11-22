@@ -130,6 +130,11 @@ const sportMessage = {
   },
 };
 
+const weatherMessage = `請輸入想要查詢之縣市地區
+EX: 中山、冬山、中壢
+
+您將可得到即時天氣狀況、溫度、降雨機率、舒適度，依據得到之結果將可為您提供合適的穿搭建議。`;
+
 const fashionMessage = `潮牌⬇️
 off white
 https://www.off-white.com.tw/
@@ -157,42 +162,46 @@ const helpMessage = `關鍵字✅ ️
 ➡️可查詢穿搭建議`;
 
 const suggestionMessage = {
-  type: 'bubble',
-  direction: 'ltr',
-  header: {
-    type: 'box',
-    layout: 'vertical',
-    contents: [
-      {
-        type: 'text',
-        text: '地點+溫度',
-        weight: 'bold',
-        size: 'xxl',
-        color: '#5051DAFF',
-        align: 'center',
-      },
-    ],
-  },
-  hero: {
-    type: 'image',
-    url: 'https://vos.line-scdn.net/bot-designer-template-images/bot-designer-icon.png',
-    size: 'full',
-    aspectRatio: '1.51:1',
-    aspectMode: 'fit',
-  },
-  body: {
-    type: 'box',
-    layout: 'vertical',
-    contents: [
-      {
-        type: 'text',
-        text: '穿搭建議',
-        weight: 'bold',
-        size: 'xxl',
-        color: '#2C672DFF',
-        align: 'center',
-      },
-    ],
+  type: 'flex',
+  altText: 'suggestion message',
+  contents: {
+    type: 'bubble',
+    direction: 'ltr',
+    header: {
+      type: 'box',
+      layout: 'vertical',
+      contents: [
+        {
+          type: 'text',
+          text: '地點+溫度',
+          weight: 'bold',
+          size: 'xxl',
+          color: '#5051DAFF',
+          align: 'center',
+        },
+      ],
+    },
+    hero: {
+      type: 'image',
+      url: 'https://vos.line-scdn.net/bot-designer-template-images/bot-designer-icon.png',
+      size: 'full',
+      aspectRatio: '1.51:1',
+      aspectMode: 'fit',
+    },
+    body: {
+      type: 'box',
+      layout: 'vertical',
+      contents: [
+        {
+          type: 'text',
+          text: '穿搭建議',
+          weight: 'bold',
+          size: 'xxl',
+          color: '#2C672DFF',
+          align: 'center',
+        },
+      ],
+    },
   },
 };
 
@@ -382,4 +391,5 @@ module.exports = {
   dressStyleTwoMessage,
   sportMessage,
   fashionMessage,
+  weatherMessage,
 };

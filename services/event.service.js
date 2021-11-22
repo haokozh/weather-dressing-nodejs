@@ -34,15 +34,23 @@ const isDateTime = (data) => {
 };
 
 const handlePostbackEvent = (event) => {
-  let data = event.postback.data;
-  const params = event.postback.params;
-  const currentTime = new Date(Date.now());
+  try {
+    let data = event.postback.data;
+    const params = event.postback.params;
+    const currentTime = new Date(Date.now());
 
-  if (isDate(data) || isTime(data) || isDateTime(data)) {
-    data += `(${JSON.stringify(event.postback.params)})`;
+    if (isDate(data) || isTime(data) || isDateTime(data)) {
+      data += `(${JSON.stringify(event.postback.params)})`;
+    }
+
+    return messageService.replyWeatherByCityNameAndDistName(
+      event.replyToken,
+      params.city,
+      params.dist
+    );
+  } catch (error) {
+    console.error(`Error on event.service.handlePostbackEvent(): ${error}`);
   }
-
-  return messageService.replyWeatherByCityNameAndDistName(event.replyToken, params.city, params.dist);
 };
 
 const handleBeaconEvent = (event) => {

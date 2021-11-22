@@ -42,28 +42,7 @@ const handlePostbackEvent = (event) => {
     data += `(${JSON.stringify(event.postback.params)})`;
   }
 
-  if (data === 'manyDistOptions') {
-    // return messageService.replyWeatherByCityNameAndDistName(
-    //   event.replyToken,
-    //   params.city,
-    //   params.dist
-    // );
-    return messageService.replyText('Got Options Postback Data');
-  }
-
-  if (data === '上班' || data === '上學' || data === '出遊') {
-    // return messageService.replyText(`city: ${params.city}
-    // dist: ${params.dist}
-    // pop: ${params.pop}
-    // mint: ${params.minT}
-    // maxt: ${params.maxT}
-    // purpose: ${data}
-    // currentTime: ${currentTime.getHours()}`);
-
-    return messageService.replyText('Got work Postback Data');
-  }
-
-  return messageService.replyText('Got Postback Data');
+  return messageService.replyWeatherByCityNameAndDistName(event.reypToken, params.city, params.dist);
 };
 
 const handleBeaconEvent = (event) => {

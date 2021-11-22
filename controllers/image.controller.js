@@ -23,4 +23,5 @@ module.exports = {
   dressStyleOne700,
   dressStyleTwo1040,
   dressStyleTwo700,
+  nike,
 };

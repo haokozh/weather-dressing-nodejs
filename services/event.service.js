@@ -42,6 +42,14 @@ const handlePostbackEvent = (event) => {
       data += `(${JSON.stringify(event.postback.params)})`;
     }
 
+    if (data.action === 'getWeather') {
+      return messageService.replyWeatherByCityNameAndDistName(
+        event.replyToken,
+        data.cityName,
+        data.distName
+      );
+    }
+
     return messageService.replyText(event.replyToken, `Got postback: ${data}`);
   } catch (error) {
     console.error(`Error on event.service.handlePostbackEvent(): ${error}`);

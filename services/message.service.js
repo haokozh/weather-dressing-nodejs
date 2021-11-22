@@ -174,7 +174,7 @@ const getPostbackButton = (cityName, distName) => {
     action: {
       type: 'postback',
       label: `${cityName} ${distName}`,
-      data: `${cityName} ${distName}`,
+      data: `action=getWeather&cityName=${cityName}&distName=${distName}`,
     },
   };
 };
@@ -207,14 +207,14 @@ const getPostbackMessage = (queryResult, text) => {
   };
 };
 
-const replyWeatherByCityNameAndDistName = async (token, city, dist) => {
+const replyWeatherByCityNameAndDistName = async (token, cityName, distName) => {
   try {
     let queryResultForecastId =
-      await weatherService.findWeeklyForecastIdByCityName(city);
+      await weatherService.findWeeklyForecastIdByCityName(cityName);
 
     const weatherResponse = await weatherService.getWeatherResponse(
       queryResultForecastId,
-      dist,
+      distName,
       elementParams
     );
 

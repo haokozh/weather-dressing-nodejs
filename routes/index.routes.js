@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path');
 
 const storage = multer({
-  dest: '/uploads'
+  dest: '/upload'
 });
 
 const upload = multer({ storage: storage });

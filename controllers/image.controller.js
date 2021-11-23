@@ -163,7 +163,7 @@ const meierdotq = (req, res) => {
 };
 
 const michaelkors = (req, res) => {
-  res.sendFile(`${IMAGE_BASE_URL}/logo/michaelkors-logo.jpg`);
+  res.sendFile(`${IMAGE_BASE_URL}/logo/michaelkors-logo.png`);
 };
 
 const mouggan = (req, res) => {
@@ -175,7 +175,7 @@ const nb = (req, res) => {
 };
 
 const nerdy = (req, res) => {
-  res.sendFile(`${IMAGE_BASE_URL}/logo/nerdy-logo.jpg`);
+  res.sendFile(`${IMAGE_BASE_URL}/logo/nerdy-logo.png`);
 };
 
 const nikoand = (req, res) => {
@@ -203,7 +203,7 @@ const oqliq = (req, res) => {
 };
 
 const pazzo = (req, res) => {
-  res.sendFile(`${IMAGE_BASE_URL}/logo/pazzo.jpg`);
+  res.sendFile(`${IMAGE_BASE_URL}/logo/pazzo-logo.jpg`);
 };
 
 const phantaci = (req, res) => {
@@ -227,7 +227,7 @@ const queenshop = (req, res) => {
 };
 
 const sealson = (req, res) => {
-  res.sendFile(`${IMAGE_BASE_URL}/logo/season-logo.jpg`);
+  res.sendFile(`${IMAGE_BASE_URL}/logo/sealson-logo.jpg`);
 };
 
 const spao = (req, res) => {
@@ -243,7 +243,7 @@ const stayreal = (req, res) => {
 };
 
 const stussy = (req, res) => {
-  res.sendFile(`${IMAGE_BASE_URL}/logo/stussy-logo.jpg`);
+  res.sendFile(`${IMAGE_BASE_URL}/logo/stussy-logo.png`);
 };
 
 const suitangtang = (req, res) => {

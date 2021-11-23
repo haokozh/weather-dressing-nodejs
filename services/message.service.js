@@ -261,6 +261,8 @@ const replyWeather = async (token, text) => {
       );
 
       message = weatherService.parseResponseToFlexBubble(weatherResponse);
+
+      console.log(message);
     } else if (isManyResult(queryResult.length)) {
       message = getPostbackMessage(queryResult, text);
     } else {

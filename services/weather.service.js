@@ -97,8 +97,6 @@ const parseResponseToFlexBubble = (data) => {
       confortValueIndex
     );
 
-    console.log(pop12h, minT, maxT, minCI, maxCI);
-
     return replyFlexBubble(
       responseData.locationsName,
       responseData.locationName,

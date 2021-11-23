@@ -281,11 +281,7 @@ const getFooter = (city, dist) => {
         action: {
           type: 'postback',
           label: '查看天氣穿搭',
-          data: '查看天氣穿搭',
-          params: {
-            city: city,
-            dist: dist,
-          }
+          data: `action=getDressing&city=${city}&dist=${dist}`,
         },
       },
     ],
@@ -318,7 +314,7 @@ const replyFlexBubble = (
         getTempDescription(minT, maxT),
         getConfortDescription(minCI, maxCI)
       ),
-      // footer: getFooter(cityName, distName),
+      footer: getFooter(cityName, distName),
     },
   });
 };
@@ -337,7 +333,7 @@ const findWeeklyForecastIdByCityName = async (cityName) => {
       [replaceCityName(cityName)]
     );
 
-    console.log(rows);
+    console.log(rows[0]);
 
     return rows[0].forecastid;
   } catch (error) {

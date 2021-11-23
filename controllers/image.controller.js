@@ -21,7 +21,11 @@ const nike = (req, res) => {
 };
 
 const adidas = (req, res) => {
-  res.sendFile(`${IMAGE_BASE_URL}/logo/`);
+  res.sendFile(`${IMAGE_BASE_URL}/logo/adidas-logo.jpg`);
+};
+
+const girls66 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/66-girls-logo.jpg`);
 };
 
 module.exports = {

@@ -28,6 +28,27 @@ const girls66 = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/66-girls-logo.jpg`);
 };
 
+const aes = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/logo/aes-logo.jpg`);
+};
+
+const anowherman = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/logo/anowherman-logo.jpg`);
+};
+
+const beams = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/logo/beams-logo.png`);
+};
+const bershka = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/logo/bershka-logo.png`);
+};
+const burberry = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/logo/burberry-logo.png`);
+};
+const celine = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/logo/celine-logo.png`);
+};
+
 module.exports = {
   dressStyleOne1040,
   dressStyleOne700,
@@ -35,4 +56,11 @@ module.exports = {
   dressStyleTwo700,
   nike,
   adidas,
+  girls66,
+  aes,
+  anowherman,
+  beams,
+  bershka,
+  burberry,
+  celine,
 };

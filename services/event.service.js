@@ -46,8 +46,8 @@ const handlePostbackEvent = (event) => {
     if (data.action === 'getWeather') {
       return messageService.replyWeatherByCityNameAndDistName(
         event.replyToken,
-        data.cityName,
-        data.distName
+        data.city,
+        data.dist
       );
     }
 

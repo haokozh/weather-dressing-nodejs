@@ -25,7 +25,7 @@ const adidas = (req, res) => {
 };
 
 const girls66 = (req, res) => {
-  res.sendFile(`${IMAGE_BASE_URL}/66girls-logo.jpg`);
+  res.sendFile(`${IMAGE_BASE_URL}/logo/66girls-logo.jpg`);
 };
 
 const aes = (req, res) => {

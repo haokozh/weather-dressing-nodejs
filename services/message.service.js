@@ -118,7 +118,7 @@ const handleText = (token, message) => {
       return replyPurposeMessage(token);
 
     default:
-      return replyText(token, keyword);
+      return replyWeather(token, keyword);
   }
 };
 

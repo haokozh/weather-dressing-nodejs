@@ -183,7 +183,7 @@ const getPostbackTitle = (text) => {
   return {
     type: 'text',
     text: `請問是哪個${text}?`,
-    size: 'xxl',
+    size: 'xl',
   };
 };
 

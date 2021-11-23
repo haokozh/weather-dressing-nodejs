@@ -271,7 +271,7 @@ const getBody = (
   };
 };
 
-const getFooter = (city, dist) => {
+const getFooter = (cityName, distName, pop, minT, maxT) => {
   return {
     type: 'box',
     layout: 'vertical',
@@ -281,7 +281,7 @@ const getFooter = (city, dist) => {
         action: {
           type: 'postback',
           label: '查看天氣穿搭',
-          data: `action=getDressing&city=${city}&dist=${dist}`,
+          data: `action=getDressing&cityName=${cityName}&distName=${distName}&pop=${pop}&minT=${minT}&maxT=${maxT}`,
         },
       },
     ],
@@ -314,7 +314,7 @@ const replyFlexBubble = (
         getTempDescription(minT, maxT),
         getConfortDescription(minCI, maxCI)
       ),
-      footer: getFooter(cityName, distName),
+      footer: getFooter(cityName, distName, pop12h, minT, maxT),
     },
   });
 };

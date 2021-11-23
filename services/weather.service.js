@@ -318,7 +318,7 @@ const replyFlexBubble = (
         getTempDescription(minT, maxT),
         getConfortDescription(minCI, maxCI)
       ),
-      footer: getFooter(cityName, distName),
+      // footer: getFooter(cityName, distName),
     },
   });
 };

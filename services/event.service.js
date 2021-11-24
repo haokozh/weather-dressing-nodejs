@@ -34,6 +34,10 @@ const isDateTime = (data) => {
   return data === 'DATETIME';
 };
 
+const isAfter5PM = (time) => {
+  return time.getHours() >= 17;
+};
+
 const handlePostbackEvent = (event) => {
   try {
     let data = qs.parse(event.postback.data);
@@ -48,6 +52,42 @@ const handlePostbackEvent = (event) => {
     }
 
     if (data.action === 'getDressing') {
+      let filename = '';
+      if (isAfter5PM(currentTime)) {
+        filename += 'pm_';
+      } else {
+        filename += 'am_';
+      }
+
+      if (Number(data.pop) >= 30) {
+        filename += 'r_';
+      } else {
+        filename += 's_';
+      }
+
+      switch (Number(data.purpose)) {
+        case 1:
+          filename += '1_';
+          break;
+        case 2:
+          filename += '2_';
+          break;
+        case 3:
+          filename += '3_';
+          break;
+        default:
+          throw new Error(`Unknown purpose index ${data.purpose}`);
+      }
+
+      let avgT = (Number(data.minT) + Number(data.maxT)) / 2;
+      if (avgT > 25) {
+        filename += '25';
+      } else if (avgT > 20) {
+        filename += '21';
+      } else {
+        filename += '20';
+      }
+
       return messageService.replyText(event.replyToken, `city: ${data.cityName} dist: ${data.distName} pop: ${data.pop} minT: ${data.minT} maxT: ${data.maxT} purpose: ${data.purpose}`);
     }
 

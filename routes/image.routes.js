@@ -83,4 +83,67 @@ router.get('/carousel/wisdom', imageController.wisdom);
 router.get('/carousel/ysl', imageController.ysl);
 router.get('/carousel/zara', imageController.zara);
 
+router.get('/suggestion/am_r_1_20.jpg', imageController.am_r_1_20dotjpg);
+router.get('/suggestion/am_r_1_20.png', imageController.am_r_1_20dotpng);
+router.get('/suggestion/am_r_1_21.jpg', imageController.am_r_1_21dotjpg);
+router.get('/suggestion/am_r_1_21.png', imageController.am_r_1_21dotpng);
+router.get('/suggestion/am_r_1_25.jpg', imageController.am_r_1_25dotjpg);
+router.get('/suggestion/am_r_1_25.png', imageController.am_r_1_25dotpng);
+
+router.get('/suggestion/am_r_2_20.jpg', imageController.am_r_2_20dotjpg);
+router.get('/suggestion/am_r_2_20.png', imageController.am_r_2_20dotpng);
+router.get('/suggestion/am_r_2_21.jpg', imageController.am_r_2_21dotjpg);
+router.get('/suggestion/am_r_2_21.png', imageController.am_r_2_21dotpng);
+router.get('/suggestion/am_r_2_25.jpg', imageController.am_r_2_25dotjpg);
+router.get('/suggestion/am_r_2_25.png', imageController.am_r_2_25dotpng);
+
+router.get('/suggestion/am_r_3_20.jpg', imageController.am_r_3_20dotjpg);
+router.get('/suggestion/am_r_3_20.png', imageController.am_r_3_20dotpng);
+router.get('/suggestion/am_r_3_21.jpg', imageController.am_r_3_21dotjpg);
+router.get('/suggestion/am_r_3_21.png', imageController.am_r_3_21dotpng);
+router.get('/suggestion/am_r_3_25.jpg', imageController.am_r_3_25dotjpg);
+router.get('/suggestion/am_r_3_25.png', imageController.am_r_3_25dotpng);
+
+router.get('/suggestion/am_s_1_20.jpg', imageController.am_s_1_20dotjpg);
+router.get('/suggestion/am_s_1_20.png', imageController.am_s_1_20dotpng);
+router.get('/suggestion/am_s_1_21.jpg', imageController.am_s_1_21dotjpg);
+router.get('/suggestion/am_s_1_21.png', imageController.am_s_1_21dotpng);
+router.get('/suggestion/am_s_1_25.jpg', imageController.am_s_1_25dotjpg);
+router.get('/suggestion/am_s_1_25.png', imageController.am_s_1_25dotpng);
+
+router.get('/suggestion/am_s_2_20.jpg', imageController.am_s_2_20dotjpg);
+router.get('/suggestion/am_s_2_20.png', imageController.am_s_2_20dotpng);
+router.get('/suggestion/am_s_2_21.jpg', imageController.am_s_2_21dotjpg);
+router.get('/suggestion/am_s_2_21.png', imageController.am_s_2_21dotpng);
+router.get('/suggestion/am_s_2_25.jpg', imageController.am_s_2_25dotjpg);
+router.get('/suggestion/am_s_2_25.png', imageController.am_s_2_25dotpng);
+
+router.get('/suggestion/am_s_3_20.jpg', imageController.am_s_3_20dotjpg);
+router.get('/suggestion/am_s_3_20.png', imageController.am_s_3_20dotpng);
+router.get('/suggestion/am_s_3_21.jpg', imageController.am_s_3_21dotjpg);
+router.get('/suggestion/am_s_3_21.png', imageController.am_s_3_21dotpng);
+router.get('/suggestion/am_s_3_25.jpg', imageController.am_s_3_25dotjpg);
+router.get('/suggestion/am_s_3_25.png', imageController.am_s_3_25dotpng);
+
+router.get('/suggestion/pm_d_1_20.jpg', imageController.pm_d_1_20dotjpg);
+router.get('/suggestion/pm_d_1_20.png', imageController.pm_d_1_20dotpng);
+router.get('/suggestion/pm_d_1_21.jpg', imageController.pm_d_1_21dotjpg);
+router.get('/suggestion/pm_d_1_21.png', imageController.pm_d_1_21dotpng);
+router.get('/suggestion/pm_d_1_25.jpg', imageController.pm_d_1_25dotjpg);
+router.get('/suggestion/pm_d_1_25.png', imageController.pm_d_1_25dotpng);
+
+router.get('/suggestion/pm_d_2_20.jpg', imageController.pm_d_2_20dotjpg);
+router.get('/suggestion/pm_d_2_20.png', imageController.pm_d_2_20dotpng);
+router.get('/suggestion/pm_d_2_21.jpg', imageController.pm_d_2_21dotjpg);
+router.get('/suggestion/pm_d_2_21.png', imageController.pm_d_2_21dotpng);
+router.get('/suggestion/pm_d_2_25.jpg', imageController.pm_d_2_25dotjpg);
+router.get('/suggestion/pm_d_2_25.png', imageController.pm_d_2_25dotpng);
+
+router.get('/suggestion/pm_d_3_20.jpg', imageController.pm_d_3_20dotjpg);
+router.get('/suggestion/pm_d_3_20.png', imageController.pm_d_3_20dotpng);
+router.get('/suggestion/pm_d_3_21.jpg', imageController.pm_d_3_21dotjpg);
+router.get('/suggestion/pm_d_3_21.png', imageController.pm_d_3_21dotpng);
+router.get('/suggestion/pm_d_3_25.jpg', imageController.pm_d_3_25dotjpg);
+router.get('/suggestion/pm_d_3_25.png', imageController.pm_d_3_25dotpng);
+
 module.exports = router;

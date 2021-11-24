@@ -306,6 +306,177 @@ const zara = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/logo/zara-logo.jpg`);
 };
 
+const am_r_1_20dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_1_20.jpg`);
+};
+const am_r_1_20dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_1_20.png`);
+};
+const am_r_1_21dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_1_21.jpg`);
+};
+const am_r_1_21dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_1_21.png`);
+};
+const am_r_1_25dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_1_25.jpg`);
+};
+const am_r_1_25dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_1_25.png`);
+};
+
+const am_r_2_20dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_2_20.jpg`);
+};
+const am_r_2_20dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_2_20.png`);
+};
+const am_r_2_21dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_2_21.jpg`);
+};
+const am_r_2_21dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_2_21.png`);
+};
+const am_r_2_25dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_2_25.jpg`);
+};
+const am_r_2_25dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_2_25.png`);
+};
+
+const am_r_3_20dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_3_20.jpg`);
+};
+const am_r_3_20dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_3_20.png`);
+};
+const am_r_3_21dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_3_21.jpg`);
+};
+const am_r_3_21dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_3_21.png`);
+};
+const am_r_3_25dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_3_25.jpg`);
+};
+const am_r_3_25dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_3_25.png`);
+};
+
+const am_s_1_20dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_1_20.jpg`);
+};
+const am_s_1_20dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_1_20.png`);
+};
+const am_s_1_21dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_1_21.jpg`);
+};
+const am_s_1_21dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_1_21.png`);
+};
+const am_s_1_25dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_1_25.jpg`);
+};
+const am_s_1_25dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_1_25.png`);
+};
+
+const am_s_2_20dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_2_20.jpg`);
+};
+const am_s_2_20dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_2_20.png`);
+};
+const am_s_2_21dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_2_21.jpg`);
+};
+const am_s_2_21dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_2_21.png`);
+};
+const am_s_2_25dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_2_25.jpg`);
+};
+const am_s_2_25dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_2_25.png`);
+};
+
+const am_s_3_20dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_3_20.jpg`);
+};
+const am_s_3_20dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_3_20.png`);
+};
+const am_s_3_21dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_3_21.jpg`);
+};
+const am_s_3_21dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_3_21.png`);
+};
+const am_s_3_25dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_3_25.jpg`);
+};
+const am_s_3_25dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_s_3_25.png`);
+};
+
+const pm_d_1_20dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_1_20.jpg`);
+};
+const pm_d_1_20dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_1_20.png`);
+};
+const pm_d_1_21dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_1_21.jpg`);
+};
+const pm_d_1_21dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_1_21.png`);
+};
+const pm_d_1_25dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_1_25.jpg`);
+};
+const pm_d_1_25dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_1_25.png`);
+};
+
+const pm_d_2_20dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_2_20.jpg`);
+};
+const pm_d_2_20dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_2_20.png`);
+};
+const pm_d_2_21dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_2_21.jpg`);
+};
+const pm_d_2_21dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_2_21.png`);
+};
+const pm_d_2_25dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_2_25.jpg`);
+};
+const pm_d_2_25dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_2_25.png`);
+};
+
+const pm_d_3_20dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_3_20.jpg`);
+};
+const pm_d_3_20dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_3_20.png`);
+};
+const pm_d_3_21dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_3_21.jpg`);
+};
+const pm_d_3_21dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_3_21.png`);
+};
+const pm_d_3_25dotjpg = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_3_25.jpg`);
+};
+const pm_d_3_25dotpng = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_3_25.png`);
+};
+
 module.exports = {
   dressStyleOne1040,
   dressStyleOne700,
@@ -385,4 +556,58 @@ module.exports = {
   wisdom,
   ysl,
   zara,
+  am_r_1_20dotjpg,
+  am_r_1_20dotpng,
+  am_r_1_21dotjpg,
+  am_r_1_21dotpng,
+  am_r_1_25dotjpg,
+  am_r_1_25dotpng,
+  am_r_2_20dotjpg,
+  am_r_2_20dotpng,
+  am_r_2_21dotjpg,
+  am_r_2_21dotpng,
+  am_r_2_25dotjpg,
+  am_r_2_25dotpng,
+  am_r_3_20dotjpg,
+  am_r_3_20dotpng,
+  am_r_3_21dotjpg,
+  am_r_3_21dotpng,
+  am_r_3_25dotjpg,
+  am_r_3_25dotpng,
+  am_s_1_20dotjpg,
+  am_s_1_20dotpng,
+  am_s_1_21dotjpg,
+  am_s_1_21dotpng,
+  am_s_1_25dotjpg,
+  am_s_1_25dotpng,
+  am_s_2_20dotjpg,
+  am_s_2_20dotpng,
+  am_s_2_21dotjpg,
+  am_s_2_21dotpng,
+  am_s_2_25dotjpg,
+  am_s_2_25dotpng,
+  am_s_3_20dotjpg,
+  am_s_3_20dotpng,
+  am_s_3_21dotjpg,
+  am_s_3_21dotpng,
+  am_s_3_25dotjpg,
+  am_s_3_25dotpng,
+  pm_d_1_20dotjpg,
+  pm_d_1_20dotpng,
+  pm_d_1_21dotjpg,
+  pm_d_1_21dotpng,
+  pm_d_1_25dotjpg,
+  pm_d_1_25dotpng,
+  pm_d_2_20dotjpg,
+  pm_d_2_20dotpng,
+  pm_d_2_21dotjpg,
+  pm_d_2_21dotpng,
+  pm_d_2_25dotjpg,
+  pm_d_2_25dotpng,
+  pm_d_3_20dotjpg,
+  pm_d_3_20dotpng,
+  pm_d_3_21dotjpg,
+  pm_d_3_21dotpng,
+  pm_d_3_25dotjpg,
+  pm_d_3_25dotpng,
 };

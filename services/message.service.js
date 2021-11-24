@@ -168,6 +168,52 @@ const handleMessageEvent = (event) => {
   );
 };
 
+const getSuggestionMessage = (cityName, distName, avgT, imageName) => {
+  return {
+    type: 'flex',
+    altText: 'suggestion message',
+    contents: {
+      type: 'bubble',
+      direction: 'ltr',
+      header: {
+        type: 'box',
+        layout: 'vertical',
+        contents: [
+          {
+            type: 'text',
+            text: `${cityName} ${distName} ${avgT}°C`,
+            weight: 'bold',
+            size: 'xxl',
+            color: '#5051DAFF',
+            align: 'center',
+          },
+        ],
+      },
+      hero: {
+        type: 'image',
+        url: 'https://vos.line-scdn.net/bot-designer-template-images/bot-designer-icon.png',
+        size: 'full',
+        aspectRatio: '1.51:1',
+        aspectMode: 'fit',
+      },
+      body: {
+        type: 'box',
+        layout: 'vertical',
+        contents: [
+          {
+            type: 'text',
+            text: '穿搭建議',
+            weight: 'bold',
+            size: 'xxl',
+            color: '#2C672DFF',
+            align: 'center',
+          },
+        ],
+      },
+    },
+  };
+};
+
 const getPostbackButton = (cityName, distName) => {
   return {
     type: 'button',

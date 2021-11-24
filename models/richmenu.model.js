@@ -51,8 +51,8 @@ const richmenu = {
         height: 854,
       },
       action: {
-        type: 'message',
-        text: '網站',
+        type: 'uri',
+        uri: 'https://weather-dresing.herokuapp.com',
       },
     },
     {

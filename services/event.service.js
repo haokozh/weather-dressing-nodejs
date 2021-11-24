@@ -48,7 +48,7 @@ const handlePostbackEvent = (event) => {
     }
 
     if (data.action === 'getDressing') {
-      return messageService.replyText(event.replyToken, `city: ${data.cityName} dist: ${data.distName} pop: ${data.pop} minT: ${data.minT} maxT: ${data.maxT}`);
+      return messageService.replyText(event.replyToken, `city: ${data.cityName} dist: ${data.distName} pop: ${data.pop} minT: ${data.minT} maxT: ${data.maxT} purpose: ${data.purpose}`);
     }
 
     return messageService.replyText(

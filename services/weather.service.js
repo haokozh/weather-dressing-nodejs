@@ -280,8 +280,24 @@ const getFooter = (cityName, distName, pop, minT, maxT) => {
         type: 'button',
         action: {
           type: 'postback',
-          label: '查看天氣穿搭',
-          data: `action=getDressing&cityName=${cityName}&distName=${distName}&pop=${pop}&minT=${minT}&maxT=${maxT}`,
+          label: '出遊穿搭建議',
+          data: `action=getDressing&cityName=${cityName}&distName=${distName}&pop=${pop}&minT=${minT}&maxT=${maxT}&purpose=1`,
+        },
+      },
+      {
+        type: 'button',
+        action: {
+          type: 'postback',
+          label: '學校穿搭建議',
+          data: `action=getDressing&cityName=${cityName}&distName=${distName}&pop=${pop}&minT=${minT}&maxT=${maxT}&purpose=2`,
+        },
+      },
+      {
+        type: 'button',
+        action: {
+          type: 'postback',
+          label: '公司穿搭建議',
+          data: `action=getDressing&cityName=${cityName}&distName=${distName}&pop=${pop}&minT=${minT}&maxT=${maxT}&purpose=3`,
         },
       },
     ],

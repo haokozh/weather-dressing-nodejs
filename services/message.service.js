@@ -36,10 +36,10 @@ const replyWeatherMessage = (token) => {
   return replyText(token, weatherMessage);
 };
 
-const replySuggestionMessage = (token, cityName, distName, imageName) => {
+const replySuggestionMessage = (token, cityName, avgT, distName, imageName) => {
   return client.replyMessage(token, [
-    getSuggestionMessage(cityName, distName, imageName, '.jpg'),
-    getSuggestionMessage(cityName, distName, imageName, '.png'),
+    getSuggestionMessage(cityName, distName, avgT, imageName, '.jpg'),
+    getSuggestionMessage(cityName, distName, avgT, imageName, '.png'),
   ]);
 };
 

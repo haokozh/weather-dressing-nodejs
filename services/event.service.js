@@ -96,6 +96,7 @@ const handlePostbackEvent = (event) => {
         event.replyToken,
         data.cityName,
         data.distName,
+        avgT,
         imageName
       );
     }

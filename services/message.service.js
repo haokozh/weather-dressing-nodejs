@@ -38,8 +38,8 @@ const replyWeatherMessage = (token) => {
 
 const replySuggestionMessage = (token, cityName, avgT, distName, imageName) => {
   return client.replyMessage(token, [
-    getSuggestionMessage(cityName, distName, avgT, imageName, '.jpg'),
-    getSuggestionMessage(cityName, distName, avgT, imageName, '.png'),
+    getSuggestionMessage(cityName, distName, avgT, imageName, 'jpg'),
+    getSuggestionMessage(cityName, distName, avgT, imageName, 'png'),
   ]);
 };
 
@@ -192,8 +192,8 @@ const getSuggestionMessage = (
             type: 'text',
             text: `${cityName} ${distName} ${avgT}°C`,
             weight: 'bold',
-            size: 'xxl',
-            color: '#5051DAFF',
+            size: 'md',
+            color: '#55DAFF',
             align: 'center',
           },
         ],

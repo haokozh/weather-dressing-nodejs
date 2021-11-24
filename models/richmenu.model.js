@@ -52,7 +52,7 @@ const richmenu = {
       },
       action: {
         type: 'uri',
-        uri: 'https://weather-dresing.herokuapp.com',
+        uri: 'https://weather-dressing.herokuapp.com',
       },
     },
     {

@@ -48,32 +48,36 @@ const handlePostbackEvent = (event) => {
     }
 
     if (data.action === 'getWeather') {
-      return messageService.replyWeatherByCityNameAndDistName(event.replyToken, data.cityName, data.distName);
+      return messageService.replyWeatherByCityNameAndDistName(
+        event.replyToken,
+        data.cityName,
+        data.distName
+      );
     }
 
     if (data.action === 'getDressing') {
-      let filename = '';
+      let imageName = '';
       if (isAfter5PM(currentTime)) {
-        filename += 'pm_';
+        imageName += 'pm_';
       } else {
-        filename += 'am_';
+        imageName += 'am_';
       }
 
       if (Number(data.pop) >= 30) {
-        filename += 'r_';
+        imageName += 'r_';
       } else {
-        filename += 's_';
+        imageName += 's_';
       }
 
       switch (Number(data.purpose)) {
         case 1:
-          filename += '1_';
+          imageName += '1_';
           break;
         case 2:
-          filename += '2_';
+          imageName += '2_';
           break;
         case 3:
-          filename += '3_';
+          imageName += '3_';
           break;
         default:
           throw new Error(`Unknown purpose index ${data.purpose}`);
@@ -81,20 +85,22 @@ const handlePostbackEvent = (event) => {
 
       let avgT = (Number(data.minT) + Number(data.maxT)) / 2;
       if (avgT > 25) {
-        filename += '25';
+        imageName += '25';
       } else if (avgT > 20) {
-        filename += '21';
+        imageName += '21';
       } else {
-        filename += '20';
+        imageName += '20';
       }
 
-      return messageService.replyText(event.replyToken, `city: ${data.cityName} dist: ${data.distName} pop: ${data.pop} minT: ${data.minT} maxT: ${data.maxT} purpose: ${data.purpose}`);
+      return messageService.replySuggestionMessage(
+        event.replyToken,
+        data.cityName,
+        data.distName,
+        imageName
+      );
     }
 
-    return messageService.replyText(
-      event.replyToken,
-      `Got postback: ${data}`
-    );
+    return messageService.replyText(event.replyToken, `Got postback: ${data}`);
   } catch (error) {
     console.error(`Error on event.service.handlePostbackEvent(): ${error}`);
   }

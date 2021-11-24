@@ -36,8 +36,11 @@ const replyWeatherMessage = (token) => {
   return replyText(token, weatherMessage);
 };
 
-const replySuggestionMessage = (token) => {
-  return client.replyMessage(token, suggestionMessage);
+const replySuggestionMessage = (token, cityName, distName, imageName) => {
+  return client.replyMessage(token, [
+    getSuggestionMessage(cityName, distName, imageName, '.jpg'),
+    getSuggestionMessage(cityName, distName, imageName, '.png'),
+  ]);
 };
 
 const replyPurposeMessage = (token) => {
@@ -168,7 +171,13 @@ const handleMessageEvent = (event) => {
   );
 };
 
-const getSuggestionMessage = (cityName, distName, avgT, imageName) => {
+const getSuggestionMessage = (
+  cityName,
+  distName,
+  avgT,
+  imageName,
+  imageType
+) => {
   return {
     type: 'flex',
     altText: 'suggestion message',
@@ -191,7 +200,7 @@ const getSuggestionMessage = (cityName, distName, avgT, imageName) => {
       },
       hero: {
         type: 'image',
-        url: 'https://vos.line-scdn.net/bot-designer-template-images/bot-designer-icon.png',
+        url: `https://weather-dressing.herokuapp.com/image/suggestion/${imageName}.${imageType}`,
         size: 'full',
         aspectRatio: '1.51:1',
         aspectMode: 'fit',
@@ -328,4 +337,5 @@ module.exports = {
   replyText,
   handleMessageEvent,
   replyWeatherByCityNameAndDistName,
+  replySuggestionMessage,
 };

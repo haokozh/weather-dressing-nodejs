@@ -353,7 +353,7 @@ const am_r_3_20dotpng = (req, res) => {
 const am_r_3_21dotjpg = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_3_21.jpg`);
 };
-const am_r_3_21dotjpg = (req, res) => {
+const am_r_3_21dotpng = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/suggestion/am_r_3_21.png`);
 };
 const am_r_3_25dotjpg = (req, res) => {

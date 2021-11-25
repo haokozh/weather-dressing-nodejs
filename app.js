@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // use static file
 app.use(express.static('public'));
+app.use(express.static('uploads'));
 
 // web routes
 app.use('/', require('./routes/index.routes'));

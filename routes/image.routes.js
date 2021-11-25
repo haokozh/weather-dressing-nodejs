@@ -65,6 +65,7 @@ router.get('/carousel/professordote', imageController.professordote);
 router.get('/carousel/pullandbear', imageController.pullandbear);
 router.get('/carousel/puma', imageController.puma);
 router.get('/carousel/queenshop', imageController.queenshop);
+router.get('/carousel/righton', imageController.righton);
 router.get('/carousel/sealson', imageController.sealson);
 router.get('/carousel/spao', imageController.spao);
 router.get('/carousel/sstandc', imageController.sstandc);

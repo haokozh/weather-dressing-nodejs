@@ -12,7 +12,7 @@ router.get('/carousel/nike', imageController.nike);
 router.get('/carousel/adidas', imageController.adidas);
 router.get('/carousel/66girls', imageController.girls66);
 router.get('/carousel/aes', imageController.aes);
-router.get('/carousel/anowherman', imageController.anowherman);
+router.get('/carousel/anowhereman', imageController.anowhereman);
 router.get('/carousel/beams', imageController.beams);
 router.get('/carousel/bershka', imageController.bershka);
 router.get('/carousel/burberry', imageController.burberry);

@@ -32,8 +32,8 @@ const aes = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/logo/aes-logo.jpg`);
 };
 
-const anowherman = (req, res) => {
-  res.sendFile(`${IMAGE_BASE_URL}/logo/anowherman-logo.jpg`);
+const anowhereman = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/logo/anowhereman-logo.jpg`);
 };
 
 const beams = (req, res) => {
@@ -175,7 +175,7 @@ const mixxmix = (req, res) => {
 };
 
 const mango = (req, res) => {
-  res.sendFile(`${IMAGE_BASE_URL}/logo/mango-logo.`);
+  res.sendFile(`${IMAGE_BASE_URL}/logo/mango-logo.jpg`);
 };
 
 const nb = (req, res) => {
@@ -506,7 +506,7 @@ module.exports = {
   adidas,
   girls66,
   aes,
-  anowherman,
+  anowhereman,
   beams,
   bershka,
   burberry,

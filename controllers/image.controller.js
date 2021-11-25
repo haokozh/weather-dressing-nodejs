@@ -195,7 +195,7 @@ const ninetheory = (req, res) => {
 };
 
 const notag = (req, res) => {
-  res.sendFile(`${IMAGE_BASE_URL}/logo/notag-logo.png`);
+  res.sendFile(`${IMAGE_BASE_URL}/logo/notag-logo.jpg`);
 };
 
 const ob = (req, res) => {

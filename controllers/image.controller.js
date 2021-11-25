@@ -170,6 +170,10 @@ const mouggan = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/logo/mouggan-logo.jpg`);
 };
 
+const mixxmix = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/logo/mixxmix-logo.png`);
+};
+
 const nb = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/logo/nb-logo.png`);
 };
@@ -184,6 +188,10 @@ const nikoand = (req, res) => {
 
 const ninetheory = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/logo/ninetheory-logo.jpg`);
+};
+
+const notag = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/logo/notag-logo.png`);
 };
 
 const ob = (req, res) => {
@@ -228,7 +236,7 @@ const queenshop = (req, res) => {
 
 const righton = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/logo/righton-logo.jpg`);
-}
+};
 
 const sealson = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/logo/sealson-logo.jpg`);
@@ -526,6 +534,7 @@ module.exports = {
   meierdotq,
   michaelkors,
   mouggan,
+  mixxmix,
   nb,
   nerdy,
   nikoand,
@@ -540,6 +549,7 @@ module.exports = {
   pullandbear,
   puma,
   queenshop,
+  righton,
   sealson,
   spao,
   sstandc,

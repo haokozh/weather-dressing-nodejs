@@ -174,6 +174,10 @@ const mixxmix = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/logo/mixxmix-logo.png`);
 };
 
+const mango = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/logo/mango-logo.`);
+};
+
 const nb = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/logo/nb-logo.png`);
 };
@@ -276,6 +280,10 @@ const supreme = (req, res) => {
 
 const syndro = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/logo/syndro-logo.jpg`);
+};
+
+const stylenanda = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/logo/stylenanda-logo.png`);
 };
 
 const th = (req, res) => {
@@ -535,6 +543,7 @@ module.exports = {
   michaelkors,
   mouggan,
   mixxmix,
+  mango,
   nb,
   nerdy,
   nikoand,

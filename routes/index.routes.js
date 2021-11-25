@@ -1,6 +1,5 @@
 const express = require('express');
 const multer = require('multer');
-const upload = multer({ storage: storage });
 
 const path = require('path');
 
@@ -12,6 +11,8 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname));
   },
 });
+
+const upload = multer({ storage: storage });
 
 const router = express.Router();
 

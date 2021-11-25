@@ -111,7 +111,7 @@ const goopi = (req, res) => {
 };
 
 const gu = (req, res) => {
-  res.sendFile(`${IMAGE_BASE_URL}/logo/gu-logo.jpg`);
+  res.sendFile(`${IMAGE_BASE_URL}/logo/gu-logo.png`);
 };
 
 const gucci = (req, res) => {
@@ -225,6 +225,10 @@ const puma = (req, res) => {
 const queenshop = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/logo/queenshop-logo.jpg`);
 };
+
+const righton = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/logo/righton-logo.jpg`);
+}
 
 const sealson = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/logo/sealson-logo.jpg`);

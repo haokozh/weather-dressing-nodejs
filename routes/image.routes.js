@@ -54,6 +54,7 @@ router.get('/carousel/nb', imageController.nb);
 router.get('/carousel/nerdy', imageController.nerdy);
 router.get('/carousel/nikoand', imageController.nikoand);
 router.get('/carousel/ninetheory', imageController.ninetheory);
+router.get('/carousel/notag', imageController.notag);
 router.get('/carousel/ob', imageController.ob);
 router.get('/carousel/offwhite', imageController.offwhite);
 router.get('/carousel/oneboy', imageController.oneboy);

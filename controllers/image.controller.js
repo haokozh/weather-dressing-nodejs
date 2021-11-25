@@ -548,6 +548,7 @@ module.exports = {
   nerdy,
   nikoand,
   ninetheory,
+  notag,
   ob,
   offwhite,
   oneboy,

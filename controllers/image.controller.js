@@ -569,6 +569,7 @@ module.exports = {
   superdry,
   supreme,
   syndro,
+  stylenanda,
   th,
   tiffany,
   ua,

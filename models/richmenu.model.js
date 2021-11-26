@@ -10,33 +10,21 @@ const richmenu = {
     {
       bounds: {
         x: 0,
-        y: 4,
-        width: 1672,
-        height: 823,
-      },
-      action: {
-        type: 'message',
-        text: '天氣查詢',
-      },
-    },
-    {
-      bounds: {
-        x: 1673,
         y: 0,
-        width: 827,
-        height: 832,
+        width: 2500,
+        height: 836,
       },
       action: {
         type: 'message',
-        text: '穿搭建議',
+        text: '查詢天氣及穿搭',
       },
     },
     {
       bounds: {
         x: 0,
-        y: 828,
-        width: 857,
-        height: 858,
+        y: 831,
+        width: 853,
+        height: 855,
       },
       action: {
         type: 'message',
@@ -46,21 +34,21 @@ const richmenu = {
     {
       bounds: {
         x: 853,
-        y: 832,
+        y: 836,
         width: 824,
-        height: 854,
+        height: 850,
       },
       action: {
         type: 'uri',
-        uri: 'https://weather-dressing.herokuapp.com',
+        uri: 'https://weather-dressing.herokuapp.com/',
       },
     },
     {
       bounds: {
-        x: 1672,
-        y: 828,
-        width: 828,
-        height: 858,
+        x: 1677,
+        y: 835,
+        width: 823,
+        height: 851,
       },
       action: {
         type: 'uri',

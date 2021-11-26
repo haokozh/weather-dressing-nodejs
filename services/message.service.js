@@ -67,7 +67,7 @@ const handleText = (token, message) => {
       return replyHelpMessage(token);
 
     case '天氣':
-    case '天氣查詢':
+    case '查詢天氣及穿搭':
     case 'weather':
       return replyWeatherMessage(token);
 

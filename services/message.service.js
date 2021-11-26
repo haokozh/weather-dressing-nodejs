@@ -94,11 +94,11 @@ const handleText = (token, message) => {
       return client.replyMessage(token, japaneseMessage);
 
     case '韓系':
-      return replyText(token, koreanMessage);
+      return client.replyMessage(token, koreanMessage);
 
     case '歐系':
     case '歐美':
-      return replyText(token, euroMessage);
+      return client.replyMessage(token, euroMessage);
 
     case '運動':
     case 'sport':
@@ -118,6 +118,9 @@ const handleText = (token, message) => {
 
     case '專櫃品牌':
       return client.replyMessage(token, counterBrandMessage);
+
+    case '潮牌': 
+      return client.replyMessage(token, fashionMessage);
 
     case 'ig':
       return replyInstagramLink(token);

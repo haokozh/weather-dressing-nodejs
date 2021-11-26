@@ -40,7 +40,7 @@ const replyWeatherMessage = (token) => {
   return replyText(token, weatherMessage);
 };
 
-const replySuggestionMessage = (token, cityName, avgT, distName, imageName) => {
+const replySuggestionMessage = (token, cityName, distName, avgT, imageName) => {
   return client.replyMessage(token, [
     getSuggestionMessage(cityName, distName, avgT, imageName, 'jpg'),
     getSuggestionMessage(cityName, distName, avgT, imageName, 'png'),
@@ -52,20 +52,6 @@ const replyRecommandMessage = (token) => {
     dressStyleOneMessage,
     dressStyleTwoMessage,
   ]);
-};
-
-const replyWebsiteLink = (token) => {
-  return replyText(
-    token,
-    '我們的網站 : https://weather-dressing.herokuapp.com/'
-  );
-};
-
-const replyInstagramLink = (token) => {
-  return replyText(
-    token,
-    '我們的 Instagram : https://www.instagram.com/weather_dressing/'
-  );
 };
 
 const replyUnknownMessage = (token) => {

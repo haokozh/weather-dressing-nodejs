@@ -122,14 +122,6 @@ const handleText = (token, message) => {
     case '潮牌': 
       return client.replyMessage(token, fashionMessage);
 
-    case 'ig':
-      return replyInstagramLink(token);
-
-    case '網頁':
-    case '網站':
-    case 'website':
-      return replyWebsiteLink(token);
-
     default:
       return replyWeather(token, keyword);
   }

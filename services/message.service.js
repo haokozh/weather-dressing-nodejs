@@ -8,12 +8,16 @@ const {
   koreanMessage,
   euroMessage,
   helpMessage,
-  suggestionMessage,
-  purposeMessage,
   dressStyleOneMessage,
   dressStyleTwoMessage,
   sportMessage,
   weatherMessage,
+  fashionMessage,
+  formalMessage,
+  taiwaneseMessage,
+  artistMessage,
+  designerMessage,
+  counterBrandMessage,
 } = require('../models/message.model');
 
 const replyText = (token, texts) => {
@@ -41,10 +45,6 @@ const replySuggestionMessage = (token, cityName, avgT, distName, imageName) => {
     getSuggestionMessage(cityName, distName, avgT, imageName, 'jpg'),
     getSuggestionMessage(cityName, distName, avgT, imageName, 'png'),
   ]);
-};
-
-const replyPurposeMessage = (token) => {
-  return client.replyMessage(token, purposeMessage);
 };
 
 const replyRecommandMessage = (token) => {
@@ -85,18 +85,13 @@ const handleText = (token, message) => {
     case 'weather':
       return replyWeatherMessage(token);
 
-    case '建議':
-    case '穿搭建議':
-    case 'suggestion':
-      return replySuggestionMessage(token);
-
     case '推薦':
     case '品牌推薦':
     case 'recommend':
       return replyRecommandMessage(token);
 
     case '日系':
-      return replyText(token, japaneseMessage);
+      return client.replyMessage(token, japaneseMessage);
 
     case '韓系':
       return replyText(token, koreanMessage);
@@ -109,6 +104,21 @@ const handleText = (token, message) => {
     case 'sport':
       return client.replyMessage(token, sportMessage);
 
+    case '正式':
+      return client.replyMessage(token, formalMessage);
+
+    case '設計':
+      return client.replyMessage(token, designerMessage);
+
+    case '台灣品牌':
+      return client.replyMessage(token, taiwaneseMessage);
+
+    case '明星自創':
+      return client.replyMessage(token, artistMessage);
+
+    case '專櫃品牌':
+      return client.replyMessage(token, counterBrandMessage);
+
     case 'ig':
       return replyInstagramLink(token);
 
@@ -116,9 +126,6 @@ const handleText = (token, message) => {
     case '網站':
     case 'website':
       return replyWebsiteLink(token);
-
-    case 'purpose':
-      return replyPurposeMessage(token);
 
     default:
       return replyWeather(token, keyword);

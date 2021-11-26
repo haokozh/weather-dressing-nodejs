@@ -58,15 +58,15 @@ const handlePostbackEvent = (event) => {
     if (data.action === 'getDressing') {
       let imageName = '';
       if (isAfter5PM(currentTime)) {
-        imageName += 'pm_';
+        imageName += 'pm_d_';
       } else {
         imageName += 'am_';
-      }
 
-      if (Number(data.pop) >= 30) {
-        imageName += 'r_';
-      } else {
-        imageName += 's_';
+        if (Number(data.pop) >= 30) {
+          imageName += 'r_';
+        } else {
+          imageName += 's_';
+        }
       }
 
       switch (Number(data.purpose)) {

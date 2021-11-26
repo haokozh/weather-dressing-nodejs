@@ -1,20 +1,24 @@
 const express = require('express');
+const aws = require('aws-sdk');
 const multer = require('multer');
-
+const multerS3 = require('multer-s3');
 const path = require('path');
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, './uploads/');
+const router = express.Router();
+const s3 = new aws.S3();
+
+const storage = multerS3({
+  s3: s3,
+  bucket: 'weather-dressing-assets',
+  metadata: (req, file, cb) => {
+    cb(null, { fieldName: file.fieldname });
   },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
+  key: (req, file, cb) => {
+    cb(null, Date.now().toString());
   },
 });
 
 const upload = multer({ storage: storage });
-
-const router = express.Router();
 
 const indexController = require('../controllers/index.controller');
 

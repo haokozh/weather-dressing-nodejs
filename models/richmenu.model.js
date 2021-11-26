@@ -63,8 +63,8 @@ const richmenu = {
         height: 858,
       },
       action: {
-        type: 'message',
-        text: 'IG',
+        type: 'uri',
+        uri: 'https://www.instagram.com/weather_dressing/',
       },
     },
   ],

@@ -299,7 +299,7 @@ const ua = (req, res) => {
 };
 
 const uq = (req, res) => {
-  res.sendFile(`${IMAGE_BASE_URL}/logo/uq-logo.jpg`);
+  res.sendFile(`${IMAGE_BASE_URL}/logo/uq-logo.png`);
 };
 
 const ur = (req, res) => {

@@ -49,7 +49,7 @@ const findMemberByAccount = async (account) => {
     console.log('Here is findMemberByAccount method');
     console.log(rows);
 
-    return rows;
+    return rows[0];
   } catch (error) {
     console.error(error);
   } finally {
@@ -83,6 +83,12 @@ const newMember = async (member) => {
 
 const login = async (account, password) => {
   const member = await findMemberByAccount(account);
+
+  if (member != null) {
+    if (verifyPassword(password, member.salt, member.password)) {
+      
+    }
+  }
 };
 
 const hashPassword = (password, salt) => {

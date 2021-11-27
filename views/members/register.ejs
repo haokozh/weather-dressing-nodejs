@@ -1,31 +1,72 @@
 <html lang="en">
-  <%- include('../partials/head.ejs') %>
+  <head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/stylereg.css" />
+  </head>
 
   <body>
     <%- include('../partials/nav.ejs') %>
 
-    <section class="center">
-      <form
-        action="/members/register"
-        method="POST"
-        class="register"
-        id="registerForm"
-      >
-        <h2>註冊會員</h2>
-        <input
-          type="text"
-          name="account"
-          placeholder="帳號"
-          style="color: azure"
-        />
-        <input type="password" name="password" placeholder="密碼" />
-        <input type="password" name="confirmPassword" placeholder="確認密碼" />
-        <br />
-        性別：<input type="radio" name="gender" value="male" checked="true" />男
-        <input type="radio" name="gender" value="female" />女
-        <input type="submit" value="送出" />
-      </form>
-    </section>
+    <div class="content">
+      <div class="row">
+        <div class="col-sm-12 col-xs-12">
+          <div class="panel">
+            <div class="panel_head">
+              <h3>
+                <sapn class="head_text">會員註冊</sapn>
+              </h3>
+            </div>
+            <div class="panel_body">
+              <div class="body_inner">
+                <form>
+                  <div class="register input">
+                    <input type="text" placeholder="帳號" />
+                  </div>
+                  <div class="register input">
+                    <input type="password" placeholder="密碼" />
+                  </div>
+                  <div class="register input">
+                    <input type="text" placeholder="名稱" />
+                  </div>
+                  <div class="register input">
+                    <input type="text" placeholder="ID" />
+                  </div>
+                  <div class="sex">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="sex"
+                        id="flexRadioDefault1"
+                        checked
+                      />
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        男
+                      </label>
+                    </div>
+                    &nbsp;
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="sex"
+                        id="flexRadioDefault2"
+                      />
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        女
+                      </label>
+                    </div>
+                  </div>
+                  <div class="register input">
+                    <input type="submit" value="送出" />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <%- include('../partials/footer.ejs') %>
   </body>

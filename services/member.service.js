@@ -80,6 +80,10 @@ const hashPassword = (password) => {
   
 };
 
+const verifyPassword = (password) => {
+
+};
+
 module.exports = {
   findAllMembers,
   findMemberById,

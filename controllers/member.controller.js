@@ -31,7 +31,8 @@ const newMember = (req, res) => {
       req.body.account,
       req.body.pwd,
       req.body.gender,
-      req.body.lineId
+      req.body.lineId,
+      memberService.getSalt()
     );
 
     console.log('Here is req.body:');

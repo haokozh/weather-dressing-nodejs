@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const pool = require('../config/db.config');
 
 const findAllMembers = async () => {
@@ -21,10 +22,9 @@ const findMemberById = async (id) => {
   const client = await pool.connect();
 
   try {
-    const { rows } = await client.query(
-      `SELECT * FROM member WHERE id = $1`,
-      [id]
-    );
+    const { rows } = await client.query(`SELECT * FROM member WHERE id = $1`, [
+      id,
+    ]);
 
     console.log('Here is findMemberById method');
     console.log(rows);
@@ -62,8 +62,14 @@ const newMember = async (member) => {
 
   try {
     const { rows } = await client.query(
-      `INSERT INTO member(account, pwd, gender, line_id) VALUES($1, $2, $3, $4) RETURNING *`,
-      [member.account, member.password, member.gender, member.lineId]
+      `INSERT INTO member(account, pwd, gender, line_id, salt) VALUES($1, $2, $3, $4, $5) RETURNING *`,
+      [
+        member.account,
+        hashPassword(member.password, member.salt),
+        member.gender,
+        member.lineId,
+        member.salt,
+      ]
     );
 
     console.log('Here is newMember method');
@@ -75,13 +81,20 @@ const newMember = async (member) => {
   }
 };
 
-// todo
-const hashPassword = (password) => {
-  
+const login = async (account, password) => {
+  const member = await findMemberByAccount(account);
 };
 
-const verifyPassword = (password) => {
+const hashPassword = (password, salt) => {
+  return crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
+};
 
+const verifyPassword = (password, salt, hashPassword) => {
+  return hashPassword(password, salt) === hashPassword;
+};
+
+const getSalt = () => {
+  return crypto.randomBytes(16).toString('hex');
 };
 
 module.exports = {
@@ -90,4 +103,5 @@ module.exports = {
   findMemberByAccount,
   newMember,
   hashPassword,
+  getSalt,
 };

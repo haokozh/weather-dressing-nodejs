@@ -20,6 +20,8 @@ const renderUploadImage = (req, res) => {
 
 const uploadImage = (req, res) => {
   console.log(req.file, req.body);
+  console.log(req.body.temprature);
+  console.log(req.body.location);
 
   res.send('image uploaded');
 };

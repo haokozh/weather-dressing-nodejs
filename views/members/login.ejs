@@ -5,27 +5,53 @@
     <%- include('../partials/nav.ejs') %> <%- include('../partials/header.ejs')
     %>
 
-    <section class="center">
-      <form class="login" method="POST" action="/members/login" id="loginForm">
-        <h2>會員登入</h2>
-        <input
-          type="text"
-          name="account"
-          placeholder="帳號"
-          style="color: azure"
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="密碼"
-          style="color: azure"
-        />
-        <input type="submit" value="登入" />
-        <br />
-        <p>尚未成為會員嗎？</p>
-        <a href="./register">創立新帳號</a>
-      </form>
-    </section>
+    <div class="content">
+      <div class="row g-3">
+        <div class="col-md-6 col-sm-12">
+          <div class="panel">
+            <div class="panel_head">
+              <h3>
+                <sapn class="head_text">登入</sapn>
+              </h3>
+            </div>
+            <div class="panel_body">
+              <form class="login">
+                <input type="text" placeholder="帳號" />
+                <input type="password" placeholder="密碼" />
+                <input type="submit" value="登入" />
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="panel" style="height: 50%">
+            <div class="panel_head">
+              <h3>
+                <span class="head_text">以其他方式登入</span>
+              </h3>
+            </div>
+            <div class="panel_body">
+              <span class="line">
+                <a href="/login/line/return"
+                  ><img src="line.png" width="70" height="70" alt=""
+                /></a>
+              </span>
+            </div>
+          </div>
+          <div class="panel" style="height: 50%">
+            <div class="panel_head">
+              <h3>
+                <sapn class="head_text">註冊新會員</sapn>
+              </h3>
+            </div>
+            <div class="panel_body">
+              <p>尚未成為會員嗎？</p>
+              <a href="register.html">創立新帳號</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <%- include('../partials/footer.ejs') %>
   </body>

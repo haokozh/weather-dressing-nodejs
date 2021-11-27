@@ -30,4 +30,5 @@ module.exports = {
   renderUploadImage,
   uploadImage,
   dressstore,
+  dresslist,
 };

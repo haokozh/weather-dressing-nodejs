@@ -4,7 +4,7 @@ const findAllMembers = async () => {
   const client = await pool.connect();
 
   try {
-    const { rows } = await client.query(`SELECT * FROM Members`);
+    const { rows } = await client.query(`SELECT * FROM member`);
 
     console.log('Here is findAllMembers method');
     console.log(rows);
@@ -22,7 +22,7 @@ const findMemberById = async (id) => {
 
   try {
     const { rows } = await client.query(
-      `SELECT * FROM Members WHERE id = $1`,
+      `SELECT * FROM member WHERE id = $1`,
       [id]
     );
 
@@ -42,7 +42,7 @@ const findMemberByAccount = async (account) => {
 
   try {
     const { rows } = await client.query(
-      `SELECT * FROM Members WHERE account = $1`,
+      `SELECT * FROM member WHERE account = $1`,
       [account]
     );
 
@@ -62,7 +62,7 @@ const newMember = async (member) => {
 
   try {
     const { rows } = await client.query(
-      `INSERT INTO Members(account, password, gender, line_id) VALUES($1, $2, $3, $4) RETURNING *`,
+      `INSERT INTO member(account, password, gender, line_id) VALUES($1, $2, $3, $4) RETURNING *`,
       [member.account, member.password, member.gender, member.lindId]
     );
 

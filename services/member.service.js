@@ -62,8 +62,8 @@ const newMember = async (member) => {
 
   try {
     const { rows } = await client.query(
-      `INSERT INTO Members(account, password, gender) VALUES($1, $2, $3) RETURNING *`,
-      [member.account, member.password, member.gender]
+      `INSERT INTO Members(account, password, gender, line_id) VALUES($1, $2, $3, $4) RETURNING *`,
+      [member.account, member.password, member.gender, member.lindId]
     );
 
     console.log('Here is newMember method');

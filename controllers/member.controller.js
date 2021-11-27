@@ -29,8 +29,9 @@ const newMember = (req, res) => {
   try {
     const member = new Member(
       req.body.account,
-      req.body.password,
-      req.body.gender
+      req.body.pwd,
+      req.body.gender,
+      req.body.lineId
     );
 
     console.log('Here is req.body:');

@@ -10,7 +10,7 @@ router.get('/', memberController.findAllMembers);
 
 router.get('/register', memberController.register);
 
-router.post('/register', upload.array(), memberController.newMember);
+router.post('/register', upload.none(), memberController.newMember);
 
 router.get('/login', memberController.renderLogin);
 

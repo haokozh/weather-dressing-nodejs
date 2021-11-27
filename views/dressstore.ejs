@@ -1,0 +1,651 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %> 
+
+       <!--固定位置選擇風格按鈕-->
+       <nav>
+        <span class="align-middle">
+            <div class="content">
+                <div style="background-color:#86add1" text-align:center>
+                    <div class="fixed ">
+                        <form class="select" align="center">
+
+                            <strong>選擇想要的風格</strong>
+                            <br>
+
+                            <div id="radio">
+                                &thinsp;
+                                <label><input type="radio" name="variety" value="日系" checked="checked" /><span
+                                        class="round button"><a href="#1">日系</a></span></label>
+                                <label><input type="radio" name="variety" value="韓式" checked="checked" /><span
+                                        class="round button"><a href="#2">韓式</a></span></label>
+                                <label><input type="radio" name="variety" value="歐美" checked="checked" /><span
+                                        class="round button"><a href="#3">歐美</a></span></label>
+                                <label><input type="radio" name="variety" value="正式" /><span class="round button"><a
+                                            href="#4">正式</a></span></label>
+                                <label><input type="radio" name="variety" value="設計" /><span class="round button"><a
+                                            href="#5">設計</a></span></label>
+                                <label><input type="radio" name="variety" value="台灣品牌" /><span class="round button"><a
+                                            href="#6">臺灣品牌</a></span></label>
+                                <label><input type="radio" name="variety" value="運動" /><span class="round button"><a
+                                            href="#7">運動</a></span></label>
+                                <label><input type="radio" name="variety" value="明星自創" /><span class="round button"><a
+                                            href="#8">明星自創</a></span></label>
+                                <label><input type="radio" name="variety" value="專櫃品牌" /><span class="round button"><a
+                                            href="#9">專櫃</a></span></label>
+                                <label><input type="radio" name="variety" value="回頂頁" /><span class="round button"><a
+                                            href="#10">⌆</a></span></label>
+                                &thinsp;
+                            </div>
+
+                            <style>
+                                #radio input[type="radio"] {
+                                    display: none;
+                                }
+
+                                #radio input:checked+.button {
+                                    background: #ffffff;
+                                    color: #fff;
+                                }
+
+                                #radio .button {
+                                    display: inline-block;
+                                    margin: 0 5px 10px 0;
+                                    padding: 5px 10px;
+                                    background: #f7f7f7;
+                                    color: #333;
+                                    cursor: pointer;
+                                }
+
+                                #radio .button:hover {
+                                    background: rgb(177, 173, 173);
+                                    color: #fff;
+                                }
+
+                                #radio .round {
+                                    border-radius: 5px;
+                                }
+                            </style>
+                    </div>
+        </span>
+    </nav>
+    <!--空格-->
+    &thinsp;
+    <br>
+    &thinsp;
+    <br>
+    &thinsp;
+    <br>
+    &thinsp;
+    <br>
+    &thinsp;
+
+
+
+    <!--各店家-->
+    <div class="well text-center">
+        <div class="col-md-12">
+            <div id="1"> &thinsp; </div>
+            &thinsp;
+            <br>
+            &thinsp;
+            <br>
+            &thinsp;
+            <br>
+            &thinsp;
+            <br>
+            &thinsp;
+            <br>
+            &thinsp;
+            <br>
+            &thinsp;
+            <br>
+            &thinsp;
+            <br>
+            &thinsp;
+            <div style="background-color:#cbd1d6" text-align:center>
+                <span style="color: rgb(18, 18, 19); border-radius :50px">
+                    <h3><b>♥ 日系 店家推薦 ♥</b></h3>
+                </span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div style="background-color:#cbd1d6" text-align:center>&thinsp;<br>
+                        <a
+                            href="https://www.dot-st.tw/v2/official/SalePageCategory/399687?utm_source=gsm&utm_medium=cpc&utm_content=NK_10000029&utm_campaign=UCSK1_Niko-and&gclid=CjwKCAjwiY6MBhBqEiwARFSCPuDsMdnbVAy5BXcRlvzVixsoNTEZ1vq0Xl1cHyPWiqB2ge4uOKQpWxoCiuUQAvD_BwE"><img
+                                src="https://i.ibb.co/gDrchbc/niko-and.png"></a>
+                        <br>
+                        <a
+                            href="https://www.dot-st.tw/v2/official/SalePageCategory/399687?utm_source=gsm&utm_medium=cpc&utm_content=NK_10000029&utm_campaign=UCSK1_Niko-and&gclid=CjwKCAjwiY6MBhBqEiwARFSCPuDsMdnbVAy5BXcRlvzVixsoNTEZ1vq0Xl1cHyPWiqB2ge4uOKQpWxoCiuUQAvD_BwE">
+                            Niko and… ➨</a>
+                        <br>
+                        &thinsp;
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div style="background-color:#cbd1d6" text-align:center>
+                        &thinsp;<br>
+                        <a href="https://i.ibb.co/wdVBtBr/lowrys-farm.png"><img
+                                src="https://i.ibb.co/wdVBtBr/lowrys-farm.png"></a>
+                        <br>
+                        <a href="https://i.ibb.co/wdVBtBr/lowrys-farm.png">Lowrys Farm ➨</a>
+                        <br>
+                        &thinsp;
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div style="background-color:#cbd1d6" text-align:center>&thinsp;<br>
+                        <a href="https://www.beams.tw/"><img src="https://i.ibb.co/rx9Pkd4/beams.png"></a>
+                        <br>
+                        <a href="https://www.beams.tw/">Beams ➨</a>
+                        <br>
+                        &thinsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="well text-center">
+            <div class="col-md-12">
+                <div id="2"> &thinsp; </div>
+                <br>&thinsp; <br>&thinsp;<br>
+                &thinsp;<br>&thinsp;
+                <br>
+                &thinsp;
+                <br>
+                &thinsp;
+                <br>
+                &thinsp;<br>
+                &thinsp;
+                <div style="background-color:#cbd1d6" text-align:center>
+                    <span style="color: rgb(18, 18, 19); border-radius :50px">
+                        <h3><b>♥ 韓式 店家推薦 ♥</b></h3>
+                    </span>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div style="background-color:#cbd1d6" text-align:center>&thinsp;<br>
+                            <a href="https://www.mlb-korea.com.tw/v2/official/SalePageCategory/351482?sortMode=Newest"><img
+                                    src="https://i.ibb.co/TKVHX4B/MLB.png"></a>
+                            <br>
+                            <a href="https://www.mlb-korea.com.tw/v2/official/SalePageCategory/351482?sortMode=Newest">MLB
+                                ➨</a>
+                            <br>&thinsp;
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div style="background-color:#cbd1d6" text-align:center>&thinsp;<br>
+                            <a href="https://spao.elandmall.com/main/initMain.action"><img
+                                    src="https://i.ibb.co/k41nv9n/spao.png"></a>
+                            <br>
+                            <a href="https://spao.elandmall.com/main/initMain.action">SPAO ➨</a>
+                            <br>&thinsp;
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div style="background-color:#cbd1d6" text-align:center>&thinsp;<br>
+                            <a href="https://www.ssfshop.com/8Seconds/main?brandShopNo=BDMA07A01&brndShopId=8SBSS"><img
+                                    src="https://i.ibb.co/7NLCRYq/8-seconds.png"></a>
+                            <br>
+                            <a href="https://www.ssfshop.com/8Seconds/main?brandShopNo=BDMA07A01&brndShopId=8SBSS">8
+                                seconds
+                                ➨</a>
+                            <br>&thinsp;
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="well text-center">
+                    <div class="col-md-12">
+                        <div id="3"> &thinsp; </div>
+                        <br>
+                        &thinsp;
+                        <br>
+                        &thinsp;
+                        <br>
+                        &thinsp;
+                        <br>
+                        &thinsp;
+                        <br>
+                        &thinsp;
+                        <br>
+                        &thinsp;<br>
+                        &thinsp;
+                        <div style="background-color:#cbd1d6" text-align:center>
+                            <span style="color: rgb(18,18, 19); border-radius :50px">
+                                <h3><b> ♥ 歐美 店家推薦 ♥ </b></h3>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div style="background-color:#cbd1d6" text-align:center>&thinsp;<br>
+                                    <a href="https://o-mighty.com/products/212"><img
+                                            src="https://i.ibb.co/vxsGFyn/o-mighty.png"></a>
+                                    <br>
+                                    <a href="https://o-mighty.com/products/212">o-mighty ➨</a>
+                                    <br>&thinsp;
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div style="background-color:#cbd1d6" text-align:center>&thinsp;<br>
+                                    <a href="https://us.mingalondon.com//"><img
+                                            src="https://i.ibb.co/xjDzN1Y/minga-london.png"></a>
+                                    <br>
+                                    <a href="https://us.mingalondon.com//">Minga London ➨</a>
+                                    <br>&thinsp;
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div style="background-color:#cbd1d6" text-align:center>&thinsp;<br>
+                                    <a href="https://www.nastygal.com/gb/"><img
+                                            src="https://i.ibb.co/PMSTD75/NASTY-GAL.png"></a>
+                                    <br>
+                                    <a href="https://www.nastygal.com/gb/">NASTY GAL ➨</a>
+                                    <br>&thinsp;
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="well text-center">
+                            <div class="col-md-12">
+                                <div id="4"> &thinsp; </div>
+                                <br>
+                                &thinsp;
+                                <br>
+                                &thinsp;
+                                <br>
+                                &thinsp;
+                                <br>
+                                &thinsp;
+                                <br>
+                                &thinsp;
+                                <br>
+                                &thinsp;
+                                <br>
+                                &thinsp;
+                                <div style="background-color:#cbd1d6" text-align:center>
+                                    <span style="color: rgb(26, 73, 155); border-radius :50px">
+                                        <h3><b> ♥ 正式 店家推薦 ♥</b></h3>
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div style="background-color:#cbd1d6" text-align:center>
+                                            &thinsp;<br>
+                                            <a href="https://www.g2000.com.hk/HK/zh/"><img
+                                                    src="https://i.ibb.co/YLZSJ5h/G2000.png"></a>
+                                            <br>
+                                            <a href="https://www.g2000.com.hk/HK/zh/">G2000 ➨</a>
+                                            <br>&thinsp;
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div style="background-color:#cbd1d6" text-align:center>&thinsp;<br>
+                                            <a href="https://www.sstandc.com/web/index/index.jsp"><img
+                                                    src="https://i.ibb.co/BBqW52P/sst-c.png"></a>
+                                            <br>
+                                            <a href="https://www.sstandc.com/web/index/index.jsp">SST&C ➨</a>
+                                            <br>&thinsp;
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div style="background-color:#cbd1d6" text-align:center>&thinsp;<br>&thinsp;<br>
+                                            <a href="https://suitsupply.com/en-us/"><img
+                                                    src="https://i.ibb.co/XpV60pB/Logo-Suitsupply.png"></a>
+                                            <br>
+                                            <a href="https://suitsupply.com/en-us/">suitsupply ➨</a>
+                                            <br>&thinsp;
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="well text-center">
+                                    <div class="col-md-12">
+                                        <div id="5"> &thinsp; </div>
+                                        <br>
+                                        &thinsp;
+                                        <br>
+                                        &thinsp;
+                                        <br>
+                                        &thinsp;
+                                        <br>
+                                        &thinsp;
+                                        <br>
+                                        &thinsp;
+                                        <br>
+                                        &thinsp;
+                                        <br>
+                                        &thinsp;
+                                        <div style="background-color:#cbd1d6" text-align:center>
+                                            <span style="color: rgb(26, 73, 155); border-radius :50px">
+                                                <h3><b> ♥ 設計 店家推薦 ♥</b></h3>
+                                            </span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div style="background-color:#cbd1d6" text-align:center>&thinsp;<br>
+                                                    <a href="https://immense.tw/designer/guerrilla-group/"><img
+                                                            src="https://i.ibb.co/Y262N68/guerrilla-group.png"></a>
+                                                    <br>
+                                                    <a href="https://immense.tw/designer/guerrilla-group/">guerrilla-group
+                                                        吉豐重工 ➨</a>
+                                                    <br>&thinsp;
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div style="background-color:#cbd1d6" text-align:center>&thinsp;<br>
+                                                    <a href="https://www.goopi.co/categories/goopimade-1"><img
+                                                            src="https://i.ibb.co/cvw8J6r/goopimade.png"></a>
+                                                    <br>
+                                                    <a href="https://www.goopi.co/categories/goopimade-1">goopimade
+                                                        ➨</a>
+                                                    <br>&thinsp;
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div style="background-color:#cbd1d6" text-align:center>&thinsp;<br>
+                                                    <a href="https://mitch.com.tw/c/CM00000000226?filter=sale"><img
+                                                            src="https://i.ibb.co/NYsF9mf/sealson.png"></a>
+                                                    <br>
+                                                    <a href="https://mitch.com.tw/c/CM00000000226?filter=sale">sealson
+                                                        ➨</a>
+                                                    <br>&thinsp;
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="well text-center">
+                                            <div class="col-md-12">
+                                                <div id="6"> &thinsp; </div>
+                                                <br>
+                                                &thinsp;
+                                                <br>
+                                                &thinsp;
+                                                <br>
+                                                &thinsp;
+                                                <br>
+                                                &thinsp;
+                                                <br>
+                                                &thinsp;
+                                                <br>
+                                                &thinsp;
+                                                <br>
+                                                &thinsp;
+                                                <div style="background-color:#cbd1d6" text-align:center>
+                                                    <span style="color: rgb(26, 73, 155); border-radius :50px">
+                                                        <h3><b> ♥ 台灣品牌 店家推薦 ♥</b></h3>
+                                                    </span>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div style="background-color:#cbd1d6" text-align:center>
+                                                            &thinsp;<br>
+                                                            <a href="https://www.lativ.com.tw/"><img
+                                                                    src="https://i.ibb.co/gmCG05z/lativ.png"></a>
+                                                            <br>
+                                                            <a href="https://www.lativ.com.tw/">Lativ ➨</a>
+                                                            <br>&thinsp;
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div style="background-color:#cbd1d6" text-align:center>
+                                                            &thinsp;<br>
+                                                            <a href="https://www.oneboy.com.tw/Shop/"><img
+                                                                    src="https://i.ibb.co/TmgNkRk/one-boy.png"></a>
+                                                            <br>
+                                                            <a href="https://www.oneboy.com.tw/Shop/">one boy ➨</a>
+                                                            <br>&thinsp;
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div style="background-color:#cbd1d6" text-align:center>
+                                                            &thinsp;<br>
+                                                            <a href="https://www.obdesign.com.tw/"><img
+                                                                    src="https://i.ibb.co/tb3W2fp/OB.png"></a>
+                                                            <br>
+                                                            <a href="https://www.obdesign.com.tw/">OB 嚴選 ➨</a>
+                                                            <br>&thinsp;
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="well text-center">
+                                                    <div class="col-md-12">
+                                                        <div id="7"> &thinsp; </div>
+                                                        <br>
+                                                        &thinsp;
+                                                        <br>
+                                                        &thinsp;
+                                                        <br>
+                                                        &thinsp;
+                                                        <br>
+                                                        &thinsp;
+                                                        <br>
+                                                        &thinsp;
+                                                        <br>
+                                                        &thinsp;
+                                                        <br>
+                                                        &thinsp;
+                                                        <div style="background-color:#cbd1d6" text-align:center>
+                                                            &thinsp;<br>
+                                                            <span style="color: rgb(26, 73, 155); border-radius :50px">
+                                                                <h3><b> ♥ 運動 店家推薦 ♥</b></h3>
+                                                            </span>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div style="background-color:#cbd1d6" text-align:center>
+                                                                    &thinsp;<br> <br>
+                                                                    &thinsp;
+                                                                    <a href="https://www.baoli.championusa.com.tw/"><img
+                                                                            src="https://i.ibb.co/RBrt5Lh/champion.png"></a>
+                                                                    <br>
+                                                                    <a href="https://www.baoli.championusa.com.tw/">Champion
+                                                                        ➨</a>
+                                                                    <br>&thinsp;
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <div style="background-color:#cbd1d6" text-align:center>
+                                                                    &thinsp;<br>
+                                                                    <a href="https://www.nike.com/tw/"><img
+                                                                            src="https://i.ibb.co/3sTzMRb/NIKE.png"></a>
+                                                                    <br>
+                                                                    <a href="https://www.nike.com/tw/">NIKE ➨</a>
+                                                                    <br>&thinsp;
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <div style="background-color:#cbd1d6" text-align:center>
+                                                                    <br>&thinsp;&thinsp;<br>
+                                                                    <a href="https://www.adidas.com.tw/"><img
+                                                                            src="https://i.ibb.co/MPnZWGw/4.png"></a>
+                                                                    <br>
+                                                                    <a href="https://www.adidas.com.tw/">ADIDAS ➨</a>
+                                                                    <br>&thinsp;
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="well text-center">
+                                                            <div class="col-md-12">
+                                                                <div id="8"> &thinsp; </div>
+                                                                <br>
+                                                                &thinsp;
+                                                                <br>
+                                                                &thinsp;
+                                                                <br>
+                                                                &thinsp;
+                                                                <br>
+                                                                &thinsp;
+                                                                <br>
+                                                                &thinsp;
+                                                                <br>
+                                                                &thinsp;
+                                                                <br>
+                                                                &thinsp;
+                                                                <div style="background-color:#cbd1d6" text-align:center>
+                                                                    <span
+                                                                        style="color: rgb(26, 73, 155); border-radius :50px">
+                                                                        <h3><b> ♥ 明星自創 店家推薦 ♥</b></h3>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div style="background-color:#cbd1d6"
+                                                                            text-align:center>&thinsp;<br>
+                                                                            <a href="https://www.genquo.com/"><img
+                                                                                    src="https://i.ibb.co/ZV1KXqW/GENQUO.png"></a>
+                                                                            <br>
+                                                                            <a href="https://www.genquo.com/">GENQUO 范瑋琪
+                                                                                ➨</a>
+                                                                            <br>&thinsp;
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-4">
+                                                                        <div style="background-color:#cbd1d6"
+                                                                            text-align:center>&thinsp;<br>
+                                                                            <a
+                                                                                href="https://store.istayreal.com/?lang=zh-TW"><img
+                                                                                    src="https://i.ibb.co/MVNgWkK/stay-real.png"></a>
+                                                                            <br>
+                                                                            <a
+                                                                                href="https://store.istayreal.com/?lang=zh-TW">Stay
+                                                                                Real 阿信 ➨</a>
+                                                                            <br>&thinsp;
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-4">
+                                                                        <div style="background-color:#cbd1d6"
+                                                                            text-align:center>&thinsp;<br>&thinsp;<br>
+                                                                            <a href="https://www.mdnsonline.com/"><img
+                                                                                    src="https://i.ibb.co/mqfzJDT/madness.png"></a>
+                                                                            <br>
+                                                                            <a href="https://www.mdnsonline.com/">madness
+                                                                                余文樂 ➨</a>
+                                                                            <br>&thinsp;<br>&thinsp;
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="well text-center">
+                                                                    <div class="col-md-12">
+                                                                        <div id="9"> &thinsp; </div>
+                                                                        <br>
+                                                                        &thinsp;
+                                                                        <br>
+                                                                        &thinsp;
+                                                                        <br>
+                                                                        &thinsp;
+                                                                        <br>
+                                                                        &thinsp;
+                                                                        <br>
+                                                                        &thinsp;
+                                                                        <br>
+                                                                        &thinsp;
+                                                                        <br>
+                                                                        &thinsp;
+                                                                        <div style="background-color:#cbd1d6"
+                                                                            text-align:center>
+                                                                            <span
+                                                                                style="color: rgb(26, 73, 155); border-radius :50px">
+                                                                                <h3><b> ♥ 專櫃品牌 店家推薦 ♥</b></h3>
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <div style="background-color:#cbd1d6"
+                                                                                    text-align:center>&thinsp;<br>
+                                                                                    <a
+                                                                                        href="CjwKCAjwz5iMBhAEEiwAMEAwGLAfRvKnzjkj1iD_VcI4E0lSCzC5lTGQ6fYcf_FqcuYc4XnBSkRvtBoCNV0QAvD_BwE"><img
+                                                                                            src="https://i.ibb.co/SdzWQzz/dior.png"></a>
+                                                                                    <br>
+                                                                                    <a
+                                                                                        href="CjwKCAjwz5iMBhAEEiwAMEAwGLAfRvKnzjkj1iD_VcI4E0lSCzC5lTGQ6fYcf_FqcuYc4XnBSkRvtBoCNV0QAvD_BwE">DIOR
+                                                                                        ➨</a>
+                                                                                    <br>&thinsp;
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-4">
+                                                                                <div style="background-color:#cbd1d6"
+                                                                                    text-align:center>
+                                                                                    &thinsp;<br>&thinsp;<br>&thinsp;<br>
+                                                                                    <a
+                                                                                        href="https://www.hugoboss.com/tw/home"><img
+                                                                                            src="https://i.ibb.co/hsHwzFZ/Hugo-Boss-logo.png"></a>
+                                                                                    <br>
+                                                                                    <a
+                                                                                        href="https://www.hugoboss.com/tw/home">HUGO
+                                                                                        BOSS ➨</a>
+                                                                                    <br>&thinsp;<br>&thinsp;
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-4">
+                                                                                <div style="background-color:#cbd1d6"
+                                                                                    text-align:center>&thinsp;<br>
+                                                                                    <a
+                                                                                        href="https://www.chanel.com/tw/fashion/ready-to-wear/l/1x1x9/the-looks/"><img
+                                                                                            src="https://i.ibb.co/zfhXTkc/chanel.png"></a>
+                                                                                    <br>
+                                                                                    <a
+                                                                                        href="https://www.chanel.com/tw/fashion/ready-to-wear/l/1x1x9/the-looks/">Chanel
+                                                                                        ➨</a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <br>
+                                                                            &thinsp;
+                                                                            <br>
+                                                                            &thinsp;
+                                                                            <br>
+                                                                            &thinsp;
+                                                                            <br>
+                                                                            &thinsp;
+                                                                            <br>
+                                                                            &thinsp;
+                                                                            <br>
+                                                                            &thinsp;
+                                                                        </div>
+
+
+
+                                                                        <!--背景-->
+
+
+                                                                        <div class="fixed-bottom">
+                                                                            <footer class="footer">
+                                                                                <div class="container">
+                                                                                    <div class="footer_body">
+                                                                                        <p></p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </footer>
+                                                                        </div>
+                                                                        </nav>
+
+    <%- include('./partials/footer.ejs') %> 
+</body>
+</html>

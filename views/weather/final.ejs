@@ -1,0 +1,154 @@
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %> 
+    <link rel="stylesheet" href="/css/final.css">
+</head>
+<body>
+    <%- include('../partials/nav.ejs') %> 
+
+    <div class="content">
+        <div class="row  g-3">
+           <div class="col-md-6 col-sm-12 ">
+              <!--上一頁選的地區+目的-->
+              <div style="background-color:#f8f8f8;">
+                 <table class="table1">
+                    <span class="align-middle">
+  
+                       <thead>
+                          <tr>
+                             <th Align='center' scope="col">縣市</th>
+                             <th scope="col">地區</th>
+                             <th scope="col">目的</th>
+                          <tr>
+                             <td id="city">*新北市*</td>
+                             <!--使用者輸入的縣市-->
+                             <td id="sector">*蘆洲區*</td>
+                             <!--使用者輸入的地區-->
+                             <td id="go">*學校*</td>
+                             <!--使用者輸入的地區-->
+                          </tr>
+                       </thead>
+                    </span>
+  
+                    <font size="1">
+                       <tr>時間範圍</tr><br>
+                       <tr id="time1">2021-10-15 6:00:00~2021-10-15 12:00:00 </tr>
+                    </font>
+                 </table>
+  
+                 </table>
+  
+                 <!--文字為天氣資訊 -->
+                 <div class="information">
+                    <table class="table2">
+                       <table Align="center">
+                          <tr>
+                             <th> 天氣狀況 : </th>
+                             <td id="weather">陰時多雲暫時雷陣雨</td>
+                             <!--天氣狀況結果-->
+                          </tr>
+                          <tr>
+                             <th>溫度狀況 : </th>
+                             <td id="tmper">28~29度</td>
+                             <!--溫度狀況-->
+                          </tr>
+                          <tr>
+                             <th>降雨機率 : </th>
+                             <td id="rain">30%</td>
+                             <!--降雨機率-->
+                          </tr>
+                          <tr>
+                             <th>體感氣候 : </th>
+                             <td id="feel">舒適至悶熱</td>
+                             <!--舒適度-->
+                          </tr>
+                          <tr>
+                             <th> &nbsp;</th>
+                             <td></td>
+                          </tr>
+                       </table>
+                       <div class="angl" Align="center">
+                          <img id=angl src="https://via.placeholder.com/180x140" alt="...">
+                       </div>
+                       &nbsp;
+                    </table>
+                 </div>
+  
+  
+              </div>
+           </div>
+  
+           <div class="col-md-6 col-sm-12 " g-5>
+              <!--photo1/photo2 分別為手繪/真人穿衣建議-->
+  
+              <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                 <div class="carousel-inner">
+                    <div class="carousel-item active">
+                       <img id=photo1 src="http://code.z01.com/img/2016instbg_01.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                       <img id=photo1 src="http://code.z01.com/img/2016instbg_02.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                       <img id=photo1 src="http://code.z01.com/img/2016instbg_03.jpg" class="d-block w-100" alt="...">
+                    </div>
+                 </div>
+                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                 </button>
+                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                 </button>
+              </div>
+  
+              <!--衣服資訊-->
+              <div class="top-0" span="2" style="background-color:#f5f4f4;">
+                 <table class="table3">
+                    &ensp;
+                    <table Align="center">
+                       <tr>
+                          <th>外衣</th>
+                          <th> &ensp;</th>
+                          <th>上衣</th>
+                          <th> &ensp;</th>
+                          <th>下著</th>
+                          <th> &ensp;</th>
+                          <th>配件</th>
+                       </tr>
+                       <tr>
+                          <td id="dress1">無</td>
+                          <th> &ensp;</th>
+                          <td id="dress2">短袖</td>
+                          <th> &ensp;</th>
+                          <td id="dress3">短褲</td>
+                          <th> &ensp;</th>
+                          <td id="dress4">帽子</td>
+                       </tr>
+                    </table>
+                 </table>
+                 &ensp;
+              </div>
+           </div>
+  
+  
+           <center>
+              <div class="center">
+                 <div class="col-md-6 col-md-offset-2">
+                    <img src="https://img.icons8.com/color/80/000000/line-me.png" type="submit"
+                       onclick="location.href='https://liff.line.me/1645278921-kWRPP32q/?accountId=300zikjb'" />
+                    &nbsp; &nbsp; &nbsp;
+                    <img src="https://img.icons8.com/fluency/85/000000/instagram-new.png" type="submit"
+                       onclick="location.href='https://www.instagram.com/weather_dressing/' " />
+                 </div>
+                 </form>
+           </center>
+        </div>
+     </div>
+
+    <%- include('../partials/footer.ejs') %> 
+</body>
+</html>

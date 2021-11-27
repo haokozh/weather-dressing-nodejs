@@ -10,6 +10,10 @@ const dressstore = (req, res) => {
   res.render('dressstore', { title: '店家推薦' });
 };
 
+const dresslist = (req, res) => {
+  res.render('dresslist', { title: '推薦店家' });
+};
+
 const renderUploadImage = (req, res) => {
   res.render('upload', { title: '上傳照片' });
 };

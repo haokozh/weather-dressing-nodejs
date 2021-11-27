@@ -6,6 +6,10 @@ const about = (req, res) => {
   res.render('about', { title: '關於我們' });
 };
 
+const dressstore = (req, res) => {
+  res.render('dressstore', { title: '店家推薦' });
+};
+
 const renderUploadImage = (req, res) => {
   res.render('upload', { title: '上傳照片' });
 };
@@ -21,4 +25,5 @@ module.exports = {
   about,
   renderUploadImage,
   uploadImage,
+  dressstore,
 };

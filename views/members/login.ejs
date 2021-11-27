@@ -7,59 +7,57 @@
   <body>
     <%- include('../partials/nav.ejs') %>
 
-    <span class="align-middle"
-      ><div class="content">
-        <div class="row g-3">
-          <div class="col-md-6 col-sm-12">
-            <div class="panel">
-              <div class="panel_head">
-                <h3>
-                  <sapn class="head_text">登入</sapn>
-                </h3>
-              </div>
-              <div class="panel_body">
-                <form class="login">
-                  <input type="text" placeholder="帳號" />
-                  <input type="password" placeholder="密碼" />
-                  <input type="submit" value="登入" />
-                </form>
-              </div>
+    <div class="content">
+      <div class="row g-3 align-items-center">
+        <div class="col-md-6 col-sm-12">
+          <div class="panel">
+            <div class="panel_head">
+              <h3>
+                <sapn class="head_text">登入</sapn>
+              </h3>
             </div>
-          </div>
-          <div class="col-md-6 col-sm-12">
-            <div class="panel" style="height: 50%">
-              <div class="panel_head">
-                <h3>
-                  <sapn class="head_text">以其他方式登入</sapn>
-                </h3>
-              </div>
-              <div class="panel_body">
-                <span class="line">
-                  <a href="#"
-                    ><img
-                      src="/assets/images/line.png"
-                      width="70"
-                      height="70"
-                      alt=""
-                  /></a>
-                </span>
-              </div>
-            </div>
-            <div class="panel" style="height: 50%">
-              <div class="panel_head">
-                <h3>
-                  <sapn class="head_text">註冊新會員</sapn>
-                </h3>
-              </div>
-              <div class="panel_body">
-                <p>尚未成為會員嗎？</p>
-                <a href="register.html">創立新帳號</a>
-              </div>
+            <div class="panel_body">
+              <form class="login">
+                <input type="text" placeholder="帳號" />
+                <input type="password" placeholder="密碼" />
+                <input type="submit" value="登入" />
+              </form>
             </div>
           </div>
         </div>
-      </div></span
-    >
+        <div class="col-md-6 col-sm-12">
+          <div class="panel" style="height: 50%">
+            <div class="panel_head">
+              <h3>
+                <sapn class="head_text">以其他方式登入</sapn>
+              </h3>
+            </div>
+            <div class="panel_body">
+              <span class="line">
+                <a href="#"
+                  ><img
+                    src="/assets/images/line.png"
+                    width="70"
+                    height="70"
+                    alt=""
+                /></a>
+              </span>
+            </div>
+          </div>
+          <div class="panel" style="height: 50%">
+            <div class="panel_head">
+              <h3>
+                <sapn class="head_text">註冊新會員</sapn>
+              </h3>
+            </div>
+            <div class="panel_body">
+              <p>尚未成為會員嗎？</p>
+              <a href="register.html">創立新帳號</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <%- include('../partials/footer.ejs') %>
   </body>

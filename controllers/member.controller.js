@@ -68,8 +68,6 @@ const login = async (req, res) => {
 
       res.redirect('/');
     }
-
-    res.render('members/login', { title: '登入', alert: '帳號或密碼錯誤' });
   } catch (error) {
     console.error(`Error on login(): ${error}`);
   }

@@ -4,11 +4,15 @@ const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 const passport = require('passport');
 const LineStrategy = require('passport-line-auth').Strategy;
+const morgan = require('morgan');
+
 const app = express();
 
 // view engine
 app.set('views', 'views');
 app.set('view engine', 'ejs');
+
+app.use(morgan('tiny'));
 
 // line callback
 app.use('/callback', require('./routes/linebot.routes'));

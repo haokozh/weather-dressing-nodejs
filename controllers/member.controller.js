@@ -64,6 +64,7 @@ const login = async (req, res) => {
       member != null &&
       memberService.verifyPassword(password, member.salt, member.pwd)
     ) {
+      console.log(`${member.account} is logged in`);
       res.render('index', { title: '首頁', isLogin: true });
     }
 

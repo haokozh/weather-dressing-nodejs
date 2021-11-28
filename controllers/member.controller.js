@@ -52,21 +52,25 @@ const renderLogin = (req, res) => {
 
 // todo
 const login = async (req, res) => {
-  const { account, password } = req.body;
+  try {
+    const { account, password } = req.body;
 
-  if (memberService.isAccountOrPasswordEmpty(account, password)) {
+    if (memberService.isAccountOrPasswordEmpty(account, password)) {
+      res.render('members/login', { alert: '帳號或密碼錯誤' });
+    }
+    const member = await memberService.findMemberByAccount(account);
+
+    if (
+      member != null &&
+      memberService.verifyPassword(password, member.salt, member.pwd)
+    ) {
+      res.redirect('index', { isLogin: true });
+    }
+
     res.render('members/login', { alert: '帳號或密碼錯誤' });
+  } catch (error) {
+    console.error(`Error on login(): ${error}`);
   }
-  const member = await memberService.findMemberByAccount(account);
-
-  if (
-    member != null &&
-    memberService.verifyPassword(password, member.salt, member.pwd)
-  ) {
-    res.redirect('index', { isLogin: true });
-  }
-
-  res.render('members/login', { alert: '帳號或密碼錯誤' });
 };
 
 const logout = (req, res) => {
@@ -75,7 +79,7 @@ const logout = (req, res) => {
   });
 
   res.render('index', { alert: '您已登出' });
-}
+};
 
 module.exports = {
   findAllMembers,

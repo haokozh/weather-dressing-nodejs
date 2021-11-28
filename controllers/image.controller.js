@@ -497,6 +497,30 @@ const pm_d_3_25dotpng = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/suggestion/pm_d_3_25.png`);
 };
 
+const angel_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/angel/angel_1.png`);
+};
+
+const angel_2 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/angel/angel_2.png`);
+};
+
+const angel_3 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/angel/angel_3.png`);
+};
+
+const angel_4 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/angel/angel_4.png`);
+};
+
+const angel_5 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/angel/angel_5.png`);
+};
+
+const angel_6 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/angel/angel_6.png`);
+};
+
 module.exports = {
   dressStyleOne1040,
   dressStyleOne700,
@@ -635,4 +659,10 @@ module.exports = {
   pm_d_3_21dotpng,
   pm_d_3_25dotjpg,
   pm_d_3_25dotpng,
+  angel_1,
+  angel_2,
+  angel_3,
+  angel_4,
+  angel_5,
+  angel_6,
 };

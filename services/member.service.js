@@ -89,8 +89,8 @@ const hashPassword = (password, salt) => {
   return crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
 };
 
-const verifyPassword = (password, salt, hashPassword) => {
-  return hashPassword(password, salt) === hashPassword;
+const verifyPassword = (password, salt, userPassword) => {
+  return hashPassword(password, salt) === userPassword;
 };
 
 const getSalt = () => {

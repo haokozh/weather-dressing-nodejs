@@ -51,7 +51,7 @@ const renderLogin = (req, res) => {
 };
 
 // todo
-const login = (req, res) => {
+const login = async (req, res) => {
   const { account, password } = req.body;
 
   if (memberService.isAccountOrPasswordEmpty(account, password)) {

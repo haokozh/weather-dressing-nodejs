@@ -83,6 +83,8 @@ app.get(
     failureRedirect: '/members/login',
   }),
   (req, res) => {
+    console.log(req.session);
+    console.log(req.sessionID);
     res.redirect('/');
   }
 );

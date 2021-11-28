@@ -50,7 +50,6 @@ const renderLogin = (req, res) => {
   res.render('members/login', { title: '登入' });
 };
 
-// todo
 const login = async (req, res) => {
   try {
     const { account, password } = req.body;

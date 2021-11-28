@@ -1,6 +1,9 @@
 const express = require('express');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
+const passport = require('passport');
+const LineStrategy = require('passport-line-auth').Strategy;
 const app = express();
 
 // view engine
@@ -13,6 +16,7 @@ app.use('/callback', require('./routes/linebot.routes'));
 // body-parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // session
 app.use(

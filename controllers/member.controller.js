@@ -66,7 +66,7 @@ const login = async (req, res) => {
       req.session.account = account;
       console.log(`${member.account} is logged in`);
 
-      res.render('index', { title: '首頁', isLogin: true });
+      res.redirect('/');
     }
 
     res.render('members/login', { title: '登入', alert: '帳號或密碼錯誤' });

@@ -48,7 +48,7 @@ passport.use(
     {
       channelID: '1656649772',
       channelSecret: 'd547d76ee368206d67fd9cc04af168e8',
-      callbackURL: 'http://localhost:3000/login/line/return',
+      callbackURL: 'https://weather-dressing.herokuapp.com/login/line/return',
       scope: ['profile', 'openid'],
       botPrompt: 'normal',
       uiLocales: 'zh_TW',

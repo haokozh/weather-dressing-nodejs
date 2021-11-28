@@ -521,6 +521,86 @@ const angel_6 = (req, res) => {
   res.sendFile(`${IMAGE_BASE_URL}/angel/angel_6.png`);
 };
 
+const real_10_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/10-1.png`);
+};
+
+const real_14_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/14-1.png`);
+};
+
+const real_15_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/15-1.png`);
+};
+
+const real_18_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/18-1.png`);
+};
+
+const real_19_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/19-1.png`);
+};
+
+const real_20_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/20-1.png`);
+};
+
+const real_20_2 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/20-2.png`);
+};
+
+const real_21_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/21-1.png`);
+};
+
+const real_22_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/22-1.png`);
+};
+
+const real_22_1_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/22-1(1).png`);
+};
+
+const real_22_2 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/22-2.png`);
+};
+
+const real_23_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/23-1.png`);
+};
+
+const real_23_2 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/23-2.png`);
+};
+
+const real_25_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/25-1.png`);
+};
+
+const real_25_1_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/25-1(1).png`);
+};
+
+const real_26_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/26-1.png`);
+};
+
+const real_32_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/32-1.png`);
+};
+
+const real_33 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/33.png`);
+};
+
+const real_40_1 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/40-1.png`);
+};
+
+const real_40_2 = (req, res) => {
+  res.sendFile(`${IMAGE_BASE_URL}/real/40-2.png`);
+};
+
 module.exports = {
   dressStyleOne1040,
   dressStyleOne700,
@@ -665,4 +745,24 @@ module.exports = {
   angel_4,
   angel_5,
   angel_6,
+  real_10_1,
+  real_14_1,
+  real_15_1,
+  real_18_1,
+  real_19_1,
+  real_20_1,
+  real_20_2,
+  real_21_1,
+  real_22_1,
+  real_22_1_1,
+  real_22_2,
+  real_23_1,
+  real_23_2,
+  real_25_1,
+  real_25_1_1,
+  real_26_1,
+  real_32_1,
+  real_33,
+  real_40_1,
+  real_40_2,
 };

@@ -178,4 +178,25 @@ router.get('/angel/4', imageController.angel_4);
 router.get('/angel/5', imageController.angel_5);
 router.get('/angel/6', imageController.angel_6);
 
+router.get('/real/10-1', imageController.real_10_1);
+router.get('/real/14-1', imageController.real_14_1);
+router.get('/real/15-1', imageController.real_15_1);
+router.get('/real/18-1', imageController.real_18_1);
+router.get('/real/19-1', imageController.real_19_1);
+router.get('/real/20-1', imageController.real_20_1);
+router.get('/real/20-2', imageController.real_20_2);
+router.get('/real/21-1', imageController.real_21_1);
+router.get('/real/22-1', imageController.real_22_1);
+router.get('/real/22-1-1', imageController.real_22_1_1);
+router.get('/real/22-2', imageController.real_22_2);
+router.get('/real/23-1', imageController.real_23_1);
+router.get('/real/23-2', imageController.real_23_2);
+router.get('/real/25-1', imageController.real_25_1);
+router.get('/real/25-1-1', imageController.real_25_1_1);
+router.get('/real/26-1', imageController.real_26_1);
+router.get('/real/32-1', imageController.real_32_1);
+router.get('/real/33', imageController.real_33);
+router.get('/real/40-1', imageController.real_40_1);
+router.get('/real/40-2', imageController.real_40_2);
+
 module.exports = router;

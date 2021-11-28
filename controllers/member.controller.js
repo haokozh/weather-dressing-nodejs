@@ -64,7 +64,7 @@ const login = async (req, res) => {
       member != null &&
       memberService.verifyPassword(password, member.salt, member.pwd)
     ) {
-      res.render('index', { isLogin: true });
+      res.render('index', { title: '首頁', isLogin: true });
     }
 
     res.render('members/login', { alert: '帳號或密碼錯誤' });

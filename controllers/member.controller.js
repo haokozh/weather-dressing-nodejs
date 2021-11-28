@@ -55,7 +55,7 @@ const login = async (req, res) => {
     const { account, password } = req.body;
 
     if (memberService.isAccountOrPasswordEmpty(account, password)) {
-      res.render('members/login', { alert: '帳號或密碼錯誤' });
+      res.render('members/login', { title: '登入', alert: '帳號或密碼錯誤' });
     }
     const member = await memberService.findMemberByAccount(account);
 
@@ -69,7 +69,7 @@ const login = async (req, res) => {
       res.render('index', { title: '首頁', isLogin: true });
     }
 
-    res.render('members/login', { alert: '帳號或密碼錯誤' });
+    res.render('members/login', { title: '登入', alert: '帳號或密碼錯誤' });
   } catch (error) {
     console.error(`Error on login(): ${error}`);
   }

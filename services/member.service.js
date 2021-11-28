@@ -81,14 +81,8 @@ const newMember = async (member) => {
   }
 };
 
-const login = async (account, password) => {
-  const member = await findMemberByAccount(account);
-
-  if (member != null) {
-    if (verifyPassword(password, member.salt, member.password)) {
-      
-    }
-  }
+const isAccountOrPasswordEmpty = (account, password) => {
+  return account.trim() === '' || password.trim() === '';
 };
 
 const hashPassword = (password, salt) => {
@@ -110,4 +104,6 @@ module.exports = {
   newMember,
   hashPassword,
   getSalt,
+  verifyPassword,
+  isAccountOrPasswordEmpty,
 };

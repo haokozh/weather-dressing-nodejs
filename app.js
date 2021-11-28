@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const crypto = require('crypto');
 const app = express();
 
 // view engine
@@ -12,6 +13,20 @@ app.use('/callback', require('./routes/linebot.routes'));
 // body-parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// session
+app.use(
+  session({
+    secret: crypto.randomBytes(128).toString('hex'),
+    name: 'user',
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      maxAge: 600 * 1000,
+    },
+  })
+);
 
 // use static file
 app.use(express.static('public'));

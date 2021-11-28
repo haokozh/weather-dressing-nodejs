@@ -14,7 +14,7 @@ router.post('/register', upload.none(), memberController.newMember);
 
 router.get('/login', memberController.renderLogin);
 
-router.post('/login', memberController.login);
+router.post('/login', upload.none(), memberController.login);
 
 router.get('/:id', memberController.findMemberById);
 

@@ -14,6 +14,7 @@ const getResponse = async (city, dist) => {
       elementParams
     );
 
+    console.log(forecastId);
     const parsedData = parseResponseData(data);
 
     return parsedData;
@@ -85,11 +86,11 @@ const parseResponseData = (data) => {
       cityName: responseData.locationsName,
       distName: responseData.locationName,
       time: forecastDate,
-      pop: pop12h,
-      minT: minT,
-      maxT: maxT,
-      minCI: minCI,
-      maxCI: maxCI,
+      pop: pop12h.value,
+      minT: minT.value,
+      maxT: maxT.value,
+      minCI: minCI.value,
+      maxCI: maxCI.value,
       popDesc: popDesc,
       tempDesc: tempDesc,
       confortDesc: confortDesc,

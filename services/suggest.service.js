@@ -77,9 +77,9 @@ const getResponse = async (city, dist) => {
       maxT: maxT.value,
       minCI: minCI.value,
       maxCI: maxCI.value,
-      popDesc: weatherService.getPoP12hDescription(pop12h),
-      tempDesc: weatherService.getTempDescription(minT, maxT),
-      confortDesc: weatherService.getConfortDescription(minCI, maxCI),
+      popDesc: weatherService.getPoP12hDescription(pop12h.value),
+      tempDesc: weatherService.getTempDescription(minT.value, maxT.value),
+      confortDesc: weatherService.getConfortDescription(minCI.value, maxCI.value),
       wd: weatherDescription,
     };
   } catch (error) {

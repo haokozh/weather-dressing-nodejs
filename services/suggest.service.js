@@ -71,7 +71,7 @@ const getResponse = async (city, dist) => {
     return {
       cityName: responseData.locationsName,
       distName: responseData.locationName,
-      time: weatherService.getForecastDate(pop12hTime),
+      time: pop12hTime,
       pop: pop12h.value,
       minT: minT.value,
       maxT: maxT.value,

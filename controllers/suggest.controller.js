@@ -71,7 +71,7 @@ const sendSuggestion = async (req, res) => {
       angelImageName = '6';
     }
 
-    res.render('/weather/final', {
+    res.render('weather/final', {
       title: '查詢結果',
       city: city,
       dist: dist,

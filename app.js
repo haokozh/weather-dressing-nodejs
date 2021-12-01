@@ -11,7 +11,6 @@ const pool = require('./config/db.config');
 
 const app = express();
 
-// view engine
 app.set('views', 'views');
 app.set('view engine', 'ejs');
 
@@ -20,14 +19,9 @@ app.use(morgan('tiny'));
 // line callback
 app.use('/callback', require('./routes/linebot.routes'));
 
-// body-parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-// cookie-parser
 app.use(cookieParser());
-
-// session
 app.use(
   session({
     store: new pgSession({
@@ -45,11 +39,8 @@ app.use(
     },
   })
 );
-
-// passport
 app.use(passport.initialize());
 app.use(passport.session());
-
 passport.use(
   new LineStrategy(
     {
@@ -65,19 +56,15 @@ passport.use(
     }
   )
 );
-
 passport.serializeUser((user, cb) => {
   cb(null, user);
 });
-
 passport.deserializeUser((obj, cb) => {
   cb(null, obj);
 });
 
-// use static file
 app.use(express.static('public'));
 
-// web routes
 app.use('/', require('./routes/index.routes'));
 app.use('/members', require('./routes/member.routes'));
 app.use('/weather', require('./routes/suggest.routes'));

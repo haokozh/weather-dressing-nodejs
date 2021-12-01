@@ -8,10 +8,6 @@ const final = (req, res) => {
   res.render('weather/final', { title: '建議結果' });
 };
 
-// add image url
-// add angel image url
-// add real image url
-// send url to ejs
 const sendSuggestion = async (req, res) => {
   try {
     const { city, dist, purpose } = req.body;

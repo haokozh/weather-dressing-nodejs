@@ -14,17 +14,6 @@ const getResponse = async (city, dist) => {
       elementParams
     );
 
-    console.log(forecastId);
-    const parsedData = parseResponseData(data);
-
-    return parsedData;
-  } catch (error) {
-    console.error(`Error on suggestion.service.getResponse(): ${error}`);
-  }
-};
-
-const parseResponseData = (data) => {
-  try {
     const responseData = new ResponseData(data.records);
 
     const locationIndex = 0;
@@ -97,7 +86,7 @@ const parseResponseData = (data) => {
       wd: weatherDescription,
     };
   } catch (error) {
-    console.error(`Error on suggest.service.parseResponseData(): ${error}`);
+    console.error(`Error on suggestion.service.getResponse(): ${error}`);
   }
 };
 

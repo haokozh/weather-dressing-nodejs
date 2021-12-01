@@ -26,7 +26,7 @@ var citys = [
 var citySelect = document.getElementById('city-list');
 var inner = '';
 for (var i = 0; i < citys.length; i++) {
-  inner = `${inner}<option value=i>${citys[i]}</option>`;
+  inner = `${inner}<option value=${citys[i]}>${citys[i]}</option>`;
 }
 citySelect.innerHTML = inner;
 
@@ -440,7 +440,7 @@ sectors[22] = ['南竿鄉 ', ' 北竿鄉 ', ' 莒光鄉 ', ' 東引鄉 '];
 function changeCity(index) {
   var Sinner = '';
   for (var i = 0; i < sectors[index].length; i++) {
-    Sinner = Sinner + '<option value=i>' + sectors[index][i] + '</option>';
+    Sinner = Sinner + `<option value=${sectors[index][i]}>` + sectors[index][i] + '</option>';
   }
   var sectorSelect = document.getElementById('sector-list');
   sectorSelect.innerHTML = Sinner;

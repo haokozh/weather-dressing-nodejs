@@ -83,8 +83,8 @@ const sendSuggestion = async (req, res) => {
       wd: renderData.wd,
       angel: `${IMAGE_BASE_URL}/angel/${angelImageName}`,
       real: `${IMAGE_BASE_URL}/real/${realImageName}`,
-      suggestionDotJpg: `${IMAGE_BASE_URL}/suggestion/${suggestionImageName}.jpg`,
-      suggestionDotPng: `${IMAGE_BASE_URL}/suggestion/${suggestionImageName}.png`,
+      suggestionDotJpg: `${IMAGE_BASE_URL}/suggestion/pm_d_1_20.jpg`,
+      suggestionDotPng: `${IMAGE_BASE_URL}/suggestion/pm_d_1_20.png`,
     });
   } catch (error) {
     console.error(`Error on suggest.controller.sendSuggestion(): ${error}`);

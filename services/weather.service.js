@@ -27,7 +27,7 @@ const getWeatherResponse = async (locationId, locationName, elementName) => {
 };
 
 const getForecastDate = (time) => {
-  return time.substring(0, 9);
+  return time.substring(0, 10);
 };
 
 const getPoP12hDescription = (value) => {

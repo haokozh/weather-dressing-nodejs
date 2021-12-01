@@ -19,7 +19,7 @@ const sendSuggestion = async (req, res) => {
     const currentTime = new Date(Date.now());
     let suggestionImageName = '';
     let angelImageName = '';
-    let realImageName = '10-1';
+    let realImageName = '';
     const IMAGE_BASE_URL = 'https://weather-dressing.herokuapp.com/image';
 
     if (currentTime.getHours() >= 17) {
@@ -73,6 +73,10 @@ const sendSuggestion = async (req, res) => {
       angelImageName = '6';
     }
 
+    const random = Math.floor(Math.random() * 13);
+    const temp = [10, 14, 15, 18, 19, 20, 22, 23, 25, 26, 32, 33, 40];
+    realImageName = `${temp[random]}`;
+
     res.render('weather/final', {
       title: '查詢結果',
       city: city,
@@ -84,7 +88,7 @@ const sendSuggestion = async (req, res) => {
       confortDesc: renderData.confortDesc,
       wd: renderData.wd,
       angel: `${IMAGE_BASE_URL}/angel/${angelImageName}`,
-      real: `${IMAGE_BASE_URL}/real/${realImageName}`,
+      real: `${IMAGE_BASE_URL}/real/${realImageName}-1`,
       suggestionDotJpg: `${IMAGE_BASE_URL}/suggestion/${suggestionImageName}.jpg`,
       suggestionDotPng: `${IMAGE_BASE_URL}/suggestion/${suggestionImageName}.png`,
     });

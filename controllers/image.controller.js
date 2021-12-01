@@ -590,7 +590,7 @@ const real_32_1 = (req, res) => {
 };
 
 const real_33 = (req, res) => {
-  res.sendFile(`${IMAGE_BASE_URL}/real/33.png`);
+  res.sendFile(`${IMAGE_BASE_URL}/real/33-1.png`);
 };
 
 const real_40_1 = (req, res) => {

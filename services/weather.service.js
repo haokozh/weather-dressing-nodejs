@@ -382,4 +382,8 @@ module.exports = {
   parseResponseToFlexBubble,
   findWeeklyForecastIdByCityName,
   findWeeklyForecastIdByDistName,
+  getForecastDate,
+  getConfortDescription,
+  getPoP12hDescription,
+  getTempDescription,
 };

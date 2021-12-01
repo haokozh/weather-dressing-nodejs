@@ -7,8 +7,8 @@
     <%- include('../partials/nav.ejs') %> 
 
     <div class="content">
-        <div class="row  g-3">
-           <div class="col-md-6 col-sm-12 ">
+        <div class="row g-3">
+           <div class="col-md-6 col-sm-12">
               <!--上一頁選的地區+目的-->
               <div style="background-color:#f8f8f8;">
                  <table class="table1">
@@ -20,11 +20,11 @@
                              <th scope="col">地區</th>
                              <th scope="col">目的</th>
                           <tr>
-                             <td id="city">*新北市*</td>
+                             <td id="city" name="city"><%= city %></td>
                              <!--使用者輸入的縣市-->
-                             <td id="sector">*蘆洲區*</td>
+                             <td id="sector" name="dist"><%= dist%></td>
                              <!--使用者輸入的地區-->
-                             <td id="go">*學校*</td>
+                             <td id="go" name="purpose"><%= purpose %></td>
                              <!--使用者輸入的地區-->
                           </tr>
                        </thead>
@@ -32,7 +32,7 @@
   
                     <font size="1">
                        <tr>時間範圍</tr><br>
-                       <tr id="time1">2021-10-15 6:00:00~2021-10-15 12:00:00 </tr>
+                       <tr id="time1" name="currentTime"><%= time %></tr>
                     </font>
                  </table>
   
@@ -44,22 +44,22 @@
                        <table Align="center">
                           <tr>
                              <th> 天氣狀況 : </th>
-                             <td id="weather">陰時多雲暫時雷陣雨</td>
+                             <td id="weather" name="wd"><%= wd %></td>
                              <!--天氣狀況結果-->
                           </tr>
                           <tr>
                              <th>溫度狀況 : </th>
-                             <td id="tmper">28~29度</td>
+                             <td id="tmper" name="temp"><%= tempDesc %></td>
                              <!--溫度狀況-->
                           </tr>
                           <tr>
                              <th>降雨機率 : </th>
-                             <td id="rain">30%</td>
+                             <td id="rain" name="pop"><%= popDesc %></td>
                              <!--降雨機率-->
                           </tr>
                           <tr>
                              <th>體感氣候 : </th>
-                             <td id="feel">舒適至悶熱</td>
+                             <td id="feel" name="ci"><%= confortDesc %></td>
                              <!--舒適度-->
                           </tr>
                           <tr>
@@ -68,7 +68,7 @@
                           </tr>
                        </table>
                        <div class="angl" Align="center">
-                          <img id=angl src="https://via.placeholder.com/180x140" alt="...">
+                          <img id=angl src="<%= angel %>" alt="...">
                        </div>
                        &nbsp;
                     </table>
@@ -84,13 +84,13 @@
               <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                  <div class="carousel-inner">
                     <div class="carousel-item active">
-                       <img id=photo1 src="http://code.z01.com/img/2016instbg_01.jpg" class="d-block w-100" alt="...">
+                       <img id=photo1 src="<%= real %>" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                       <img id=photo1 src="http://code.z01.com/img/2016instbg_02.jpg" class="d-block w-100" alt="...">
+                       <img id=photo1 src="<%= suggestionDotJpg %>" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                       <img id=photo1 src="http://code.z01.com/img/2016instbg_03.jpg" class="d-block w-100" alt="...">
+                       <img id=photo1 src="<%= suggestionDotPng %>" class="d-block w-100" alt="...">
                     </div>
                  </div>
                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"

@@ -1,10 +1,13 @@
 const express = require('express');
 const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
 const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 const passport = require('passport');
 const LineStrategy = require('passport-line-auth').Strategy;
 const morgan = require('morgan');
+
+const pool = require('./config/db.config');
 
 const app = express();
 
@@ -27,6 +30,10 @@ app.use(cookieParser());
 // session
 app.use(
   session({
+    store: new pgSession({
+      pool: pool,
+      createTableIfMissing: true,
+    }),
     secret: crypto.randomBytes(128).toString('hex'),
     name: 'user',
     resave: true,

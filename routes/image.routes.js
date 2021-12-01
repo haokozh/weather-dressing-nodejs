@@ -195,7 +195,7 @@ router.get('/real/25-1', imageController.real_25_1);
 router.get('/real/25-1-1', imageController.real_25_1_1);
 router.get('/real/26-1', imageController.real_26_1);
 router.get('/real/32-1', imageController.real_32_1);
-router.get('/real/33', imageController.real_33);
+router.get('/real/33-1', imageController.real_33);
 router.get('/real/40-1', imageController.real_40_1);
 router.get('/real/40-2', imageController.real_40_2);
 

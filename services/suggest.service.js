@@ -14,9 +14,9 @@ const getResponse = async (city, dist) => {
       elementParams
     );
 
-    console.log(data);
+    const parsedData = parseResponseData(data);
 
-    return data;
+    return parsedData;
   } catch (error) {
     console.error(`Error on suggestion.service.getResponse(): ${error}`);
   }
@@ -102,5 +102,4 @@ const parseResponseData = (data) => {
 
 module.exports = {
   getResponse,
-  parseResponseData,
 };

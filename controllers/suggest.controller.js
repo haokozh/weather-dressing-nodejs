@@ -18,8 +18,7 @@ const sendSuggestion = async (req, res) => {
 
     console.log(city, dist, purpose);
 
-    const data = await suggestionService.getResponse(city, dist);
-    const renderData = suggestionService.parseResponseData(data);
+    const renderData = await suggestionService.getResponse(city, dist);
 
     const currentTime = new Date(Date.now());
     let suggestionImageName = '';

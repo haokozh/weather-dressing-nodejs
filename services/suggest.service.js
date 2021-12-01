@@ -68,6 +68,8 @@ const getResponse = async (city, dist) => {
       confortValueIndex
     );
 
+    console.log(pop12hTime);
+
     return {
       cityName: responseData.locationsName,
       distName: responseData.locationName,

@@ -14,6 +14,9 @@ const final = (req, res) => {
 // send url to ejs
 const sendSuggestion = async (req, res) => {
   const { city, dist, purpose } = req.body;
+
+  console.log(city, dist, purpose);
+
   const data = await suggestionService.getResponse(city, dist);
   const renderData = suggestionService.parseResponseData(data);
 

@@ -1,4 +1,4 @@
-const suggestionService = require('../services/suggestion.service');
+const suggestionService = require('../services/suggest.service');
 
 const suggestion = (req, res) => {
   res.render('weather/suggestion', { title: '穿搭建議' });

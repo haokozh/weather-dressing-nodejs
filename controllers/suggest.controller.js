@@ -35,15 +35,17 @@ const sendSuggestion = async (req, res) => {
     }
 
     switch (purpose) {
-      case 'travel':
+      case '出遊':
         suggestionImageName += '1_';
         break;
-      case 'school':
+      case '學校':
         suggestionImageName += '2_';
         break;
-      case 'work':
+      case '公司':
         suggestionImageName += '3_';
         break;
+      default:
+        throw new Error(`Unknown purpose ${purpose}`);
     }
 
     const avgT = (Number(renderData.minT) + Number(renderData.maxT)) / 2;

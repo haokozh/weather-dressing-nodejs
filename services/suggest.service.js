@@ -1,6 +1,9 @@
 const weatherService = require('./weather.service');
 
-const { elementParams, weatherElement } = require('../models/weather-element.model');
+const {
+  elementParams,
+  weatherElement,
+} = require('../models/weather-element.model');
 const ResponseData = require('../models/response-data.model');
 
 const getResponse = async (city, dist) => {
@@ -8,13 +11,12 @@ const getResponse = async (city, dist) => {
     const forecastId = await weatherService.findWeeklyForecastIdByCityName(
       city
     );
+    
     const data = await weatherService.getWeatherResponse(
       forecastId,
       dist,
       elementParams
     );
-
-    console.log(data);
 
     const responseData = new ResponseData(data.records);
 
@@ -68,12 +70,12 @@ const getResponse = async (city, dist) => {
       confortValueIndex
     );
 
-    console.log(pop12hTime);
-
     return {
       cityName: responseData.locationsName,
       distName: responseData.locationName,
-      time: pop12hTime,
+      time: `${weatherService.getForecastDate(
+        pop12hTime.startTime
+      )} ~ ${weatherService.getForecastDate(pop12hTime.endTime)}`,
       pop: pop12h.value,
       minT: minT.value,
       maxT: maxT.value,
@@ -81,7 +83,10 @@ const getResponse = async (city, dist) => {
       maxCI: maxCI.value,
       popDesc: weatherService.getPoP12hDescription(pop12h.value),
       tempDesc: weatherService.getTempDescription(minT.value, maxT.value),
-      confortDesc: weatherService.getConfortDescription(minCI.value, maxCI.value),
+      confortDesc: weatherService.getConfortDescription(
+        minCI.value,
+        maxCI.value
+      ),
       wd: weatherDescription,
     };
   } catch (error) {

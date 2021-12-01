@@ -1,6 +1,6 @@
 const weatherService = require('./weather.service');
 
-const { elementParams } = require('../models/weather-element.model');
+const { elementParams, weatherElement } = require('../models/weather-element.model');
 const ResponseData = require('../models/response-data.model');
 
 const getResponse = async (city, dist) => {
@@ -66,23 +66,18 @@ const getResponse = async (city, dist) => {
       confortValueIndex
     );
 
-    const tempDesc = weatherService.getTempDescription(minT, maxT);
-    const popDesc = weatherService.getPoP12hDescription(pop12h);
-    const forecastDate = weatherService.getForecastDate(pop12hTime);
-    const confortDesc = weatherService.getConfortDescription(minCI, maxCI);
-
     return {
       cityName: responseData.locationsName,
       distName: responseData.locationName,
-      time: forecastDate,
+      time: weatherService.getForecastDate(pop12hTime),
       pop: pop12h.value,
       minT: minT.value,
       maxT: maxT.value,
       minCI: minCI.value,
       maxCI: maxCI.value,
-      popDesc: popDesc,
-      tempDesc: tempDesc,
-      confortDesc: confortDesc,
+      popDesc: weatherService.getPoP12hDescription(pop12h),
+      tempDesc: weatherService.getTempDescription(minT, maxT),
+      confortDesc: weatherService.getConfortDescription(minCI, maxCI),
       wd: weatherDescription,
     };
   } catch (error) {

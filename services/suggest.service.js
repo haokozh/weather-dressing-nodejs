@@ -8,11 +8,13 @@ const getResponse = async (city, dist) => {
     const forecastId = await weatherService.findWeeklyForecastIdByCityName(
       city
     );
-    const { data } = await weatherService.getWeatherResponse(
+    const data = await weatherService.getWeatherResponse(
       forecastId,
       dist,
       elementParams
     );
+
+    console.log(data);
 
     const responseData = new ResponseData(data.records);
 

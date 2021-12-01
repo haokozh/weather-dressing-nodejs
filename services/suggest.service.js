@@ -14,6 +14,8 @@ const getResponse = async (city, dist) => {
       elementParams
     );
 
+    console.log(data);
+
     return data;
   } catch (error) {
     console.error(`Error on suggestion.service.getResponse(): ${error}`);

@@ -1,4 +1,3 @@
-const { render } = require('ejs');
 const suggestionService = require('../services/suggestion.service');
 
 const suggestion = (req, res) => {

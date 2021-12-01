@@ -87,7 +87,7 @@ const getResponse = async (city, dist) => {
         minCI.value,
         maxCI.value
       ),
-      wd: weatherDescription,
+      wd: weatherDescription.value,
     };
   } catch (error) {
     console.error(`Error on suggestion.service.getResponse(): ${error}`);

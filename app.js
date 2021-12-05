@@ -4,12 +4,27 @@ const pgSession = require('connect-pg-simple')(session);
 const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 const passport = require('passport');
-const LineStrategy = require('passport-line-auth').Strategy;
 const morgan = require('morgan');
 
 const pool = require('./config/db.config');
+const { lineStrategy, localStrategy } = require('./config/passport.config');
 
 const app = express();
+
+const checkAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+
+  res.redirect('/login');
+};
+
+const checkNotAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  next();
+};
 
 app.set('views', 'views');
 app.set('view engine', 'ejs');
@@ -41,26 +56,13 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(
-  new LineStrategy(
-    {
-      channelID: '1656649772',
-      channelSecret: 'd547d76ee368206d67fd9cc04af168e8',
-      callbackURL: 'https://weather-dressing.herokuapp.com/login/line/return',
-      scope: ['profile', 'openid'],
-      botPrompt: 'normal',
-      uiLocales: 'zh_TW',
-    },
-    (accessToken, refreshToken, params, profile, cb) => {
-      return cb(null, profile);
-    }
-  )
-);
-passport.serializeUser((user, cb) => {
-  cb(null, user);
+passport.use('line', lineStrategy);
+passport.use('local', localStrategy);
+passport.serializeUser((user, done) => {
+  done(null, user);
 });
-passport.deserializeUser((obj, cb) => {
-  cb(null, obj);
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
 });
 
 app.use(express.static('public'));
@@ -77,7 +79,7 @@ app.get(
     failureRedirect: '/members/login',
   }),
   (req, res) => {
-    res.redirect('/');
+    res.send('logged in');
   }
 );
 

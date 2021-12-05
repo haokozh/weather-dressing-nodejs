@@ -11,21 +11,6 @@ const { lineStrategy, localStrategy } = require('./config/passport.config');
 
 const app = express();
 
-const checkAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-
-  res.redirect('/login');
-};
-
-const checkNotAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return res.redirect('/');
-  }
-  next();
-};
-
 app.set('views', 'views');
 app.set('view engine', 'ejs');
 
@@ -75,7 +60,8 @@ app.use('/image', require('./routes/image.routes'));
 app.get(
   '/login/line/return',
   passport.authenticate('line', {
-    successRedirect: '/',
+    successRedirect: 'members/register',
+    failureRedirect: '/'
   }),
   (req, res) => {
     res.send('logged in');

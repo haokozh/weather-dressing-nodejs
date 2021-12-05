@@ -34,12 +34,29 @@ const lineStrategy = new LineStrategy(
   }
 );
 
-const localStrategy = new LocalStrategy({
-  usernameField: 'account',
-  authenticateMember,
-});
+const localStrategy = new LocalStrategy(
+  {
+    usernameField: 'account',
+  },
+  async (account, password, salt, done) => {
+    const user = memberService.findMemberByAccount(account);
+    if (user == null) {
+      return done(null, false, { message: '此帳號不存在' });
+    }
+
+    try {
+      if (memberService.verifyPassword(password, salt, user.password)) {
+        return done(null, user);
+      } else {
+        return done(null, false, { message: '密碼不正確' });
+      }
+    } catch (error) {
+      return done(error);
+    }
+  }
+);
 
 module.exports = {
   lineStrategy,
-  localStrategy
+  localStrategy,
 };

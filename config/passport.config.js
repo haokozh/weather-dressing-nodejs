@@ -3,6 +3,13 @@ const LineStrategy = require('passport-line-auth').Strategy;
 
 const memberService = require('../services/member.service');
 
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});
+
 const lineStrategy = new LineStrategy(
   {
     channelID: '1656649772',
@@ -21,13 +28,14 @@ const localStrategy = new LocalStrategy(
   {
     usernameField: 'account',
   },
-  async (account, password, salt, done) => {
-    const user = memberService.findMemberByAccount(account);
-    if (user == null) {
-      return done(null, false, { message: '此帳號不存在' });
-    }
-
+  (account, password, salt, done) => {
     try {
+      const user = memberService.findMemberByAccount(account);
+
+      if (user == null) {
+        return done(null, false, { message: '此帳號不存在' });
+      }
+
       if (memberService.verifyPassword(password, salt, user.password)) {
         return done(null, user);
       } else {
@@ -39,7 +47,7 @@ const localStrategy = new LocalStrategy(
   }
 );
 
-module.exports = {
-  lineStrategy,
-  localStrategy,
-};
+passport.use('line', lineStrategy);
+passport.use('local', localStrategy);
+
+module.exports = passport;

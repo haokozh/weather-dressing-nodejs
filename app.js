@@ -3,11 +3,10 @@ const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
-const passport = require('passport');
 const morgan = require('morgan');
 
 const pool = require('./config/db.config');
-const { lineStrategy, localStrategy } = require('./config/passport.config');
+const passport = require('./config/passport.config');
 
 const app = express();
 
@@ -41,14 +40,6 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use('line', lineStrategy);
-passport.use('local', localStrategy);
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-passport.deserializeUser((obj, done) => {
-  done(null, obj);
-});
 
 app.use(express.static('public'));
 

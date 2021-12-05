@@ -4,9 +4,8 @@ const router = express.Router();
 const multer = require('multer');
 const upload = multer();
 
-const passport = require('passport');
-
 const memberController = require('../controllers/member.controller');
+const passport = require('../config/passport.config');
 
 router.get('/', memberController.findAllMembers);
 

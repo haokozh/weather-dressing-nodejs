@@ -40,7 +40,7 @@ const newMember = (req, res) => {
 
     memberService.newMember(member);
 
-    res.redirect('/members');
+    res.redirect('/');
   } catch (error) {
     console.error(error);
   }

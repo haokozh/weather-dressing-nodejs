@@ -66,7 +66,7 @@ const login = async (req, res) => {
       req.session.account = account;
       console.log(`${member.account} is logged in`);
 
-      res.render('/', { title: 首頁, accountName: member.account });
+      res.render('/', { title: 首頁, accountName: member.account, isAuthenticated: true });
     }
   } catch (error) {
     console.error(`Error on login(): ${error}`);

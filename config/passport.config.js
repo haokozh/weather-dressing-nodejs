@@ -28,6 +28,8 @@ const lineStrategy = new LineStrategy(
 const localStrategy = new LocalStrategy(
   {
     usernameField: 'account',
+    passwordField: 'password',
+    passReqToCallback: true,
   },
   (account, password, salt, done) => {
     try {

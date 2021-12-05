@@ -76,7 +76,6 @@ app.get(
   '/login/line/return',
   passport.authenticate('line', {
     successRedirect: '/',
-    failureRedirect: '/members/login',
   }),
   (req, res) => {
     res.send('logged in');

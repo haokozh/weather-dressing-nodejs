@@ -3,23 +3,6 @@ const LineStrategy = require('passport-line-auth').Strategy;
 
 const memberService = require('../services/member.service');
 
-const authenticateMember = async (account, password, salt, done) => {
-  const user = memberService.findMemberByAccount(account);
-  if (user == null) {
-    return done(null, false, { message: '此帳號不存在' });
-  }
-
-  try {
-    if (memberService.verifyPassword(password, salt, user.password)) {
-      return done(null, user);
-    } else {
-      return done(null, false, { message: '密碼不正確' });
-    }
-  } catch (error) {
-    return done(error);
-  }
-};
-
 const lineStrategy = new LineStrategy(
   {
     channelID: '1656649772',

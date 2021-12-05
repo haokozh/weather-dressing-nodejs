@@ -60,12 +60,9 @@ app.use('/image', require('./routes/image.routes'));
 app.get(
   '/login/line/return',
   passport.authenticate('line', {
-    successRedirect: 'members/register',
-    failureRedirect: '/'
-  }),
-  (req, res) => {
-    res.send('logged in');
-  }
+    successRedirect: '/',
+    failureRedirect: '/members/login',
+  })
 );
 
 const port = process.env.PORT || 3000;

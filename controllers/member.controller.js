@@ -64,6 +64,7 @@ const login = async (req, res) => {
       memberService.verifyPassword(password, member.salt, member.pwd)
     ) {
       req.session.account = account;
+      req.session.isAuthenticated = true;
       console.log(`${member.account} is logged in`);
 
       res.redirect('/');

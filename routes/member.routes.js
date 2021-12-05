@@ -19,7 +19,6 @@ router.post(
   '/login',
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/members/login',
   }),
   upload.none(),
   memberController.login

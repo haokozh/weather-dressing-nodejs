@@ -26,7 +26,7 @@ const checkAuthenticated = (req, res, next) => {
     return next();
   }
 
-  res.redirect('/login');
+  res.redirect('members/login');
 };
 
 const checkNotAuthenticated = (req, res, next) => {

@@ -6,7 +6,6 @@ const crypto = require('crypto');
 const morgan = require('morgan');
 
 const pool = require('./config/db.config');
-const passport = require('./config/passport.config');
 
 const app = express();
 
@@ -47,14 +46,6 @@ app.use('/', require('./routes/index.routes'));
 app.use('/members', require('./routes/member.routes'));
 app.use('/weather', require('./routes/suggest.routes'));
 app.use('/image', require('./routes/image.routes'));
-
-app.get(
-  '/login/line/return',
-  passport.authenticate('line', {
-    successRedirect: '/',
-    failureRedirect: '/members/login',
-  })
-);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

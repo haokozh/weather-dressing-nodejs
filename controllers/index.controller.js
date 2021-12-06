@@ -22,7 +22,7 @@ const sendDressListData = (req, res) => {
   console.log(req.body.variety[0]);
   console.log(req.body.variety[1]);
   console.log(req.body.variety[2]);
-  res.send(req.body);
+  res.redirect('/dressstore');
 };
 
 const renderUploadImage = (req, res) => {

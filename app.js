@@ -27,7 +27,6 @@ app.use(
       createTableIfMissing: true,
     }),
     secret: crypto.randomBytes(128).toString('hex'),
-    name: 'user',
     resave: true,
     saveUninitialized: false,
     cookie: {

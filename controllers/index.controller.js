@@ -17,7 +17,11 @@ const dresslist = (req, res) => {
 };
 
 const sendDressListData = (req, res) => {
-  console.log(req);
+  console.log(req.body.age);
+  console.log(req.body.gender);
+  console.log(req.body.variety[0]);
+  console.log(req.body.variety[1]);
+  console.log(req.body.variety[2]);
   res.send(req.body);
 };
 

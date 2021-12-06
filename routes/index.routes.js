@@ -24,6 +24,7 @@ const indexController = require('../controllers/index.controller');
 router.get('/', indexController.index);
 router.get('/about', indexController.about);
 router.get('/dresslist', indexController.dresslist);
+router.post('/dresslist', indexController.sendDressListData);
 router.get('/dressstore', indexController.dressstore);
 router.get('/upload', indexController.renderUploadImage);
 router.post('/upload', upload.single('picture'), indexController.uploadImage);

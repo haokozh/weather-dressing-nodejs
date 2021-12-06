@@ -16,6 +16,10 @@ const dresslist = (req, res) => {
   res.render('dresslist', { title: '推薦店家' });
 };
 
+const sendDressListData = (req, res) => {
+  console.log(req);
+};
+
 const renderUploadImage = (req, res) => {
   res.render('upload', { title: '上傳照片' });
 };
@@ -35,4 +39,5 @@ module.exports = {
   uploadImage,
   dressstore,
   dresslist,
+  sendDressListData,
 };

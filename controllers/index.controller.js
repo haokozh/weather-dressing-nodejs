@@ -18,6 +18,7 @@ const dresslist = (req, res) => {
 
 const sendDressListData = (req, res) => {
   console.log(req);
+  res.send(req.body);
 };
 
 const renderUploadImage = (req, res) => {

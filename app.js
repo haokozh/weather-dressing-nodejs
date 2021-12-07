@@ -18,6 +18,7 @@ app.use('/callback', require('./routes/linebot.routes'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use('trust proxy', 1);
 app.use(
   session({
     name: 'user',
@@ -30,7 +31,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 600 * 1000,
-      secure: false,
+      secure: true,
     },
   })
 );

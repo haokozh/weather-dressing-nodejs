@@ -1,7 +1,6 @@
 const express = require('express');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
-const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 const morgan = require('morgan');
 
@@ -19,9 +18,9 @@ app.use('/callback', require('./routes/linebot.routes'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(
   session({
+    name: 'user',
     store: new pgSession({
       pool: pool,
       createTableIfMissing: true,

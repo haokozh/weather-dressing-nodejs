@@ -1,6 +1,4 @@
 const index = (req, res) => {
-  console.log(req.session);
-  console.log(req.sessionID);
   res.render('index', { title: '首頁' });
 };
 

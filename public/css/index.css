@@ -1,3 +1,6 @@
 body {
-    background-image: url(../assets/images/index-background-2.png);
+  background-image: url(../assets/images/index-background-2.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }

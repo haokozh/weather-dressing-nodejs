@@ -6,106 +6,108 @@
 <body>
   <%- include('./partials/nav.ejs') %> 
   
-    <nav>
-        <span class="align-middle">
-          <div class="content">
-            <div style="background-color:#f8f8f8;" text-align:center>
-              <div class="row ">
-                <form class="select" Align="center">
-                  <!--標題字-->
-                  <div class="panel_head">
-                    <h2>
-                      <span class="head_text">推薦店家</span>
-                    </h2>
-                  </div>
-                  <br>
-                  &ensp;
-                  <br>
-                  <label for="select" scope="col">年齡</label>
-                  <select name="select1" id="select1">
-                    <option>請選擇</option>
-                    <option>1-未設定</option>
-                    <option>2-未設定</option>
-                    <option>3-未設定</option>
-                  </select>
-    
-                  <label for="select" scope="col">性別</label>
-                  <select name="select2" id="select2">
-                    <option>請選擇</option>
-                    <option>女性</option>
-                    <option>男性</option>
-                    <option>中性</option>
-                  </select>
-                  <br>
-                  &ensp;
-                  <br>
-                  &ensp;
-                  <br>
-                  <th>選擇想查看的類別(可多選):</th>
-                  <br>
-                  &ensp;
-                  <br>
-                  <div id="checkbox">
-                    <label><input type="checkbox" name="variety" value="日系" checked="checked" /><span
-                        class="round button">日系</span></label>
-                    <label><input type="checkbox" name="variety" value="韓式" checked="checked" /><span
-                        class="round button">韓式</span></label>
-                    <label><input type="checkbox" name="variety" value="歐美" checked="checked" /><span
-                        class="round button">歐美</span></label>
-                    <label><input type="checkbox" name="variety" value="正式" /><span class="round button">正式</span></label>
-                    <label><input type="checkbox" name="variety" value="設計" /><span class="round button">設計</span></label>
-                    <label><input type="checkbox" name="variety" value="台灣品牌" /><span
-                        class="round button">台灣品牌</span></label>
-                    <label><input type="checkbox" name="variety" value="運動" /><span class="round button">運動</span></label>
-                    <label><input type="checkbox" name="variety" value="明星自創" /><span
-                        class="round button">明星自創</span></label>
-                    <label><input type="checkbox" name="variety" value="專櫃品牌" /><span
-                        class="round button">專櫃品牌</span></label>
-                  </div>
-    
-                  <style>
-                    #checkbox input[type="checkbox"] {
-                      display: none;
-                    }
-    
-                    #checkbox input:checked+.button {
-                      background: #5e7380;
-                      color: #fff;
-                    }
-    
-                    #checkbox .button {
-                      display: inline-block;
-                      margin: 0 5px 10px 0;
-                      padding: 5px 10px;
-                      background: #f7f7f7;
-                      color: #333;
-                      cursor: pointer;
-                    }
-    
-                    #checkbox .button:hover {
-                      background: #bbb;
-                      color: #fff;
-                    }
-    
-                    #checkbox .round {
-                      border-radius: 5px;
-                    }
-                  </style>
+  <nav>
+    <span class="align-middle">
+      <div class="content">
+        <div style="background-color:#f8f8f8;" text-align:center>
+          <div class="row ">
+            <form class="select" Align="center" method="post" action="/dresslist">
+              <!--標題字-->
+              <div class="panel_head">
+                <h2>
+                  <span class="head_text">推薦店家</span>
+                </h2>
               </div>
-              <!--送出結果-->
-              <span class="align-middle" valign="center">
-                <div class="content" Align="center">
-                  <div class="row">
-                    <div class="sublove">
-                      <input type="submit" id='love2' value="查看推薦商家" data-action="submit" />
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </span>
-    
-      </nav>
+              <br>
+              &ensp;
+              <br>
+              <label for="select" scope="col">年齡</label>
+              <select name="age" id="select1">
+                <option id="Y1" value="junior">國中生(含以下)</option>
+                <option id="Y2" value="senior">高中生</option>
+                <option id="Y3" value="college">大學生</option>
+                <option id="Y4" value="worker">上班族</option>
+              </select>
 
-      <%- include('./partials/footer.ejs') %> 
+              <label for="select" scope="col">性別</label>
+              <select name="gender" id="select2">
+                <option id="g1" value="female">女性</option>
+                <option id="g2" value="male">男性</option>
+                <option id="g3" value="neutral">中性</option>
+              </select>
+              <br>
+              &ensp;
+              <br>
+              &ensp;
+              <br>
+              <th>選擇想查看的類別(可多選):</th>
+              <br>
+              &ensp;
+              <br>
+              <div id="checkbox">
+                <label><input id="d1" type="checkbox" name="variety" value="日系" checked="checked" /><span
+                    class="round button">日系</span></label>
+                <label><input id="d2" type="checkbox" name="variety" value="韓式" checked="checked" /><span
+                    class="round button">韓式</span></label>
+                <label><input id="d3" type="checkbox" name="variety" value="歐美" checked="checked" /><span
+                    class="round button">歐美</span></label>
+                <label><input id="d4" type="checkbox" name="variety" value="正式" /><span
+                    class="round button">正式</span></label>
+                <label><input id="d5" type="checkbox" name="variety" value="設計" /><span
+                    class="round button">設計</span></label>
+                <label><input id="d6" type="checkbox" name="variety" value="台灣品牌" /><span
+                    class="round button">台灣品牌</span></label>
+                <label><input id="d7" type="checkbox" name="variety" value="運動" /><span
+                    class="round button">運動</span></label>
+                <label><input id="d8" type="checkbox" name="variety" value="明星自創" /><span
+                    class="round button">明星自創</span></label>
+                <label><input id="d9" type="checkbox" name="variety" value="專櫃品牌" /><span
+                    class="round button">專櫃品牌</span></label>
+              </div>
+
+              <style>
+                #checkbox input[type="checkbox"] {
+                  display: none;
+                }
+
+                #checkbox input:checked+.button {
+                  background: #5e7380;
+                  color: #fff;
+                }
+
+                #checkbox .button {
+                  display: inline-block;
+                  margin: 0 5px 10px 0;
+                  padding: 5px 10px;
+                  background: #f7f7f7;
+                  color: #333;
+                  cursor: pointer;
+                }
+
+                #checkbox .button:hover {
+                  background: #bbb;
+                  color: #fff;
+                }
+
+                #checkbox .round {
+                  border-radius: 5px;
+                }
+              </style>
+          </div>
+          <!--送出結果-->
+          <span class="align-middle" valign="center">
+            <div class="content" Align="center">
+              <div class="row">
+                <div class="sublove">
+                  <input type="submit" id='love2' value="查看推薦商家" data-action="submit" />
+                </div>
+              </div>
+            </div>
+        </div>
+    </span>
+
+  </nav>
+
+  <%- include('./partials/footer.ejs') %> 
 </body>
 </html>

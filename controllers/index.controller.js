@@ -1,6 +1,4 @@
 const index = (req, res) => {
-  console.log(req.session);
-  console.log(req.sessionID);
   res.render('index', { title: '首頁' });
 };
 
@@ -14,6 +12,15 @@ const dressstore = (req, res) => {
 
 const dresslist = (req, res) => {
   res.render('dresslist', { title: '推薦店家' });
+};
+
+const sendDressListData = (req, res) => {
+  console.log(req.body.age);
+  console.log(req.body.gender);
+  console.log(req.body.variety[0]);
+  console.log(req.body.variety[1]);
+  console.log(req.body.variety[2]);
+  res.redirect('/dressstore');
 };
 
 const renderUploadImage = (req, res) => {
@@ -35,4 +42,5 @@ module.exports = {
   uploadImage,
   dressstore,
   dresslist,
+  sendDressListData,
 };

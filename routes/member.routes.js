@@ -5,8 +5,9 @@ const multer = require('multer');
 const upload = multer();
 
 const memberController = require('../controllers/member.controller');
+const auth = require('../middleware/auth');
 
-router.get('/', memberController.findAllMembers);
+router.get('/', auth, memberController.findAllMembers);
 
 router.get('/register', memberController.register);
 
@@ -16,6 +17,8 @@ router.get('/login', memberController.renderLogin);
 
 router.post('/login', upload.none(), memberController.login);
 
-router.get('/:id', memberController.findMemberById);
+router.get('/:id', auth, memberController.findMemberById);
+
+router.get('/logout', auth, memberController.logout);
 
 module.exports = router;

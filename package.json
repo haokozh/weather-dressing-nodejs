@@ -28,6 +28,7 @@
     "nodemon": "^2.0.12",
     "passport": "^0.5.0",
     "passport-line-auth": "^0.2.9",
+    "passport-local": "^1.0.0",
     "pg": "^8.7.1",
     "qs": "^6.7.0",
     "sass": "^1.42.1"

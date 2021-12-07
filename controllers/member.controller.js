@@ -40,7 +40,7 @@ const newMember = (req, res) => {
 
     memberService.newMember(member);
 
-    res.redirect('/members');
+    res.redirect('/');
   } catch (error) {
     console.error(error);
   }
@@ -63,8 +63,10 @@ const login = async (req, res) => {
       member != null &&
       memberService.verifyPassword(password, member.salt, member.pwd)
     ) {
-      req.session.account = account;
-      console.log(`${member.account} is logged in`);
+      req.session.user = member.account;
+      console.log(req.session);
+      console.log(req.sessionID);
+      console.log(`${req.session.user} is logged in`);
 
       res.redirect('/');
     }
@@ -74,11 +76,11 @@ const login = async (req, res) => {
 };
 
 const logout = (req, res) => {
-  req.session.destory(() => {
+  req.session.destroy(() => {
     console.log('session destory');
   });
 
-  res.render('index', { alert: '您已登出' });
+  res.render('index', { title: '首頁', alert: '您已登出' });
 };
 
 module.exports = {
@@ -88,4 +90,5 @@ module.exports = {
   newMember,
   renderLogin,
   login,
+  logout,
 };

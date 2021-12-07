@@ -16,7 +16,7 @@
                             </h3>
                         </div>
                         <div class="panel_body">
-                            <form class="upload" action="/upload" method="post" enctype="multipart/form-data">
+                            <form id="upload-form" class="upload" action="/upload" method="post" enctype="multipart/form-data">
                                 <p>提供圖片等同授權天氣穿衣團隊使用該圖片，此圖片露出版面為weather_dressing
                                     官方instergram、Line@、網頁。且以下圖方式呈現。<p>輸入你想分享的天氣穿搭資訊吧</p>
                                 </p>
@@ -28,7 +28,7 @@
                                     <input name="picture" id="picture" style="display: none;" type="file" onchange="preview()" />
                                     <i class="fa fa-photo"></i> 上傳圖片
                                 </label>
-                                <input type="submit" value="送出" /><input type="reset" value="清除" />
+                                <input type="submit" value="送出" /><input type="button" value="清除" onclick="resetForm()" />
                             </form>
                         </div>
                     </div>
@@ -38,6 +38,6 @@
     
 
     <%- include('./partials/footer.ejs') %> 
-    <script src="/js/preview.js"></script>
+    <script src="/js/upload.js"></script>
 </body>
 </html>

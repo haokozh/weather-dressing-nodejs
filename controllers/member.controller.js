@@ -80,7 +80,7 @@ const logout = (req, res) => {
     console.log('session destory');
   });
 
-  res.render('index', { alert: '您已登出' });
+  res.render('index', { title: '首頁', alert: '您已登出' });
 };
 
 module.exports = {

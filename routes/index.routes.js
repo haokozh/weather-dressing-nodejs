@@ -20,6 +20,7 @@ const storage = multerS3({
 const upload = multer({ storage: storage });
 
 const indexController = require('../controllers/index.controller');
+const auth = require('../middleware/auth');
 
 router.get('/', indexController.index);
 router.get('/about', indexController.about);

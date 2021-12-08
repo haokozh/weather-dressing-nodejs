@@ -10,12 +10,12 @@ const storage = multerS3({
   s3: s3,
   bucket: 'weather-dressing-assets',
   contentType: multerS3.AUTO_CONTENT_TYPE,
-  acl: 'public-read-write',
+  acl: 'public-read',
   metadata: (req, file, cb) => {
     cb(null, { fieldName: file.fieldname });
   },
   key: (req, file, cb) => {
-    cb(null, new Date().toISOString());
+    cb(null, `${req.session.user}_${req.body.temperature}_${req.body.location}_${new Date().toISOString()}`);
   },
 });
 

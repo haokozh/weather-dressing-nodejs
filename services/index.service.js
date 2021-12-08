@@ -5,7 +5,7 @@ const findMemberByAccount = (account) => {
   return memberService.findMemberByAccount(account);
 };
 
-const insertDressListData = (
+const insertDressListData = async (
   memberId,
   age,
   gender,

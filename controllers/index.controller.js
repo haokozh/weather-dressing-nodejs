@@ -1,3 +1,5 @@
+const indexService = require('../services/index.service');
+
 const index = (req, res) => {
   res.render('index', { title: '首頁' });
 };
@@ -14,13 +16,21 @@ const dresslist = (req, res) => {
   res.render('dresslist', { title: '推薦店家' });
 };
 
-const sendDressListData = (req, res) => {
+const sendDressListData = async (req, res) => {
+  const member = await indexService.findMemberByAccount(req.session.user);
+
+  // if (member) {
+  //   indexService.insertDressListData(member.id, req.body.age, req.body.gender)
+  // }
   console.log(req.session.user);
   console.log(req.body.age);
   console.log(req.body.gender);
   console.log(req.body.variety[0]);
   console.log(req.body.variety[1]);
   console.log(req.body.variety[2]);
+  console.log(req.body.variety[3]);
+  console.log(req.body.variety[4]);
+  
   res.redirect('/dressstore');
 };
 

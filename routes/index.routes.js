@@ -30,6 +30,6 @@ router.get('/dresslist', indexController.dresslist);
 router.post('/dresslist', indexController.sendDressListData);
 router.get('/dressstore', indexController.dressstore);
 router.get('/upload', auth, indexController.renderUploadImage);
-router.post('/upload', upload.single('picture'), indexController.uploadImage);
+router.post('/upload', upload.single('picture'), auth, indexController.uploadImage);
 
 module.exports = router;

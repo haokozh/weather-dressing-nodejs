@@ -15,6 +15,7 @@ const dresslist = (req, res) => {
 };
 
 const sendDressListData = (req, res) => {
+  console.log(req.session.user);
   console.log(req.body.age);
   console.log(req.body.gender);
   console.log(req.body.variety[0]);

@@ -19,7 +19,7 @@ const authSuccess = (req, res, token) => {
   res.send(req.session.profile);
 };
 
-const authFailed = (req, res) => {
+const authFailed = (req, res, next, error) => {
   try {
     req.session.authPass = false;
     console.log(req.session);

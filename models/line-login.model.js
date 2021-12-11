@@ -28,15 +28,9 @@ class LineLogin {
       const state = LineLogin._random();
       const nonce = LineLogin._random();
 
-      console.log(state);
-      console.log(nonce);
-      console.log(req.session);
-
       req.session.lineLoginState = state;
       req.session.lineLoginNonce = nonce;
 
-      console.log(req.session.lineLoginNonce);
-      console.log(req.session.lineLoginState);
       const url = this.secure_auth_url(state, nonce);
 
       return res.redirect(url);
@@ -88,7 +82,7 @@ class LineLogin {
                 }
               );
 
-              if (decoded_id_token.nonce !== req.session.line_login_nonce) {
+              if (decoded_id_token.nonce !== req.session.lineLoginNonce) {
                 throw new Error('nonce not match.');
               }
 

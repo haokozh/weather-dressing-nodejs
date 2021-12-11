@@ -1,7 +1,6 @@
 const express = require('express');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
-const crypto = require('crypto');
 const morgan = require('morgan');
 
 const pool = require('./config/db.config');
@@ -23,10 +22,10 @@ app.use(
     }),
     secret: process.env.LINE_LOGIN_CHANNEL_SECRET,
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
       maxAge: 600 * 1000,
-      secure: true,
+      secure: false,
     },
   })
 );

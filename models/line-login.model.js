@@ -25,8 +25,11 @@ class LineLogin {
 
   authDirect() {
     return (req, res) => {
-      const state = (req.session.line_login_state = LineLogin._random());
-      const nonce = (req.session.line_login_nonce = LineLogin._random());
+      const state = LineLogin._random();
+      const nonce = LineLogin._random();
+
+      req.session.line_login_state = state;
+      req.session.line_login_nonce = nonce;
       const url = this.secure_auth_url(state, nonce);
 
       return res.redirect(url);

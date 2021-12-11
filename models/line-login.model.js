@@ -30,6 +30,7 @@ class LineLogin {
 
       console.log(state);
       console.log(nonce);
+      console.log(req.session);
 
       req.session.line_login_state = state;
       req.session.line_login_nonce = nonce;

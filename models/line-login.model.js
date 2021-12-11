@@ -3,7 +3,7 @@ const Promise = require('bluebird');
 const axios = require('axios');
 const qs = require('qs');
 
-Promise.promisifyAll(request);
+Promise.promisifyAll(axios);
 
 class LineLogin {
   constructor(opts) {

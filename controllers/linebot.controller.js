@@ -9,26 +9,28 @@ const callback = (req, res) => {
     });
 };
 
-const logout = (req, res) => {
-  req.session.destroy();
-  res.redirect('/');
-};
-
 const authSuccess = (req, res, token) => {
-  // req.session.authPass = true;
+  req.session.authPass = true;
   req.session.profile = token.id_token;
 
-  // console.log(req.session.authPass);
+  console.log(req.session.authPass);
   console.log(req.session.profile);
 
   res.send(req.session.profile);
 };
 
-const authFailed = (req, res, next, error) => {
+const authFailed = (req, res, error) => {
   req.session.authPass = false;
   req.session.errorMessage = error.message;
 
+  console.log(req.session.authPass);
+
   res.send(`Error on /callback/auth ${req.session.errorMessage}`);
+};
+
+const logout = (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
 };
 
 module.exports = {

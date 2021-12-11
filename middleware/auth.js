@@ -1,5 +1,5 @@
 const auth = (req, res, next) => {
-  if (req.session.user) {
+  if (req.session.user || req.session.authPass) {
     console.log('authenticated');
     next();
   } else {

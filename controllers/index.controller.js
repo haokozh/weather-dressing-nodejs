@@ -22,15 +22,15 @@ const sendDressListData = async (req, res) => {
   // if (member) {
   //   indexService.insertDressListData(member.id, req.body.age, req.body.gender)
   // }
-  console.log(req.session.user);
+  console.log(req.session.user); // 未登入: undefined // 已登入: account
   console.log(req.body.age);
   console.log(req.body.gender);
-  console.log(req.body.variety[0]);
-  console.log(req.body.variety[1]);
-  console.log(req.body.variety[2]);
-  console.log(req.body.variety[3]);
-  console.log(req.body.variety[4]);
-  
+  console.log(req.body.variety[0]); // 日系
+  console.log(req.body.variety[1]); // 韓式
+  console.log(req.body.variety[2]); // 歐美
+  console.log(req.body.variety[3]); // undefined
+  console.log(req.body.variety[4]); // undefined
+
   res.redirect('/dressstore');
 };
 

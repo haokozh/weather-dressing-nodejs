@@ -27,7 +27,7 @@ app.use(
       pool: pool,
       createTableIfMissing: true,
     }),
-    secret: crypto.randomBytes(128).toString('hex'),
+    secret: process.env.LINE_LOGIN_CHANNEL_SECRET,
     resave: true,
     saveUninitialized: false,
     cookie: {

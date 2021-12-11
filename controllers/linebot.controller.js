@@ -9,6 +9,28 @@ const callback = (req, res) => {
     });
 };
 
+const logout = (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+};
+
+const authSuccess = (req, res, token) => {
+  req.session.authPass = true;
+  (req.session.profile = token), id_token;
+
+  res.redirect('/');
+};
+
+const authFailed = (req, res, next, error) => {
+  req.session.authPass = false;
+  req.session.errorMessage = error.message;
+
+  res.send(`Error on /callback/auth ${req.session.errorMessage}`);
+};
+
 module.exports = {
   callback,
+  logout,
+  authSuccess,
+  authFailed,
 };

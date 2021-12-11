@@ -15,13 +15,13 @@ const logout = (req, res) => {
 };
 
 const authSuccess = (req, res, token) => {
-  req.session.authPass = true;
+  // req.session.authPass = true;
   req.session.profile = token.id_token;
 
-  console.log(req.session.authPass);
+  // console.log(req.session.authPass);
   console.log(req.session.profile);
 
-  res.redirect('/');
+  res.send(req.session.profile);
 };
 
 const authFailed = (req, res, next, error) => {

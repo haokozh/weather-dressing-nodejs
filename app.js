@@ -23,7 +23,7 @@ app.use(
     }),
     secret: process.env.LINE_LOGIN_CHANNEL_SECRET,
     resave: true,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
       maxAge: 600 * 1000,
       secure: true,

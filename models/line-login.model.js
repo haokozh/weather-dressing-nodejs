@@ -56,9 +56,7 @@ class LineLogin {
 
   authcb(succ, fail) {
     return (req, res, next) => {
-      const { code } = req.query;
-      const { state } = req.query;
-      if (req.session.lineLoginState !== state) {
+      if (req.session.lineLoginState !== req.query.state) {
         return fail(
           req,
           res,
@@ -67,7 +65,7 @@ class LineLogin {
         );
       }
 
-      this.issue_line_access_token(code)
+      this.issue_line_access_token(req.query.code)
         .then((token_response) => {
           if (token_response.id_token) {
             let decoded_id_token;

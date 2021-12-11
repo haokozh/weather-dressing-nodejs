@@ -20,13 +20,9 @@ const authSuccess = (req, res, token) => {
 };
 
 const authFailed = (req, res, next, error) => {
-  try {
-    req.session.authPass = false;
-    console.log(req.session);
-    res.send(req.session);
-  } catch (error) {
-    res.send(`Error on /callback/auth ${error}`);
-  }
+  req.session.authPass = false;
+  req.session.errMsg = error.message;
+  res.send(`Error on /callback/auth ${req}`);
 };
 
 const logout = (req, res) => {

@@ -17,21 +17,27 @@ const dresslist = (req, res) => {
 };
 
 const sendDressListData = async (req, res) => {
-  const member = await indexService.findMemberByAccount(req.session.user);
+  try {
+    const member = await indexService.findMemberByAccount(req.session.user);
 
-  // if (member) {
-  //   indexService.insertDressListData(member.id, req.body.age, req.body.gender)
-  // }
-  console.log(req.session.user); // 未登入: undefined // 已登入: account
-  console.log(req.body.age);
-  console.log(req.body.gender);
-  console.log(req.body.variety[0]); // 日系
-  console.log(req.body.variety[1]); // 韓式
-  console.log(req.body.variety[2]); // 歐美
-  console.log(req.body.variety[3]); // undefined
-  console.log(req.body.variety[4]); // undefined
+    if (member) {
+      let record = [];
+      record.push(member.id);
+      record.push(req.body.age);
+      record.push(req.body.gender);
 
-  res.redirect('/dressstore');
+      const variety = req.body.variety;
+      variety.forEach((v) => record.push(v));
+
+      console.log(record);
+
+      indexService.insertDressListData(record);
+    }
+
+    res.redirect('/dressstore');
+  } catch (error) {
+    console.error(`Error on sendDressListData(): ${error}`);
+  }
 };
 
 const renderUploadImage = (req, res) => {

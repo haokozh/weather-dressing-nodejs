@@ -21,13 +21,17 @@ const sendDressListData = async (req, res) => {
     const member = await indexService.findMemberByAccount(req.session.user);
 
     if (member) {
-      let record = [];
-      record.push(member.id);
-      record.push(req.body.age);
-      record.push(req.body.gender);
+      let record = Array(12).fill(false);
+      record[0](member.id);
+      record[1](req.body.age);
+      record[2](req.body.gender);
 
       const variety = req.body.variety;
-      variety.forEach((v) => record.push(v));
+      for (let i = 3; i < variety.length; i++) {
+        let j = 0;
+        record[i] = variety[j];
+        j++;
+      }
 
       console.log(record);
 

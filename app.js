@@ -25,7 +25,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 600 * 1000,
-      secure: false,
+      secure: true,
     },
   })
 );

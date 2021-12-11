@@ -23,7 +23,7 @@ const authFailed = (req, res, error) => {
   req.session.authPass = false;
   req.session.errorMessage = error.message;
 
-  console.log(req.session.authPass);
+  console.log(req.session);
 
   res.send(`Error on /callback/auth ${req.session.errorMessage}`);
 };

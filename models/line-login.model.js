@@ -28,8 +28,14 @@ class LineLogin {
       const state = LineLogin._random();
       const nonce = LineLogin._random();
 
+      console.log(state);
+      console.log(nonce);
+
       req.session.line_login_state = state;
       req.session.line_login_nonce = nonce;
+
+      console.log(req.session.line_login_nonce);
+      console.log(req.session.line_login_state);
       const url = this.secure_auth_url(state, nonce);
 
       return res.redirect(url);

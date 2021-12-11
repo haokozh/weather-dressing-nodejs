@@ -22,7 +22,7 @@ const authSuccess = (req, res, token) => {
 const authFailed = (req, res, next, error) => {
   req.session.authPass = false;
   req.session.errMsg = error.message;
-  res.send(req);
+  res.send(JSON.stringify(req.body));
 };
 
 const logout = (req, res) => {

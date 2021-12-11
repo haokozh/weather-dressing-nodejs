@@ -32,11 +32,11 @@ class LineLogin {
       console.log(nonce);
       console.log(req.session);
 
-      req.session.line_login_state = state;
-      req.session.line_login_nonce = nonce;
+      req.session.lineLoginState = state;
+      req.session.lineLoginNonce = nonce;
 
-      console.log(req.session.line_login_nonce);
-      console.log(req.session.line_login_state);
+      console.log(req.session.lineLoginNonce);
+      console.log(req.session.lineLoginState);
       const url = this.secure_auth_url(state, nonce);
 
       return res.redirect(url);
@@ -64,7 +64,7 @@ class LineLogin {
     return (req, res, next) => {
       const { code } = req.query;
       const { state } = req.query;
-      if (req.session.line_login_state !== state) {
+      if (req.session.lineLoginState !== state) {
         return fail(
           req,
           res,
@@ -98,8 +98,8 @@ class LineLogin {
             }
           }
 
-          delete req.session.line_login_state;
-          delete req.session.line_login_nonce;
+          delete req.session.lineLoginState;
+          delete req.session.lineLoginNonce;
           succ(req, res, token_response);
         })
         .catch((error) => {

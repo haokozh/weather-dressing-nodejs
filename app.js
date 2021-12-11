@@ -13,12 +13,6 @@ app.set('view engine', 'ejs');
 
 app.use(morgan('tiny'));
 
-// line callback
-app.use('/callback', require('./routes/linebot.routes'));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
 app.set('trust proxy', 1);
 app.use(
   session({
@@ -36,6 +30,12 @@ app.use(
     },
   })
 );
+
+// line callback
+app.use('/callback', require('./routes/linebot.routes'));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static('public'));
 

@@ -114,6 +114,12 @@ const saveFavorite = async (
       distName
     );
 
+    console.log('here is log');
+    console.log(member);
+    console.log(purpose);
+    console.log(city);
+    console.log(dist);
+
     const { row } = await client.query(
       `INSERT INTO favorite (member_id, favorite_name, purpose_id, dist_id) VALUES ($1, $2, $3, $5) RETURNING *`,
       [member.id, favoriteName, purpose.id, dist.id]

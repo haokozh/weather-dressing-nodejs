@@ -110,7 +110,7 @@ const saveFavorite = async (
     const purpose = await findPurposeByName(purposeName);
     const city = await weatherService.findCityByCityName(cityName);
     const dist = await weatherService.findDistByCityIdAndDistName(
-      city.id,
+      city[0].id,
       distName
     );
 
@@ -120,12 +120,12 @@ const saveFavorite = async (
     console.log(city);
     console.log(dist);
 
-    const { row } = await client.query(
+    const { rows } = await client.query(
       `INSERT INTO favorite (member_id, favorite_name, purpose_id, dist_id) VALUES ($1, $2, $3, $5) RETURNING *`,
       [member.id, favoriteName, purpose.id, dist.id]
     );
 
-    console.log(row);
+    console.log(rows);
   } catch (error) {
     console.error(`Error on suggest.service.saveFavorite(): ${error}`);
   }
@@ -135,13 +135,13 @@ const findPurposeByName = async (purposeName) => {
   const client = await pool.connect();
 
   try {
-    const { row } = await client.query(
+    const { rows } = await client.query(
       `SELECT * FROM purpose WHERE purpose_name = $1`,
       [purposeName]
     );
 
-    console.log(row);
-    return row;
+    console.log(rows);
+    return rows;
   } catch (error) {
     console.error(`Error on findPurposeByName(): ${error}`);
   }

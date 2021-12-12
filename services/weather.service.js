@@ -381,14 +381,14 @@ const findCityByCityName = async (cityName) => {
   const client = await pool.connect();
 
   try {
-    const { row } = await client.query(
+    const { rows } = await client.query(
       `SELECT * FROM city WHERE city_name = $1`,
       [cityName]
     );
 
-    console.log(row);
+    console.log(rows);
 
-    return row;
+    return rows;
   } catch (error) {
     console.error(`Error on findCityByCityName(): ${error}`);
   }
@@ -398,14 +398,14 @@ const findDistByCityIdAndDistName = async (cityId, distName) => {
   const client = await pool.connect();
 
   try {
-    const { row } = await client.query(
+    const { rows } = await client.query(
       `SELECT * FROM dist WHERE city_id = $1 AND dist_name = $2`,
       [cityId, distName]
     );
 
-    console.log(row);
+    console.log(rows);
 
-    return row;
+    return rows;
   } catch (error) {
     console.error(`Error on findDistByCityIdAndDistName(): ${error}`);
   }

@@ -121,7 +121,7 @@ const saveFavorite = async (
 
     console.log(row);
   } catch (error) {
-    console.error(`Error on saveFavorite(): ${error}`);
+    console.error(`Error on suggest.service.saveFavorite(): ${error}`);
   }
 };
 
@@ -134,7 +134,8 @@ const findPurposeByName = async (purposeName) => {
       [purposeName]
     );
 
-    return row[0];
+    console.log(row);
+    return row;
   } catch (error) {
     console.error(`Error on findPurposeByName(): ${error}`);
   }

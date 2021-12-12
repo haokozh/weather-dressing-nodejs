@@ -12,7 +12,7 @@ const sendSuggestion = async (req, res) => {
   try {
     const { city, dist, purpose } = req.body;
 
-    console.log(city, dist, purpose);
+    console.log(req.body);
 
     const renderData = await suggestionService.getResponse(city, dist);
 

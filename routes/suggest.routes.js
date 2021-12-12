@@ -4,6 +4,7 @@ const multer = require('multer');
 const upload = multer();
 
 const suggestController = require('../controllers/suggest.controller');
+const auth = require('../middleware/auth');
 
 router.get('/suggestion', suggestController.suggestion);
 router.post('/suggestion', upload.none(), suggestController.sendSuggestion);

@@ -21,21 +21,20 @@ const sendDressListData = async (req, res) => {
     const member = await indexService.findMemberByAccount(req.session.user);
 
     if (member) {
-      let record = Array(12).fill(false);
-      record[0](member.id);
-      record[1](req.body.age);
-      record[2](req.body.gender);
-
-      const variety = req.body.variety;
-      for (let i = 3; i < variety.length; i++) {
-        let j = 0;
-        record[i] = variety[j];
-        j++;
+      let checkBox = Array(12).fill(false);
+      
+      for (let i = 0; i < req.body.variety.length; i++) {
+        if (req.body.variety[i]) {
+          checkBox[i] = true;
+        }
       }
 
-      console.log(record);
-
-      indexService.insertDressListData(record);
+      indexService.insertDressListData(
+        member.id,
+        req.body.age,
+        req.body.gender,
+        ...checkBox
+      );
     }
 
     res.redirect('/dressstore');

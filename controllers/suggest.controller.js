@@ -99,6 +99,7 @@ const sendSuggestion = async (req, res) => {
 
 const saveFavorite = (req, res) => {
   console.log(req.body);
+  res.send(req.body);
 };
 
 module.exports = {

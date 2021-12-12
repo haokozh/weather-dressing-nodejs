@@ -11,7 +11,7 @@ const insertDressListData = async (record) => {
   try {
     const { row } = await client.query(
       `INSERT INTO brand_log (member_id, age, gender, japan, korea, euro, formal, design, taiwan, sport, artist, counter) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *`,
-      record
+      [record]
     );
 
     console.log(row);

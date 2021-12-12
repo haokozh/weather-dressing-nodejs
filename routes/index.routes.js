@@ -36,7 +36,7 @@ const auth = require('../middleware/auth');
 
 router.get('/', indexController.index);
 router.get('/about', indexController.about);
-router.get('/dresslist', indexController.dresslist);
+router.get('/dresslist', auth, indexController.dresslist);
 router.post('/dresslist', indexController.sendDressListData);
 router.get('/dressstore', indexController.dressstore);
 router.get('/upload', auth, indexController.renderUploadImage);

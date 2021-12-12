@@ -110,7 +110,7 @@ const saveFavorite = async (
     const purpose = await findPurposeByName(purposeName);
     const city = await weatherService.findCityByCityName(cityName);
     const dist = await weatherService.findDistByCityIdAndDistName(
-      city[0].id,
+      city.id,
       distName
     );
 

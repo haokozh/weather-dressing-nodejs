@@ -97,8 +97,13 @@ const sendSuggestion = async (req, res) => {
   }
 };
 
+const saveFavorite = (req, res) => {
+  console.log(req.body);
+};
+
 module.exports = {
   suggestion,
   final,
   sendSuggestion,
+  saveFavorite,
 };

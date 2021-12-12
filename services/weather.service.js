@@ -377,6 +377,36 @@ const findWeeklyForecastIdByDistName = async (distName) => {
   }
 };
 
+const findCityByCityName = async (cityName) => {
+  const client = await pool.connect();
+
+  try {
+    const { row } = await client.query(
+      `SELECT * FROM city WHERE city_name = $1`,
+      [cityName]
+    );
+
+    return row[0];
+  } catch (error) {
+    console.error(`Error on findCityByCityName(): ${error}`);
+  }
+};
+
+const findDistByCityIdAndDistName = async (cityId, distName) => {
+  const client = await pool.connect();
+
+  try {
+    const { row } = await client.query(
+      `SELECT * FROM dist WHERE city_id = $1 AND dist_name = $2`,
+      [cityId, distName]
+    );
+
+    return row[0];
+  } catch (error) {
+    console.error(`Error on findDistByCityIdAndDistName(): ${error}`);
+  }
+};
+
 module.exports = {
   getWeatherResponse,
   parseResponseToFlexBubble,
@@ -386,4 +416,6 @@ module.exports = {
   getConfortDescription,
   getPoP12hDescription,
   getTempDescription,
+  findDistByCityIdAndDistName,
+  findCityByCityName,
 };

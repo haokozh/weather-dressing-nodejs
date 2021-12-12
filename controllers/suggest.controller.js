@@ -98,8 +98,15 @@ const sendSuggestion = async (req, res) => {
 };
 
 const saveFavorite = (req, res) => {
-  console.log(req.body);
-  res.send(req.body);
+  suggestionService.saveFavorite(
+    req.session.user,
+    `${req.body.city}${req.body.dist}${req.body.purpose}`,
+    req.body.city,
+    req.body.dist,
+    req.body.purpose
+  );
+
+  res.render('weather/suggestion', { title: '穿搭建議' });
 };
 
 module.exports = {

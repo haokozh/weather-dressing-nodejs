@@ -386,9 +386,7 @@ const findCityByCityName = async (cityName) => {
       [cityName]
     );
 
-    console.log(rows);
-
-    return rows;
+    return rows[0];
   } catch (error) {
     console.error(`Error on findCityByCityName(): ${error}`);
   }
@@ -403,9 +401,7 @@ const findDistByCityIdAndDistName = async (cityId, distName) => {
       [cityId, distName]
     );
 
-    console.log(rows);
-
-    return rows;
+    return rows[0];
   } catch (error) {
     console.error(`Error on findDistByCityIdAndDistName(): ${error}`);
   }

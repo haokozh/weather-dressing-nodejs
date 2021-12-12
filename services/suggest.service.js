@@ -121,7 +121,7 @@ const saveFavorite = async (
     console.log(dist);
 
     const { rows } = await client.query(
-      `INSERT INTO favorite (member_id, favorite_name, purpose_id, dist_id) VALUES ($1, $2, $3, $5) RETURNING *`,
+      `INSERT INTO favorite (member_id, favorite_name, purpose_id, dist_id) VALUES ($1, $2, $3, $4) RETURNING *`,
       [member.id, favoriteName, purpose.id, dist.id]
     );
 
@@ -140,8 +140,7 @@ const findPurposeByName = async (purposeName) => {
       [purposeName]
     );
 
-    console.log(rows);
-    return rows;
+    return rows[0];
   } catch (error) {
     console.error(`Error on findPurposeByName(): ${error}`);
   }

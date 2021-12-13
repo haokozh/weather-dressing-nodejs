@@ -52,7 +52,7 @@ const uploadImage = (req, res) => {
   console.log(req.body.temperature);
   console.log(req.body.location);
 
-  res.render('upload-success', { title: 上傳成功 });
+  res.render('upload-success', { title: '上傳成功' });
 };
 
 module.exports = {

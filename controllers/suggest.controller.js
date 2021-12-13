@@ -74,9 +74,9 @@ const sendSuggestion = async (req, res) => {
     }
 
 
-    const random;
-    const temp = [];
-    
+    let random;
+    let temp = [];
+
     if (renderData.maxT > 25) {
       random = Math.floor(Math.random() * 4);
       temp = [26, 32, 33, 40];

@@ -14,7 +14,7 @@ const storage = multerS3({
   metadata: (req, file, cb) => {
     cb(null, {
       fieldName: file.fieldname,
-      uploadBy: req.session.user,
+      uploadBy: 'guest',
       temperature: req.body.temperature,
       location: req.body.location,
     });
@@ -22,7 +22,7 @@ const storage = multerS3({
   key: (req, file, cb) => {
     cb(
       null,
-      `${req.session.user}_${req.body.temperature}_${
+      `guest_${req.body.temperature}_${
         req.body.location
       }_${new Date().toISOString()}`
     );
@@ -39,11 +39,10 @@ router.get('/about', indexController.about);
 router.get('/dresslist', auth, indexController.dresslist);
 router.post('/dresslist', indexController.sendDressListData);
 router.get('/dressstore', indexController.dressstore);
-router.get('/upload', auth, indexController.renderUploadImage);
+router.get('/upload', indexController.renderUploadImage);
 router.post(
   '/upload',
   upload.single('picture'),
-  auth,
   indexController.uploadImage
 );
 

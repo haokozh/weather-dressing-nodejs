@@ -73,25 +73,24 @@ const sendSuggestion = async (req, res) => {
       angelImageName = '6';
     }
 
-
     let random;
     let temp = [];
 
-    if (renderData.maxT > 25) {
-      random = Math.floor(Math.random() * 4);
-      temp = [26, 32, 33, 40];
-      realImageName = `${temp[random]}`;
-    } else if (renderData.maxT >= 21) {
+    if (renderData.maxT <= 15) {
       random = Math.floor(Math.random() * 3);
-      temp = [22, 23, 25];
+      temp = [10, 14, 15];
       realImageName = `${temp[random]}`;
-    } else if (renderData.maxT >= 15) {
+    } else if (renderData.maxT <= 20) {
       random = Math.floor(Math.random() * 3);
       temp = [18, 19, 20];
       realImageName = `${temp[random]}`;
-    } else {
+    } else if (renderData.maxT <= 25) {
       random = Math.floor(Math.random() * 3);
-      temp = [10, 14, 15];
+      temp = [22, 23, 25];
+      realImageName = `${temp[random]}`;
+    } else {
+      random = Math.floor(Math.random() * 4);
+      temp = [26, 32, 33, 40];
       realImageName = `${temp[random]}`;
     }
 

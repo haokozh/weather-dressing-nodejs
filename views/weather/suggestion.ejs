@@ -11,7 +11,7 @@
        <div class="content">
           <div style="background-color:#f8f8f8; text-align:center;" >
              <div class="row ">
-                <form class="select" Align="center" action="/weather/suggestion" method="post">
+                <form class="select" Align="center" action="/weather/suggestion" method="post" id="suggestionForm">
                    <!--標題字-->
                    <div class="panel_head" style="background-color:#86add1" text-align:center>
                       <h3>
@@ -42,7 +42,7 @@
     <br>
     &ensp;
     <br>
-    <input class="buttonl1" type="button" id='love1chenge' value="添加到我的最愛"
+    <input class="buttonl1" type="button" id='love1chenge' name="favoriteButton" onclick="addFavorite()" value="添加到我的最愛"
        style="border-radius: 10px #e9e4e4 double;background-color:#86add1;" />
     &ensp;<img
        src="https://img.icons8.com/external-sbts2018-outline-sbts2018/30/000000/external-application-social-media-sbts2018-outline-sbts2018.png"
@@ -74,5 +74,6 @@
     <%- include('../partials/footer.ejs') %>
 
     <script src="/js/select-location.js"></script>
+    <script src="/js/send-location.js"></script>
   </body>
 </html>

@@ -1,3 +1,5 @@
+const indexService = require('../services/index.service');
+
 const index = (req, res) => {
   res.render('index', { title: '首頁' });
 };
@@ -14,13 +16,31 @@ const dresslist = (req, res) => {
   res.render('dresslist', { title: '推薦店家' });
 };
 
-const sendDressListData = (req, res) => {
-  console.log(req.body.age);
-  console.log(req.body.gender);
-  console.log(req.body.variety[0]);
-  console.log(req.body.variety[1]);
-  console.log(req.body.variety[2]);
-  res.redirect('/dressstore');
+const sendDressListData = async (req, res) => {
+  try {
+    const member = await indexService.findMemberByAccount(req.session.user);
+
+    if (member) {
+      let checkBox = Array(12).fill(false);
+      
+      for (let i = 0; i < req.body.variety.length; i++) {
+        if (req.body.variety[i]) {
+          checkBox[i] = true;
+        }
+      }
+
+      indexService.insertDressListData(
+        member.id,
+        req.body.age,
+        req.body.gender,
+        ...checkBox
+      );
+    }
+
+    res.redirect('/dressstore');
+  } catch (error) {
+    console.error(`Error on sendDressListData(): ${error}`);
+  }
 };
 
 const renderUploadImage = (req, res) => {
@@ -29,7 +49,7 @@ const renderUploadImage = (req, res) => {
 
 const uploadImage = (req, res) => {
   console.log(req.file, req.body);
-  console.log(req.body.temprature);
+  console.log(req.body.temperature);
   console.log(req.body.location);
 
   res.send('image uploaded');

@@ -12,7 +12,7 @@ const sendSuggestion = async (req, res) => {
   try {
     const { city, dist, purpose } = req.body;
 
-    console.log(city, dist, purpose);
+    console.log(req.body);
 
     const renderData = await suggestionService.getResponse(city, dist);
 
@@ -97,8 +97,21 @@ const sendSuggestion = async (req, res) => {
   }
 };
 
+const saveFavorite = (req, res) => {
+  suggestionService.saveFavorite(
+    req.session.user,
+    `${req.body.city}${req.body.dist}${req.body.purpose}`,
+    req.body.city,
+    req.body.dist,
+    req.body.purpose
+  );
+
+  res.render('weather/suggestion', { title: '穿搭建議' });
+};
+
 module.exports = {
   suggestion,
   final,
   sendSuggestion,
+  saveFavorite,
 };

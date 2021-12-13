@@ -1,7 +1,6 @@
 const express = require('express');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
-const crypto = require('crypto');
 const morgan = require('morgan');
 
 const pool = require('./config/db.config');
@@ -13,12 +12,6 @@ app.set('view engine', 'ejs');
 
 app.use(morgan('tiny'));
 
-// line callback
-app.use('/callback', require('./routes/linebot.routes'));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
 app.set('trust proxy', 1);
 app.use(
   session({
@@ -27,7 +20,7 @@ app.use(
       pool: pool,
       createTableIfMissing: true,
     }),
-    secret: crypto.randomBytes(128).toString('hex'),
+    secret: process.env.LINE_LOGIN_CHANNEL_SECRET,
     resave: true,
     saveUninitialized: false,
     cookie: {
@@ -36,6 +29,12 @@ app.use(
     },
   })
 );
+
+// line callback
+app.use('/callback', require('./routes/linebot.routes'));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static('public'));
 

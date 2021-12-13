@@ -1,4 +1,6 @@
+const pool = require('../config/db.config');
 const weatherService = require('./weather.service');
+const memberService = require('./member.service');
 
 const {
   elementParams,
@@ -11,7 +13,7 @@ const getResponse = async (city, dist) => {
     const forecastId = await weatherService.findWeeklyForecastIdByCityName(
       city
     );
-    
+
     const data = await weatherService.getWeatherResponse(
       forecastId,
       dist,
@@ -94,6 +96,57 @@ const getResponse = async (city, dist) => {
   }
 };
 
+const saveFavorite = async (
+  account,
+  favoriteName,
+  cityName,
+  distName,
+  purposeName
+) => {
+  const client = await pool.connect();
+
+  try {
+    const member = await memberService.findMemberByAccount(account);
+    const purpose = await findPurposeByName(purposeName);
+    const city = await weatherService.findCityByCityName(cityName);
+    const dist = await weatherService.findDistByCityIdAndDistName(
+      city.id,
+      distName
+    );
+
+    console.log('here is log');
+    console.log(member);
+    console.log(purpose);
+    console.log(city);
+    console.log(dist);
+
+    const { rows } = await client.query(
+      `INSERT INTO favorite (member_id, favorite_name, purpose_id, dist_id) VALUES ($1, $2, $3, $4) RETURNING *`,
+      [member.id, favoriteName, purpose.id, dist.id]
+    );
+
+    console.log(rows);
+  } catch (error) {
+    console.error(`Error on suggest.service.saveFavorite(): ${error}`);
+  }
+};
+
+const findPurposeByName = async (purposeName) => {
+  const client = await pool.connect();
+
+  try {
+    const { rows } = await client.query(
+      `SELECT * FROM purpose WHERE purpose_name = $1`,
+      [purposeName]
+    );
+
+    return rows[0];
+  } catch (error) {
+    console.error(`Error on findPurposeByName(): ${error}`);
+  }
+};
+
 module.exports = {
   getResponse,
+  saveFavorite,
 };

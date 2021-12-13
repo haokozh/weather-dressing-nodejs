@@ -22,7 +22,7 @@ const sendDressListData = async (req, res) => {
 
     if (member) {
       let checkBox = Array(12).fill(false);
-      
+
       for (let i = 0; i < req.body.variety.length; i++) {
         if (req.body.variety[i]) {
           checkBox[i] = true;
@@ -52,7 +52,7 @@ const uploadImage = (req, res) => {
   console.log(req.body.temperature);
   console.log(req.body.location);
 
-  res.send('image uploaded');
+  res.render('upload-success', { title: 上傳成功 });
 };
 
 module.exports = {

@@ -73,9 +73,26 @@ const sendSuggestion = async (req, res) => {
       angelImageName = '6';
     }
 
-    const random = Math.floor(Math.random() * 13);
-    const temp = [10, 14, 15, 18, 19, 20, 22, 23, 25, 26, 32, 33, 40];
-    realImageName = `${temp[random]}`;
+    let random;
+    let temp = [];
+
+    if (renderData.maxT <= 15) {
+      random = Math.floor(Math.random() * 3);
+      temp = [10, 14, 15];
+      realImageName = `${temp[random]}`;
+    } else if (renderData.maxT <= 20) {
+      random = Math.floor(Math.random() * 3);
+      temp = [18, 19, 20];
+      realImageName = `${temp[random]}`;
+    } else if (renderData.maxT <= 25) {
+      random = Math.floor(Math.random() * 3);
+      temp = [22, 23, 25];
+      realImageName = `${temp[random]}`;
+    } else {
+      random = Math.floor(Math.random() * 4);
+      temp = [26, 32, 33, 40];
+      realImageName = `${temp[random]}`;
+    }
 
     res.render('weather/final', {
       title: '查詢結果',
